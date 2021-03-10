@@ -32,7 +32,7 @@
 			$this->RegisterPropertyFloat("Longitude", 9.0);
 
 			$this->RegisterPropertyInteger("UpdateInterval", 1);
-			$this->RegisterTimer("Update", 60000, "Update();");
+			$this->RegisterTimer("Update", 60000, "DWIPSASTRO_Update();");
 		}
 
 		public function Destroy()
@@ -45,6 +45,7 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+			$this->SetTimerInterval("Update", $this->ReadPropertyInteger("UpdateInterval")*60*1000);
 
 			
 		}

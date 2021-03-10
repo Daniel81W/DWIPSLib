@@ -47,7 +47,7 @@
 			parent::ApplyChanges();
 			$this->SetTimerInterval("Update", $this->ReadPropertyInteger("UpdateInterval")*60*1000);
 
-			DWIPSASTRO_Update();
+			DWIPSASTRO_Update($this->InstanceID);
 		}
 
 		/**

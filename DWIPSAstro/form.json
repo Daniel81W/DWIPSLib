@@ -10,7 +10,14 @@
             "type": "NumberSpinner", 
             "name": "Longitude", 
             "caption": "Longitude", 
-            "digits": 4}
+            "digits": 4
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "UpdateInterval",
+            "caption": "UpdateInterval",
+            "digits": 0
+        }
     ],
     "actions": [],
     "status": []

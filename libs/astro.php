@@ -1,17 +1,4 @@
 <?php
-$year = 2021;
-$month = 3;
-$day = 7;
-$lat = 53.9;
-$long = 8.7;
-echo date('d.m.Y H:i:s', ASTROSUN::SunriseForDateAndLocation($year,$month,$day,$lat,$long,1))."\n";
-echo ASTROSUN::HourAngleAtSunrise($lat, 0). "\n";
-echo ASTROSUN::HourAngleAtElevation(0, $lat, 0). "\n";
-echo ASTROSUN::HourAngleAtElevation(-0.833, $lat, 0). "\n";
-echo ASTROSUN::HourAngleAtElevation(-6, $lat, 0). "\n";
-echo ASTROSUN::HourAngleAtElevation(-12, $lat, 0). "\n";
-echo ASTROSUN::HourAngleAtElevation(-18, $lat, 0). "\n";
-
 
 //TODO Dauer Sonnenaufgang
 //TODO Mond

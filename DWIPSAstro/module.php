@@ -92,7 +92,7 @@
 			$this->SetValue("sundeclination", $declination);
 			//$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));
 			$this->SetValue("sundistance", ASTROSUN::SunRadVector($eccentEarthOrbit, $trueAnomalySun) * 149597870.7);
-			//$this->SetValue("equationOfTime", ASTROSUN::EquationOfTime($meanLong, $meanAnomaly, $eccentEarthOrbit, $varY));
+			$this->SetValue("equationOfTime", $eqOfTime);
 			//$this->SetValue("sundirection", );
 			//$this->SetValue("sunlightduration", );
 			//$this->SetValue("season", "season");

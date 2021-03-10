@@ -61,23 +61,33 @@
            }
 
 		public function Update(){
+			$latitude = $this->ReadPropertyFloat("Latitude");
+			$longitude = $this->ReadPropertyFloat("Longitude");
 			$jd = ASTROGEN::JulianDay();
 			$jc = ASTROGEN::JulianCentury($jd);
+
 			$eccentEarthOrbit = ASTROSUN::EccentEarthOrbit($jc);
 			$meanAnomalySun = ASTROSUN::MeanAnomaly($jc);
 			$sunEqOfCtr = ASTROSUN::SunEqOfCtr($jc, $meanAnomalySun);
 			$trueAnomalySun = ASTROSUN::TrueAnomalySun($meanAnomalySun, $sunEqOfCtr);
-			$declination = 23;//ASTROSUN::Declination($sunAppLong, $obliqCorr);
+			$meanLongitudeSun = ASTROSUN::MeanLongitude($jc);
+			$trueLongitudeSun = ASTROSUN::EclipticLongitude($meanLongitudeSun, $sunEqOfCtr);
+			$sunAppLong = ASTROSUN::SunAppLong($trueLongitudeSun, $jc);
+			$meanObliqEcliptic = ASTROSUN::MeanObliquityOfEcliptic($jc);
+			$obliqCorr = ASTROSUN::ObliqCorrected($meanObliqEcliptic, $jc);
+			$declination = ASTROSUN::Declination($sunAppLong, $obliqCorr);
 			$hourangleAtSunriseStart = ASTROSUN::HourAngleAtElevation(-0.833, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$hourangleAtSunriseEnd = ASTROSUN::HourAngleAtElevation(0.833, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$hourangleAtCivilTwilight = ASTROSUN::HourAngleAtElevation(6, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$hourangleAtNauticalTwilight = ASTROSUN::HourAngleAtElevation(12, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$hourangleAtAstronomicalTwilight = ASTROSUN::HourAngleAtElevation(18, $this->ReadPropertyFloat("Latitude"),  $declination);
+			$varY = ASTROSUN::VarY($obliqCorr);
+			$eqOfTime = EquationOfTime($meanLongitudeSun, $meanAnomalySun, $eccentEarthOrbit, $varY);
 
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
 
-			//$this->SetValue("solarnoon", ASTROSUN::SolarNoon($timezone, $longitude, $eqOfTime));
+			$this->SetValue("solarnoon", ASTROSUN::SolarNoon(1/*$timezone*/, $longitude, $eqOfTime));
 			//$this->SetValue("sunazimut", ASTROSUN::SolarAzimut($declination, $hourAngle, $solarZenith, $latitude));
 			//$this->SetValue("sundeclination", $declination);
 			//$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));

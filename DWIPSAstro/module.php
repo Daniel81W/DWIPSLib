@@ -64,9 +64,9 @@
 			$jd = ASTROGEN::JulianDay();
 			$jc = ASTROGEN::JulianCentury($jd);
 			$eccentEarthOrbit = EccentEarthOrbit($jc);
-			$geometricMeanAnomalySun = ASTROSUN::MeanAnomaly($jc);
-			$sunEqOfCtr = ASTROSUN::SunEqOfCtr($jc, $geometricMeanAnomalySun);
-			$trueAnomalySun = ASTROSUN::TrueAnomalySun(float $geometricMeanAnomalySun,float $sunEqOfCtr);
+			$meanAnomalySun = ASTROSUN::MeanAnomaly($jc);
+			$sunEqOfCtr = ASTROSUN::SunEqOfCtr($jc, $meanAnomalySun);
+			$trueAnomalySun = ASTROSUN::TrueAnomalySun($meanAnomalySun, $sunEqOfCtr);
 			$declination = 23;//ASTROSUN::Declination($sunAppLong, $obliqCorr);
 			$hourangleAtSunriseStart = ASTROSUN::HourAngleAtElevation(-0.833, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$hourangleAtSunriseEnd = ASTROSUN::HourAngleAtElevation(0.833, $this->ReadPropertyFloat("Latitude"),  $declination);

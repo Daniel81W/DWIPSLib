@@ -32,7 +32,7 @@
 			$this->RegisterPropertyFloat("Longitude", 9.0);
 
 			$this->RegisterPropertyInteger("UpdateInterval", 1);
-			$this->RegisterTimer("Update", 60000, "DWIPSASTRO_Update();");
+			$this->RegisterTimer("Update", 60000, "DWIPSASTRO_Update($this->InstanceID);");
 		}
 
 		public function Destroy()
@@ -62,6 +62,11 @@
 
 		public function Update(){
 			$jd = ASTROGEN::JulianDay();
+			$jc = ASTROGEN::JulianCentury($jd);
+			$eccentEarthOrbit = EccentEarthOrbit($jc);
+			$geometricMeanAnomalySun = ASTROSUN::MeanAnomaly($jc);
+			$sunEqOfCtr = ASTROSUN::SunEqOfCtr($jc, $geometricMeanAnomalySun);
+			$trueAnomalySun = ASTROSUN::TrueAnomalySun(float $geometricMeanAnomalySun,float $sunEqOfCtr);
 			$declination = 23;//ASTROSUN::Declination($sunAppLong, $obliqCorr);
 			$hourangleAtSunriseStart = ASTROSUN::HourAngleAtElevation(-0.833, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$hourangleAtSunriseEnd = ASTROSUN::HourAngleAtElevation(0.833, $this->ReadPropertyFloat("Latitude"),  $declination);
@@ -70,13 +75,13 @@
 			$hourangleAtAstronomicalTwilight = ASTROSUN::HourAngleAtElevation(18, $this->ReadPropertyFloat("Latitude"),  $declination);
 
 			$this->SetValue("juliandate", $jd);
-			$this->SetValue("juliancentury", ASTROGEN::JulianCentury($jd));
+			$this->SetValue("juliancentury", $jc);
 
 			//$this->SetValue("solarnoon", ASTROSUN::SolarNoon($timezone, $longitude, $eqOfTime));
 			//$this->SetValue("sunazimut", ASTROSUN::SolarAzimut($declination, $hourAngle, $solarZenith, $latitude));
 			//$this->SetValue("sundeclination", $declination);
 			//$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));
-			//$this->SetValue("sundistance", ASTROSUN::SunRadVector($eccentEarthOrbit, $trueAnomalySun) * 149597870.7);
+			$this->SetValue("sundistance", ASTROSUN::SunRadVector($eccentEarthOrbit, $trueAnomalySun) * 149597870.7);
 			//$this->SetValue("equationOfTime", ASTROSUN::EquationOfTime($meanLong, $meanAnomaly, $eccentEarthOrbit, $varY));
 			//$this->SetValue("sundirection", );
 			//$this->SetValue("sunlightduration", );

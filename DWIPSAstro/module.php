@@ -63,7 +63,7 @@
 		public function Update(){
 			$jd = ASTROGEN::JulianDay();
 			$jc = ASTROGEN::JulianCentury($jd);
-			$eccentEarthOrbit = EccentEarthOrbit($jc);
+			$eccentEarthOrbit = ASTROSUN::EccentEarthOrbit($jc);
 			$meanAnomalySun = ASTROSUN::MeanAnomaly($jc);
 			$sunEqOfCtr = ASTROSUN::SunEqOfCtr($jc, $meanAnomalySun);
 			$trueAnomalySun = ASTROSUN::TrueAnomalySun($meanAnomalySun, $sunEqOfCtr);

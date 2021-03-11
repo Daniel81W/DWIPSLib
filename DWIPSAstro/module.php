@@ -81,7 +81,7 @@
 			$this->SetValue("solarnoon", mktime(0,0,ASTROSUN::SolarNoon($timezone, $longitude, $jc)*24*60*60));
 			$this->SetValue("sunazimut", $solarAzimut);
 			$this->SetValue("sundeclination", ASTROSUN::Declination($jc));
-			$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));
+			$this->SetValue("sunelevation", ASTROSUN::SolarElevation($jc, $localTime, $latitude, $longitude, $timezone));
 			$this->SetValue("sundistance", ASTROSUN::SunRadVector($jc) * 149597870.7);
 			$this->SetValue("equationOfTime", ASTROSUN::EquationOfTime($jc));
 			$this->SetValue("sundirection", ASTROSUN::SolarDirection($solarAzimut));

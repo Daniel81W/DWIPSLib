@@ -9,27 +9,27 @@
 			parent::Create();
 			$this->RegisterVariableFloat("juliandate","juliandate", "", 1);
 			$this->RegisterVariableFloat("juliancentury","juliancentury", "", 2);
-			$this->RegisterVariableInteger("solarnoon","solarnoon", "~UnixTimestamp", 0);
-			$this->RegisterVariableFloat("sunazimut","sunazimut");
-			$this->RegisterVariableFloat("sundeclination","sundeclination");
-			$this->RegisterVariableFloat("sunelevation","sunelevation");
-			$this->RegisterVariableInteger("sundistance", "sundistance");
-			$this->RegisterVariableFloat("sunlightduration", "sunlightduration", "", 12);
-			$this->RegisterVariableFloat("equationOfTime", "equationOfTime");
-			$this->RegisterVariableString("sundirection", "sundirection");
-			$this->RegisterVariableString("season", "season");
-
-			$this->RegisterVariableInteger("sunrise", "sunrise", "~UnixTimestamp", 6);
-			$this->RegisterVariableInteger("sunset", "sunset", "~UnixTimestamp", 9);
-			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight", "~UnixTimestamp", 5);
-			$this->RegisterVariableInteger("stopciviltwilight", "stopciviltwilight", "~UnixTimestamp", 0);
-			$this->RegisterVariableInteger("startnauticaltwilight", "startnauticaltwilight", "~UnixTimestamp", 4);
-			$this->RegisterVariableInteger("stopnauticaltwilight", "stopnauticaltwilight", "~UnixTimestamp", 10);
 			$this->RegisterVariableInteger("startastronomicaltwilight", "startastronomicaltwilight", "~UnixTimestamp", 3);
+			$this->RegisterVariableInteger("startnauticaltwilight", "startnauticaltwilight", "~UnixTimestamp", 4);
+			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight", "~UnixTimestamp", 5);
+			$this->RegisterVariableInteger("sunrise", "sunrise", "~UnixTimestamp", 6);
+			$this->RegisterVariableInteger("solarnoon","solarnoon", "~UnixTimestamp", 7);
+			$this->RegisterVariableInteger("sunset", "sunset", "~UnixTimestamp", 8);
+			$this->RegisterVariableInteger("stopciviltwilight", "stopciviltwilight", "~UnixTimestamp", 9);
+			$this->RegisterVariableInteger("stopnauticaltwilight", "stopnauticaltwilight", "~UnixTimestamp", 10);
 			$this->RegisterVariableInteger("stopnastronomicaltwilight", "stopnastronomicaltwilight", "~UnixTimestamp", 11);
+			$this->RegisterVariableFloat("sunlightduration", "sunlightduration", "", 12);
+			$this->RegisterVariableFloat("sunazimut","sunazimut", "", 13);
+			$this->RegisterVariableString("sundirection", "sundirection", "", 14);
+			$this->RegisterVariableFloat("sunelevation","sunelevation", "", 15);
+			$this->RegisterVariableFloat("sundeclination","sundeclination", "", 16);
+			$this->RegisterVariableInteger("sundistance", "sundistance", "", 17);
+			$this->RegisterVariableFloat("equationOfTime", "equationOfTime", "", 18);
+			$this->RegisterVariableString("season", "season", "", 19);
+
 
 			$this->RegisterPropertyFloat("Latitude", 50.0);
-			$this->RegisterPropertyFloat("Longitude", 9.0);
+			$this->RegisterPropertyFloat("Longitude", 9);
 
 			$this->RegisterPropertyInteger("UpdateInterval", 1);
 			$this->RegisterTimer("Update", 60000, "DWIPSASTRO_Update($this->InstanceID);");
@@ -72,10 +72,10 @@
 
 			$eccentEarthOrbit = ASTROSUN::EccentEarthOrbit($jc);
 			$meanAnomalySun = ASTROSUN::MeanAnomaly($jc);
-			$sunEqOfCtr = ASTROSUN::SunEqOfCtr($jc, $meanAnomalySun);
+			$sunEqOfCtr = ASTROSUN::SunEqOfCtr($jc);
 			$trueAnomalySun = ASTROSUN::TrueAnomalySun($meanAnomalySun, $sunEqOfCtr);
 			$meanLongitudeSun = ASTROSUN::MeanLongitude($jc);
-			$trueLongitudeSun = ASTROSUN::EclipticLongitude($meanLongitudeSun, $sunEqOfCtr);
+			$trueLongitudeSun = ASTROSUN::EclipticLongitude($jc);
 			$sunAppLong = ASTROSUN::SunAppLong($trueLongitudeSun, $jc);
 			$meanObliqEcliptic = ASTROSUN::MeanObliquityOfEcliptic($jc);
 			$obliqCorr = ASTROSUN::ObliqCorrected($meanObliqEcliptic, $jc);
@@ -106,7 +106,7 @@
 			$this->SetValue("equationOfTime", $eqOfTime);
 			$this->SetValue("sundirection", ASTROSUN::SolarDirection($solarAzimut));
 			$this->SetValue("sunlightduration", ($sunset - $sunrise)/60/60);
-			$this->SetValue("season", ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart));
+			$this->SetValue("season", ASTROSUN::Season());
 
 			
 			$this->SetValue("sunrise", $sunrise);

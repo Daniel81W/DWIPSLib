@@ -20,13 +20,13 @@
 			$this->RegisterVariableString("season", "season");
 
 			$this->RegisterVariableInteger("sunrise", "sunrise", "~UnixTimestamp", 0);
-			$this->RegisterVariableInteger("sunset", "sunset");
-			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight");
-			$this->RegisterVariableInteger("stopciviltwilight", "stopciviltwilight");
-			$this->RegisterVariableInteger("startnauticaltwilight", "startnauticaltwilight");
-			$this->RegisterVariableInteger("stopnauticaltwilight", "stopnauticaltwilight");
-			$this->RegisterVariableInteger("startastronomicaltwilight", "startastronomicaltwilight");
-			$this->RegisterVariableInteger("stopnastronomicaltwilight", "stopnastronomicaltwilight");
+			$this->RegisterVariableInteger("sunset", "sunset", "~UnixTimestamp", 0);
+			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight", "~UnixTimestamp", 0);
+			$this->RegisterVariableInteger("stopciviltwilight", "stopciviltwilight", "~UnixTimestamp", 0);
+			$this->RegisterVariableInteger("startnauticaltwilight", "startnauticaltwilight", "~UnixTimestamp", 0);
+			$this->RegisterVariableInteger("stopnauticaltwilight", "stopnauticaltwilight", "~UnixTimestamp", 0);
+			$this->RegisterVariableInteger("startastronomicaltwilight", "startastronomicaltwilight", "~UnixTimestamp", 0);
+			$this->RegisterVariableInteger("stopnastronomicaltwilight", "stopnastronomicaltwilight", "~UnixTimestamp", 0);
 
 			$this->RegisterPropertyFloat("Latitude", 50.0);
 			$this->RegisterPropertyFloat("Longitude", 9.0);
@@ -106,14 +106,14 @@
 			$this->SetValue("season", $hourAngleAtSunriseStart);
 
 			
-			$this->SetValue("sunrise", ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart));
+			$this->SetValue("sunrise", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart)*24+60*60));
 			$this->SetValue("sunset", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart)*24+60*60));
-			$this->SetValue("startciviltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtCivilTwilight));
-			$this->SetValue("stopciviltwilight", ASTROSUN::Sunset($solarNoon, $hourAngleAtCivilTwilight));
-			$this->SetValue("startnauticaltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtNauticalTwilight));
-			$this->SetValue("stopnauticaltwilight", ASTROSUN::Sunset($solarNoon, $hourAngleAtNauticalTwilight));
-			$this->SetValue("startastronomicaltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtAstronomicalTwilight));
-			$this->SetValue("stopnastronomicaltwilight", ASTROSUN::Sunset($solarNoon, $hourAngleAtAstronomicalTwilight));
+			$this->SetValue("startciviltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtCivilTwilight)*24+60*60));
+			$this->SetValue("stopciviltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtCivilTwilight)*24+60*60));
+			$this->SetValue("startnauticaltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtNauticalTwilight)*24+60*60));
+			$this->SetValue("stopnauticaltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtNauticalTwilight)*24+60*60));
+			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtAstronomicalTwilight)*24+60*60));
+			$this->SetValue("stopnastronomicaltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtAstronomicalTwilight)*24+60*60));
    
 		}
 	}

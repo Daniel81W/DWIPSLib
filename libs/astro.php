@@ -63,29 +63,29 @@ class ASTROSUN{
     /**
      * 
      */
-    public static function SunEqOfCtr(float $julianCentury, float $geometricMeanAnomalySun){
-        return sin( deg2rad($geometricMeanAnomalySun) ) * ( 1.914602 - $julianCentury * ( 0.004817 + 0.000014 * $julianCentury ) ) + sin( deg2rad( 2 * $geometricMeanAnomalySun ) ) * ( 0.019993 - 0.000101 * $julianCentury ) + sin( deg2rad( 3 * $geometricMeanAnomalySun ) ) * 0.000289;
+    public static function SunEqOfCtr(float $julianCentury){
+        return sin( deg2rad(MeanAnomaly($julianCentury)) ) * ( 1.914602 - $julianCentury * ( 0.004817 + 0.000014 * $julianCentury ) ) + sin( deg2rad( 2 * MeanAnomaly($julianCentury) ) ) * ( 0.019993 - 0.000101 * $julianCentury ) + sin( deg2rad( 3 * MeanAnomaly($julianCentury) ) ) * 0.000289;
     }
 
     /**
      * 
      */
-    public static function EclipticLongitude(float $geometricMeanLongitudeSun, float $sunEqOfCtr){
-        return $geometricMeanLongitudeSun + $sunEqOfCtr;
+    public static function EclipticLongitude(float $julianCentury){
+        return MeanLongitude($julianCentury) + SunEqOfCtr( $julianCentury);
     }
 
     /**
      * 
      */
-    public static function TrueAnomalySun(float $geometricMeanAnomalySun,float $sunEqOfCtr){
-        return $geometricMeanAnomalySun + $sunEqOfCtr;
+    public static function TrueAnomalySun(float $julianCentury){
+        return MeanAnomaly($julianCentury) + SunEqOfCtr($julianCentury);
     }
 
     /**
      * 
      */
-    public static function SunRadVector(float $eccentEarthOrbit, float $trueAnomalySun){
-        return ( 1.000001018 * ( 1 - $eccentEarthOrbit * $eccentEarthOrbit ) ) / ( 1 + $eccentEarthOrbit * cos( deg2rad( $trueAnomalySun ) ) );
+    public static function SunRadVector(float $julianCentury){
+        return ( 1.000001018 * ( 1 - EccentEarthOrbit($julianCentury) * EccentEarthOrbit($julianCentury) ) ) / ( 1 + EccentEarthOrbit($julianCentury) * cos( deg2rad( TrueAnomalySun($julianCentury) ) ) );
     }
 
     /**
@@ -345,6 +345,14 @@ class ASTROSUN{
         $trueSolarTime = ASTROSUN::TrueSolarTime(0.25, $eqOfT, $long, $timezone);
         
         return mktime(0,0,$sunrise*24*60*60,$month,$day,$year);
+    }
+
+    public static function Season(float $declination, float $julianCentury, $latitude){
+        if($declination>=0){
+            if()
+        }else{
+
+        }
     }
 }
 ?>

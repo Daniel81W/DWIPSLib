@@ -90,7 +90,7 @@
 			$hourangleAtNauticalTwilight = ASTROSUN::HourAngleAtElevation(12, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$hourangleAtAstronomicalTwilight = ASTROSUN::HourAngleAtElevation(18, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$solarNoon = ASTROSUN::SolarNoon(1/*$timezone*/, $longitude, $eqOfTime);
-			$solarZenith = ASTROSUN::SolarZenith($declination, $hourAngle, $lat);
+			$solarZenith = ASTROSUN::SolarZenith($declination, $hourAngle, $latitude);
 			
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);

@@ -7,8 +7,8 @@
 		{
 			//Never delete this line!
 			parent::Create();
-			$this->RegisterVariableFloat("juliandate","juliandate");
-			$this->RegisterVariableFloat("juliancentury","juliancentury");
+			$this->RegisterVariableFloat("juliandate","juliandate", "", 1);
+			$this->RegisterVariableFloat("juliancentury","juliancentury", "", 2);
 			$this->RegisterVariableInteger("solarnoon","solarnoon", "~UnixTimestamp", 0);
 			$this->RegisterVariableFloat("sunazimut","sunazimut");
 			$this->RegisterVariableFloat("sundeclination","sundeclination");
@@ -19,7 +19,7 @@
 			$this->RegisterVariableString("sundirection", "sundirection");
 			$this->RegisterVariableString("season", "season");
 
-			$this->RegisterVariableInteger("sunrise", "sunrise");
+			$this->RegisterVariableInteger("sunrise", "sunrise", "~UnixTimestamp" 0);
 			$this->RegisterVariableInteger("sunset", "sunset");
 			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight");
 			$this->RegisterVariableInteger("stopciviltwilight", "stopciviltwilight");
@@ -98,7 +98,7 @@
 			$this->SetValue("solarnoon", mktime(0,0,$solarNoon*24*60*60));
 			$this->SetValue("sunazimut", ASTROSUN::SolarAzimut($declination, $hourAngle, $solarZenith, $latitude));
 			$this->SetValue("sundeclination", $declination);
-			//$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));
+			$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));
 			$this->SetValue("sundistance", ASTROSUN::SunRadVector($eccentEarthOrbit, $trueAnomalySun) * 149597870.7);
 			$this->SetValue("equationOfTime", $eqOfTime);
 			//$this->SetValue("sundirection", );
@@ -106,7 +106,7 @@
 			//$this->SetValue("season", ""mktime(0,0,$solarNoon*24*60*60)"");
 
 			
-			//$this->SetValue("sunrise", ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart));
+			$this->SetValue("sunrise", ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart));
 			//$this->SetValue("sunset", ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart));
 			//$this->SetValue("startciviltwilight", ASTROSUN::Sunrise($solarNoon, $hourangleAtCivilTwilight));
 			//$this->SetValue("stopciviltwilight", ASTROSUN::Sunset($solarNoon, $hourangleAtCivilTwilight));

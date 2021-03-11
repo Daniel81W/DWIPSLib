@@ -223,8 +223,8 @@ class ASTROSUN{
      */
     public static function SolarAzimut(float $julianCentury, float $localTime, float $latitude, float $longitude, int $timezone){
         $declination = Declination($julianCentury);
-        $hourAngle = HourAngle(float $localTime, float $julianCentury, float $longitude, int $timezone);
-        $solarZenith = SolarZenith(float $julianCentury, float $localTime, float $latitude, float $longitude, float $timezone);
+        $hourAngle = HourAngle($localTime, $julianCentury, $longitude, $timezone);
+        $solarZenith = SolarZenith($julianCentury, $localTime, $latitude, $longitude, $timezone);
         if ($hourAngle>0){
             return fmod(
                 rad2deg(

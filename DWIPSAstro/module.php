@@ -86,9 +86,9 @@
 			$hourAngle = ASTROSUN::HourAngle($trueSolarTime);
 			$hourAngleAtSunriseStart = ASTROSUN::HourAngleAtElevation(-0.833, $latitude,  $declination);
 			$hourAngleAtSunriseEnd = ASTROSUN::HourAngleAtElevation(0.833, $latitude,  $declination);
-			$hourAngleAtCivilTwilight = ASTROSUN::HourAngleAtElevation(6, $latitude,  $declination);
-			$hourAngleAtNauticalTwilight = ASTROSUN::HourAngleAtElevation(12, $latitude,  $declination);
-			$hourAngleAtAstronomicalTwilight = ASTROSUN::HourAngleAtElevation(18, $latitude,  $declination);
+			$hourAngleAtCivilTwilight = ASTROSUN::HourAngleAtElevation(-6, $latitude,  $declination);
+			$hourAngleAtNauticalTwilight = ASTROSUN::HourAngleAtElevation(-12, $latitude,  $declination);
+			$hourAngleAtAstronomicalTwilight = ASTROSUN::HourAngleAtElevation(-18, $latitude,  $declination);
 			$solarNoon = ASTROSUN::SolarNoon($timezone, $longitude, $eqOfTime);
 			$solarZenith = ASTROSUN::SolarZenith($declination, $hourAngle, $latitude);
 			

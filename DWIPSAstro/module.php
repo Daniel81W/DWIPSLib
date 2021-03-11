@@ -19,7 +19,7 @@
 			$this->RegisterVariableString("sundirection", "sundirection");
 			$this->RegisterVariableString("season", "season");
 
-			$this->RegisterVariableInteger("sunrise", "sunrise", "~UnixTimestamp" 0);
+			$this->RegisterVariableInteger("sunrise", "sunrise", "~UnixTimestamp", 0);
 			$this->RegisterVariableInteger("sunset", "sunset");
 			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight");
 			$this->RegisterVariableInteger("stopciviltwilight", "stopciviltwilight");
@@ -89,7 +89,7 @@
 			$hourangleAtCivilTwilight = ASTROSUN::HourAngleAtElevation(6, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$hourangleAtNauticalTwilight = ASTROSUN::HourAngleAtElevation(12, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$hourangleAtAstronomicalTwilight = ASTROSUN::HourAngleAtElevation(18, $this->ReadPropertyFloat("Latitude"),  $declination);
-			$solarNoon = ASTROSUN::SolarNoon(1/*$timezone*/, $longitude, $eqOfTime);
+			$solarNoon = ASTROSUN::SolarNoon($timezone, $longitude, $eqOfTime);
 			$solarZenith = ASTROSUN::SolarZenith($declination, $hourAngle, $latitude);
 			
 			$this->SetValue("juliandate", $jd);

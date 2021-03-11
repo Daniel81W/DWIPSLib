@@ -64,7 +64,6 @@
 			$timezone = 1;
 			$localTime = intval(date("G"))/24 + intval(date("i"))/1440 + intval(date("s")/86400);
 
-
 			$latitude = $this->ReadPropertyFloat("Latitude");
 			$longitude = $this->ReadPropertyFloat("Longitude");
 

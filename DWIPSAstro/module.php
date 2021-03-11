@@ -104,7 +104,7 @@
 			$this->SetValue("sundistance", ASTROSUN::SunRadVector($eccentEarthOrbit, $trueAnomalySun) * 149597870.7);
 			$this->SetValue("equationOfTime", $eqOfTime);
 			//$this->SetValue("sundirection", );
-			$this->SetValue("sunlightduration", $sunset - $sunrise);
+			$this->SetValue("sunlightduration", ($sunset - $sunrise)/60/60);
 			$this->SetValue("season", ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart));
 
 			

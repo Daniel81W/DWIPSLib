@@ -91,8 +91,8 @@ class ASTROSUN{
     /**
      * 
      */
-    public static function SunAppLong(float $trueLongitudeSun, float $julianCentury){
-        return $trueLongitudeSun - 0.00569 - 0.00478 * sin( deg2rad( 125.04 - 1934.136 * $julianCentury ) );
+    public static function SunAppLong(float $julianCentury){
+        return EclipticLongitude($julianCentury) - 0.00569 - 0.00478 * sin( deg2rad( 125.04 - 1934.136 * $julianCentury ) );
     }
 
     /**

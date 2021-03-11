@@ -67,16 +67,17 @@
 
 			$latitude = $this->ReadPropertyFloat("Latitude");
 			$longitude = $this->ReadPropertyFloat("Longitude");
+
 			$jd = ASTROGEN::JulianDay();
 			$jc = ASTROGEN::JulianCentury($jd);
 
 			$eccentEarthOrbit = ASTROSUN::EccentEarthOrbit($jc);
 			$meanAnomalySun = ASTROSUN::MeanAnomaly($jc);
 			$sunEqOfCtr = ASTROSUN::SunEqOfCtr($jc);
-			$trueAnomalySun = ASTROSUN::TrueAnomalySun($meanAnomalySun, $sunEqOfCtr);
+			$trueAnomalySun = ASTROSUN::TrueAnomalySun($jc);
 			$meanLongitudeSun = ASTROSUN::MeanLongitude($jc);
 			$trueLongitudeSun = ASTROSUN::EclipticLongitude($jc);
-			$sunAppLong = ASTROSUN::SunAppLong($trueLongitudeSun, $jc);
+			$sunAppLong = ASTROSUN::SunAppLong($jc);
 			$meanObliqEcliptic = ASTROSUN::MeanObliquityOfEcliptic($jc);
 			$obliqCorr = ASTROSUN::ObliqCorrected($meanObliqEcliptic, $jc);
 			$declination = ASTROSUN::Declination($sunAppLong, $obliqCorr);

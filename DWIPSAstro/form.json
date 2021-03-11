@@ -4,7 +4,7 @@
             "type": "NumberSpinner", 
             "name": "Latitude", 
             "caption": "Latitude", 
-            "digits": 4,
+            "digits": 6,
             "minimum": -90,
             "maximum": 90
         },
@@ -17,7 +17,7 @@
             "type": "NumberSpinner", 
             "name": "Longitude", 
             "caption": "Longitude", 
-            "digits": 4,
+            "digits": 6,
             "minimum": -180,
             "maximum": 180
         },

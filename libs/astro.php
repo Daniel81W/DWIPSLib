@@ -204,8 +204,8 @@ class ASTROSUN{
      * 
      */
     public static function SolarZenith(float $julianCentury, float $localTime, float $lat, float $long, float $timezone){
-        $declination = Declination( $julianCentury);
-        $hourAngle = HourAngle( $localTime,  $julianCentury,  $long,  $timezone);
+        $declination = ASTROSUN::Declination( $julianCentury);
+        $hourAngle = ASTROSUN::HourAngle( $localTime,  $julianCentury,  $long,  $timezone);
         return rad2deg(
             acos(sin(deg2rad($lat))*sin(deg2rad($declination))+cos(deg2rad($lat))*cos(deg2rad($declination))*cos(deg2rad($hourAngle)))
         );

@@ -1,10 +1,21 @@
 {
     "elements": [
-    	{ 
+    	{
+            "type": "CheckBox", 
+            "name": "LatitudeAsVariable", 
+            "caption": "Latitude set via variable" ,
+            "onChange": "$this->UpdateFormField("LatitudeVariable", "visible", false);"
+        },
+        { 
             "type": "NumberSpinner", 
             "name": "Latitude", 
             "caption": "Latitude", 
             "digits": 4
+        },
+        {
+            "type": "SelectVariable",
+            "name":"LatitudeVariable",
+            "caption": "Latitude"            
         },
     	{ 
             "type": "NumberSpinner", 

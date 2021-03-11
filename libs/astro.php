@@ -184,14 +184,14 @@ class ASTROSUN{
         return 8 * HourAngleAtElevation(-0.833, $latitude, $julianCentury);
     }
 
-    public static function TrueSolarTime(float $localTime, float $julianCentury, float $long, int $timezone){
+    public static function TrueSolarTime(float $julianCentury, float $localTime, float $long, int $timezone){
         return fmod( $localTime * 1440 + EquationOfTime($julianCentury) + 4 * $long - 60 * $timezone , 1440);
     }
 
     /**
      * 
      */
-    public static function HourAngle(float $localTime, float $julianCentury, float $long, int $timezone){
+    public static function HourAngle(float $julianCentury, float $localTime, float $long, int $timezone){
         $trueSolarTime = TrueSolarTime(float $localTime, float $julianCentury, float $long, int $timezone);
         if ($trueSolarTime / 4 < 0){
             return $trueSolarTime / 4 + 180;
@@ -221,7 +221,10 @@ class ASTROSUN{
     /**
      * 
      */
-    public static function SolarAzimut(float $declination, float $hourAngle, float $solarZenith,float $latitude){
+    public static function SolarAzimut(float $julianCentury, float $localTime, float $latitude, float $longitude, int $timezone){
+        $declination = Declination($julianCentury);
+        $hourAngle = HourAngle(float $localTime, float $julianCentury, float $longitude, int $timezone);
+        $solarZenith = SolarZenith(float $julianCentury, float $localTime, float $latitude, float $longitude, float $timezone);
         if ($hourAngle>0){
             return fmod(
                 rad2deg(
@@ -314,6 +317,7 @@ class ASTROSUN{
         }
     }
 
+    /*
     public static function SunriseForDateAndLocation(int $year, int $month, int $day, float $lat, float $long, int $timezone){
         $jc = ASTROGEN::JulianCentury(ASTROGEN::JulianDayFromDateTime($year, $month, $day));
 
@@ -338,14 +342,14 @@ class ASTROSUN{
         $trueSolarTime = ASTROSUN::TrueSolarTime(0.25, $eqOfT, $long, $timezone);
         
         return mktime(0,0,$sunrise*24*60*60,$month,$day,$year);
-    }
-
+    }*/
+/*
     public static function Season(float $declination, float $julianCentury, $latitude){
         if($declination>=0){
             if()
         }else{
 
         }
-    }
+    }*/
 }
 ?>

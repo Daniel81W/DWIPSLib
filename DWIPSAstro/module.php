@@ -87,7 +87,7 @@
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
 
-			$this->SetValue("solarnoon", $solarNoon);
+			$this->SetValue("solarnoon", mktime(0,0,$solarNoon*24*60*60));
 			//$this->SetValue("sunazimut", ASTROSUN::SolarAzimut($declination, $hourAngle, $solarZenith, $latitude));
 			$this->SetValue("sundeclination", $declination);
 			//$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));
@@ -95,7 +95,7 @@
 			$this->SetValue("equationOfTime", $eqOfTime);
 			//$this->SetValue("sundirection", );
 			//$this->SetValue("sunlightduration", );
-			$this->SetValue("season", $solarNoon);
+			$this->SetValue("season", mktime(0,0,$solarNoon*24*60*60));
 
 			
 			//$this->SetValue("sunrise", ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart));

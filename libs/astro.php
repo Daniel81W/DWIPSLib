@@ -346,13 +346,38 @@ class ASTROSUN{
         return mktime(0,0,$sunrise*24*60*60,$month,$day,$year);
     }*/
 
-    public static function Season(){//float $declination, float $julianCentury, $latitude){
-        /*if($declination>=0){
-            if()
+    public static function Season(float $julianCentury, $latitude){
+        $declination = ASTROSUN::Declination($julianCentury);
+        $declinationBef = ASTROSUN::Declination($julianCentury) - 0.00000002;
+        if($declination>=0){
+            if($declination > $declinationBef){
+                if($latitude > 0){
+                    return "Spring";
+                }else{
+                    return "Fall";
+                }
+            }else{
+                if($latitude > 0){
+                    return "Summer";
+                }else{
+                    return "Winter";
+                }
+            }
         }else{
-
-        }*/
-        return "Spring";
+            if($declination > $declinationBef){
+                if($latitude > 0){
+                    return "Winter";
+                }else{
+                    return "Summer";
+                }
+            }else{
+                if($latitude > 0){
+                    return "Fall";
+                }else{
+                    return "Spring";
+                }
+            }
+        }
     }
 }
 ?>

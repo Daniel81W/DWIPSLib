@@ -346,7 +346,7 @@ class ASTROSUN{
         return mktime(0,0,$sunrise*24*60*60,$month,$day,$year);
     }*/
 
-    public static function Season(float $julianCentury, $latitude){
+    public static function Season(float $julianCentury, float $latitude){
         $declination = ASTROSUN::Declination($julianCentury);
         $declinationBef = ASTROSUN::Declination($julianCentury) - 0.00000002;
         if($declination>=0){

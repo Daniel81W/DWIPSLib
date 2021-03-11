@@ -17,7 +17,7 @@
 			$this->RegisterVariableInteger("sunset", "sunset", "~UnixTimestamp", 8);
 			$this->RegisterVariableInteger("stopciviltwilight", "stopciviltwilight", "~UnixTimestamp", 9);
 			$this->RegisterVariableInteger("stopnauticaltwilight", "stopnauticaltwilight", "~UnixTimestamp", 10);
-			$this->RegisterVariableInteger("stopnastronomicaltwilight", "stopnastronomicaltwilight", "~UnixTimestamp", 11);
+			$this->RegisterVariableInteger("stopastronomicaltwilight", "stopastronomicaltwilight", "~UnixTimestamp", 11);
 			$this->RegisterVariableFloat("sunlightduration", "sunlightduration", "", 12);
 			$this->RegisterVariableFloat("sunazimut","sunazimut", "", 13);
 			$this->RegisterVariableString("sundirection", "sundirection", "", 14);

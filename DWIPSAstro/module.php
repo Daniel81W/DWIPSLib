@@ -103,7 +103,7 @@
 			$this->SetValue("equationOfTime", $eqOfTime);
 			//$this->SetValue("sundirection", );
 			//$this->SetValue("sunlightduration", );
-			$this->SetValue("season", $hourAngleAtSunriseStart);
+			$this->SetValue("season", ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart));
 
 			
 			$this->SetValue("sunrise", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart)*24+60*60));

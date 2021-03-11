@@ -174,9 +174,9 @@ class ASTROSUN{
      */
     public static function TimeForElevation(float $sunElevation, float $latitude, float $longitude, float $timezone, float $julianCentury, bool $beforeNoon){
         if ($beforeNoon){
-            return SolarNoon($timezone, $longitude, $julianCentury) - HourAngleAtElevation(float $sunElevation, float $latitude, float $julianCentury) / 360;
+            return SolarNoon($timezone, $longitude, $julianCentury) - HourAngleAtElevation($sunElevation, $latitude, $julianCentury) / 360;
         }else{
-            return SolarNoon($timezone, $longitude, $julianCentury) + HourAngleAtElevation(float $sunElevation, float $latitude, float $julianCentury) / 360;
+            return SolarNoon($timezone, $longitude, $julianCentury) + HourAngleAtElevation($sunElevation, $latitude, $julianCentury) / 360;
         }
     }
 

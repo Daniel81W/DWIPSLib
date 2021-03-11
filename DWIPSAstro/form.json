@@ -33,7 +33,7 @@
             "digits": 0,
             "minimum": 0,
             "maximum": 120,
-            "suffix": "Minute(n)"
+            "suffix": "Minuten"
         }
     ],
     "actions": [],

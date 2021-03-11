@@ -4,7 +4,7 @@
             "type": "CheckBox", 
             "name": "LatitudeAsVariable", 
             "caption": "Latitude set via variable" ,
-            "onChange": "$this->UpdateFormField("LatitudeVariable", "visible", false);"
+            "onChange": "$this->UpdateFormField('LatitudeVariable', 'visible', false);"
         },
         { 
             "type": "NumberSpinner", 

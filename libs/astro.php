@@ -86,7 +86,7 @@ class ASTROSUN{
      * 
      */
     public static function SunRadVector(float $julianCentury){
-        $eeo = ASTROSUN::EccentEarthOrbit($julianCentury)
+        $eeo = ASTROSUN::EccentEarthOrbit($julianCentury);
         return ( 1.000001018 * ( 1 - $eeo * $eeo ) ) / ( 1 + $eeo * cos( deg2rad( ASTROSUN::TrueAnomalySun($julianCentury) ) ) );
     }
 

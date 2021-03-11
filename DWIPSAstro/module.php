@@ -84,11 +84,11 @@
 			$eqOfTime = ASTROSUN::EquationOfTime($meanLongitudeSun, $meanAnomalySun, $eccentEarthOrbit, $varY);
 			$trueSolarTime = ASTROSUN::TrueSolarTime($localTime, $eqOfTime, $longitude, $timezone);
 			$hourAngle = ASTROSUN::HourAngle($trueSolarTime);
-			$hourAngleAtSunriseStart = ASTROSUN::HourAngleAtElevation(-0.833, $this->ReadPropertyFloat("Latitude"),  $declination);
-			$hourAngleAtSunriseEnd = ASTROSUN::HourAngleAtElevation(0.833, $this->ReadPropertyFloat("Latitude"),  $declination);
-			$hourAngleAtCivilTwilight = ASTROSUN::HourAngleAtElevation(6, $this->ReadPropertyFloat("Latitude"),  $declination);
-			$hourAngleAtNauticalTwilight = ASTROSUN::HourAngleAtElevation(12, $this->ReadPropertyFloat("Latitude"),  $declination);
-			$hourAngleAtAstronomicalTwilight = ASTROSUN::HourAngleAtElevation(18, $this->ReadPropertyFloat("Latitude"),  $declination);
+			$hourAngleAtSunriseStart = ASTROSUN::HourAngleAtElevation(-0.833, $latitude,  $declination);
+			$hourAngleAtSunriseEnd = ASTROSUN::HourAngleAtElevation(0.833, $latitude,  $declination);
+			$hourAngleAtCivilTwilight = ASTROSUN::HourAngleAtElevation(6, $latitude,  $declination);
+			$hourAngleAtNauticalTwilight = ASTROSUN::HourAngleAtElevation(12, $latitude,  $declination);
+			$hourAngleAtAstronomicalTwilight = ASTROSUN::HourAngleAtElevation(18, $latitude,  $declination);
 			$solarNoon = ASTROSUN::SolarNoon($timezone, $longitude, $eqOfTime);
 			$solarZenith = ASTROSUN::SolarZenith($declination, $hourAngle, $latitude);
 			
@@ -103,17 +103,17 @@
 			$this->SetValue("equationOfTime", $eqOfTime);
 			//$this->SetValue("sundirection", );
 			//$this->SetValue("sunlightduration", );
-			//$this->SetValue("season", ""mktime(0,0,$solarNoon*24*60*60)"");
+			$this->SetValue("season", $hourAngleAtSunriseStart);
 
 			
 			$this->SetValue("sunrise", ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart));
-			//$this->SetValue("sunset", ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart));
-			//$this->SetValue("startciviltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtCivilTwilight));
-			//$this->SetValue("stopciviltwilight", ASTROSUN::Sunset($solarNoon, $hourAngleAtCivilTwilight));
-			//$this->SetValue("startnauticaltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtNauticalTwilight));
-			//$this->SetValue("stopnauticaltwilight", ASTROSUN::Sunset($solarNoon, $hourAngleAtNauticalTwilight));
-			//$this->SetValue("startastronomicaltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtAstronomicalTwilight));
-			//$this->SetValue("stopnastronomicaltwilight", ASTROSUN::Sunset($solarNoon, $hourAngleAtAstronomicalTwilight));
+			$this->SetValue("sunset", ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart));
+			$this->SetValue("startciviltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtCivilTwilight));
+			$this->SetValue("stopciviltwilight", ASTROSUN::Sunset($solarNoon, $hourAngleAtCivilTwilight));
+			$this->SetValue("startnauticaltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtNauticalTwilight));
+			$this->SetValue("stopnauticaltwilight", ASTROSUN::Sunset($solarNoon, $hourAngleAtNauticalTwilight));
+			$this->SetValue("startastronomicaltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtAstronomicalTwilight));
+			$this->SetValue("stopnastronomicaltwilight", ASTROSUN::Sunset($solarNoon, $hourAngleAtAstronomicalTwilight));
    
 		}
 	}

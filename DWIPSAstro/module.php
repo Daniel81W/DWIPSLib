@@ -72,52 +72,35 @@
 			$jc = ASTROGEN::JulianCentury($jd);
 
 			$eccentEarthOrbit = ASTROSUN::EccentEarthOrbit($jc);
-			$meanAnomalySun = ASTROSUN::MeanAnomaly($jc);
-			$sunEqOfCtr = ASTROSUN::SunEqOfCtr($jc);
 			$trueAnomalySun = ASTROSUN::TrueAnomalySun($jc);
-			$meanLongitudeSun = ASTROSUN::MeanLongitude($jc);
-			$trueLongitudeSun = ASTROSUN::EclipticLongitude($jc);
-			$sunAppLong = ASTROSUN::SunAppLong($jc);
-			$meanObliqEcliptic = ASTROSUN::MeanObliquityOfEcliptic($jc);
-			$obliqCorr = ASTROSUN::ObliqCorrected($jc);
-			$declination = ASTROSUN::Declination($jc);
-			$varY = ASTROSUN::VarY($jc);
-			$eqOfTime = ASTROSUN::EquationOfTime($jc);
-			$trueSolarTime = ASTROSUN::TrueSolarTime($localTime, $jc, $longitude, $timezone);
-			$hourAngle = ASTROSUN::HourAngle($trueSolarTime);
-			$hourAngleAtSunriseStart = ASTROSUN::HourAngleAtElevation(-0.833, $latitude,  $declination);
-			$hourAngleAtSunriseEnd = ASTROSUN::HourAngleAtElevation(0.833, $latitude,  $declination);
-			$hourAngleAtCivilTwilight = ASTROSUN::HourAngleAtElevation(-6, $latitude,  $declination);
-			$hourAngleAtNauticalTwilight = ASTROSUN::HourAngleAtElevation(-12, $latitude,  $declination);
-			$hourAngleAtAstronomicalTwilight = ASTROSUN::HourAngleAtElevation(-18, $latitude,  $declination);
-			$solarNoon = ASTROSUN::SolarNoon($timezone, $longitude, $eqOfTime);
-			$solarZenith = ASTROSUN::SolarZenith($declination, $hourAngle, $latitude);
-			$sunrise = mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart)*24*60*60);
-			$sunset = mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart)*24*60*60);
-			$solarAzimut = ASTROSUN::SolarAzimut($declination, $hourAngle, $solarZenith, $latitude);
+			$solarNoon = ASTROSUN::SolarNoon($timezone, $longitude, $jc);
+			$solarZenith = ASTROSUN::SolarZenith($jc, $localTime, $latitude, $longitude, $timezone);
+			$sunrise = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, true)*24*60*60);
+			$sunset = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
+			$solarAzimut = ASTROSUN::SolarAzimut($jc, $localTime, $latitude, $longitude, $timezone);
 
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
 
 			$this->SetValue("solarnoon", mktime(0,0,$solarNoon*24*60*60));
 			$this->SetValue("sunazimut", $solarAzimut);
-			$this->SetValue("sundeclination", $declination);
+			$this->SetValue("sundeclination", ASTROSUN::Declination($jc));
 			$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));
-			$this->SetValue("sundistance", ASTROSUN::SunRadVector($eccentEarthOrbit, $trueAnomalySun) * 149597870.7);
-			$this->SetValue("equationOfTime", $eqOfTime);
+			$this->SetValue("sundistance", ASTROSUN::SunRadVector($jc) * 149597870.7);
+			$this->SetValue("equationOfTime", ASTROSUN::EquationOfTime($jc));
 			$this->SetValue("sundirection", ASTROSUN::SolarDirection($solarAzimut));
 			$this->SetValue("sunlightduration", ($sunset - $sunrise)/60/60);
-			$this->SetValue("season", ASTROSUN::Season());
+			//$this->SetValue("season", ASTROSUN::Season());
 
 			
 			$this->SetValue("sunrise", $sunrise);
 			$this->SetValue("sunset", $sunset);
-			$this->SetValue("startciviltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtCivilTwilight)*24*60*60));
-			$this->SetValue("stopciviltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtCivilTwilight)*24*60*60));
-			$this->SetValue("startnauticaltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtNauticalTwilight)*24*60*60));
-			$this->SetValue("stopnauticaltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtNauticalTwilight)*24*60*60));
-			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtAstronomicalTwilight)*24*60*60));
-			$this->SetValue("stopnastronomicaltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtAstronomicalTwilight)*24*60*60));
+			$this->SetValue("startciviltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
+			$this->SetValue("stopciviltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
+			$this->SetValue("startnauticaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
+			$this->SetValue("stopnauticaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
+			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
+			$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
    
 		}
 	}

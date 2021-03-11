@@ -191,7 +191,8 @@ class ASTROSUN{
     /**
      * 
      */
-    public static function HourAngle(float $trueSolarTime){
+    public static function HourAngle(float $localTime, float $julianCentury, float $long, int $timezone){
+        $trueSolarTime = TrueSolarTime(float $localTime, float $julianCentury, float $long, int $timezone);
         if ($trueSolarTime / 4 < 0){
             return $trueSolarTime / 4 + 180;
         }else{
@@ -202,7 +203,9 @@ class ASTROSUN{
     /**
      * 
      */
-    public static function SolarZenith(float $declination, float $hourAngle, float $lat){
+    public static function SolarZenith(float $julianCentury, float $localTime, float $lat, float $long, float $timezone){
+        $declination = Declination( $julianCentury);
+        $hourAngle = HourAngle( $localTime,  $julianCentury,  $long,  $timezone);
         return rad2deg(
             acos(sin(deg2rad($lat))*sin(deg2rad($declination))+cos(deg2rad($lat))*cos(deg2rad($declination))*cos(deg2rad($hourAngle)))
         );
@@ -211,8 +214,8 @@ class ASTROSUN{
     /**
      * 
      */
-    public static function SolarElevation(float $solarZenith){
-        return 90 - $solarZenith;
+    public static function SolarElevation(float $julianCentury, float $localTime, float $lat, float $long, float $timezone){
+        return 90 - SolarZenith($julianCentury, $localTime, $lat, $long, $timezone);
     }
 
     /**

@@ -70,7 +70,6 @@
 			$jd = ASTROGEN::JulianDay();
 			$jc = ASTROGEN::JulianCentury($jd);
 
-			//$solarNoon = ASTROSUN::SolarNoon($timezone, $longitude, $jc);
 			$solarZenith = ASTROSUN::SolarZenith($jc, $localTime, $latitude, $longitude, $timezone);
 			$sunrise = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, true)*24*60*60);
 			$sunset = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
@@ -79,7 +78,7 @@
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
 
-			$this->SetValue("solarnoon", mktime(0,0,$solarNoon*24*60*60));
+			$this->SetValue("solarnoon", mktime(0,0,ASTROSUN::SolarNoon($timezone, $longitude, $jc)*24*60*60));
 			$this->SetValue("sunazimut", $solarAzimut);
 			$this->SetValue("sundeclination", ASTROSUN::Declination($jc));
 			$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));

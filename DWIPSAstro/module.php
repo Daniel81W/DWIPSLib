@@ -73,6 +73,8 @@
 			$sunrise = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, true)*24*60*60);
 			$sunset = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
 			$solarAzimut = ASTROSUN::SolarAzimut($jc, $localTime, $latitude, $longitude, $timezone);
+			$beginCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, true)*24*60*60);
+			$endCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
 
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
@@ -90,20 +92,24 @@
 			
 			$this->SetValue("sunrise", $sunrise);
 			$this->SetValue("sunset", $sunset);
-			$this->SetValue("startciviltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
-			$this->SetValue("stopciviltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
+			$this->SetValue("startciviltwilight", $beginCivilTwilight);
+			$this->SetValue("stopciviltwilight", $endCivilTwilight);
 			$this->SetValue("startnauticaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
 			$this->SetValue("stopnauticaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
 			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
 			$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
 			
-			$ts = mktime();
+			$ts = time();
 			if($sunrise <= $ts and $ts <= $sunset){
 				$this->SetValue("day", true);
 			}else{
 				$this->SetValue("day", false);
 			}
-			//"insideCivilTwilight"
+			if($beginCivilTwilight <= $ts and $ts <= $endCivilTwilight){
+				$this->SetValue("insideCivilTwilight", true);
+			}else{
+				$this->SetValue("insideCivilTwilight", false);
+			}
 		}
 
 		

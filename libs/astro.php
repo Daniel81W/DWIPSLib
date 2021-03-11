@@ -352,7 +352,7 @@ class ASTROSUN{
         }else{
 
         }*/
-        reutrn "Spring";
+        return "Spring";
     }
 }
 ?>

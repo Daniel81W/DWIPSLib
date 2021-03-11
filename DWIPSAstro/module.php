@@ -26,6 +26,8 @@
 			$this->RegisterVariableInteger("sundistance", "sundistance", "", 17);
 			$this->RegisterVariableFloat("equationOfTime", "equationOfTime", "", 18);
 			$this->RegisterVariableString("season", "season", "", 19);
+			$this->RegisterVariableBoolean("day", "day","", 20);
+			$this->RegisterVariableBoolean("insideCivilTwilight", "insideCivilTwilight", "", 21);
 
 
 			$this->RegisterPropertyFloat("Latitude", 50.0);
@@ -57,9 +59,6 @@
         * DWIPSASTRO_UpdateSunrise($id);
         *
         */
-        public function UpdateSunrise() {
-           }
-
 		public function Update(){
 			$timezone = 1;
 			$localTime = intval(date("G"))/24 + intval(date("i"))/1440 + intval(date("s")/86400);
@@ -97,7 +96,16 @@
 			$this->SetValue("stopnauticaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
 			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
 			$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
-   
+			
+			$ts = mktime();
+			if($sunrise <= $ts and $ts <= $sunset){
+				$this->SetValue("day", true);
+			}else{
+				$this->SetValue("day", false);
+			}
+			//"insideCivilTwilight"
 		}
+
+		
 	}
 	?>

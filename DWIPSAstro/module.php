@@ -21,7 +21,7 @@
 
 			$this->RegisterVariableInteger("sunrise", "sunrise", "~UnixTimestamp", 6);
 			$this->RegisterVariableInteger("sunset", "sunset", "~UnixTimestamp", 9);
-			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight", "~UnixTimestamp", 5;
+			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight", "~UnixTimestamp", 5);
 			$this->RegisterVariableInteger("stopciviltwilight", "stopciviltwilight", "~UnixTimestamp", 0);
 			$this->RegisterVariableInteger("startnauticaltwilight", "startnauticaltwilight", "~UnixTimestamp", 4);
 			$this->RegisterVariableInteger("stopnauticaltwilight", "stopnauticaltwilight", "~UnixTimestamp", 10);

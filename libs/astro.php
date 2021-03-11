@@ -138,7 +138,7 @@ class ASTROSUN{
      */
     public static function EquationOfTime(float $julianCentury){
         return 4 * rad2deg(
-            VarY( $julianCentury) * sin(
+            ASTROSUN::VarY( $julianCentury) * sin(
                     2*deg2rad(ASTROSUN::MeanLongitude($julianCentury))
                 ) - 2 * ASTROSUN::EccentEarthOrbit($julianCentury) * sin(
                     deg2rad(ASTROSUN::MeanAnomaly($julianCentury))

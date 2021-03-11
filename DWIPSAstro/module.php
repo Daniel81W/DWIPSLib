@@ -83,11 +83,11 @@
 			$hourangleAtAstronomicalTwilight = ASTROSUN::HourAngleAtElevation(18, $this->ReadPropertyFloat("Latitude"),  $declination);
 			$varY = ASTROSUN::VarY($obliqCorr);
 			$eqOfTime = ASTROSUN::EquationOfTime($meanLongitudeSun, $meanAnomalySun, $eccentEarthOrbit, $varY);
-
+			$solarNoon = ASTROSUN::SolarNoon(1/*$timezone*/, $longitude, $eqOfTime);
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
 
-			$this->SetValue("solarnoon", ASTROSUN::SolarNoon(1/*$timezone*/, $longitude, $eqOfTime));
+			$this->SetValue("solarnoon", $solarNoon);
 			//$this->SetValue("sunazimut", ASTROSUN::SolarAzimut($declination, $hourAngle, $solarZenith, $latitude));
 			$this->SetValue("sundeclination", $declination);
 			//$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));
@@ -95,7 +95,7 @@
 			$this->SetValue("equationOfTime", $eqOfTime);
 			//$this->SetValue("sundirection", );
 			//$this->SetValue("sunlightduration", );
-			//$this->SetValue("season", "season");
+			$this->SetValue("season", $solarNoon);
 
 			
 			//$this->SetValue("sunrise", ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart));

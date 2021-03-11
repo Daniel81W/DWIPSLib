@@ -1,0 +1,12 @@
+{
+    "id": "{0B8709EA-127A-29C7-61DA-916BA9B2ED02}",
+    "name": "DWIPSShutter",
+    "type": 3,
+    "vendor": "",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "DWIPSShutter",
+    "url": "https://github.com/Daniel81W/DWIPSLib"
+}

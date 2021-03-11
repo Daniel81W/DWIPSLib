@@ -107,7 +107,7 @@
 
 			
 			$this->SetValue("sunrise", ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart));
-			$this->SetValue("sunset", ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart));
+			$this->SetValue("sunset", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart)*24+60*60));
 			$this->SetValue("startciviltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtCivilTwilight));
 			$this->SetValue("stopciviltwilight", ASTROSUN::Sunset($solarNoon, $hourAngleAtCivilTwilight));
 			$this->SetValue("startnauticaltwilight", ASTROSUN::Sunrise($solarNoon, $hourAngleAtNauticalTwilight));

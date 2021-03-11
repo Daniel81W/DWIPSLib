@@ -280,6 +280,46 @@ class ASTROSUN{
         }
     }
 
+    public static function SolarDirection(float $solarAzimut){
+        $sector = intdiv($solarAzimut, 22.5);
+
+        switch ($sector) {
+            case 0:
+                return "N";
+            case 1:
+                return "NNE";
+            case 2:
+                return "NE";
+            case 3:
+                return "ENE";
+            case 4:
+                return "E";
+            case 5:
+                return "ESE";
+            case 6:
+                return "SE";
+            case 7:
+                return "SSE";
+            case 8:
+                return "S";
+            case 9:
+                return "SSW";
+            case 10:
+                return "SW";
+            case 11:
+                return "WSW";
+            case 12:
+                return "W";
+            case 13:
+                return "WNW";
+            case 14:
+                return "NW";
+            case 15:
+                return "NNW";
+            default:
+                return "";
+        }
+    }
 
     public static function SunriseForDateAndLocation(int $year, int $month, int $day, float $lat, float $long, int $timezone){
         $jc = ASTROGEN::JulianCentury(ASTROGEN::JulianDayFromDateTime($year, $month, $day));

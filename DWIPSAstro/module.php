@@ -93,17 +93,18 @@
 			$solarZenith = ASTROSUN::SolarZenith($declination, $hourAngle, $latitude);
 			$sunrise = mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart)*24*60*60);
 			$sunset = mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart)*24*60*60);
-
+			$solarAzimut = ASTROSUN::SolarAzimut($declination, $hourAngle, $solarZenith, $latitude);
+			
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
 
 			$this->SetValue("solarnoon", mktime(0,0,$solarNoon*24*60*60));
-			$this->SetValue("sunazimut", ASTROSUN::SolarAzimut($declination, $hourAngle, $solarZenith, $latitude));
+			$this->SetValue("sunazimut", );
 			$this->SetValue("sundeclination", $declination);
 			$this->SetValue("sunelevation", ASTROSUN::SolarElevation($solarZenith));
 			$this->SetValue("sundistance", ASTROSUN::SunRadVector($eccentEarthOrbit, $trueAnomalySun) * 149597870.7);
 			$this->SetValue("equationOfTime", $eqOfTime);
-			//$this->SetValue("sundirection", );
+			$this->SetValue("sundirection", ASTROSUN::SolarDirection($solarAzimut));
 			$this->SetValue("sunlightduration", ($sunset - $sunrise)/60/60);
 			$this->SetValue("season", ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart));
 

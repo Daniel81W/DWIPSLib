@@ -106,96 +106,86 @@ class ASTROSUN{
     /**
      * 
      */
-    public static function ObliqCorrected(float $meanObliqEcliptic, float $julianCentury){
-        return $meanObliqEcliptic + 0.00256 * cos( deg2rad( 125.04 - 1934.136 * $julianCentury ) );
+    public static function ObliqCorrected(float $julianCentury){
+        return MeanObliquityOfEcliptic($julianCentury) + 0.00256 * cos( deg2rad( 125.04 - 1934.136 * $julianCentury ) );
     }
 
     /**
      * 
      */
-    public static function RA(float $sunAppLong, float $obliqCorr){
-        return rad2deg( atan2( cos( deg2rad( $sunAppLong ) ) , cos( deg2rad( $obliqCorr ) ) * sin( deg2rad( $sunAppLong ) ) ) );
+    public static function RA(float $julianCentury){
+        return rad2deg( atan2( cos( deg2rad( SunAppLong( $julianCentury) ) ) , cos( deg2rad( ObliqCorrected($julianCentury) ) ) * sin( deg2rad( SunAppLong( $julianCentury) ) ) ) );
     }
 
     /**
      * Deklination der Sonne
      */
-    public static function Declination(float $sunAppLong, float $obliqCorr){
-        return rad2deg( asin( sin( deg2rad( $obliqCorr ) ) * sin( deg2rad( $sunAppLong ) ) ) );
+    public static function Declination(float $julianCentury){
+        return rad2deg( asin( sin( deg2rad( ObliqCorrected($julianCentury) ) ) * sin( deg2rad( SunAppLong( $julianCentury) ) ) ) );
     }
 
     /**
      * 
      */
-    public static function VarY(float $obliqCorr){
-        return tan( deg2rad( $obliqCorr / 2 ) ) * tan( deg2rad( $obliqCorr / 2 ) );
+    public static function VarY(float $julianCentury){
+        return tan( deg2rad( ObliqCorrected($julianCentury) / 2 ) ) * tan( deg2rad( ObliqCorrected($julianCentury) / 2 ) );
     }
 
     /**
      * 
      */
-    public static function EquationOfTime(float $meanLong, float $meanAnomaly, float $eccentEarthOrbit, float $varY){
+    public static function EquationOfTime(float $julianCentury){
         return 4 * rad2deg(
-                $varY * sin(
-                    2*deg2rad($meanLong)
-                ) - 2 * $eccentEarthOrbit * sin(
-                    deg2rad($meanAnomaly)
-                ) + 4 * $eccentEarthOrbit * $varY * sin(
-                    deg2rad($meanAnomaly)
+            VarY( $julianCentury) * sin(
+                    2*deg2rad(MeanLongitude($julianCentury))
+                ) - 2 * EccentEarthOrbit($julianCentury) * sin(
+                    deg2rad(MeanAnomaly($julianCentury))
+                ) + 4 * EccentEarthOrbit($julianCentury) * VarY( $julianCentury) * sin(
+                    deg2rad(MeanAnomaly($julianCentury))
                 ) * cos(
-                    2*deg2rad($meanLong)
-                ) - 0.5 * $varY * $varY * sin(
-                    4*deg2rad($meanLong)
-                ) - 1.25 * $eccentEarthOrbit * $eccentEarthOrbit * sin(
-                    2 * deg2rad($meanAnomaly)
+                    2*deg2rad(MeanLongitude($julianCentury))
+                ) - 0.5 * VarY( $julianCentury) * VarY( $julianCentury) * sin(
+                    4*deg2rad(MeanLongitude($julianCentury))
+                ) - 1.25 * EccentEarthOrbit($julianCentury) * EccentEarthOrbit($julianCentury) * sin(
+                    2 * deg2rad(MeanAnomaly($julianCentury))
                 )
             );
     }
 
-    /**
-     * 
-     */
-    public static function HourAngleAtSunrise(float $latitude, float $declinaton){
-        return rad2deg(acos(cos(deg2rad(90.833))/(cos(deg2rad($latitude))*cos(deg2rad($declinaton)))-tan(deg2rad($latitude))*tan(deg2rad($declinaton))));
-    }
-
-    public static function HourAngleAtElevation(float $sunElevation, float $latitude, float $declinaton){
-        return rad2deg(acos(cos(deg2rad(90 - $sunElevation))/(cos(deg2rad($latitude))*cos(deg2rad($declinaton)))-tan(deg2rad($latitude))*tan(deg2rad($declinaton))));
+    public static function HourAngleAtElevation(float $sunElevation, float $latitude, float $julianCentury){
+        return rad2deg(acos(cos(deg2rad(90 - $sunElevation))/(cos(deg2rad($latitude))*cos(deg2rad(Declination($julianCentury))))-tan(deg2rad($latitude))*tan(deg2rad(Declination($julianCentury)))));
     }
 
     /**
      * 
      */
-    public static function SolarNoon(int $timezone, float $longitude, float $eqOfTime){
+    public static function SolarNoon(int $timezone, float $longitude, float $julianCentury){
         if ($longitude >= -180 && $longitude <= 180) {
-            return ( 720 - 4 * $longitude - $eqOfTime + $timezone * 60 ) / 1440;
+            return ( 720 - 4 * $longitude - EquationOfTime($julianCentury) + $timezone * 60 ) / 1440;
         }elseif ($longitude < -180) {
-            return ( 720 - 4 * (360 + $longitude) - $eqOfTime + $timezone * 60 ) / 1440;
+            return ( 720 - 4 * (360 + $longitude) - EquationOfTime($julianCentury) + $timezone * 60 ) / 1440;
         }elseif ($longitude > 180) {
-            return ( 720 - 4 * (-360 + $longitude) - $eqOfTime + $timezone * 60 ) / 1440;
+            return ( 720 - 4 * (-360 + $longitude) - EquationOfTime($julianCentury) + $timezone * 60 ) / 1440;
         }
     }
         
     /**
      * 
      */
-    public static function Sunrise(float $solarNoon, float $hourAngleAtSunrise){
-        return $solarNoon - $hourAngleAtSunrise / 360;
-    }
-    
-    /**
-     * 
-     */
-    public static function Sunset(float $solarNoon, float $hourAngleAtSunrise){
-        return $solarNoon + $hourAngleAtSunrise / 360;
+    public static function TimeForElevation(float $sunElevation, float $latitude, float $longitude, float $timezone, float $julianCentury, bool $beforeNoon){
+        if ($beforeNoon){
+            return SolarNoon($timezone, $longitude, $julianCentury) - HourAngleAtElevation(float $sunElevation, float $latitude, float $julianCentury) / 360;
+        }else{
+            return SolarNoon($timezone, $longitude, $julianCentury) + HourAngleAtElevation(float $sunElevation, float $latitude, float $julianCentury) / 360;
+        }
     }
 
-    public static function SunlightDuration(float $hourAngleAtSunrise){
-        return 8 * $hourAngleAtSunrise;
+    public static function SunlightDuration(float $latitude, float $julianCentury){
+        return 8 * HourAngleAtElevation(-0.833, $latitude, $julianCentury);
     }
 
-    public static function TrueSolarTime(float $localTime, float $eqOfT, float $long, int $timezone){
-        return fmod( $localTime * 1440 + $eqOfT + 4 * $long - 60 * $timezone , 1440);
+    public static function TrueSolarTime(float $localTime, float $julianCentury, float $long, int $timezone){
+        return fmod( $localTime * 1440 + EquationOfTime($julianCentury) + 4 * $long - 60 * $timezone , 1440);
     }
 
     /**

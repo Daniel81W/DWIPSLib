@@ -79,11 +79,11 @@
 			$trueLongitudeSun = ASTROSUN::EclipticLongitude($jc);
 			$sunAppLong = ASTROSUN::SunAppLong($jc);
 			$meanObliqEcliptic = ASTROSUN::MeanObliquityOfEcliptic($jc);
-			$obliqCorr = ASTROSUN::ObliqCorrected($meanObliqEcliptic, $jc);
-			$declination = ASTROSUN::Declination($sunAppLong, $obliqCorr);
-			$varY = ASTROSUN::VarY($obliqCorr);
-			$eqOfTime = ASTROSUN::EquationOfTime($meanLongitudeSun, $meanAnomalySun, $eccentEarthOrbit, $varY);
-			$trueSolarTime = ASTROSUN::TrueSolarTime($localTime, $eqOfTime, $longitude, $timezone);
+			$obliqCorr = ASTROSUN::ObliqCorrected($jc);
+			$declination = ASTROSUN::Declination($jc);
+			$varY = ASTROSUN::VarY($jc);
+			$eqOfTime = ASTROSUN::EquationOfTime($jc);
+			$trueSolarTime = ASTROSUN::TrueSolarTime($localTime, $jc, $longitude, $timezone);
 			$hourAngle = ASTROSUN::HourAngle($trueSolarTime);
 			$hourAngleAtSunriseStart = ASTROSUN::HourAngleAtElevation(-0.833, $latitude,  $declination);
 			$hourAngleAtSunriseEnd = ASTROSUN::HourAngleAtElevation(0.833, $latitude,  $declination);

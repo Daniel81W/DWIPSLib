@@ -106,14 +106,14 @@
 			$this->SetValue("season", ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart));
 
 			
-			$this->SetValue("sunrise", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart)*24+60*60));
-			$this->SetValue("sunset", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart)*24+60*60));
-			$this->SetValue("startciviltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtCivilTwilight)*24+60*60));
-			$this->SetValue("stopciviltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtCivilTwilight)*24+60*60));
-			$this->SetValue("startnauticaltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtNauticalTwilight)*24+60*60));
-			$this->SetValue("stopnauticaltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtNauticalTwilight)*24+60*60));
-			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtAstronomicalTwilight)*24+60*60));
-			$this->SetValue("stopnastronomicaltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtAstronomicalTwilight)*24+60*60));
+			$this->SetValue("sunrise", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtSunriseStart)*24*60*60));
+			$this->SetValue("sunset", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtSunriseStart)*24*60*60));
+			$this->SetValue("startciviltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtCivilTwilight)*24*60*60));
+			$this->SetValue("stopciviltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtCivilTwilight)*24*60*60));
+			$this->SetValue("startnauticaltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtNauticalTwilight)*24*60*60));
+			$this->SetValue("stopnauticaltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtNauticalTwilight)*24*60*60));
+			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::Sunrise($solarNoon, $hourAngleAtAstronomicalTwilight)*24*60*60));
+			$this->SetValue("stopnastronomicaltwilight", mktime(0,0,ASTROSUN::Sunset($solarNoon, $hourAngleAtAstronomicalTwilight)*24*60*60));
    
 		}
 	}

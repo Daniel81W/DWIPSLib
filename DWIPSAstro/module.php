@@ -14,19 +14,19 @@
 			$this->RegisterVariableFloat("sundeclination","sundeclination");
 			$this->RegisterVariableFloat("sunelevation","sunelevation");
 			$this->RegisterVariableInteger("sundistance", "sundistance");
-			$this->RegisterVariableFloat("sunlightduration", "sunlightduration");
+			$this->RegisterVariableFloat("sunlightduration", "sunlightduration", "", 12);
 			$this->RegisterVariableFloat("equationOfTime", "equationOfTime");
 			$this->RegisterVariableString("sundirection", "sundirection");
 			$this->RegisterVariableString("season", "season");
 
-			$this->RegisterVariableInteger("sunrise", "sunrise", "~UnixTimestamp", 0);
-			$this->RegisterVariableInteger("sunset", "sunset", "~UnixTimestamp", 0);
-			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight", "~UnixTimestamp", 0);
+			$this->RegisterVariableInteger("sunrise", "sunrise", "~UnixTimestamp", 6);
+			$this->RegisterVariableInteger("sunset", "sunset", "~UnixTimestamp", 9);
+			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight", "~UnixTimestamp", 5;
 			$this->RegisterVariableInteger("stopciviltwilight", "stopciviltwilight", "~UnixTimestamp", 0);
-			$this->RegisterVariableInteger("startnauticaltwilight", "startnauticaltwilight", "~UnixTimestamp", 0);
-			$this->RegisterVariableInteger("stopnauticaltwilight", "stopnauticaltwilight", "~UnixTimestamp", 0);
-			$this->RegisterVariableInteger("startastronomicaltwilight", "startastronomicaltwilight", "~UnixTimestamp", 0);
-			$this->RegisterVariableInteger("stopnastronomicaltwilight", "stopnastronomicaltwilight", "~UnixTimestamp", 0);
+			$this->RegisterVariableInteger("startnauticaltwilight", "startnauticaltwilight", "~UnixTimestamp", 4);
+			$this->RegisterVariableInteger("stopnauticaltwilight", "stopnauticaltwilight", "~UnixTimestamp", 10);
+			$this->RegisterVariableInteger("startastronomicaltwilight", "startastronomicaltwilight", "~UnixTimestamp", 3);
+			$this->RegisterVariableInteger("stopnastronomicaltwilight", "stopnastronomicaltwilight", "~UnixTimestamp", 11);
 
 			$this->RegisterPropertyFloat("Latitude", 50.0);
 			$this->RegisterPropertyFloat("Longitude", 9.0);

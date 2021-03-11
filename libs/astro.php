@@ -192,7 +192,7 @@ class ASTROSUN{
      * 
      */
     public static function HourAngle(float $julianCentury, float $localTime, float $long, int $timezone){
-        $trueSolarTime = TrueSolarTime(float $localTime, float $julianCentury, float $long, int $timezone);
+        $trueSolarTime = TrueSolarTime($localTime, $julianCentury, $long, $timezone);
         if ($trueSolarTime / 4 < 0){
             return $trueSolarTime / 4 + 180;
         }else{

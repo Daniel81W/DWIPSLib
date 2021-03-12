@@ -359,8 +359,6 @@ class ASTROSUN{
 
 class ASTROMOON{
     public static function Phase(){
-
-
         int $year;
         float $now, $vm, $diff, $anz;
         float $syn = 29.530588;
@@ -401,6 +399,7 @@ class ASTROMOON{
         }else if($phase == 75) {
             $text = "Halbmond (1. Viertel)";
         }
+        return $text;
     }
 }
 ?>

@@ -116,7 +116,7 @@
 				$this->SetValue("insideCivilTwilight", false);
 			}
 
-			$this->SetValue("moonPhase", ASTROMOON::PhaseStr());
+			$this->SetValue("moonphase", ASTROMOON::PhaseStr());
 		}
 
 		

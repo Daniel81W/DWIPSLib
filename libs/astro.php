@@ -353,7 +353,7 @@ class ASTROSUN{
     }
 
     public static function DurationOfSunrise(float $latitude, float $longitude, float $julianCentury){
-        return TimeForElevation(0.833, $latitude, $longitude, 1, $julianCentury, true) - TimeForElevation(-0.833, $latitude, $longitude, 1, $julianCentury, true);
+        return ASTROSUN::TimeForElevation(0.833, $latitude, $longitude, 1, $julianCentury, true) - ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, 1, $julianCentury, true);
     }
 }
 

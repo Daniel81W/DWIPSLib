@@ -25,9 +25,12 @@
 			$this->RegisterVariableFloat("sundeclination","sundeclination", "", 16);
 			$this->RegisterVariableInteger("sundistance", "sundistance", "", 17);
 			$this->RegisterVariableFloat("equationOfTime", "equationOfTime", "", 18);
-			$this->RegisterVariableString("season", "season", "", 19);
-			$this->RegisterVariableBoolean("day", "day","", 20);
-			$this->RegisterVariableBoolean("insideCivilTwilight", "insideCivilTwilight", "", 21);
+			$this->RegisterVariableFloat("durationOfSunrise", "durationOfSunrise", "", 19);
+			$this->RegisterVariableString("season", "season", "", 20);
+			$this->RegisterVariableBoolean("day", "day","", 21);
+			$this->RegisterVariableBoolean("insideCivilTwilight", "insideCivilTwilight", "", 22);
+			
+			$this->RegisterVariableString("moonphase", "moonphase", "", 30);
 
 
 			$this->RegisterPropertyFloat("Latitude", 50.0);
@@ -99,6 +102,8 @@
 			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
 			$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
 			
+			$this->SetValue("durationOfSunrise", ASTROSUN::DurationOfSunrise($latitude, $longitude, $jc));
+			
 			$ts = time();
 			if($sunrise <= $ts and $ts <= $sunset){
 				$this->SetValue("day", true);
@@ -110,6 +115,8 @@
 			}else{
 				$this->SetValue("insideCivilTwilight", false);
 			}
+
+			$this->SetValue("moonPhase", ASTROMOON::PhaseStr());
 		}
 
 		

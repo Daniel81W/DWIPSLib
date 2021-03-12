@@ -1,6 +1,5 @@
 <?php
 
-//TODO Dauer Sonnenaufgang
 //TODO Mond
 
 class ASTROGEN{
@@ -319,33 +318,6 @@ class ASTROSUN{
         }
     }
 
-    /*
-    public static function SunriseForDateAndLocation(int $year, int $month, int $day, float $lat, float $long, int $timezone){
-        $jc = ASTROGEN::JulianCentury(ASTROGEN::JulianDayFromDateTime($year, $month, $day));
-
-        
-        $meanLong = ASTROSUN::MeanLongitude($jc);
-        $meanAnomaly = ASTROSUN::MeanAnomaly($jc);
-        $sunEqOfCtr = ASTROSUN::SunEqOfCtr($jc, $meanAnomaly);
-        $trueLongitudeSun = ASTROSUN::EclipticLongitude($meanLong,$sunEqOfCtr);
-        $meanObliqEcliptic = ASTROSUN::MeanObliquityOfEcliptic($jc);
-        $obliqCorr = ASTROSUN::ObliqCorrected($meanObliqEcliptic, $jc);
-        $meanLong = ASTROSUN::MeanLongitude($jc);
-        $meanAnomaly = ASTROSUN::MeanAnomaly($jc);
-        $eccentEarthOrbit = ASTROSUN::EccentEarthOrbit($jc);
-        $varY = ASTROSUN::VarY($obliqCorr);
-        $sunAppLong = ASTROSUN::SunAppLong($trueLongitudeSun, $jc);
-        $eqOfT = ASTROSUN::EquationOfTime($meanLong, $meanAnomaly, $eccentEarthOrbit, $varY);
-        $dec = ASTROSUN::Declination($sunAppLong, $obliqCorr);
-        $solarnoon = ASTROSUN::SolarNoon($timezone, $long, $eqOfT);
-        $HA = ASTROSUN::HourAngleAtSunrise($lat, $dec);
-        $sunrise = ASTROSUN::Sunrise($solarnoon, $HA);
-        $sunlight = ASTROSUN::SunlightDuration($HA);
-        $trueSolarTime = ASTROSUN::TrueSolarTime(0.25, $eqOfT, $long, $timezone);
-        
-        return mktime(0,0,$sunrise*24*60*60,$month,$day,$year);
-    }*/
-
     public static function Season(float $julianCentury, float $latitude){
         $declination = ASTROSUN::Declination($julianCentury);
         $declinationBef = ASTROSUN::Declination($julianCentury) - 0.00000002;
@@ -377,6 +349,57 @@ class ASTROSUN{
                     return "Spring";
                 }
             }
+        }
+    }
+
+    public static function DurationOfSunrise(float $latitude, float $longitude, float $julianCentury){
+        return TimeForElevation(0.833, $latitude, $longitude, 1, $julianCentury, true) - TimeForElevation(-0.833, $latitude, $longitude, 1, $julianCentury, true);
+    }
+}
+
+class ASTROMOON{
+    public static function Phase(){
+
+
+        int $year;
+        float $now, $vm, $diff, $anz;
+        float $syn = 29.530588;
+    
+        int $phase = 1;
+        $now = time();
+        $year = date("Y", $now);
+        if($year < 1900) { 
+            $year += 1900; 
+        }
+        if($year >= 2010){
+            $vm = mktime(20,12,36,11,31,2009) / 86400;
+            $now = $now / 86400;
+            $diff = $now - $vm;
+            $anz = $diff / $syn;
+            $phase = round($anz,2);
+            $phase = floor(($phase - floor($phase)) * 100);
+            if($phase == 0){
+                $phase = 100;
+            }
+        }
+        return $phase;
+    }
+
+    public static function PhaseStr(){
+        $phase = ASTROMOON::Phase();
+        string $text;
+        if($phase == 0){
+            $text = "Vollmond (2. Viertel)";
+        }else if($phase < 25 or  ($phase > 25 and $phase < 50)){
+            $text = "Abnehmender Mond";
+        }else if($phase == 25) {
+            $text = "Halbmond (3. Viertel)";
+        }else if($phase == 50) {
+            $ext = "Neumond (4. Viertel)";
+        }else if(($phase > 50 and $phase < 75) or ($phase > 75 and $phase < 100)){
+            $text = "Zunehmender Mond";
+        }else if($phase == 75) {
+            $text = "Halbmond (1. Viertel)";
         }
     }
 }

@@ -362,7 +362,7 @@ class ASTROMOON{
 
         $syn = 29.530588;
     
-        int $phase = 1;
+        $phase = 1;
         $now = time();
         $year = date("Y", $now);
         if($year < 1900) { 

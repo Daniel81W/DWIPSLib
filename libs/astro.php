@@ -359,9 +359,9 @@ class ASTROSUN{
 
 class ASTROMOON{
     public static function Phase(){
-        int $year = 0;
-        float $now, $vm, $diff, $anz = 0;
-        float $syn = 29.530588;
+        $year = 0;
+        $now, $vm, $diff, $anz = 0;
+        $syn = 29.530588;
     
         int $phase = 1;
         $now = time();
@@ -385,7 +385,7 @@ class ASTROMOON{
 
     public static function PhaseStr(){
         $phase = ASTROMOON::Phase();
-        string $text;
+        $text;
         if($phase == 0){
             $text = "Vollmond (2. Viertel)";
         }else if($phase < 25 or  ($phase > 25 and $phase < 50)){

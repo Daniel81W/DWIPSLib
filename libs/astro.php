@@ -359,8 +359,8 @@ class ASTROSUN{
 
 class ASTROMOON{
     public static function Phase(){
-        int $year;
-        float $now, $vm, $diff, $anz;
+        int $year = 0;
+        float $now, $vm, $diff, $anz = 0;
         float $syn = 29.530588;
     
         int $phase = 1;

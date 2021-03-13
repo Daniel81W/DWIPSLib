@@ -3,7 +3,9 @@
         "de": {
             "Latitude": "Breite",
             "Longitude": "Länge",
-            "sunrise": "Sonnenaufgang"
+            "sunrise": "Sonnenaufgang",
+            "juliandate": "Julianisches Datum",
+            "juliancentury": "Julianisches Jahrhundert"
         }
     }
 }

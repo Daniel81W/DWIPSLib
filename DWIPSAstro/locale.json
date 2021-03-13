@@ -3,9 +3,17 @@
         "de": {
             "Latitude": "Breite",
             "Longitude": "Länge",
-            "sunrise": "Sonnenaufgang",
             "juliandate": "Julianisches Datum",
-            "juliancentury": "Julianisches Jahrhundert"
+            "juliancentury": "Julianisches Jahrhundert",
+            "startastronomicaltwilight": "Beginn der astronomischen Dämmerung",
+            "startnauticaltwilight": "Beginn der nautischen Dämmerung",
+            "startciviltwilight": "Beginn der bürgerlichen Dämmerung",
+            "sunrise": "Sonnenaufgang",
+            "solarnoon": "Wahrer Mittag",
+            "sunset": "Sonnenuntergang",
+            "stopciviltwilight": "Ende der bürgerlichen Dämmerung",
+            "stopnauticaltwilight": "Ende der nautischen Dämmerung",
+            "stopastronomicaltwilight": "Ende der astronomischen Dämmerung"
         }
     }
 }

@@ -7,8 +7,8 @@
 		{
 			//Never delete this line!
 			parent::Create();
-			$this->RegisterVariableFloat("juliandate",Translate("juliandate"), "", 1);
-			$this->RegisterVariableFloat("juliancentury",Translate("juliancentury"), "", 2);
+			$this->RegisterVariableFloat("juliandate",$this->Translate("juliandate"), "", 1);
+			$this->RegisterVariableFloat("juliancentury",$this->Translate("juliancentury"), "", 2);
 			$this->RegisterVariableInteger("startastronomicaltwilight", "startastronomicaltwilight", "~UnixTimestamp", 3);
 			$this->RegisterVariableInteger("startnauticaltwilight", "startnauticaltwilight", "~UnixTimestamp", 4);
 			$this->RegisterVariableInteger("startciviltwilight", "startciviltwilight", "~UnixTimestamp", 5);

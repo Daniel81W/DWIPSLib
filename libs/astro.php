@@ -324,29 +324,29 @@ class ASTROSUN{
         if($declination>=0){
             if($declination > $declinationBef){
                 if($latitude > 0){
-                    return "Spring";
+                    return "spring";
                 }else{
-                    return "Fall";
+                    return "fall";
                 }
             }else{
                 if($latitude > 0){
-                    return "Summer";
+                    return "summer";
                 }else{
-                    return "Winter";
+                    return "winter";
                 }
             }
         }else{
             if($declination > $declinationBef){
                 if($latitude > 0){
-                    return "Winter";
+                    return "winter";
                 }else{
-                    return "Summer";
+                    return "summer";
                 }
             }else{
                 if($latitude > 0){
-                    return "Fall";
+                    return "fall";
                 }else{
-                    return "Spring";
+                    return "spring";
                 }
             }
         }

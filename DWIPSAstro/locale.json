@@ -25,7 +25,11 @@
             "season": "Jahreszeit",
             "day": "Tag",
             "insideCivilTwilight": "Innerhalb der bürgerlichen Dämmerung",
-
+            "spring": "Frühling",
+            "summer": "Sommer",
+            "fall": "Herbst",
+            "winter": "Winter",
+            
             "moonphase": "Mondphase"
 
         }

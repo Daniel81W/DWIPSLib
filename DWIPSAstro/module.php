@@ -18,19 +18,19 @@
 			$this->RegisterVariableInteger("stopciviltwilight", $this->Translate("stopciviltwilight"), "~UnixTimestamp", 9);
 			$this->RegisterVariableInteger("stopnauticaltwilight", $this->Translate("stopnauticaltwilight"), "~UnixTimestamp", 10);
 			$this->RegisterVariableInteger("stopastronomicaltwilight", $this->Translate("stopastronomicaltwilight"), "~UnixTimestamp", 11);
-			$this->RegisterVariableFloat("sunlightduration", "sunlightduration", "", 12);
-			$this->RegisterVariableFloat("sunazimut","sunazimut", "", 13);
-			$this->RegisterVariableString("sundirection", "sundirection", "", 14);
-			$this->RegisterVariableFloat("sunelevation","sunelevation", "", 15);
-			$this->RegisterVariableFloat("sundeclination","sundeclination", "", 16);
-			$this->RegisterVariableInteger("sundistance", "sundistance", "", 17);
-			$this->RegisterVariableFloat("equationOfTime", "equationOfTime", "", 18);
-			$this->RegisterVariableFloat("durationOfSunrise", "durationOfSunrise", "", 19);
-			$this->RegisterVariableString("season", "season", "", 20);
-			$this->RegisterVariableBoolean("day", "day","", 21);
-			$this->RegisterVariableBoolean("insideCivilTwilight", "insideCivilTwilight", "", 22);
+			$this->RegisterVariableFloat("sunlightduration", $this->Translate("sunlightduration"), "", 12);
+			$this->RegisterVariableFloat("sunazimut", $this->Translate("sunazimut"), "", 13);
+			$this->RegisterVariableString("sundirection", $this->Translate("sundirection"), "", 14);
+			$this->RegisterVariableFloat("sunelevation", $this->Translate("sunelevation"), "", 15);
+			$this->RegisterVariableFloat("sundeclination", $this->Translate("sundeclination"), "", 16);
+			$this->RegisterVariableInteger("sundistance", $this->Translate("sundistance"), "", 17);
+			$this->RegisterVariableFloat("equationOfTime", $this->Translate("equationOfTime"), "", 18);
+			$this->RegisterVariableFloat("durationOfSunrise", $this->Translate("durationOfSunrise"), "", 19);
+			$this->RegisterVariableString("season", $this->Translate("season"), "", 20);
+			$this->RegisterVariableBoolean("day", $this->Translate("day"),"", 21);
+			$this->RegisterVariableBoolean("insideCivilTwilight", $this->Translate("insideCivilTwilight"), "", 22);
 			
-			$this->RegisterVariableString("moonphase", "moonphase", "", 30);
+			$this->RegisterVariableString("moonphase", $this->Translate("moonphase"), "", 30);
 
 
 			$this->RegisterPropertyFloat("Latitude", 50.0);

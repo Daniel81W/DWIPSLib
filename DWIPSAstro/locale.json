@@ -13,7 +13,21 @@
             "sunset": "Sonnenuntergang",
             "stopciviltwilight": "Ende der bürgerlichen Dämmerung",
             "stopnauticaltwilight": "Ende der nautischen Dämmerung",
-            "stopastronomicaltwilight": "Ende der astronomischen Dämmerung"
+            "stopastronomicaltwilight": "Ende der astronomischen Dämmerung",
+            "sunlightduration": "Tagesdauer",
+            "sunazimut": "Sonnenazimuth",
+            "sundirection": "Sonnenrichtung",
+            "sunelevation": "Sonnenhöhe",
+            "sundeclination": "Deklination",
+            "sundistance": "Abstand Sonne - Erde",
+            "equationOfTime": "Zeitgleichung",
+            "durationOfSunrise": "Dauer des Sonnenaufgangs",
+            "season": "Jahreszeit",
+            "day": "Tag",
+            "insideCivilTwilight": "Innerhalb der bürgerlichen Dämmerung",
+
+            "moonphase": "Mondphase"
+
         }
     }
 }

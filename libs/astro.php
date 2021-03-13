@@ -384,7 +384,7 @@ class ASTROMOON{
 
     public static function PhaseStr(){
         $phase = ASTROMOON::Phase();
-        $text;
+        $text = "";
         if($phase == 0){
             $text = "Vollmond (2. Viertel)";
         }else if($phase < 25 or  ($phase > 25 and $phase < 50)){

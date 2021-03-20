@@ -8,8 +8,8 @@
 			//Never delete this line!
 			parent::Create();
 
+			$this->RegisterPropertyInteger("AvailableID", 0);
 			$this->RegisterPropertyInteger("OnOffID", 0);
-			$this->RegisterPropertyInteger("DimmID", 0);
 			$this->RegisterPropertyInteger("DimmValueID", 0);
 
 			if(!IPS_GetCategoryIDByName("Webfront", $this->InstanceID)){
@@ -35,13 +35,26 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+
+
+			if($this->ReadPropertyInteger("AvailableID") == 0){
+				$this->UnregisterVariable("AvailableVar");
+			}else{
+				$this->RegisterVariableBoolean("AvailableVar", "Available");
+			}
+
 			if($this->ReadPropertyInteger("OnOffID") == 0){
 				$this->UnregisterVariable("OnOffVar");
 			}else{
 				$this->RegisterVariableBoolean("OnOffVar", "On / Off");
+				$this->EnableAction("OnOffVar");
 			}
-			$this->RegisterVariableInteger("OnOffVarID", "On / Off");
-			$this->SetValue("OnOffVarID", $this->ReadPropertyInteger("OnOffID"));
+
+			if($this->ReadPropertyInteger("DimmValueID") == 0){
+				$this->UnregisterVariable("DimmValueVar");
+			}else{
+				$this->RegisterVariableBoolean("DimmValueVar", "Dimm");
+			}
 			
 		}
 

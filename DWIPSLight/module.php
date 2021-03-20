@@ -8,11 +8,19 @@
 			//Never delete this line!
 			parent::Create();
 
-			$CatID = IPS_CreateCategory();       // Kategorie anlegen
-			IPS_SetName($CatID, "Test"); // Kategorie benennen
-			IPS_SetParent($CatID, $this->InstanceID);
+			$this->RegisterPropertyInteger("OnOffID", 0);
+			$this->RegisterPropertyInteger("DimmID", 0);
+			$this->RegisterPropertyInteger("DimmValueID", 0);
+
+
+			$WebfrontCatID = IPS_CreateCategory();       // Kategorie anlegen
+			IPS_SetName($WebfrontCatID, "Webfront"); // Kategorie benennen
+			IPS_SetParent($WebfrontCatID, $this->InstanceID);
+			IPS_SetPosition($WebfrontCatID, 99);
 			
-			IPS_SetParent($this->RegisterVariableString("ID2","ID2"),$CatID);
+			
+			
+			//IPS_SetParent($this->RegisterVariableString("ID2","ID2"),$WebfrontCatID);
 			
 		}
 

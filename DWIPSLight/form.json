@@ -1,6 +1,7 @@
 {
     "elements": [
-    	
+    	{ "type": "SelectVariable", "name": "OnOffID", "caption": "An/Aus" },
+    	{ "type": "SelectVariable", "name": "DimmValueID", "caption": "Dimmen" }
     ],
     "actions": [],
     "status": []

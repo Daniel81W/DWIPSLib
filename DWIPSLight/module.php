@@ -12,7 +12,7 @@
 			IPS_SetName($CatID, "Test"); // Kategorie benennen
 			IPS_SetParent($CatID, $this->InstanceID);
 			
-			IPS_SetParent($this->RegisterVariableString("ID","ID"),$CatID);
+			IPS_SetParent($this->RegisterVariableString("ID2","ID2"),$CatID);
 			
 		}
 

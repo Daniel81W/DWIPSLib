@@ -7,8 +7,12 @@
 		{
 			//Never delete this line!
 			parent::Create();
-			$this->RegisterVariableString("ID","ID",);
-			$this->SetValue("ID", $this->InstanceID);
+
+			$CatID = IPS_CreateCategory();       // Kategorie anlegen
+			IPS_SetName($CatID, "Test"); // Kategorie benennen
+			IPS_SetParent($CatID, $this->InstanceID);
+			
+			IPS_SetParent($this->RegisterVariableString("ID","ID"),$CatID);
 			
 		}
 

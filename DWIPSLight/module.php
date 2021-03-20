@@ -40,7 +40,7 @@
 			}else{
 				$this->RegisterVariableBoolean("OnOffVar", "On / Off");
 			}
-			$this->RegisterVariableBoolean("OnOffVarID", "On / Off");
+			$this->RegisterVariableInteger("OnOffVarID", "On / Off");
 			$this->SetValue("OnOffVarID", $this->ReadPropertyInteger("OnOffID"));
 			
 		}

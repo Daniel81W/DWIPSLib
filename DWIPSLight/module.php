@@ -46,7 +46,7 @@
 			if($this->ReadPropertyInteger("OnOffID") == 0){
 				$this->UnregisterVariable("OnOffVar");
 			}else{
-				$this->RegisterVariableBoolean("OnOffVar", "On / Off");
+				$this->RegisterVariableBoolean("OnOffVar", "On / Off", "~switch");
 				$this->EnableAction("OnOffVar");
 			}
 

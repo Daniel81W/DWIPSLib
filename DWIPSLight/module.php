@@ -78,6 +78,7 @@
 		 
 					//Neuen Wert in die Statusvariable schreiben
 					SetValue($this->GetIDForIdent($Ident), $Value);
+					RequestAction($this->ReadPropertyInteger("OnOffID"), $Value);
 					break;
 				default:
 					throw new Exception("Invalid Ident");

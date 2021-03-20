@@ -12,7 +12,7 @@
 			$this->RegisterPropertyInteger("DimmID", 0);
 			$this->RegisterPropertyInteger("DimmValueID", 0);
 
-
+			$this
 			$WebfrontCatID = IPS_CreateCategory();       // Kategorie anlegen
 			IPS_SetName($WebfrontCatID, "Webfront"); // Kategorie benennen
 			IPS_SetParent($WebfrontCatID, $this->InstanceID);
@@ -34,6 +34,11 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+			if($this->ReadPropertyInteger("OnOffID") == 0){
+				$this->UnregisterVariable("OnOffVar");
+			}else{
+				$this->RegisterVariableBoolean("OnOffVar", "On / Off");
+			}
 			
 		}
 

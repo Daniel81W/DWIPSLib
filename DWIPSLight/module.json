@@ -1,0 +1,12 @@
+{
+    "id": "{CBDC88E4-A49B-E077-9670-8F1079F22E04}",
+    "name": "DWIPSLight",
+    "type": 3,
+    "vendor": "",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "DWIPSLight",
+    "url": "https://github.com/Daniel81W/DWIPSLib"
+}

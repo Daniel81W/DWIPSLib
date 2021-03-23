@@ -66,6 +66,7 @@
 				$this->UnregisterVariable("BlueVar");
 			}else{
 				$this->RegisterVariableInteger("ColorVar", "Color", "~HexColor");
+				$this->EnableAction("ColorVar");
 				$this->RegisterVariableInteger("RedVar", "Red");
 				$this->RegisterVariableInteger("GreenVar", "Green");
 				$this->RegisterVariableInteger("BlueVar", "Blue");

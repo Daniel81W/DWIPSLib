@@ -93,8 +93,7 @@
 					break;
 				case "ColorVar":
 					SetValue($this->GetIDForIdent($Ident), $Value);
-					SetValue($this->GetIDForIdent("RedVar"), 254);
-					echo $this->GetIDForIdent($Ident);
+					SetValue($this->GetIDForIdent("RedVar"), intdiv($Value, 256*256));
 					RequestAction($this->ReadPropertyInteger("ColorID"), $Value);
 					break;
 				default:

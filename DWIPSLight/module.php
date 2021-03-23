@@ -55,7 +55,7 @@
 			if($this->ReadPropertyInteger("DimmValueID") == 0){
 				$this->UnregisterVariable("DimmValueVar");
 			}else{
-				$this->RegisterVariableBoolean("DimmValueVar", "Dimm");
+				$this->RegisterVariableInteger("DimmValueVar", "Dimm");
 			}
 			
 		}

@@ -95,7 +95,7 @@
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					$red = intdiv($Value, 256*256);
 					$green = intdiv($Value - $red * 256*256, 256);
-					$blue = $value - $green * 256 - $red * 256*256;
+					$blue = $Value - $green * 256 - $red * 256*256;
 					SetValue($this->GetIDForIdent("RedVar"), $red);
 					SetValue($this->GetIDForIdent("GreenVar"), $green);
 					SetValue($this->GetIDForIdent("BlueVar"), $blue);

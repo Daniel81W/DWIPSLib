@@ -12,7 +12,7 @@
 			$this->RegisterPropertyInteger("OnOffID", 0);
 			$this->RegisterPropertyInteger("DimmValueID", 0);
 
-			if(!IPS_GetCategoryIDByName("Webfront", $this->InstanceID)){
+			if(IPS_GetCategoryIDByName("Webfront", $this->InstanceID) != false ){
 				$WebfrontCatID = IPS_CreateCategory();       // Kategorie anlegen
 				IPS_SetName($WebfrontCatID, "Webfront"); // Kategorie benennen
 				IPS_SetParent($WebfrontCatID, $this->InstanceID);

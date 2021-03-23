@@ -11,6 +11,7 @@
 			$this->RegisterPropertyInteger("AvailableID", 0);
 			$this->RegisterPropertyInteger("OnOffID", 0);
 			$this->RegisterPropertyInteger("DimmValueID", 0);
+			$this->RegisterPropertyInteger("ColorID", 0);
 			
 			// $webcat = ;
 			// echo $webcat;
@@ -57,7 +58,18 @@
 			}else{
 				$this->RegisterVariableInteger("DimmValueVar", "Dimm");
 			}
-			
+
+			if($this->ReadPropertyInteger("ColorID") == 0){
+				$this->UnregisterVariable("ColorVar");
+				$this->UnregisterVariable("RedVar");
+				$this->UnregisterVariable("GreenVar");
+				$this->UnregisterVariable("BlueVar");
+			}else{
+				$this->RegisterVariableInteger("ColorVar", "Color");
+				$this->RegisterVariableInteger("RedVar", "Red");
+				$this->RegisterVariableInteger("GreenVar", "Green");
+				$this->RegisterVariableInteger("BlueVar", "Blue");
+			}
 		}
 
 		/**
@@ -75,12 +87,13 @@
  
 			switch($Ident) {
 				case "OnOffVar":
-					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
-					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
-		 
-					//Neuen Wert in die Statusvariable schreiben
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					RequestAction($this->ReadPropertyInteger("OnOffID"), $Value);
+					break;
+				case "ColorVar":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					SetValue($this->GetIDForIdent("RedVar"), 254);
+					//RequestAction($this->ReadPropertyInteger("ColorID"), $Value);
 					break;
 				default:
 					throw new Exception("Invalid Ident");

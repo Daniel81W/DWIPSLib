@@ -2,7 +2,8 @@
     "elements": [
     	{ "type": "SelectVariable", "name": "AvailableID", "caption": "Avilable" },
     	{ "type": "SelectVariable", "name": "OnOffID", "caption": "On/Off" },
-    	{ "type": "SelectVariable", "name": "DimmValueID", "caption": "Dimm" }
+    	{ "type": "SelectVariable", "name": "DimmValueID", "caption": "Dimm" },
+    	{ "type": "SelectVariable", "name": "ColorID", "caption": "Color" }
     ],
     "actions": [],
     "status": []

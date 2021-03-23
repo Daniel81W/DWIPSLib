@@ -94,7 +94,9 @@
 				case "ColorVar":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					SetValue($this->GetIDForIdent("RedVar"), intdiv($Value, 256*256));
-					RequestAction($this->ReadPropertyInteger("ColorID"), $Value);
+					SetValue($this->GetIDForIdent("GreenVar"), intdiv($Value-intdiv($Value, 256*256)*256*256, 256));
+					SetValue($this->GetIDForIdent("BlueVar"), intdiv($Value, 256*256));
+					//RequestAction($this->ReadPropertyInteger("ColorID"), intdiv($Value-intdiv($Value, 256*256)*256*256, 256));
 					break;
 				default:
 					throw new Exception("Invalid Ident");

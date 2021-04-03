@@ -14,6 +14,7 @@
 			$this->RegisterPropertyInteger("ModuleLength", 0);
 			
 			$this->RegisterVariableInteger("CollectorPower", "CollectorPower");
+			$this->RegisterVariableFloat("CollectorArea", "CollectorArea");
 		}
 
 		public function Destroy()
@@ -27,6 +28,7 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			$this->SetValue("CollectorPower", $this->ReadPropertyInteger("ModuleCount") * $this->ReadPropertyInteger("ModulePower"));
+			$this->SetValue("CollectorArea", $this->ReadPropertyInteger("ModuleCount") * $this->ReadPropertyInteger("ModuleWidth") * $this->ReadPropertyInteger("ModuleLength") / 1000000 );
 		}
 
 		/**

@@ -99,7 +99,7 @@
 					SetValue($this->GetIDForIdent("RedVar"), $red);
 					SetValue($this->GetIDForIdent("GreenVar"), $green);
 					SetValue($this->GetIDForIdent("BlueVar"), $blue);
-					//RequestAction($this->ReadPropertyInteger("ColorID"), intdiv($Value-intdiv($Value, 256*256)*256*256, 256));
+					RequestAction($this->ReadPropertyInteger("ColorID"), $Value);
 					break;
 				default:
 					throw new Exception("Invalid Ident");

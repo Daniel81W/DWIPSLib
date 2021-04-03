@@ -60,13 +60,13 @@
 			}
 			if($streamIndicator &_STOPSEQ){
 				$this->SetBuffer("serdata", $this->GetBuffer("serdata").substr($data['Buffer'],0,strpos($data['1Buffer'], "1b1b1b1b1a")+10));
-				//Auswertung starten
+				$this->SetValue("data", $this->GetBuffer("serdata"));
 			}
 			if(strpos($data['Buffer'], "1b1b1b1b01010101")){
-				//$this->SetBuffer("serdata", substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+0));
+				$this->SetBuffer("serdata", substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+0));
 			}
 
-			$this->SetValue("data", $this->GetBuffer("serdata"));
+			//$this->SetValue("data", $this->GetBuffer("serdata"));
 			//Im Meldungsfenster zu Debug zwecken ausgeben
 			//IPS_LogMessage("DATA", print_r($data, true));
 		}

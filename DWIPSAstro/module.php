@@ -90,8 +90,8 @@
 			$endCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
 			$sunelevation = ASTROSUN::SolarElevation($jc, $localTime, $latitude, $longitude, $timezone);
 			$sundistance = ASTROSUN::SunRadVector($jc) * 149597870.7;
-			$solarirradiancespace = 3.845 * pow(10, 26) / (4 * pi() * pow($sundistance, 2));
-			
+			$solarirradiancespace = 3.845 * pow(10, 26) / (4 * pi() * pow($sundistance * 1000 , 2));
+
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
 

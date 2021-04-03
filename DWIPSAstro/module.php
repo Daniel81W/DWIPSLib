@@ -32,9 +32,9 @@
 			$this->RegisterVariableBoolean("day", $this->Translate("day"),"", 23);
 			$this->RegisterVariableBoolean("insideCivilTwilight", $this->Translate("insideCivilTwilight"), "", 24);
 			$this->RegisterVariableFloat("shadowLength", $this->Translate("shadowlength"), "", 25);
-			$this->RegisterVariableFloat("solarirradiancespace", $this->Translate("solarirradiancerectangular"), "Astronomie.Radiant_Power", 26);
-			$this->RegisterVariableFloat("solarirradiancerectangular", $this->Translate("solarirradiancerectangular"), "Astronomie.Radiant_Power", 26);
-			$this->RegisterVariableFloat("solarirradianceground", $this->Translate("solarirradianceground"), "Astronomie.Radiant_Power", 27);
+			$this->RegisterVariableFloat("solarirradiancespace", $this->Translate("solarirradiancespace"), "Astronomie.Radiant_Power", 26);
+			$this->RegisterVariableFloat("solarirradiancerectangular", $this->Translate("solarirradiancerectangular"), "Astronomie.Radiant_Power", 27);
+			$this->RegisterVariableFloat("solarirradianceground", $this->Translate("solarirradianceground"), "Astronomie.Radiant_Power", 28);
 			
 			
 			$this->RegisterVariableString("moonphase", $this->Translate("moonphase"), "", 30);

@@ -55,7 +55,8 @@
 			if($fstendpos > 0){
 				$fststartpos = strpos($currentdata, $startseq);
 				if($fststartpos > 0 & $fststartpos < $fstendpos){
-					$this->SetValue("data", substr($currentdata, $fststartpos, $fstendpos-$fststartpos+10 ));
+					evaluate(substr($currentdata, $fststartpos+16, $fstendpos-($fststartpos+16) ));
+					$currentdata = substr($currentdata, $fstendpos+10);
 				}else{
 					$currentdata = substr($currentdata, $fstendpos+10);
 				}
@@ -63,20 +64,13 @@
 
 			$this->SetBuffer("serdata", $currentdata);
 			
-			
-			/*
-			if($streamIndicator &_STOPSEQ){
-				$this->SetBuffer("serdata", $this->GetBuffer("serdata") . substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+10));
-				$this->SetValue("data", $this->GetBuffer("serdata"));
-			}
-			if(strpos($data['Buffer'], "1b1b1b1b01010101")){
-				$this->SetBuffer("serdata", substr($data['Buffer'],strpos($data['Buffer'], "1b1b1b1b01010101")+0),strlen($data['Buffer']));
-			}
-			*/
-			
 			//$this->SetValue("data", $this->GetBuffer("serdata"));
 			//Im Meldungsfenster zu Debug zwecken ausgeben
 			//IPS_LogMessage("DATA", print_r($data, true));
+		}
+
+		private function evaluate($evalstring){
+			$this->SetValue("data", $evalstring);
 		}
 		
 	}

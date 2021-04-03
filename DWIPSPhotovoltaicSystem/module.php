@@ -43,6 +43,13 @@
         public function Update() {
            }
 
+		public function ReceiveData($JSONString) {
+			$data = json_decode($JSONString);
+			$data['Buffer'] = utf8_decode($data['Buffer']);
+		 
+			//Im Meldungsfenster zu Debug zwecken ausgeben
+			IPS_LogMessage("DATA", print_r($data, true));
+		}
 		
 	}
 	?>

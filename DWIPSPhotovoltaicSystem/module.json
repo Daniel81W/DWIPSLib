@@ -1,0 +1,12 @@
+{
+    "id": "{8F77432C-BAF6-6954-2383-A5CD87DE3437}",
+    "name": "DWIPSPhotovoltaicSystem",
+    "type": 3,
+    "vendor": "",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "DWIPSPV",
+    "url": "https://github.com/Daniel81W/DWIPSLib"
+}

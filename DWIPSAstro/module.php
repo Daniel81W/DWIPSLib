@@ -64,7 +64,7 @@
         */
 		public function Update(){
 			$timezone = 1;
-			if(echo date("I")){
+			if(date('I')){
 				$timezone = 2;
 			}
 			$localTime = intval(date("G"))/24 + intval(date("i"))/1440 + intval(date("s")/86400);

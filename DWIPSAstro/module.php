@@ -32,6 +32,7 @@
 			$this->RegisterVariableBoolean("day", $this->Translate("day"),"", 23);
 			$this->RegisterVariableBoolean("insideCivilTwilight", $this->Translate("insideCivilTwilight"), "", 24);
 			$this->RegisterVariableFloat("shadowLength", $this->Translate("shadowlength"), "", 25);
+			$this->RegisterVariableFloat("solarirradiancespace", $this->Translate("solarirradiancerectangular"), "Astronomie.Radiant_Power", 26);
 			$this->RegisterVariableFloat("solarirradiancerectangular", $this->Translate("solarirradiancerectangular"), "Astronomie.Radiant_Power", 26);
 			$this->RegisterVariableFloat("solarirradianceground", $this->Translate("solarirradianceground"), "Astronomie.Radiant_Power", 27);
 			
@@ -89,6 +90,7 @@
 			$endCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
 			$sunelevation = ASTROSUN::SolarElevation($jc, $localTime, $latitude, $longitude, $timezone);
 			$sundistance = ASTROSUN::SunRadVector($jc) * 149597870.7;
+			$solarirradiancespace = 3.845 * pow(10, 26) / (4 * pi() * pow($sundistance, 2))
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
 
@@ -114,6 +116,7 @@
 			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
 			$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
 			$this->SetValue("shadowLength", 1 / tan(deg2rad($sunelevation)));
+			$this->SetValue("solarirradiancespace", $solarirradiancespace);
 			$this->SetValue("solarirradiancerectangular", 3.06531 * pow(10,19) / pow($sundistance, 2) * 0.75);
 			$this->SetValue("solarirradianceground", 3.06531 * pow(10,19) / pow($sundistance, 2) * 0.75 * sin(deg2rad($sunelevation)));
 			$this->SetValue("durationOfSunrise", ASTROSUN::DurationOfSunrise($latitude, $longitude, $jc));

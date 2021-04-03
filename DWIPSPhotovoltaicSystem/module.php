@@ -55,10 +55,10 @@
 			if($fstendpos > 0){
 				$fststartpos = strpos($currentdata, $startseq);
 				if($fststartpos > 0 & $fststartpos < $fstendpos){
-					DWIPSPV_evaluate($this->InstanceID, substr($currentdata, $fststartpos+16, $fstendpos - ($fststartpos+16) ));
-					$currentdata = substr($currentdata, $fstendpos+10);
+					DWIPSPV_evaluate($this->InstanceID, substr($currentdata, $fststartpos, $fstendpos - ($fststartpos+16) ));
+					$currentdata = substr($currentdata, $fstendpos+16);
 				}else{
-					$currentdata = substr($currentdata, $fstendpos+10);
+					$currentdata = substr($currentdata, $fstendpos+16);
 				}
 			}
 
@@ -70,7 +70,7 @@
 		}
 
 		public function Evaluate($evalstring){
-			$this->SetValue("data", pack("H*", $evalstring));
+			$this->SetValue("data", $evalstring);
 		}
 		
 	}

@@ -55,7 +55,7 @@
 			if($fstendpos > 0){
 				$fststartpos = strpos($currentdata, $startseq);
 				if($fststartpos > 0 & $fststartpos < $fstendpos){
-					evaluate(substr($currentdata, $fststartpos+16, $fstendpos - ($fststartpos+16) ));
+					DWIPSPV_evaluate($this->InstanceID, substr($currentdata, $fststartpos+16, $fstendpos - ($fststartpos+16) ));
 					$currentdata = substr($currentdata, $fstendpos+10);
 				}else{
 					$currentdata = substr($currentdata, $fstendpos+10);
@@ -69,7 +69,7 @@
 			//IPS_LogMessage("DATA", print_r($data, true));
 		}
 
-		private function evaluate($evalstring){
+		public function Evaluate($evalstring){
 			$this->SetValue("data", $evalstring);
 		}
 		

@@ -1,5 +1,6 @@
 <?php
-
+		define('_STARTSEQ',      1);
+		define('_STOPSEQ',      2);
 	//include_once("/var/lib/symcon/modules/DWIPSLib/libs/astro.php");
 	class DWIPSPhotovoltaicSystem extends IPSModule {
 
@@ -47,10 +48,23 @@
 		public function ReceiveData($JSONString) {
 			$data = json_decode($JSONString, true);
 			$data['Buffer'] = bin2hex($data['Buffer']);
+			
+			$streamIndicator = 0;
+			
 			if(strpos($data['Buffer'], "1b1b1b1b1a")){
-				$this->SetBuffer("serdata", $this->GetBuffer("serdata").substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")));
+				$streamIndicator |= _STARTSEQ;
 			}
-
+			if(strpos($data['Buffer'], "1b1b1b1b01010101")){
+				$streamIndicator |= _STOPSEQ; 
+			}
+			/*if(strpos($data['Buffer'], "1b1b1b1b1a")){
+				$this->SetBuffer("serdata", $this->GetBuffer("serdata").substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+10));
+				//Auswertung starten
+			}
+			if(strpos($data['Buffer'], "1b1b1b1b01010101")){
+				$this->SetBuffer("serdata", substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+0));
+				//Auswertung starten
+			}*/
 
 			$this->SetValue("data", $this->GetBuffer("serdata"));
 			//Im Meldungsfenster zu Debug zwecken ausgeben

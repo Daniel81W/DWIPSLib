@@ -44,7 +44,7 @@
            }
 
 		public function ReceiveData($JSONString) {
-			$data = json_decode($JSONString);
+			$data = json_decode($JSONString, true);
 			//$data['Buffer'] = bin2hex($data['Buffer']);
 		 
 			//Im Meldungsfenster zu Debug zwecken ausgeben

@@ -7,7 +7,13 @@
 		{
 			//Never delete this line!
 			parent::Create();
+
+			$this->RegisterPropertyInteger("ModuleCount", 1);
+			$this->RegisterPropertyInteger("ModulePower", 0);
+			$this->RegisterPropertyInteger("ModuleWidth", 0);
+			$this->RegisterPropertyInteger("ModuleLength", 0);
 			
+			$this->RegisterVariableInteger("CollectorPower", "CollectorPower");
 		}
 
 		public function Destroy()
@@ -20,7 +26,7 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-			
+			$this->SetValue("CollectorPower", $this->ReadPropertyInteger("ModuleCount") * $this->ReadPropertyInteger("ModulePower"));
 		}
 
 		/**

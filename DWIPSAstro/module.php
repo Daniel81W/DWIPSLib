@@ -31,6 +31,7 @@
 			$this->RegisterVariableString("season", $this->Translate("season"), "", 22);
 			$this->RegisterVariableBoolean("day", $this->Translate("day"),"", 23);
 			$this->RegisterVariableBoolean("insideCivilTwilight", $this->Translate("insideCivilTwilight"), "", 24);
+			$this->RegisterVariableFloat("shadowLength", $this->Translate("shadowlength"), "", 25);
 			
 			$this->RegisterVariableString("moonphase", $this->Translate("moonphase"), "", 30);
 
@@ -83,14 +84,14 @@
 			$solarAzimut = ASTROSUN::SolarAzimut($jc, $localTime, $latitude, $longitude, $timezone);
 			$beginCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, true)*24*60*60);
 			$endCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
-
+			$sunelevation = ASTROSUN::SolarElevation($jc, $localTime, $latitude, $longitude, $timezone);
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
 
 			$this->SetValue("solarnoon", mktime(0,0,ASTROSUN::SolarNoon($timezone, $longitude, $jc)*24*60*60));
 			$this->SetValue("sunazimut", $solarAzimut);
 			$this->SetValue("sundeclination", ASTROSUN::Declination($jc));
-			$this->SetValue("sunelevation", ASTROSUN::SolarElevation($jc, $localTime, $latitude, $longitude, $timezone));
+			$this->SetValue("sunelevation", $sunelevation);
 			$this->SetValue("sunelevationmin", -90 + $latitude + ASTROSUN::Declination($jc));
 			$this->SetValue("sunelevationmax", 90 - $latitude + ASTROSUN::Declination($jc));
 			$this->SetValue("sundistance", ASTROSUN::SunRadVector($jc) * 149597870.7);
@@ -108,7 +109,7 @@
 			$this->SetValue("stopnauticaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
 			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
 			$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
-			
+			$this->SetValue("shadowLength", 1 / tan(deg2rad($sunelevation)));
 			$this->SetValue("durationOfSunrise", ASTROSUN::DurationOfSunrise($latitude, $longitude, $jc));
 			
 			$ts = time();

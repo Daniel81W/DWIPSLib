@@ -48,7 +48,7 @@
 			//$data['Buffer'] = bin2hex($data['Buffer']);
 		 
 			//Im Meldungsfenster zu Debug zwecken ausgeben
-			IPS_LogMessage("DATA", print_r(bin2hex($data['Buffer']), true));
+			IPS_LogMessage("DATA", print_r($data, true));
 		}
 		
 	}

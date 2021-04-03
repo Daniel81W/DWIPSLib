@@ -47,17 +47,24 @@
 
 		public function ReceiveData($JSONString) {
 			$data = json_decode($JSONString, true);
-			$data['Buffer'] = bin2hex($data['Buffer']);
-			$startseq = 1;
-			$stopseq = 2;
-			$streamIndicator = 0;
+			$endseq = "1b1b1b1b1a";
+			$startseq = "1b1b1b1b01010101";
+			$currentdata = $this->GetBuffer("serdata") . bin2hex($data['Buffer']);
 			
-			if(strpos($data['Buffer'], "1b1b1b1b1a")){
-				$streamIndicator |= _STOPSEQ;
+			$fstendpos = strpos($currentdata, $endseq);
+			if($fstendpos > 0){
+				$fststartpos = strpos($currentdata, $startseq);
+				if($fststartpos > 0 & $fststartpos < $fstendpos){
+					$this->SetValue("data", substr($currentdata, $fststartpos, $fstendpos-$fststartpos+10 ));
+				}else{
+					$currentdata = substr($currentdata, $fstendpos+10);
+				}
 			}
-			if(strpos($data['Buffer'], "1b1b1b1b01010101")){
-				$streamIndicator |= $startseq; 
-			}
+
+			$this->SetBuffer("serdata", $currentdata);
+			
+			
+			/*
 			if($streamIndicator &_STOPSEQ){
 				$this->SetBuffer("serdata", $this->GetBuffer("serdata") . substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+10));
 				$this->SetValue("data", $this->GetBuffer("serdata"));
@@ -65,7 +72,8 @@
 			if(strpos($data['Buffer'], "1b1b1b1b01010101")){
 				$this->SetBuffer("serdata", substr($data['Buffer'],strpos($data['Buffer'], "1b1b1b1b01010101")+0),strlen($data['Buffer']));
 			}
-
+			*/
+			
 			//$this->SetValue("data", $this->GetBuffer("serdata"));
 			//Im Meldungsfenster zu Debug zwecken ausgeben
 			//IPS_LogMessage("DATA", print_r($data, true));

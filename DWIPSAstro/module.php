@@ -113,7 +113,7 @@
 			$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
 			$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
 			$this->SetValue("shadowLength", 1 / tan(deg2rad($sunelevation)));
-			$this->SetValue("solarirradiance", 3.06531 * pow(10,19) / pow($sundistance, 2) * 0,75);
+			$this->SetValue("solarirradiance", 3.06531 * pow(10,19) / pow($sundistance, 2) * 0.75);
 			$this->SetValue("durationOfSunrise", ASTROSUN::DurationOfSunrise($latitude, $longitude, $jc));
 			
 			$ts = time();

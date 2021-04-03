@@ -63,7 +63,7 @@
 				//Auswertung starten
 			}
 			if(strpos($data['Buffer'], "1b1b1b1b01010101")){
-				$this->SetBuffer("serdata", substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+0));
+				//$this->SetBuffer("serdata", substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+0));
 			}
 
 			$this->SetValue("data", $this->GetBuffer("serdata"));

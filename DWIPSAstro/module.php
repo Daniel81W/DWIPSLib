@@ -35,6 +35,7 @@
 			$this->RegisterVariableFloat("solarirradiancespace", $this->Translate("solarirradiancespace"), "Astronomie.Radiant_Power", 26);
 			$this->RegisterVariableFloat("solarirradiancerectangular", $this->Translate("solarirradiancerectangular"), "Astronomie.Radiant_Power", 27);
 			$this->RegisterVariableFloat("solarirradianceground", $this->Translate("solarirradianceground"), "Astronomie.Radiant_Power", 28);
+			$this->RegisterVariableFloat("solarirradiancepvcollector", $this->Translate("solarirradiancepvcollector"), "Astronomie.Radiant_Power", 40);
 			
 			
 			$this->RegisterVariableString("moonphase", $this->Translate("moonphase"), "", 30);
@@ -118,8 +119,9 @@
 			$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
 			$this->SetValue("shadowLength", 1 / tan(deg2rad($sunelevation)));
 			$this->SetValue("solarirradiancespace", $solarirradiancespace);
-			$this->SetValue("solarirradiancerectangular", 3.06531 * pow(10,19) / pow($sundistance, 2) * 0.75);
-			$this->SetValue("solarirradianceground", 3.06531 * pow(10,19) / pow($sundistance, 2) * 0.75 * sin(deg2rad($sunelevation)));
+			$this->SetValue("solarirradiancerectangular", $solarirradiancespace * 0.75);
+			$this->SetValue("solarirradianceground", $solarirradiancespace * 0.75 * sin(deg2rad($sunelevation)));
+			$this->SetValue("solarirradianceground", $solarirradiancespace * 0.75 * ( cos(deg2rad($sunelevation)) * cos(deg2rad($solarAzimut - 183)) *sin(deg2rad(39)) + sin(deg2rad($sunelevation)) * cos(deg2rad(39)) ) );
 			$this->SetValue("durationOfSunrise", ASTROSUN::DurationOfSunrise($latitude, $longitude, $jc));
 			
 			$ts = time();

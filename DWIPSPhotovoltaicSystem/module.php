@@ -59,11 +59,11 @@
 				$streamIndicator |= $startseq; 
 			}
 			if($streamIndicator &_STOPSEQ){
-				$this->SetBuffer("serdata", $this->GetBuffer("serdata").substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+10));
+				$this->SetBuffer("serdata", $this->GetBuffer("serdata") . substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+10));
 				$this->SetValue("data", $this->GetBuffer("serdata"));
 			}
 			if(strpos($data['Buffer'], "1b1b1b1b01010101")){
-				$this->SetBuffer("serdata", substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b01010101")+0));
+				$this->SetBuffer("serdata", substr($data['Buffer'],strpos($data['Buffer'], "1b1b1b1b01010101")+0),strlen($data['Buffer']));
 			}
 
 			//$this->SetValue("data", $this->GetBuffer("serdata"));

@@ -18,6 +18,7 @@
             "sunazimut": "Sonnenazimuth",
             "sundirection": "Sonnenrichtung",
             "sunelevation": "Sonnenhöhe",
+            "sunelevationmin": "niedrigste Sonnenhöhe",
             "sunelevationmax": "höchste Sonnenhöhe",
             "sundeclination": "Deklination",
             "sundistance": "Abstand Sonne - Erde",

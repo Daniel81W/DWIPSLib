@@ -22,14 +22,15 @@
 			$this->RegisterVariableFloat("sunazimut", $this->Translate("sunazimut"), "", 13);
 			$this->RegisterVariableString("sundirection", $this->Translate("sundirection"), "", 14);
 			$this->RegisterVariableFloat("sunelevation", $this->Translate("sunelevation"), "", 15);
-			$this->RegisterVariableFloat("sunelevationmax", $this->Translate("sunelevationmax"), "", 16);
-			$this->RegisterVariableFloat("sundeclination", $this->Translate("sundeclination"), "", 17);
-			$this->RegisterVariableInteger("sundistance", $this->Translate("sundistance"), "", 18);
-			$this->RegisterVariableFloat("equationOfTime", $this->Translate("equationOfTime"), "", 19);
-			$this->RegisterVariableFloat("durationOfSunrise", $this->Translate("durationOfSunrise"), "", 20);
-			$this->RegisterVariableString("season", $this->Translate("season"), "", 21);
-			$this->RegisterVariableBoolean("day", $this->Translate("day"),"", 22);
-			$this->RegisterVariableBoolean("insideCivilTwilight", $this->Translate("insideCivilTwilight"), "", 23);
+			$this->RegisterVariableFloat("sunelevationmin", $this->Translate("sunelevationmin"), "", 16);
+			$this->RegisterVariableFloat("sunelevationmax", $this->Translate("sunelevationmax"), "", 17);
+			$this->RegisterVariableFloat("sundeclination", $this->Translate("sundeclination"), "", 18);
+			$this->RegisterVariableInteger("sundistance", $this->Translate("sundistance"), "", 19);
+			$this->RegisterVariableFloat("equationOfTime", $this->Translate("equationOfTime"), "", 20);
+			$this->RegisterVariableFloat("durationOfSunrise", $this->Translate("durationOfSunrise"), "", 21);
+			$this->RegisterVariableString("season", $this->Translate("season"), "", 22);
+			$this->RegisterVariableBoolean("day", $this->Translate("day"),"", 23);
+			$this->RegisterVariableBoolean("insideCivilTwilight", $this->Translate("insideCivilTwilight"), "", 24);
 			
 			$this->RegisterVariableString("moonphase", $this->Translate("moonphase"), "", 30);
 
@@ -90,6 +91,7 @@
 			$this->SetValue("sunazimut", $solarAzimut);
 			$this->SetValue("sundeclination", ASTROSUN::Declination($jc));
 			$this->SetValue("sunelevation", ASTROSUN::SolarElevation($jc, $localTime, $latitude, $longitude, $timezone));
+			$this->SetValue("sunelevationmin", -90 + $latitude + ASTROSUN::Declination($jc));
 			$this->SetValue("sunelevationmax", 90 - $latitude + ASTROSUN::Declination($jc));
 			$this->SetValue("sundistance", ASTROSUN::SunRadVector($jc) * 149597870.7);
 			$this->SetValue("equationOfTime", ASTROSUN::EquationOfTime($jc));

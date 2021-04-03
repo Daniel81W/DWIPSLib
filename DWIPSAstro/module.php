@@ -64,6 +64,7 @@
         */
 		public function Update(){
 			$timezone = 1;
+			echo date("I");
 			$localTime = intval(date("G"))/24 + intval(date("i"))/1440 + intval(date("s")/86400);
 
 			$latitude = $this->ReadPropertyFloat("Latitude");

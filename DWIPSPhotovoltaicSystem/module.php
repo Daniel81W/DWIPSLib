@@ -55,7 +55,7 @@
 			if($fstendpos > 0){
 				$fststartpos = strpos($currentdata, $startseq);
 				if($fststartpos > 0 & $fststartpos < $fstendpos){
-					DWIPSPV_evaluate($this->InstanceID, substr($currentdata, $fststartpos, $fstendpos - ($fststartpos+16) ));
+					DWIPSPV_evaluate($this->InstanceID, substr($currentdata, $fststartpos, $fstendpos + 16 - $fststartpos ));
 					$currentdata = substr($currentdata, $fstendpos+16);
 				}else{
 					$currentdata = substr($currentdata, $fstendpos+16);

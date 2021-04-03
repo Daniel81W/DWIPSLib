@@ -57,7 +57,7 @@
 			if(strpos($data['Buffer'], "1b1b1b1b01010101")){
 				$streamIndicator |= _STOPSEQ; 
 			}
-			/*if(strpos($data['Buffer'], "1b1b1b1b1a")){
+			if($streamIndicator &_STOPSEQ){
 				$this->SetBuffer("serdata", $this->GetBuffer("serdata").substr($data['Buffer'],0,strpos($data['Buffer'], "1b1b1b1b1a")+10));
 				//Auswertung starten
 			}

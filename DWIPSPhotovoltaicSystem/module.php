@@ -70,7 +70,7 @@
 		}
 
 		public function Evaluate($evalstring){
-			$this->SetValue("data", $evalstring);
+			$this->SetValue("data", hex2bin($evalstring");
 		}
 		
 	}

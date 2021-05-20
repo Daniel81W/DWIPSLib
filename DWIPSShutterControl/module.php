@@ -20,7 +20,7 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-			$guid = "{48FCFDC1-11A5-4309-BB0B-A0DB8042A969}";
+			$guid = "{0B8709EA-127A-29C7-61DA-916BA9B2ED02}";
 			//Auflisten
 			print_r(IPS_GetInstanceListByModuleID($guid));
 			//echo IPS_GetInstanceListByModuleID("{0B8709EA-127A-29C7-61DA-916BA9B2ED02}");

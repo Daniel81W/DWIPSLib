@@ -109,18 +109,10 @@
 			$this->SetValue("season", $this->Translate(ASTROSUN::Season($jc, $latitude)));
 
 			
-			try{
 				$this->SetValue("sunrise", $sunrise);
-			}catch (Exception $e){}
-			try{
 				$this->SetValue("sunset", $sunset);
-			}catch (Exception $e){}
-			try{
 				$this->SetValue("startciviltwilight", $beginCivilTwilight);
-			}catch (Exception $e){}
-			try{
 				$this->SetValue("stopciviltwilight", $endCivilTwilight);
-			}catch (Exception $e){}
 			try{
 				$this->SetValue("startnauticaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
 			}catch (Exception $e){}

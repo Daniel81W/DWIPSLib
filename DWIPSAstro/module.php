@@ -118,6 +118,7 @@
 			}catch (Exception $e){}
 			try{
 				$this->SetValue("stopnauticaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
+			}catch (Exception $e){}
 			try{
 				$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
 			}catch (Exception $e){}

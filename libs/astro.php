@@ -175,12 +175,14 @@ class ASTROSUN{
      */
     public static function TimeForElevation(float $sunElevation, float $latitude, float $longitude, float $timezone, float $julianCentury, bool $beforeNoon){
         if(is_nan(ASTROSUN::HourAngleAtElevation($sunElevation, $latitude, $julianCentury) / 360)){
-            throw new Exception('Es wurde kein Element übergeben!');
+            throw new Exception('Elevation wird zu keiner Zeit erreicht.');
         }
-        elseif ($beforeNoon){
-            return ASTROSUN::SolarNoon($timezone, $longitude, $julianCentury) - ASTROSUN::HourAngleAtElevation($sunElevation, $latitude, $julianCentury) / 360;
-        }else{
-            return ASTROSUN::SolarNoon($timezone, $longitude, $julianCentury) + ASTROSUN::HourAngleAtElevation($sunElevation, $latitude, $julianCentury) / 360;
+        else{
+            if ($beforeNoon){
+                return ASTROSUN::SolarNoon($timezone, $longitude, $julianCentury) - ASTROSUN::HourAngleAtElevation($sunElevation, $latitude, $julianCentury) / 360;
+            }else{
+                return ASTROSUN::SolarNoon($timezone, $longitude, $julianCentury) + ASTROSUN::HourAngleAtElevation($sunElevation, $latitude, $julianCentury) / 360;
+            }
         }
     }
 

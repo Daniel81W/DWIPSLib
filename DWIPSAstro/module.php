@@ -120,7 +120,7 @@
 			}catch (Exception $e){
 
 			}
-			$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
+			//$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
 			$this->SetValue("shadowLength", 1 / tan(deg2rad($sunelevation)));
 			$this->SetValue("solarirradiancespace", $solarirradiancespace);
 			$this->SetValue("solarirradiancerectangular", $solarirradiancespace * 0.75);

@@ -1,7 +1,7 @@
 <?php
 
 	//include_once("/var/lib/symcon/modules/DWIPSLib/libs/astro.php");
-	class DWIPSShutter extends IPSModule {
+	class DWIPSShutterControl extends IPSModule {
 
 		public function Create()
 		{

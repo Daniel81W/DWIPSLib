@@ -1,12 +1,12 @@
 {
     "id": "{A862FB1D-8A71-6B51-A3DA-C8C254009380}",
-    "name": "DWIPSShutter",
+    "name": "DWIPSShutterControl",
     "type": 0,
     "vendor": "",
     "aliases": [],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
-    "prefix": "DWIPSShutter",
+    "prefix": "DWIPSShutterControl",
     "url": "https://github.com/Daniel81W/DWIPSLib"
 }

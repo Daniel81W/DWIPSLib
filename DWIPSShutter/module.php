@@ -36,10 +36,10 @@
 
 			$this->RegisterVariableInteger($this->Translate("Action"), $this->Translate("Action"), $this->Translate("DWIPS.Shutter.UpDownStop"), 1);
 			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"), $this->Translate("DWIPS.Shutter.UpDownStop"), 2);
-			$this->RegisterVariableInteger("Preset 1", "Preset 1", $this->Translate("DWIPS.Shutter.Preset"), 3);
-			$this->RegisterVariableInteger("Preset 2", "Preset 2", $this->Translate("DWIPS.Shutter.Preset"), 4);
-			$this->RegisterVariableInteger("Preset 3", "Preset 3", $this->Translate("DWIPS.Shutter.Preset"), 5);
-			$this->RegisterVariableInteger("Preset 4", "Preset 4", $this->Translate("DWIPS.Shutter.Preset"), 6);
+			$this->RegisterVariableInteger("Preset 1", "Preset1", $this->Translate("DWIPS.Shutter.Preset"), 3);
+			$this->RegisterVariableInteger("Preset 2", "Preset2", $this->Translate("DWIPS.Shutter.Preset"), 4);
+			$this->RegisterVariableInteger("Preset 3", "Preset3", $this->Translate("DWIPS.Shutter.Preset"), 5);
+			$this->RegisterVariableInteger("Preset 4", "Preset4", $this->Translate("DWIPS.Shutter.Preset"), 6);
 			$this->RegisterVariableInteger($this->Translate("DrivingTime"), $this->Translate("DrivingTime"), $this->Translate("DWIPS.Shutter.Trigger"), 7);
 			
 		}

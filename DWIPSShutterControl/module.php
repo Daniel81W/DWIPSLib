@@ -23,7 +23,6 @@
 			$guid = "{0B8709EA-127A-29C7-61DA-916BA9B2ED02}";
 			//Auflisten
 			print_r(IPS_GetInstanceListByModuleID($guid));
-			//echo IPS_GetInstanceListByModuleID("{0B8709EA-127A-29C7-61DA-916BA9B2ED02}");
 		}
 
 		/**

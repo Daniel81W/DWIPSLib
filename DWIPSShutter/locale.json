@@ -1,11 +1,15 @@
 {
     "translations": {
         "de": {
+            "UpDownInstanceID_caption": "Instanz für Auf- und Abfahrt des Rollladens",
+            "StopInstanceID_caption": "Instanz für Stop des Rollladens",
+            "PositionInstanceID_caption": "Instanz für die Position des Rollladens",
             "DWIPS.Shutter.UpDownStop": "DWIPS.Shutter.AufAbStop",
             "Down": "Ab",
             "Up": "Auf",
             "Stop": "Stop",
-            "Action": "Aktion"
+            "Action": "Aktion",
+            "Position": "Position"
         }
     }
 }

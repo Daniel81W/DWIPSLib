@@ -20,6 +20,7 @@
 			}
 
 			$this->RegisterVariableInteger($this->Translate("Action"), $this->Translate("Action"), $this->Translate("DWIPS.Shutter.UpDownStop"), 1);
+			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"), $this->Translate("DWIPS.Shutter.UpDownStop"), 2);
 			
 		}
 

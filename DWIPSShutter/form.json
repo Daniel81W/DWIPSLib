@@ -1,6 +1,17 @@
 {
     "elements": [
-    	
+    	{
+            "type": "SelectInstance", 
+            "name": "UpDownInstanceID", 
+            "caption": "Instanz für Auf- und Abfahrt des Rollladens", 
+            "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}","{D62B95D3-0C5E-406E-B1D9-8D102E50F64B}"]
+         },
+        { 
+            "type": "SelectInstance", 
+            "name": "StopInstanceID", 
+            "caption": "Instanz für Stop des Rollladens", 
+            "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}","{D62B95D3-0C5E-406E-B1D9-8D102E50F64B}"] 
+        }
     ],
     "actions": [],
     "status": []

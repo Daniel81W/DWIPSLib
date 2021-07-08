@@ -76,12 +76,57 @@
 		public function RequestAction($Ident, $Value) {
  
 			switch($Ident) {
-				case "TestVariable":
+				case $this->Translate("Action"):
 					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
 					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
 		 
 					//Neuen Wert in die Statusvariable schreiben
 					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
+				case $this->Translate("Position"):
+					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
+					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
+		 
+					//Neuen Wert in die Statusvariable schreiben
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
+				case "Preset1":
+					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
+					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
+		 
+					//Neuen Wert in die Statusvariable schreiben
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
+				case "Preset2":
+					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
+					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
+		 
+					//Neuen Wert in die Statusvariable schreiben
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
+				case "Preset3":
+					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
+					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
+		 
+					//Neuen Wert in die Statusvariable schreiben
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
+				case "Preset4":
+					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
+					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
+		 
+					//Neuen Wert in die Statusvariable schreiben
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
+				case $this->Translate("DrivingTime"):
+					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
+					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
+		 
+					//Neuen Wert in die Statusvariable schreiben
+					if($Value = 1){
+						SetValue($this->GetIDForIdent($Ident), $Value);
+						RequestAction($this->ReadPropertyInteger("DrivingTimeInstanceID"), 1);
+					}
 					break;
 				default:
 					throw new Exception("Invalid Ident");

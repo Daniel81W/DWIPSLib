@@ -35,6 +35,7 @@
 			}
 
 			$this->RegisterVariableInteger($this->Translate("Action"), $this->Translate("Action"), $this->Translate("DWIPS.Shutter.UpDownStop"), 1);
+			$this->EnableAction($this->Translate("Action"));
 			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),"", 2);
 			$this->RegisterVariableInteger("Preset1", "Preset 1", "DWIPS.Shutter.Preset", 3);
 			$this->RegisterVariableInteger("Preset2", "Preset 2", "DWIPS.Shutter.Preset", 4);

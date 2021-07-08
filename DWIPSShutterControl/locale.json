@@ -1,6 +1,11 @@
 {
     "translations": {
         "de": {
+            "DWIPS.Shutter.UpDownStop": "DWIPS.Shutter.AufAbStop",
+            "Down": "Ab",
+            "Up": "Auf",
+            "Stop": "Stop",
+            "Action": "Aktion"
         }
     }
 }

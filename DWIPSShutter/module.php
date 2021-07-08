@@ -7,6 +7,9 @@
 		{
 			//Never delete this line!
 			parent::Create();
+
+			$this->RegisterPropertyInteger("UpDownInstanceID", 0);
+			$this->RegisterPropertyInteger("StopInstanceID", 0);
 			
 		}
 

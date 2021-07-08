@@ -41,7 +41,7 @@
 			$this->RegisterVariableInteger("Preset3", "Preset 3", "DWIPS.Shutter.Preset", 5);
 			$this->RegisterVariableInteger("Preset4", "Preset 4", "DWIPS.Shutter.Preset", 6);
 			$this->RegisterVariableBoolean($this->Translate("DrivingTime"), $this->Translate("DrivingTime"), $this->Translate("DWIPS.Shutter.Trigger"), 7);
-			$this->EnableAction("UpDownStopAction");
+			$this->EnableAction($this->Translate("DrivingTime"));
 		}
 
 		public function Destroy()

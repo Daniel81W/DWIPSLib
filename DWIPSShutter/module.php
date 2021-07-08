@@ -125,7 +125,12 @@
 					//Neuen Wert in die Statusvariable schreiben
 					if($Value = 1){
 						SetValue($this->GetIDForIdent($Ident), $Value);
+						//KNX oder EIB
 						KNX_WriteDPT1($this->ReadPropertyInteger("DrivingTimeInstanceID"), 1);
+						SetValue($this->GetIDForIdent($Ident), 0);
+						//KNX oder EIB
+						KNX_WriteDPT1($this->ReadPropertyInteger("DrivingTimeInstanceID"), 0);
+
 					}
 					break;
 				default:

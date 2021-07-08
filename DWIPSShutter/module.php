@@ -30,18 +30,18 @@
 				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Preset", 2, $this->Translate("DriveTo"), "", 0x00FF00);
 			}
 			if (! IPS_VariableProfileExists("DWIPS.Shutter.Trigger")) {
-    			IPS_CreateVariableProfile("DWIPS.Shutter.Trigger", 1);
-				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Trigger", 2, $this->Translate("Trigger"), "", 0x00FF00);
+    			IPS_CreateVariableProfile("DWIPS.Shutter.Trigger", 0);
+				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Trigger", 1, $this->Translate("Trigger"), "", 0x00FF00);
 			}
 
 			$this->RegisterVariableInteger($this->Translate("Action"), $this->Translate("Action"), $this->Translate("DWIPS.Shutter.UpDownStop"), 1);
-			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"), $this->Translate("DWIPS.Shutter.UpDownStop"), 2);
+			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),"", 2);
 			$this->RegisterVariableInteger("Preset1", "Preset 1", "DWIPS.Shutter.Preset", 3);
 			$this->RegisterVariableInteger("Preset2", "Preset 2", "DWIPS.Shutter.Preset", 4);
 			$this->RegisterVariableInteger("Preset3", "Preset 3", "DWIPS.Shutter.Preset", 5);
 			$this->RegisterVariableInteger("Preset4", "Preset 4", "DWIPS.Shutter.Preset", 6);
-			$this->RegisterVariableInteger($this->Translate("DrivingTime"), $this->Translate("DrivingTime"), $this->Translate("DWIPS.Shutter.Trigger"), 7);
-			
+			$this->RegisterVariableBoolean($this->Translate("DrivingTime"), $this->Translate("DrivingTime"), $this->Translate("DWIPS.Shutter.Trigger"), 7);
+			$this->EnableAction("UpDownStopAction");
 		}
 
 		public function Destroy()
@@ -65,8 +65,22 @@
         *
         */
         public function UpdateSunrise() {
-           }
+        }
 
-		
+		public function RequestAction($Ident, $Value) {
+ 
+			switch($Ident) {
+				case "TestVariable":
+					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
+					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
+		 
+					//Neuen Wert in die Statusvariable schreiben
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
+				default:
+					throw new Exception("Invalid Ident");
+			}
+		 
+		}
 	}
 	?>

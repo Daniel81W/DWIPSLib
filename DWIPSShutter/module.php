@@ -10,6 +10,7 @@
 
 			$this->RegisterPropertyInteger("UpDownInstanceID", 0);
 			$this->RegisterPropertyInteger("StopInstanceID", 0);
+			$this->RegisterPropertyInteger("PositionInstanceID", 0);
 			
 			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.UpDownStop"))) {
     			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.UpDownStop"), 1);

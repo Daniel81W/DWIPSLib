@@ -17,6 +17,36 @@
             "name": "PositionInstanceID", 
             "caption": "PositionInstanceID_caption",
             "validModules": ["{EBD0EE8D-DFA5-449F-BBE4-49CFC5F0EEB4}","{D62B95D3-0C5E-406E-B1D9-8D102E50F64B}"] 
+        },
+        { 
+            "type": "SelectInstance", 
+            "name": "Preset12ExInstanceID", 
+            "caption": "Preset12ExInstanceID_caption",
+            "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}","{D62B95D3-0C5E-406E-B1D9-8D102E50F64B}"] 
+        },
+        { 
+            "type": "SelectInstance", 
+            "name": "Preset34ExInstanceID", 
+            "caption": "Preset34ExInstanceID_caption",
+            "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}","{D62B95D3-0C5E-406E-B1D9-8D102E50F64B}"] 
+        },
+        { 
+            "type": "SelectInstance", 
+            "name": "Preset12SetInstanceID", 
+            "caption": "Preset12SetInstanceID_caption",
+            "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}","{D62B95D3-0C5E-406E-B1D9-8D102E50F64B}"] 
+        },
+        { 
+            "type": "SelectInstance", 
+            "name": "Preset34SetInstanceID", 
+            "caption": "Preset34SetInstanceID_caption",
+            "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}","{D62B95D3-0C5E-406E-B1D9-8D102E50F64B}"] 
+        },
+        { 
+            "type": "SelectInstance", 
+            "name": "DrivingTimeInstanceID", 
+            "caption": "DrivingTimeInstanceID_caption",
+            "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}","{D62B95D3-0C5E-406E-B1D9-8D102E50F64B}"] 
         }
     ],
     "actions": [],

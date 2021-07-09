@@ -8,6 +8,7 @@
 			//Never delete this line!
 			parent::Create();
 
+			//Instances for control of the shutter (KNX, EIB)
 			$this->RegisterPropertyInteger("UpDownInstanceID", 0);
 			$this->RegisterPropertyInteger("StopInstanceID", 0);
 			$this->RegisterPropertyInteger("PositionInstanceID", 0);
@@ -17,6 +18,7 @@
 			$this->RegisterPropertyInteger("Preset34SetInstanceID", 0);
 			$this->RegisterPropertyInteger("DrivingTimeInstanceID", 0);
 			
+			//Variable profiles. CHeck if existing. Else create.
 			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.UpDownStop"))) {
     			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.UpDownStop"), 1);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.UpDownStop"), 0, $this->Translate("Up"), "", 0x00FF00);
@@ -42,6 +44,7 @@
 				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Trigger", 1, $this->Translate("Trigger"), "", 0x00FF00);
 			}
 
+			//Variables to control shutter in Webfront
 			$this->RegisterVariableInteger($this->Translate("Action"), $this->Translate("Action"), $this->Translate("DWIPS.Shutter.UpDownStop"), 1);
 			$this->EnableAction($this->Translate("Action"));
 			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),$this->Translate("DWIPS.Shutter.Position"), 2);
@@ -69,6 +72,17 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			
+			$TriggerID = @IPS_GetEventIDByName("DWIPSShutterActionTrig", $this->ReadPropertyInteger("UpDownInstanceID"));
+			if(TriggerID === false){
+				$eid = IPS_CreateEvent(0);
+				IPS_SetParent($eid, @IPS_GetVariableIDByName("Aktion", $_IPS['SELF']));
+				IPS_SetEventTrigger($eid, 1, $this->ReadPropertyInteger("UpDownInstanceID"));
+				IPS_SetEventActive($eid, true);
+				IPS_SetEventTriggerSubsequentExecution($eid, true);
+				IPS_SetEventScript($eid, "SetValue($this->GetIDForIdent($this->Translate(\"Action\")), $_IPS[\'VALUE\']);");
+				IPS_SetName($eid, "DWIPSShutterActionTrig");
+				SetValue($this->GetIDForIdent($Ident), 0);	
+			}
 		}
 
 		/**
@@ -78,8 +92,6 @@
         * DWIPSShutter_UpdateSunrise($id);
         *
         */
-        public function UpdateSunrise() {
-        }
 
 		public function RequestAction($Ident, $Value) {
  

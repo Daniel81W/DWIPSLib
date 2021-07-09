@@ -24,6 +24,14 @@
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.UpDownStop"), 2, $this->Translate("Down"), "", 0x00FF00);
 				IPS_SetVariableProfileIcon($this->Translate("DWIPS.Shutter.UpDownStop"),  "Shutter");
 			}
+			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.Position"))) {
+    			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.Position"), 1);
+				IPS_SetVariableProfileText($this->Translate("DWIPS.Shutter.Position"), "", "%");
+				IPS_SetVariableProfileValues($this->Translate("DWIPS.Shutter.Position"), 0, 100, 2);
+				//IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Position"), 0, $this->Translate("Up"), "", 0x00FF00);
+				//IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Position"), 1, $this->Translate("Stop"), "", 0xFF0000);
+				//IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Position"), 2, $this->Translate("Down"), "", 0x00FF00);
+			}
 			if (! IPS_VariableProfileExists("DWIPS.Shutter.Preset")) {
     			IPS_CreateVariableProfile("DWIPS.Shutter.Preset", 1);
 				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Preset", 1, $this->Translate("Set"), "", -1);
@@ -36,7 +44,7 @@
 
 			$this->RegisterVariableInteger($this->Translate("Action"), $this->Translate("Action"), $this->Translate("DWIPS.Shutter.UpDownStop"), 1);
 			$this->EnableAction($this->Translate("Action"));
-			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),"", 2);
+			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),$this->Translate("DWIPS.Shutter.Position"), 2);
 			$this->EnableAction($this->Translate("Position"));
 			$this->RegisterVariableInteger("Preset1", "Preset 1", "DWIPS.Shutter.Preset", 3);
 			$this->EnableAction("Preset1");

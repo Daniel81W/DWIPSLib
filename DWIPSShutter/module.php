@@ -98,7 +98,7 @@
 					//Neuen Wert in die Statusvariable schreiben
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					//KNX oder EIB
-					echo IPS_GetInstance($this->ReadPropertyInteger("PositionInstanceID"));
+					print_r(IPS_GetInstance($this->ReadPropertyInteger("PositionInstanceID")));
 					//echo $test[ModuleInfo][ModuleID];
 					KNX_WriteDPT5($this->ReadPropertyInteger("PositionInstanceID"), $Value);
 					break;

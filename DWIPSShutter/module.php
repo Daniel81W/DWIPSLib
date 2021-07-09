@@ -79,7 +79,7 @@
 				IPS_SetEventTrigger($eid, 1, $this->ReadPropertyInteger("UpDownInstanceID"));
 				IPS_SetEventActive($eid, true);
 				IPS_SetEventTriggerSubsequentExecution($eid, true);
-				IPS_SetEventScript($eid, "SetValue($this->GetIDForIdent($this->Translate(\"Action\")), $_IPS[\'VALUE\']);");
+				IPS_SetEventScript($eid, "SetValue($this->GetIDForIdent($this->Translate('Action')), $_IPS['VALUE']);");
 				IPS_SetName($eid, "DWIPSShutterActionTrig");
 				SetValue($this->GetIDForIdent($Ident), 0);	
 			}

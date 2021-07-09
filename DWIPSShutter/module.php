@@ -100,6 +100,7 @@
 					//KNX oder EIB
 					echo "1 " . IPS_GetInstance($this->ReadPropertyInteger("PositionInstanceID"))['ModuleInfo']['ModuleName'] . " 1";
 					if(IPS_GetInstance($this->ReadPropertyInteger("PositionInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 5"){
+						echo "test";
 						KNX_WriteDPT5($this->ReadPropertyInteger("PositionInstanceID"), $Value);
 					}
 					break;

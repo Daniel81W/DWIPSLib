@@ -100,7 +100,10 @@
 					//KNX oder EIB 
 					KNX_WriteDPT5($this->ReadPropertyInteger("PositionInstanceID"), $Value);
 					break;
-				case "Preset1","Preset2","Preset3","Preset4":
+				case "Preset1":
+				case "Preset2":
+				case "Preset3":
+				case "Preset4":
 					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
 					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
 		 

@@ -71,14 +71,16 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-			if(IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0])){
-			}else{
+			$PosScriptID = IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0]);
+			if(! $PosScriptID){
 				$PosScriptID = IPS_CreateScript(0);
 				IPS_SetParent($PosScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0]);
 				IPS_SetName($PosScriptID, "DWIPS_ActionScript");
 				IPS_SetHidden($PosScriptID);
 				IPS_SetScriptContent($PosScriptID, "<? \n KNX_WriteDPT5(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdatePositionValue(".$this->InstanceID.", \$_IPS['VALUE']); \n ?>");
 				IPS_SetVariableCustomAction(IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0], $PosScriptID);
+			}else{
+				IPS_SetScriptContent($PosScriptID, "<? \n KNX_WriteDPT5(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdatePositionValue(".$this->InstanceID.", \$_IPS['VALUE']); \n ?>");
 			}
 
 		}

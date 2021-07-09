@@ -85,17 +85,29 @@
  
 			switch($Ident) {
 				case $this->Translate("Action"):
-					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
-					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
-		 
-					//Neuen Wert in die Statusvariable schreiben
 					SetValue($this->GetIDForIdent($Ident), $Value);
+					if($Value == 0){
+						if(IPS_GetInstance($this->ReadPropertyInteger("UpDownInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
+							KNX_WriteDPT1($this->ReadPropertyInteger("UpDownInstanceID"), 0);
+						}elseif(IPS_GetInstance($this->ReadPropertyInteger("UpDownInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
+							EIB_Switch($this->ReadPropertyInteger("UpDownInstanceID"), false);
+						}
+					}elseif($Value == 1){
+						if(IPS_GetInstance($this->ReadPropertyInteger("StopInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
+							KNX_WriteDPT1($this->ReadPropertyInteger("StopInstanceID"), 1);
+						}elseif(IPS_GetInstance($this->ReadPropertyInteger("StopInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
+							EIB_Switch($this->ReadPropertyInteger("UpDownInsStopInstanceIDtanceID"), true);
+						}
+					}elseif($Value == 2){
+						if(IPS_GetInstance($this->ReadPropertyInteger("UpDownInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
+							KNX_WriteDPT1($this->ReadPropertyInteger("UpDownInstanceID"), 1);
+						}elseif(IPS_GetInstance($this->ReadPropertyInteger("UpDownInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
+							EIB_Switch($this->ReadPropertyInteger("UpDownInstanceID"), true);
+						}
+					}
 					break;
+
 				case $this->Translate("Position"):
-					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
-					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
-		 
-					//Neuen Wert in die Statusvariable schreiben
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					//KNX oder EIB
 					if(IPS_GetInstance($this->ReadPropertyInteger("PositionInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 5"){
@@ -107,6 +119,7 @@
 				case "Preset1":
 				case "Preset2":
 				case "Preset3":
+					SetValue($this->GetIDForIdent($Ident), $Value);
 					if($Value == 1){
 						//KNX oder EIB
 						if(IPS_GetInstance($this->ReadPropertyInteger("Preset34SetInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
@@ -124,7 +137,7 @@
 					}
 					IPS_Sleep(2000);
 					SetValue($this->GetIDForIdent($Ident), 0);
-						break;
+					break;
 
 				case "Preset4":
 					SetValue($this->GetIDForIdent($Ident), $Value);
@@ -145,10 +158,10 @@
 					}
 					IPS_Sleep(2000);
 					SetValue($this->GetIDForIdent($Ident), 0);	
-						break;
+					break;
 
 				case $this->Translate("DrivingTime"):
-					if($Value = 1){
+					if($Value == 1){
 						SetValue($this->GetIDForIdent($Ident), $Value);
 						//KNX oder EIB
 						if(IPS_GetInstance($this->ReadPropertyInteger("DrivingTimeInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){

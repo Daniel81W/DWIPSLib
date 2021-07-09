@@ -98,20 +98,14 @@
 					//Neuen Wert in die Statusvariable schreiben
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					break;
-				case "Preset1":
+				case "Preset1","Preset2":
 					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
 					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
 		 
 					//Neuen Wert in die Statusvariable schreiben
-					SetValue($this->GetIDForIdent($Ident), $Value);
-					break;
-				case "Preset2":
-					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
-					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
-		 
-					//Neuen Wert in die Statusvariable schreiben
-					SetValue($this->GetIDForIdent($Ident), $Value);
-					break;
+						SetValue($this->GetIDForIdent($Ident), $Value);
+						//KNX oder EIB
+						KNX_WriteDPT5($this->ReadPropertyInteger("DrivingTimeInstanceID"), $Value);
 				case "Preset3":
 					//Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
 					//Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet

@@ -80,7 +80,6 @@
 				IPS_SetEventActive($eid, true);
 				IPS_SetEventTriggerSubsequentExecution($eid, true);
 				IPS_SetName($eid, "DWIPSShutterActionTrig");
-				SetValue($this->GetIDForIdent($Ident), 0);	
 			}
 		}
 

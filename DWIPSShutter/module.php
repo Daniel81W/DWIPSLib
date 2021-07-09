@@ -72,7 +72,14 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			
-			$TriggerID = @IPS_GetEventIDByName("DWIPSShutterActionTrig", $this->ReadPropertyInteger("UpDownInstanceID"));
+			$PosScriptID = IPS_CreateScript(0);
+			IPS_SetParent($PosScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0]);
+			IPS_SetName($PosScriptID, "DWIPS_ActionScript");
+			IPS_SetScriptContent($PosScriptID, "SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);DWIPSShutter_UpdatePositionValue(".$this->InstanceID.", $_IPS['VALUE']);)"
+			IPS_SetVariableCustomAction(IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0], $PosScriptID);
+			
+			
+			/*$TriggerID = @IPS_GetEventIDByName("DWIPSShutterActionTrig", $this->GetIDForIdent($this->Translate("Action")));
 			if($TriggerID === false){
 				$eid = IPS_CreateEvent(0);
 				IPS_SetParent($eid, $this->GetIDForIdent($this->Translate("Action")));
@@ -80,16 +87,19 @@
 				IPS_SetEventActive($eid, true);
 				IPS_SetEventTriggerSubsequentExecution($eid, true);
 				IPS_SetName($eid, "DWIPSShutterActionTrig");
-			}
+			}*/
 		}
 
 		/**
         * Die folgenden Funktionen stehen automatisch zur Verfügung, wenn das Modul über die "Module Control" eingefügt wurden.
         * Die Funktionen werden, mit dem selbst eingerichteten Prefix, in PHP und JSON-RPC wiefolgt zur Verfügung gestellt:
         *
-        * DWIPSShutter_UpdateSunrise($id);
+        * DWIPSShutter_UpdatePositionValue($id);
         *
         */
+		public function UpdatePositionValue($Position){
+			SetValue($this->GetIDForIdent($this->Translate("Position")), $Position);
+		}
 
 		public function RequestAction($Ident, $Value) {
  

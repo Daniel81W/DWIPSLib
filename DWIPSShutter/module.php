@@ -98,7 +98,7 @@
 					//Neuen Wert in die Statusvariable schreiben
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					//KNX oder EIB
-					if(IPS_GetInstance($this->ReadPropertyInteger("PositionInstanceID"))[ModuleInfo][ModuleName] == "KNX DPT 5"){
+					if(IPS_GetInstance($this->ReadPropertyInteger("PositionInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 5"){
 						KNX_WriteDPT5($this->ReadPropertyInteger("PositionInstanceID"), $Value);
 					}
 					break;

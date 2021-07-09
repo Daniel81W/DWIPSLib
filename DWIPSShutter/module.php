@@ -75,11 +75,13 @@
 			$PosScriptID = IPS_CreateScript(0);
 			IPS_SetParent($PosScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0]);
 			IPS_SetName($PosScriptID, "DWIPS_ActionScript");
-			IPS_SetScriptContent($PosScriptID, "SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);DWIPSShutter_UpdatePositionValue(".$this->InstanceID.", $_IPS['VALUE']);");
+			echo "SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);DWIPSShutter_UpdatePositionValue(".$this->InstanceID.", $_IPS['VALUE']);";
+			//IPS_SetScriptContent($PosScriptID, "SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);DWIPSShutter_UpdatePositionValue(".$this->InstanceID.", $_IPS['VALUE']);");
 			IPS_SetVariableCustomAction(IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0], $PosScriptID);
 			
 			
-			/*$TriggerID = @IPS_GetEventIDByName("DWIPSShutterActionTrig", $this->GetIDForIdent($this->Translate("Action")));
+			/*
+			$TriggerID = @IPS_GetEventIDByName("DWIPSShutterActionTrig", $this->GetIDForIdent($this->Translate("Action")));
 			if($TriggerID === false){
 				$eid = IPS_CreateEvent(0);
 				IPS_SetParent($eid, $this->GetIDForIdent($this->Translate("Action")));
@@ -87,7 +89,8 @@
 				IPS_SetEventActive($eid, true);
 				IPS_SetEventTriggerSubsequentExecution($eid, true);
 				IPS_SetName($eid, "DWIPSShutterActionTrig");
-			}*/
+			}
+			*/
 		}
 
 		/**

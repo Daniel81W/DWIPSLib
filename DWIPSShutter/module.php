@@ -73,7 +73,7 @@
 			parent::ApplyChanges();
 			
 			$TriggerID = @IPS_GetEventIDByName("DWIPSShutterActionTrig", $this->ReadPropertyInteger("UpDownInstanceID"));
-			if(TriggerID === false){
+			if($TriggerID === false){
 				$eid = IPS_CreateEvent(0);
 				IPS_SetParent($eid, @IPS_GetVariableIDByName("Aktion", $_IPS['SELF']));
 				IPS_SetEventTrigger($eid, 1, $this->ReadPropertyInteger("UpDownInstanceID"));

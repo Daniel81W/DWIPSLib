@@ -88,7 +88,7 @@
 			$ActionScriptID = IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("UpDownInstanceID"))[0]);
 			if(! $ActionScriptID){
 				$ActionScriptID = IPS_CreateScript(0);
-				IPS_SetParent($PoActionScriptIDsScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("UpDownInstanceID"))[0]);
+				IPS_SetParent($ActionScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("UpDownInstanceID"))[0]);
 				IPS_SetName($ActionScriptID, "DWIPS_ActionScript");
 				IPS_SetHidden($ActionScriptID);
 				IPS_SetScriptContent($ActionScriptID, "<? \n KNX_WriteDPT1(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdateActionValue(".$this->InstanceID.", IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n ?>");
@@ -99,7 +99,7 @@
 			$ActionScriptID = IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("StopInstanceID"))[0]);
 			if(! $ActionScriptID){
 				$ActionScriptID = IPS_CreateScript(0);
-				IPS_SetParent($PoActionScriptIDsScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("StopInstanceID"))[0]);
+				IPS_SetParent($ActionScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("StopInstanceID"))[0]);
 				IPS_SetName($ActionScriptID, "DWIPS_ActionScript");
 				IPS_SetHidden($ActionScriptID);
 				IPS_SetScriptContent($ActionScriptID, "<? \n KNX_WriteDPT1(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdateActionValue(".$this->InstanceID.", IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n ?>");

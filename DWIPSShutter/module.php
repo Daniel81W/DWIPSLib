@@ -34,6 +34,17 @@
 				//IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Position"), 1, $this->Translate("Stop"), "", 0xFF0000);
 				//IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Position"), 2, $this->Translate("Down"), "", 0x00FF00);
 			}
+			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.PositionSteps"))) {
+    			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.PositionSteps"), 1);
+				IPS_SetVariableProfileText($this->Translate("DWIPS.Shutter.PositionSteps"), "", "%");
+				IPS_SetVariableProfileValues($this->Translate("DWIPS.Shutter.PositionSteps"), 0, 100, 2);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 0, "", "", -1);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 20, "", "", -1);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 40, "", "", -1);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 60, "", "", -1);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 80, "", "", -1);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 100, "", "", -1);
+			}
 			if (! IPS_VariableProfileExists("DWIPS.Shutter.Preset")) {
     			IPS_CreateVariableProfile("DWIPS.Shutter.Preset", 1);
 				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Preset", 1, $this->Translate("Set"), "", -1);
@@ -49,15 +60,17 @@
 			$this->EnableAction($this->Translate("Action"));
 			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),$this->Translate("DWIPS.Shutter.Position"), 2);
 			$this->EnableAction($this->Translate("Position"));
-			$this->RegisterVariableInteger("Preset1", "Preset 1", "DWIPS.Shutter.Preset", 3);
+			$this->RegisterVariableInteger($this->Translate("PositionSteps"), $this->Translate("PositionSteps"),$this->Translate("DWIPS.Shutter.PositionSteps"), 3);
+			$this->EnableAction($this->Translate("PositionSteps"));
+			$this->RegisterVariableInteger("Preset1", "Preset 1", "DWIPS.Shutter.Preset", 4);
 			$this->EnableAction("Preset1");
-			$this->RegisterVariableInteger("Preset2", "Preset 2", "DWIPS.Shutter.Preset", 4);
+			$this->RegisterVariableInteger("Preset2", "Preset 2", "DWIPS.Shutter.Preset", 5);
 			$this->EnableAction("Preset2");
-			$this->RegisterVariableInteger("Preset3", "Preset 3", "DWIPS.Shutter.Preset", 5);
+			$this->RegisterVariableInteger("Preset3", "Preset 3", "DWIPS.Shutter.Preset", 6);
 			$this->EnableAction("Preset3");
-			$this->RegisterVariableInteger("Preset4", "Preset 4", "DWIPS.Shutter.Preset", 6);
+			$this->RegisterVariableInteger("Preset4", "Preset 4", "DWIPS.Shutter.Preset", 7);
 			$this->EnableAction("Preset4");
-			$this->RegisterVariableBoolean($this->Translate("DrivingTime"), $this->Translate("DrivingTime"), $this->Translate("DWIPS.Shutter.Trigger"), 7);
+			$this->RegisterVariableBoolean($this->Translate("DrivingTime"), $this->Translate("DrivingTime"), $this->Translate("DWIPS.Shutter.Trigger"), 8);
 			$this->EnableAction($this->Translate("DrivingTime"));
 		}
 
@@ -71,6 +84,30 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+
+			$ActionScriptID = IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("UpDownInstanceID"))[0]);
+			if(! $ActionScriptID){
+				$ActionScriptID = IPS_CreateScript(0);
+				IPS_SetParent($PoActionScriptIDsScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("UpDownInstanceID"))[0]);
+				IPS_SetName($ActionScriptID, "DWIPS_ActionScript");
+				IPS_SetHidden($ActionScriptID);
+				IPS_SetScriptContent($ActionScriptID, "<? \n KNX_WriteDPT1(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdateActionValue(".$this->InstanceID.", IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n ?>");
+				IPS_SetVariableCustomAction(IPS_GetChildrenIDs($this->ReadPropertyInteger("UpDownInstanceID"))[0], $ActionScriptID);
+			}else{
+				IPS_SetScriptContent($ActionScriptID, "<? \n KNX_WriteDPT5(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdateActionValue(".$this->InstanceID.", IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n ?>");
+			}
+			$ActionScriptID = IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("StopInstanceID"))[0]);
+			if(! $ActionScriptID){
+				$ActionScriptID = IPS_CreateScript(0);
+				IPS_SetParent($PoActionScriptIDsScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("StopInstanceID"))[0]);
+				IPS_SetName($ActionScriptID, "DWIPS_ActionScript");
+				IPS_SetHidden($ActionScriptID);
+				IPS_SetScriptContent($ActionScriptID, "<? \n KNX_WriteDPT1(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdateActionValue(".$this->InstanceID.", IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n ?>");
+				IPS_SetVariableCustomAction(IPS_GetChildrenIDs($this->ReadPropertyInteger("StopInstanceID"))[0], $ActionScriptID);
+			}else{
+				IPS_SetScriptContent($ActionScriptID, "<? \n KNX_WriteDPT5(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdateActionValue(".$this->InstanceID.", IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n ?>");
+			}
+
 			$PosScriptID = IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0]);
 			if(! $PosScriptID){
 				$PosScriptID = IPS_CreateScript(0);
@@ -94,6 +131,18 @@
         */
 		public function UpdatePositionValue($Position){
 			SetValue($this->GetIDForIdent($this->Translate("Position")), $Position);
+		}
+
+		public function UpdateActionValue($Sender, $Value){
+			if($Sender == $this->ReadPropertyInteger("UpDownInstanceID")){
+				if($Value = 0){
+					SetValue($this->GetIDForIdent($this->Translate("Action")), 0);
+				}else{
+					SetValue($this->GetIDForIdent($this->Translate("Action")), 2);
+				}
+			}elseif ($Sender == $this->ReadPropertyInteger("StopInstanceID")) {
+				SetValue($this->GetIDForIdent($this->Translate("Action")), 1);
+			}
 		}
 
 		public function RequestAction($Ident, $Value) {
@@ -131,8 +180,59 @@
 						EIB_Scale($this->ReadPropertyInteger("PositionInstanceID"), $Value);
 					}
 					break;
+					
+				case $this->Translate("PositionSteps"):
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					//KNX oder EIB
+					if(IPS_GetInstance($this->ReadPropertyInteger("PositionInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 5"){
+						KNX_WriteDPT5($this->ReadPropertyInteger("PositionInstanceID"), $Value);
+					}elseif(IPS_GetInstance($this->ReadPropertyInteger("PositionInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
+						EIB_Scale($this->ReadPropertyInteger("PositionInstanceID"), $Value);
+					}
+					break;
+
 				case "Preset1":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					if($Value == 1){
+						//KNX oder EIB
+						if(IPS_GetInstance($this->ReadPropertyInteger("Preset12SetInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
+							KNX_WriteDPT1($this->ReadPropertyInteger("Preset12SetInstanceID"), 0);
+						}elseif(IPS_GetInstance($this->ReadPropertyInteger("Preset12SetInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
+							EIB_Switch($this->ReadPropertyInteger("Preset12SetInstanceID"), false);
+						}
+					}elseif($Value == 2){
+						//KNX oder EIB
+						if(IPS_GetInstance($this->ReadPropertyInteger("Preset12ExInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
+							KNX_WriteDPT1($this->ReadPropertyInteger("Preset12ExInstanceID"), 0);
+						}elseif(IPS_GetInstance($this->ReadPropertyInteger("Preset12ExInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
+							EIB_Switch($this->ReadPropertyInteger("Preset12ExInstanceID"), false);
+						}
+					}
+					IPS_Sleep(2000);
+					SetValue($this->GetIDForIdent($Ident), 0);
+					break;
+
 				case "Preset2":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					if($Value == 1){
+						//KNX oder EIB
+						if(IPS_GetInstance($this->ReadPropertyInteger("Preset12SetInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
+							KNX_WriteDPT1($this->ReadPropertyInteger("Preset12SetInstanceID"), 1);
+						}elseif(IPS_GetInstance($this->ReadPropertyInteger("Preset12SetInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
+							EIB_Switch($this->ReadPropertyInteger("Preset12SetInstanceID"), true);
+						}
+					}elseif($Value == 2){
+						//KNX oder EIB
+						if(IPS_GetInstance($this->ReadPropertyInteger("Preset12ExInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
+							KNX_WriteDPT1($this->ReadPropertyInteger("Preset12ExInstanceID"), 1);
+						}elseif(IPS_GetInstance($this->ReadPropertyInteger("Preset12ExInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
+							EIB_Switch($this->ReadPropertyInteger("Preset12ExInstanceID"), true);
+						}
+					}
+					IPS_Sleep(2000);
+					SetValue($this->GetIDForIdent($Ident), 0);	
+					break;
+
 				case "Preset3":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					if($Value == 1){

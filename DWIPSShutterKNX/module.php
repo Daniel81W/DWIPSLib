@@ -1,13 +1,13 @@
 <?php
 
 	//include_once("/var/lib/symcon/modules/DWIPSLib/libs/astro.php");
-	class DWIPSShutter extends IPSModule {
+	class DWIPSShutterKNX extends IPSModule {
 
 		public function Create()
 		{
 			//Never delete this line!
 			parent::Create();
-
+/*
 			//Instances for control of the shutter (KNX, EIB)
 			$this->RegisterPropertyInteger("UpDownInstanceID", 0);
 			$this->RegisterPropertyInteger("StopInstanceID", 0);
@@ -72,6 +72,9 @@
 			$this->EnableAction("Preset4");
 			$this->RegisterVariableBoolean($this->Translate("DrivingTime"), $this->Translate("DrivingTime"), $this->Translate("DWIPS.Shutter.Trigger"), 8);
 			$this->EnableAction($this->Translate("DrivingTime"));
+
+			*/
+
 		}
 
 		public function Destroy()
@@ -84,7 +87,7 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-
+/*
 			$ActionScriptID = IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("UpDownInstanceID"))[0]);
 			if(! $ActionScriptID){
 				$ActionScriptID = IPS_CreateScript(0);
@@ -119,7 +122,7 @@
 			}else{
 				IPS_SetScriptContent($PosScriptID, "<? \n KNX_WriteDPT5(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdatePositionValue(".$this->InstanceID.", \$_IPS['VALUE']); \n ?>");
 			}
-
+*/
 		}
 
 		/**
@@ -129,7 +132,7 @@
         * DWIPSShutter_UpdatePositionValue($id);
         *
         */
-		public function UpdatePositionValue($Position){
+/*		public function UpdatePositionValue($Position){
 			SetValue($this->GetIDForIdent($this->Translate("Position")), $Position);
 		}
 
@@ -298,6 +301,6 @@
 					throw new Exception("Invalid Ident");
 			}
 		 
-		}
+		}*/
 	}
 	?>

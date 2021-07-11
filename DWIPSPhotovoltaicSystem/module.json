@@ -2,7 +2,7 @@
     "id": "{8F77432C-BAF6-6954-2383-A5CD87DE3437}",
     "name": "DWIPSPhotovoltaicSystem",
     "type": 3,
-    "vendor": "",
+    "vendor": "DWIPS",
     "aliases": [],
     "parentRequirements": [
         "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}"

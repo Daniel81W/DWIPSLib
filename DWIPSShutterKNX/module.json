@@ -4,9 +4,9 @@
     "type": 3,
     "vendor": "DWIPS",
     "aliases": [],
-    "parentRequirements": [{42DFD4E4-5831-4A27-91B9-6FF1B2960260}],
+    "parentRequirements": ["{42DFD4E4-5831-4A27-91B9-6FF1B2960260}"],
     "childRequirements": [],
-    "implemented": [{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}],
+    "implemented": ["{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"],
     "prefix": "DWIPSShutterKNX",
     "url": "https://github.com/Daniel81W/DWIPSLib"
 }

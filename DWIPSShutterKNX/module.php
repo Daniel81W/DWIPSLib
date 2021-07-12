@@ -7,12 +7,12 @@
 		{
 			//Never delete this line!
 			parent::Create();
-/*
+
 			//Instances for control of the shutter (KNX, EIB)
-			$this->RegisterPropertyInteger("UpDownInstanceID", 0);
-			$this->RegisterPropertyInteger("StopInstanceID", 0);
-			$this->RegisterPropertyInteger("PositionInstanceID", 0);
-			$this->RegisterPropertyInteger("Preset12ExInstanceID", 0);
+			$this->RegisterPropertyInteger("Hauptgruppe", 0);
+			$this->RegisterPropertyInteger("Mittelgruppe", 0);
+			$this->RegisterPropertyInteger("Untergruppe", 0);
+			/*$this->RegisterPropertyInteger("Preset12ExInstanceID", 0);
 			$this->RegisterPropertyInteger("Preset34ExInstanceID", 0);
 			$this->RegisterPropertyInteger("Preset12SetInstanceID", 0);
 			$this->RegisterPropertyInteger("Preset34SetInstanceID", 0);

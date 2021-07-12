@@ -8,15 +8,22 @@
                     "name": "Hauptgruppe",
                     "caption": "Hauptgruppe",
                     "minimum": 0,
-                    "maximum": 255
+                    "maximum": 255,
+                    "width": "150px"
                 },{
-                    "type": "Button",
-                    "caption": "Test",
-                    "onClick": "TM_Update($id);"
+                    "type": "NumberSpinner",
+                    "name": "Mittelgruppe",
+                    "caption": "Mittelgruppe",
+                    "minimum": 0,
+                    "maximum": 255,
+                    "width": "150px"
                 },{
-                    "type": "Button",
-                    "caption": "Test2",
-                    "onClick": "TM_Update2($id);"
+                    "type": "NumberSpinner",
+                    "name": "Untergruppe",
+                    "caption": "Untergruppe",
+                    "minimum": 0,
+                    "maximum": 255,
+                    "width": "150px"
                 }
             ]
         }

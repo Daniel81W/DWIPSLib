@@ -129,12 +129,12 @@
 
 		public function ReceiveData($JSONString) {
 			$knxdata = json_decode($JSONString, true);
-			$this->SendDebug("KNX", $JSONString, 0);
-//			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"){
-			if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("Hauptgruppe") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("Mittelgruppe") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("Untergruppe")){
-				
-			$this->SendDebug("KNX", bin2hex($knxdata["Data"]), 0);
-			SetValue("Test", bin2hex($knxdata["Data"]));
+			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"){
+				if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("Hauptgruppe") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("Mittelgruppe") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("Untergruppe")){
+					$hexval = bin2hex($knxdata["Data"]);
+					$hexval = substr($hexval, 4);
+					SetValue("Test", hexdec($hexval));
+				}
 			}
 		}
 		/**

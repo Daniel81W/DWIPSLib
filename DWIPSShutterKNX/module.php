@@ -76,7 +76,7 @@
 			$this->EnableAction($this->Translate("DrivingTime"));
 
 			*/
-
+			$this->RegisterVariableString("Test", "Test", "", 0);
 		}
 
 		public function Destroy()
@@ -130,7 +130,7 @@
 		public function ReceiveData($JSONString) {
 			$knxdata = json_decode($JSONString);
 			if($knxdata["GroupAddress1"] = $this->ReadPropertyInteger("Hauptgruppe") and $knxdata["GroupAddress2"] = $this->ReadPropertyInteger("Mittelgruppe") and $knxdata["GroupAddress3"] = $this->ReadPropertyInteger("Untergruppe")){
-				print_r($knxdata["DataID"]. " - " . $knxdata["Data"]);
+				SetValue("Test", $knxdata["DataID"]. " - " . $knxdata["Data"]);
 			}
 		}
 		/**

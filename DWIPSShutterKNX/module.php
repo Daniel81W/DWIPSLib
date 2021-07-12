@@ -8,6 +8,8 @@
 			//Never delete this line!
 			parent::Create();
 
+			$this->ConnectParent("{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}");
+
 			//Instances for control of the shutter (KNX, EIB)
 			$this->RegisterPropertyInteger("Hauptgruppe", 0);
 			$this->RegisterPropertyInteger("Mittelgruppe", 0);
@@ -58,8 +60,8 @@
 			//Variables to control shutter in Webfront
 			$this->RegisterVariableInteger($this->Translate("Action"), $this->Translate("Action"), $this->Translate("DWIPS.Shutter.UpDownStop"), 1);
 			$this->EnableAction($this->Translate("Action"));
-			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),$this->Translate("DWIPS.Shutter.Position"), 2);
-			$this->EnableAction($this->Translate("Position"));
+	*/		$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),$this->Translate("DWIPS.Shutter.Position"), 2);
+	/*		$this->EnableAction($this->Translate("Position"));
 			$this->RegisterVariableInteger($this->Translate("PositionSteps"), $this->Translate("PositionSteps"),$this->Translate("DWIPS.Shutter.PositionSteps"), 3);
 			$this->EnableAction($this->Translate("PositionSteps"));
 			$this->RegisterVariableInteger("Preset1", "Preset 1", "DWIPS.Shutter.Preset", 4);
@@ -125,6 +127,12 @@
 */
 		}
 
+		public function ReceiveData($JSONString) {
+			$knxdata = json_decode($JSONString);
+			if($knxdata["GroupAddress1"] = $this->ReadPropertyInteger("Hauptgruppe") and $knxdata["GroupAddress2"] = $this->ReadPropertyInteger("Mittelgruppe") and $knxdata["GroupAddress3"] = $this->ReadPropertyInteger("Untergruppe")){
+				print_r($knxdata["DataID"]. " - " . $knxdata["Data"]);
+			}
+		}
 		/**
         * Die folgenden Funktionen stehen automatisch zur Verfügung, wenn das Modul über die "Module Control" eingefügt wurden.
         * Die Funktionen werden, mit dem selbst eingerichteten Prefix, in PHP und JSON-RPC wiefolgt zur Verfügung gestellt:

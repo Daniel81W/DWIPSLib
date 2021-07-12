@@ -129,8 +129,9 @@
 
 		public function ReceiveData($JSONString) {
 			$knxdata = json_decode($JSONString);
-			$this->SendDebug("KNX", $JSONString, 0);
-			if($knxdata["GroupAddress1"] = $this->ReadPropertyInteger("Hauptgruppe") and $knxdata["GroupAddress2"] = $this->ReadPropertyInteger("Mittelgruppe") and $knxdata["GroupAddress3"] = $this->ReadPropertyInteger("Untergruppe")){
+			$this->SendDebug("KNX", json_decode($JSONString), 0);
+//			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"){
+			if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("Hauptgruppe") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("Mittelgruppe") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("Untergruppe")){
 				SetValue("Test", $knxdata["DataID"]. " - " . $knxdata["Data"]);
 			}
 		}

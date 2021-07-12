@@ -8,7 +8,7 @@
 			//Never delete this line!
 			parent::Create();
 
-			$this->ConnectParent("{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}");
+			$this->ConnectParent("{42DFD4E4-5831-4A27-91B9-6FF1B2960260}");
 
 			//Instances for control of the shutter (KNX, EIB)
 			$this->RegisterPropertyInteger("Hauptgruppe", 0);

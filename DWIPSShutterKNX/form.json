@@ -4,9 +4,11 @@
             "type": "RowLayout",
             "items": [
                 {
-                    "type": "SelectLocation",
-                    "name": "Location",
-                    "caption": "My Location"
+                    "type": "NumberSpinner",
+                    "name": "Hauptgruppe",
+                    "caption": "Hauptgruppe",
+                    "minimum": 0,
+                    "maximum": 255
                 },{
                     "type": "Button",
                     "caption": "Test",

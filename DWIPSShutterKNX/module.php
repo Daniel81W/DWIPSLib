@@ -133,7 +133,7 @@
 				if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("Hauptgruppe") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("Mittelgruppe") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("Untergruppe")){
 					$hexval = bin2hex($knxdata["Data"]);
 					$hexval = substr($hexval, 4);
-					SendDebug("KNX", $hexval, 0);
+					$this->SendDebug("KNX", $hexval, 0);
 					SetValueInteger($this->GetIDForIdent($this->Translate("Position")), hexdec($hexval));
 				}
 			}

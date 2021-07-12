@@ -129,7 +129,7 @@
 
 		public function ReceiveData($JSONString) {
 			$knxdata = json_decode($JSONString);
-			//$this->SendDebug("KNX", $knxdata, 0);
+			$this->SendDebug("KNX", "DEBUG", 0);
 			if($knxdata["GroupAddress1"] = $this->ReadPropertyInteger("Hauptgruppe") and $knxdata["GroupAddress2"] = $this->ReadPropertyInteger("Mittelgruppe") and $knxdata["GroupAddress3"] = $this->ReadPropertyInteger("Untergruppe")){
 				SetValue("Test", $knxdata["DataID"]. " - " . $knxdata["Data"]);
 			}

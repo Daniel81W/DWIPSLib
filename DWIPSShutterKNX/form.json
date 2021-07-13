@@ -28,7 +28,7 @@
                     "type": "Select",
                     "name": "PositionDataPointType",
                     "caption": "DataPointType",
-                    "onChange": "\\$this->UpdateFormField(\"PositionDataPointSubType\",\"options\",\"[{\"value\": 1, \"caption\": \"5.001\"}]\");",
+                    "onChange": "UpdateFormField(\"PositionDataPointSubType\",\"options\",\"[{\"value\": 1, \"caption\": \"5.001\"}]\");",
                     "options": [
                         { "value": 1, "caption": "DPT 1"},
                         { "value": 2, "caption": "DPT 2"},

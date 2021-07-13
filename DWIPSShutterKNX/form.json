@@ -5,7 +5,8 @@
             "items": [
                 {
                     "type": "Label",
-                    "caption": "Auf Ab"
+                    "caption": "Auf Ab",
+                    "width": "90px"
                 },
                 {
                     "type": "NumberSpinner",

@@ -6,8 +6,7 @@
                 {
                     "type": "Label",
                     "caption": "Auf Ab"
-                },
-                {
+                },{
                     "type": "NumberSpinner",
                     "name": "UpDownMainGroup",
                     "caption": "MainGroup",
@@ -59,8 +58,7 @@
                 {
                     "type": "Label",
                     "caption": "Position"
-                },
-                {
+                },{
                     "type": "NumberSpinner",
                     "name": "PositionMainGroup",
                     "caption": "MainGroup",
@@ -109,7 +107,9 @@
         }
     ],
     "actions": [
-        
+        {
+            "type": "TestCenter"
+        }
     ],
     "status": []
 }

@@ -39,8 +39,7 @@
                         { "value": 8, "caption": "DPT 8"},
                         { "value": 9, "caption": "DPT 9"},
                         { "value": 10, "caption": "DPT 10"}
-                    ],
-                    "onChange": "if($PositionDataPointType == 5){ $this->UpdateFormField(\"PositionDataPointSubType\",\"options\",\"[{\"value\": 1, \"caption\": \"5.001\"}]\"); }"
+                    ]
                 },{
                     "type": "Select",
                     "name": "PositionDataPointSubType",

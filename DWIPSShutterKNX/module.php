@@ -136,7 +136,7 @@
 
 					$Val = unpack( 'C', $knxdata["Data"], 0 );
           			$result = intval( round( $Val[ 1 ] / 255 * 100 ) );
-					$this->SendDebug("KNX", sizeof($Val)), 0);
+					$this->SendDebug("KNX", sizeof($Val), 0);
 					$this->SendDebug("KNX", $hexval, 0);
 
 					SetValueInteger($this->GetIDForIdent($this->Translate("Position")), hexdec($hexval));

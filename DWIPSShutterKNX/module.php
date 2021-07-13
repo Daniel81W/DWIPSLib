@@ -11,11 +11,16 @@
 			$this->ConnectParent("{42DFD4E4-5831-4A27-91B9-6FF1B2960260}");
 
 			//Instances for control of the shutter (KNX, EIB)
+			$this->RegisterPropertyInteger("UpDownMainGroup", 0);
+			$this->RegisterPropertyInteger("UpDownMiddleGroup", 0);
+			$this->RegisterPropertyInteger("UpDownSubGroup", 0);
+			$this->RegisterPropertyInteger("UpDownDataPointType", 1;
+			$this->RegisterPropertyInteger("UpDownDataPointSubType", 1);
 			$this->RegisterPropertyInteger("PositionMainGroup", 0);
 			$this->RegisterPropertyInteger("PositionMiddleGroup", 0);
 			$this->RegisterPropertyInteger("PositionSubGroup", 0);
-			$this->RegisterPropertyInteger("PositionDataPointType", 0);
-			$this->RegisterPropertyInteger("PositionDataPointSubType", 0);
+			$this->RegisterPropertyInteger("PositionDataPointType", 1;
+			$this->RegisterPropertyInteger("PositionDataPointSubType", 1);
 			/*$this->RegisterPropertyInteger("Preset12ExInstanceID", 0);
 			$this->RegisterPropertyInteger("Preset34ExInstanceID", 0);
 			$this->RegisterPropertyInteger("Preset12SetInstanceID", 0);

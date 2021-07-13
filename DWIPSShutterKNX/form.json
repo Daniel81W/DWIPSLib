@@ -28,7 +28,6 @@
                     "type": "Select",
                     "name": "PositionDataPointType",
                     "caption": "DataPointType",
-                    "onChange": "if($PositionDataPointSubType == 5){UpdateFormField(\"PositionDataPointSubType\",\"options\",\"[{\"value\": 1, \"caption\": \"5.001\"}]\");}",
                     "options": [
                         { "value": 1, "caption": "DPT 1"},
                         { "value": 2, "caption": "DPT 2"},
@@ -52,6 +51,10 @@
             ]
         }
     ],
-    "actions": [],
+    "actions": [
+        {
+            "type": "TestCenter"
+        }
+    ],
     "status": []
 }

@@ -139,6 +139,7 @@
 					$this->SendDebug("KNX", sizeof($Val), 0);
 					$this->SendDebug("KNX", $Val[1], 0);
 					$this->SendDebug("KNX", $hexval, 0);
+					$this->SendDebug("KNX", pack( "CC", 0x80, 200 ), 0);
 
 					SetValueInteger($this->GetIDForIdent($this->Translate("Position")), hexdec($hexval));
 				}

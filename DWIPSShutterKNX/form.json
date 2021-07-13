@@ -45,7 +45,9 @@
                     "type": "Select",
                     "name": "PositionDataPointSubType",
                     "caption": "DataPointSubType",
-                    "option": []
+                    "option": [
+                        { "value": 1, "caption": "DPT 1"}
+                    ]
                 }
             ]
         }

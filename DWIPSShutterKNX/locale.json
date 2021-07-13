@@ -1,7 +1,8 @@
 {
     "translations": {
         "de": {
-            "Position": "Position"
+            "Position": "Position",
+            "MainGroup": "Hauptgruppe"
         }
     }
 }

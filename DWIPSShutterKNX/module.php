@@ -134,7 +134,7 @@
 					$hexval = bin2hex($knxdata["Data"]);
 					$hexval = substr($hexval, 0);
 
-					$Val = unpack( 'C', $knxdata["Data"], 0 );
+					$Val = unpack( 'h', $knxdata["Data"], 0 );
           			$result = intval( round( $Val[ 1 ] / 255 * 100 ) );
 					$this->SendDebug("KNX", sizeof($Val), 0);
 					$this->SendDebug("KNX", $Val[1], 0);

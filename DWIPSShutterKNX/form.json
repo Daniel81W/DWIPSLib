@@ -46,7 +46,7 @@
                     "name": "PositionDataPointSubType",
                     "caption": "DataPointSubType",
                     "options": [
-                        { "value": 0, "caption": "DPT 1"}
+                        { "value": 1, "caption": "DPT 1"}
                     ]
                 }
             ]

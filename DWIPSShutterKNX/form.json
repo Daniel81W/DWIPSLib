@@ -4,26 +4,30 @@
             "type": "RowLayout",
             "items": [
                 {
+                    "type": "label",
+                    "caption": "Position"
+                },
+                {
                     "type": "NumberSpinner",
                     "name": "PositionMainGroup",
                     "caption": "MainGroup",
                     "minimum": 0,
                     "maximum": 255,
-                    "width": "150px"
+                    "width": "100px"
                 },{
                     "type": "NumberSpinner",
                     "name": "PositionMiddleGroup",
                     "caption": "MiddleGroup",
                     "minimum": 0,
                     "maximum": 255,
-                    "width": "150px"
+                    "width": "100px"
                 },{
                     "type": "NumberSpinner",
                     "name": "PositionSubGroup",
                     "caption": "SubGroup",
                     "minimum": 0,
                     "maximum": 255,
-                    "width": "150px"
+                    "width": "100px"
                 },{
                     "type": "Select",
                     "name": "PositionDataPointType",

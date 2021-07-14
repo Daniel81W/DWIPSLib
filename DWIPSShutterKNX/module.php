@@ -17,10 +17,10 @@
 			0 => ["name" => "Action", "type" => "int", "pos" => 1],
 			1 => ["name" => "Position", "type" => "int", "pos" => 2],
 			2 => ["name" => "PositionSteps", "type" => "int", "pos" => 3],
-			3 => ["name" => "Preset 1", "type" => "int", "pos" => 4],
-			4 => ["name" => "Preset 2", "type" => "int", "pos" => 5],
-			5 => ["name" => "Preset 3", "type" => "int", "pos" => 6],
-			6 => ["name" => "Preset 4", "type" => "int", "pos" => 7],
+			3 => ["name" => "Preset1", "type" => "int", "pos" => 4],
+			4 => ["name" => "Preset2", "type" => "int", "pos" => 5],
+			5 => ["name" => "Preset3", "type" => "int", "pos" => 6],
+			6 => ["name" => "Preset4", "type" => "int", "pos" => 7],
 			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8]
 		];
 
@@ -85,6 +85,8 @@
 			foreach($this->variables as $var){
 				switch($var["type"]) {
 					case "bool":
+						$this->RegisterVariableBoolean($var["name"], $this->Translate($var["name"]),""/*$this->Translate($field["name"])*/, $var["pos"]);
+						$this->EnableAction($var["name"]);
 						break;
 					case "int":
 						$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),""/*$this->Translate($field["name"])*/, $var["pos"]);

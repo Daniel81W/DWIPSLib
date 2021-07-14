@@ -6,7 +6,12 @@
 		private $parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";
 		private $properties = [
 			0 => ["name" => "UpDown"],
-			1 => ["name" => "Position"]
+			1 => ["name" => "Position"],
+			2 => ["name" => "Preset12Set"],
+			3 => ["name" => "Preset12Ex"],
+			4 => ["name" => "Preset34Set"],
+			5 => ["name" => "Preset34Ex"],
+			6 => ["name" => "DrivingTime"]
 		];
 		private $variables = [
 			0 => ["name" => "Action", "type" => "int", "pos" => 1],
@@ -76,6 +81,7 @@
 						break;
 					case "int":
 						$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),""/*$this->Translate($field["name"])*/, $var["pos"]);
+						$this->EnableAction($var["name"]);
 						break;
 					case "float":
 						break;
@@ -85,10 +91,7 @@
 						throw new Exception("Invalid type");
 				}
 			}
-	/*		$this->RegisterVariableInteger($this->Translate("Action"), $this->Translate("Action"), $this->Translate("DWIPS.Shutter.UpDownStop"), 1);
-			$this->EnableAction($this->Translate("Action"));
-			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),$this->Translate("DWIPS.Shutter.Position"), 2);
-	*//*		$this->EnableAction($this->Translate("Position"));
+	/*		
 			$this->RegisterVariableInteger($this->Translate("PositionSteps"), $this->Translate("PositionSteps"),$this->Translate("DWIPS.Shutter.PositionSteps"), 3);
 			$this->EnableAction($this->Translate("PositionSteps"));
 			$this->RegisterVariableInteger("Preset1", "Preset 1", "DWIPS.Shutter.Preset", 4);
@@ -116,42 +119,7 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-/*
-			$ActionScriptID = IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("UpDownInstanceID"))[0]);
-			if(! $ActionScriptID){
-				$ActionScriptID = IPS_CreateScript(0);
-				IPS_SetParent($ActionScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("UpDownInstanceID"))[0]);
-				IPS_SetName($ActionScriptID, "DWIPS_ActionScript");
-				IPS_SetHidden($ActionScriptID);
-				IPS_SetScriptContent($ActionScriptID, "<? \n KNX_WriteDPT1(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdateActionValue(".$this->InstanceID.", IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n ?>");
-				IPS_SetVariableCustomAction(IPS_GetChildrenIDs($this->ReadPropertyInteger("UpDownInstanceID"))[0], $ActionScriptID);
-			}else{
-				IPS_SetScriptContent($ActionScriptID, "<? \n KNX_WriteDPT5(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdateActionValue(".$this->InstanceID.", IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n ?>");
-			}
-			$Action2ScriptID = IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("StopInstanceID"))[0]);
-			if(! $Action2ScriptID){
-				$Action2ScriptID = IPS_CreateScript(0);
-				IPS_SetParent($Action2ScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("StopInstanceID"))[0]);
-				IPS_SetName($Action2ScriptID, "DWIPS_ActionScript");
-				IPS_SetHidden($Action2ScriptID);
-				IPS_SetScriptContent($Action2ScriptID, "<? \n KNX_WriteDPT1(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdateActionValue(".$this->InstanceID.", IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n ?>");
-				IPS_SetVariableCustomAction(IPS_GetChildrenIDs($this->ReadPropertyInteger("StopInstanceID"))[0], $Action2ScriptID);
-			}else{
-				IPS_SetScriptContent($Action2ScriptID, "<? \n KNX_WriteDPT5(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdateActionValue(".$this->InstanceID.", IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n ?>");
-			}
 
-			$PosScriptID = IPS_GetObjectIDByName("DWIPS_ActionScript", IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0]);
-			if(! $PosScriptID){
-				$PosScriptID = IPS_CreateScript(0);
-				IPS_SetParent($PosScriptID, IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0]);
-				IPS_SetName($PosScriptID, "DWIPS_ActionScript");
-				IPS_SetHidden($PosScriptID);
-				IPS_SetScriptContent($PosScriptID, "<? \n KNX_WriteDPT5(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdatePositionValue(".$this->InstanceID.", \$_IPS['VALUE']); \n ?>");
-				IPS_SetVariableCustomAction(IPS_GetChildrenIDs($this->ReadPropertyInteger("PositionInstanceID"))[0], $PosScriptID);
-			}else{
-				IPS_SetScriptContent($PosScriptID, "<? \n KNX_WriteDPT5(IPS_GetParent(\$_IPS['VARIABLE']), \$_IPS['VALUE']); \n DWIPSShutter_UpdatePositionValue(".$this->InstanceID.", \$_IPS['VALUE']); \n ?>");
-			}
-*/
 		}
 
 		public function ReceiveData($JSONString) {
@@ -350,41 +318,80 @@
 		 
 		}*/
 
-	/*	public function GetConfigurationForm() {
-			$DPTs = '{ "value": 1, "caption": "DPT 1"},
-			{ "value": 2, "caption": "DPT 2"},
-			{ "value": 3, "caption": "DPT 3"},
-			{ "value": 4, "caption": "DPT 4"},
-			{ "value": 5, "caption": "DPT 5"},
-			{ "value": 6, "caption": "DPT 6"},
-			{ "value": 7, "caption": "DPT 7"},
-			{ "value": 8, "caption": "DPT 8"},
-			{ "value": 9, "caption": "DPT 9"},
-			{ "value": 10, "caption": "DPT 10"},
-			{ "value": 10, "caption": "DPT 11"},
-			{ "value": 10, "caption": "DPT 12"},
-			{ "value": 10, "caption": "DPT 13"},
-			{ "value": 10, "caption": "DPT 14"},
-			{ "value": 10, "caption": "DPT 15"},
-			{ "value": 10, "caption": "DPT 17"},
-			{ "value": 10, "caption": "DPT 18"},
-			{ "value": 10, "caption": "DPT 19"},
-			{ "value": 10, "caption": "DPT 20"},
-			{ "value": 10, "caption": "DPT 21"},
-			{ "value": 10, "caption": "DPT 22"},
-			{ "value": 10, "caption": "DPT 23"},
-			{ "value": 10, "caption": "DPT 25"},
-			{ "value": 10, "caption": "DPT 26"},
-			{ "value": 10, "caption": "DPT 27"},
-			{ "value": 10, "caption": "DPT 29"},
-			{ "value": 10, "caption": "DPT 30"},
-			{ "value": 10, "caption": "DPT 31"},
-			{ "value": 10, "caption": "DPT 200"}"';
+		public function GetConfigurationForm() {
+			
 
-			$ret = '{"elements": [';
-			//foreach($this->)
+			$elements = '';
+			foreach($this->properties as $prop){
+				if (sizeof($elements) >0){ $elements = $elements . ',';}
+				$elements = $elements . '"{ type": "RowLayout",
+					"items": [
+						{
+							"type": "Label",
+							"caption": "Position",
+							"width": "100px"
+						},{
+							"type": "NumberSpinner",
+							"name": "PositionMainGroup",
+							"caption": "MainGroup",
+							"minimum": 0,
+							"maximum": 255,
+							"width": "100px"
+						},{
+							"type": "NumberSpinner",
+							"name": "PositionMiddleGroup",
+							"caption": "MiddleGroup",
+							"minimum": 0,
+							"maximum": 255,
+							"width": "100px"
+						},{
+							"type": "NumberSpinner",
+							"name": "PositionSubGroup",
+							"caption": "SubGroup",
+							"minimum": 0,
+							"maximum": 255,
+							"width": "100px"
+						},{
+							"type": "Select",
+							"name": "PositionDataPointType",
+							"caption": "DataPointType",
+							"options": [
+								{ "value": 1, "caption": "DPT 1"},
+								{ "value": 2, "caption": "DPT 2"},
+								{ "value": 3, "caption": "DPT 3"},
+								{ "value": 4, "caption": "DPT 4"},
+								{ "value": 5, "caption": "DPT 5"},
+								{ "value": 6, "caption": "DPT 6"},
+								{ "value": 7, "caption": "DPT 7"},
+								{ "value": 8, "caption": "DPT 8"},
+								{ "value": 9, "caption": "DPT 9"},
+								{ "value": 10, "caption": "DPT 10"}
+							]
+						},{
+							"type": "Select",
+							"name": "PositionDataPointSubType",
+							"caption": "DataPointSubType",
+							"options": [
+								{ "value": 1, "caption": "DPT 1"}
+							]
+						}
+					]';
+			}
+			
 
+			$ret = '{"elements": [' . $elements . '[,"actions": [' . $actions . '],"status": [' . $status . ']}'
 			return $ret;
-		}*/
+		}
+
+		
+		private $dpts = [
+			1 => ["name" => "DPT 1", "descript" => "int", "sub" => 
+				[ "name" => "1.001", "descript" => "int" ],
+				[ "name" => "1.002", "descript" => "int" ]
+			],
+			2 => ["name" => "DPT 2", "descript" => "int", "sub" => 
+				[ "name" => "2.001", "descript" => "int" ]
+			]
+		];
 	}
 	?>

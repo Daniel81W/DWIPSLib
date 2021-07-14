@@ -119,6 +119,7 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+			$this->TestForm();
 
 		}
 
@@ -318,8 +319,8 @@
 		 
 		}*/
 
-		public function GetConfigurationForm() {
-			
+		//public function GetConfigurationForm() {
+		public function TestForm() {
 
 			$elements = '';
 			$actions = '';
@@ -358,8 +359,7 @@
 
 			$ret = '{"elements": [' . $elements . '],"actions": [' . $actions . '],"status": [' . $status . ']}';
 			$this->SendDebug("KNX", $ret, 0);
-			print_r($ret);
-			return $ret;
+			//return $ret;
 		}
 
 		

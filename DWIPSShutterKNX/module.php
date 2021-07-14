@@ -17,7 +17,344 @@
 			0 => ["name" => "Action", "type" => "int", "pos" => 1],
 			1 => ["name" => "Position", "type" => "int", "pos" => 2]
 		];
-		
+
+		private $dpts = [
+			1 => [
+				"name" => "DPT 1",
+				"descript" => "int",
+				"value" => 1, 
+				"sub" => [
+					1 => [ 
+						"name" => "1.001", 
+						"descript" => "int"
+					],
+					2 => [ 
+						"name" => "1.002", 
+						"descript" => "int" 
+					]
+				]
+			],
+			2 => [
+				"name" => "DPT 2",
+				"descript" => "int",
+				"value" => 2,
+				"sub" => [ 
+					1 => [
+						"name" => "2.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			3 => [
+				"name" => "DPT 3",
+				"descript" => "int",
+				"value" => 3,
+				"sub" => [ 
+					1 => [
+						"name" => "3.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			4 => [
+				"name" => "DPT 4",
+				"descript" => "int",
+				"value" => 4,
+				"sub" => [ 
+					1 => [
+						"name" => "4.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			5 => [
+				"name" => "DPT 5",
+				"descript" => "int",
+				"value" => 5,
+				"sub" => [ 
+					1 => [
+						"name" => "5.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			6 => [
+				"name" => "DPT 6",
+				"descript" => "int",
+				"value" => 6,
+				"sub" => [ 
+					1 => [
+						"name" => "6.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			7 => [
+				"name" => "DPT 7",
+				"descript" => "int",
+				"value" => 7,
+				"sub" => [ 
+					1 => [
+						"name" => "7
+						.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			8 => [
+				"name" => "DPT 8",
+				"descript" => "int",
+				"value" => 8,
+				"sub" => [ 
+					1 => [
+						"name" => "8.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			9 => [
+				"name" => "DPT 9",
+				"descript" => "int",
+				"value" => 9,
+				"sub" => [ 
+					1 => [
+						"name" => "9.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			10 => [
+				"name" => "DPT 10",
+				"descript" => "int",
+				"value" => 10,
+				"sub" => [ 
+					1 => [
+						"name" => "10.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			11 => [
+				"name" => "DPT 11",
+				"descript" => "int",
+				"value" => 11,
+				"sub" => [ 
+					1 => [
+						"name" => "11.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			12 => [
+				"name" => "DPT 12",
+				"descript" => "int",
+				"value" => 12,
+				"sub" => [ 
+					1 => [
+						"name" => "12.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			13 => [
+				"name" => "DPT 13",
+				"descript" => "int",
+				"value" => 13,
+				"sub" => [ 
+					1 => [
+						"name" => "13.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			14 => [
+				"name" => "DPT 14",
+				"descript" => "int",
+				"value" => 14,
+				"sub" => [ 
+					1 => [
+						"name" => "14.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			15 => [
+				"name" => "DPT 15",
+				"descript" => "int",
+				"value" => 15,
+				"sub" => [ 
+					1 => [
+						"name" => "15.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			17 => [7
+				"name" => "DPT 17",
+				"descript" => "int",
+				"value" => 17,
+				"sub" => [ 
+					1 => [
+						"name" => "17.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			18 => [
+				"name" => "DPT 18",
+				"descript" => "int",
+				"value" => 18,
+				"sub" => [ 
+					1 => [
+						"name" => "18.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			19 => [
+				"name" => "DPT 19",
+				"descript" => "int",
+				"value" => 19,
+				"sub" => [ 
+					1 => [
+						"name" => "19.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			20 => [
+				"name" => "DPT 20",
+				"descript" => "int",
+				"value" => 20,
+				"sub" => [ 
+					1 => [
+						"name" => "20.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			21 => [
+				"name" => "DPT 21",
+				"descript" => "int",
+				"value" => 21,
+				"sub" => [ 
+					1 => [
+						"name" => "21.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			22 => [
+				"name" => "DPT 22",
+				"descript" => "int",
+				"value" => 22,
+				"sub" => [ 
+					1 => [
+						"name" => "22.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			23 => [
+				"name" => "DPT 23",
+				"descript" => "int",
+				"value" => 23,
+				"sub" => [ 
+					1 => [
+						"name" => "23.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			25 => [
+				"name" => "DPT 25",
+				"descript" => "int",
+				"value" => 25,
+				"sub" => [ 
+					1 => [
+						"name" => "25.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			26 => [
+				"name" => "DPT 26",
+				"descript" => "int",
+				"value" => 26,
+				"sub" => [ 
+					1 => [
+						"name" => "26.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			27 => [
+				"name" => "DPT 27",
+				"descript" => "int",
+				"value" => 27,
+				"sub" => [ 
+					1 => [
+						"name" => "27.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			29 => [
+				"name" => "DPT 29",
+				"descript" => "int",
+				"value" => 29,
+				"sub" => [ 
+					1 => [
+						"name" => "29.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			30 => [
+				"name" => "DPT 30",
+				"descript" => "int",
+				"value" => 30,
+				"sub" => [ 
+					1 => [
+						"name" => "30.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			31 => [
+				"name" => "DPT 31",
+				"descript" => "int",
+				"value" => 31,
+				"sub" => [ 
+					1 => [
+						"name" => "31.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			200 => [
+				"name" => "DPT 200",
+				"descript" => "int",
+				"value" => 200,
+				"sub" => [ 
+					1 => [
+						"name" => "200.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			201 => [
+				"name" => "DPT 201",
+				"descript" => "int",
+				"value" => 201,
+				"sub" => [ 
+					1 => [
+						"name" => "201.001", 
+						"descript" => "int" 
+					]
+				]
+			]
+		];
 
 		public function Create()
 		{
@@ -357,343 +694,7 @@
 			return $ret;
 		}
 
-		private $dpts = [
-			1 => [
-				"name" => "DPT 1",
-				"descript" => "int",
-				"value" => 1, 
-				"sub" => [
-					1 => [ 
-						"name" => "1.001", 
-						"descript" => "int"
-					],
-					2 => [ 
-						"name" => "1.002", 
-						"descript" => "int" 
-					]
-				]
-			],
-			2 => [
-				"name" => "DPT 2",
-				"descript" => "int",
-				"value" => 2,
-				"sub" => [ 
-					1 => [
-						"name" => "2.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			3 => [
-				"name" => "DPT 3",
-				"descript" => "int",
-				"value" => 3,
-				"sub" => [ 
-					1 => [
-						"name" => "3.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			4 => [
-				"name" => "DPT 4",
-				"descript" => "int",
-				"value" => 4,
-				"sub" => [ 
-					1 => [
-						"name" => "4.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			5 => [
-				"name" => "DPT 5",
-				"descript" => "int",
-				"value" => 5,
-				"sub" => [ 
-					1 => [
-						"name" => "5.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			6 => [
-				"name" => "DPT 6",
-				"descript" => "int",
-				"value" => 6,
-				"sub" => [ 
-					1 => [
-						"name" => "6.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			7 => [
-				"name" => "DPT 7",
-				"descript" => "int",
-				"value" => 7,
-				"sub" => [ 
-					1 => [
-						"name" => "7
-						.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			8 => [
-				"name" => "DPT 8",
-				"descript" => "int",
-				"value" => 8,
-				"sub" => [ 
-					1 => [
-						"name" => "8.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			9 => [
-				"name" => "DPT 9",
-				"descript" => "int",
-				"value" => 9,
-				"sub" => [ 
-					1 => [
-						"name" => "9.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			10 => [
-				"name" => "DPT 10",
-				"descript" => "int",
-				"value" => 10,
-				"sub" => [ 
-					1 => [
-						"name" => "10.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			11 => [
-				"name" => "DPT 11",
-				"descript" => "int",
-				"value" => 11,
-				"sub" => [ 
-					1 => [
-						"name" => "11.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			12 => [
-				"name" => "DPT 12",
-				"descript" => "int",
-				"value" => 12,
-				"sub" => [ 
-					1 => [
-						"name" => "12.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			13 => [
-				"name" => "DPT 13",
-				"descript" => "int",
-				"value" => 13,
-				"sub" => [ 
-					1 => [
-						"name" => "13.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			14 => [
-				"name" => "DPT 14",
-				"descript" => "int",
-				"value" => 14,
-				"sub" => [ 
-					1 => [
-						"name" => "14.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			15 => [
-				"name" => "DPT 15",
-				"descript" => "int",
-				"value" => 15,
-				"sub" => [ 
-					1 => [
-						"name" => "15.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			17 => [7
-				"name" => "DPT 17",
-				"descript" => "int",
-				"value" => 17,
-				"sub" => [ 
-					1 => [
-						"name" => "17.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			18 => [
-				"name" => "DPT 18",
-				"descript" => "int",
-				"value" => 18,
-				"sub" => [ 
-					1 => [
-						"name" => "18.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			19 => [
-				"name" => "DPT 19",
-				"descript" => "int",
-				"value" => 19,
-				"sub" => [ 
-					1 => [
-						"name" => "19.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			20 => [
-				"name" => "DPT 20",
-				"descript" => "int",
-				"value" => 20,
-				"sub" => [ 
-					1 => [
-						"name" => "20.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			21 => [
-				"name" => "DPT 21",
-				"descript" => "int",
-				"value" => 21,
-				"sub" => [ 
-					1 => [
-						"name" => "21.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			22 => [
-				"name" => "DPT 22",
-				"descript" => "int",
-				"value" => 22,
-				"sub" => [ 
-					1 => [
-						"name" => "22.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			23 => [
-				"name" => "DPT 23",
-				"descript" => "int",
-				"value" => 23,
-				"sub" => [ 
-					1 => [
-						"name" => "23.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			25 => [
-				"name" => "DPT 25",
-				"descript" => "int",
-				"value" => 25,
-				"sub" => [ 
-					1 => [
-						"name" => "25.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			26 => [
-				"name" => "DPT 26",
-				"descript" => "int",
-				"value" => 26,
-				"sub" => [ 
-					1 => [
-						"name" => "26.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			27 => [
-				"name" => "DPT 27",
-				"descript" => "int",
-				"value" => 27,
-				"sub" => [ 
-					1 => [
-						"name" => "27.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			29 => [
-				"name" => "DPT 29",
-				"descript" => "int",
-				"value" => 29,
-				"sub" => [ 
-					1 => [
-						"name" => "29.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			30 => [
-				"name" => "DPT 30",
-				"descript" => "int",
-				"value" => 30,
-				"sub" => [ 
-					1 => [
-						"name" => "30.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			31 => [
-				"name" => "DPT 31",
-				"descript" => "int",
-				"value" => 31,
-				"sub" => [ 
-					1 => [
-						"name" => "31.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			200 => [
-				"name" => "DPT 200",
-				"descript" => "int",
-				"value" => 200,
-				"sub" => [ 
-					1 => [
-						"name" => "200.001", 
-						"descript" => "int" 
-					]
-				]
-			],
-			201 => [
-				"name" => "DPT 201",
-				"descript" => "int",
-				"value" => 201,
-				"sub" => [ 
-					1 => [
-						"name" => "201.001", 
-						"descript" => "int" 
-					]
-				]
-			]
-		];
+
 	
 		
 	}

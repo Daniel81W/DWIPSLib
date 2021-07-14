@@ -991,8 +991,7 @@
 						"descript" => "int" 
 					]
 				]
-			]
-		],
+			],
 		234 => [
 			"name" => "DPT 234",
 			"descript" => "int",
@@ -1080,6 +1079,7 @@
 					"descript" => "int" 
 				]
 			]
+		]
 		];
 		
 	}

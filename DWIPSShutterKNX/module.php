@@ -358,6 +358,7 @@
 
 			$ret = '{"elements": [' . $elements . '],"actions": [' . $actions . '],"status": [' . $status . ']}';
 			$this->SendDebug("KNX", $ret, 0);
+			print_r($ret);
 			return $ret;
 		}
 

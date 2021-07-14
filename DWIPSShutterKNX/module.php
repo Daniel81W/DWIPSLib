@@ -4,6 +4,7 @@
 	class DWIPSShutterKNX extends IPSModule {
 
 		private $parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";
+
 		private $properties = [
 			0 => ["name" => "UpDown"],
 			1 => ["name" => "Position"],
@@ -14,17 +15,15 @@
 			6 => ["name" => "DrivingTime"]
 		];
 		private $variables = [
-			0 => ["name" => "Action", "type" => "int", "pos" => 1],
-			1 => ["name" => "Position", "type" => "int", "pos" => 2],
-			2 => ["name" => "PositionSteps", "type" => "int", "pos" => 3],
-			3 => ["name" => "Preset1", "type" => "int", "pos" => 4],
-			4 => ["name" => "Preset2", "type" => "int", "pos" => 5],
-			5 => ["name" => "Preset3", "type" => "int", "pos" => 6],
-			6 => ["name" => "Preset4", "type" => "int", "pos" => 7],
-			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8]
+			0 => ["name" => "Action", "type" => "int", "pos" => 1, "profile" => "UpDownStop"],
+			1 => ["name" => "Position", "type" => "int", "pos" => 2, "profile" => "Position"],
+			2 => ["name" => "PositionSteps", "type" => "int", "pos" => 3, "profile" => "PositionSteps"],
+			3 => ["name" => "Preset1", "type" => "int", "pos" => 4, "profile" => "Preset"],
+			4 => ["name" => "Preset2", "type" => "int", "pos" => 5, "profile" => "Preset"],
+			5 => ["name" => "Preset3", "type" => "int", "pos" => 6, "profile" => "Preset"],
+			6 => ["name" => "Preset4", "type" => "int", "pos" => 7, "profile" => "Preset"],
+			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "Trigger"]
 		];
-
-		
 
 		public function Create()
 		{
@@ -85,37 +84,25 @@
 			foreach($this->variables as $var){
 				switch($var["type"]) {
 					case "bool":
-						$this->RegisterVariableBoolean($var["name"], $this->Translate($var["name"]),""/*$this->Translate($field["name"])*/, $var["pos"]);
+						$this->RegisterVariableBoolean($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($field["profile"]), $var["pos"]);
 						$this->EnableAction($var["name"]);
 						break;
 					case "int":
-						$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),""/*$this->Translate($field["name"])*/, $var["pos"]);
+						$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($field["profile"]), $var["pos"]);
 						$this->EnableAction($var["name"]);
 						break;
 					case "float":
+						$this->RegisterVariableFloat($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($field["profile"]), $var["pos"]);
+						$this->EnableAction($var["name"]);
 						break;
 					case "string":
+						$this->RegisterVariableString($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($field["profile"]), $var["pos"]);
+						$this->EnableAction($var["name"]);
 						break;
 					default:
 						throw new Exception("Invalid type");
 				}
 			}
-	/*		
-			$this->RegisterVariableInteger($this->Translate("PositionSteps"), $this->Translate("PositionSteps"),$this->Translate("DWIPS.Shutter.PositionSteps"), 3);
-			$this->EnableAction($this->Translate("PositionSteps"));
-			$this->RegisterVariableInteger("Preset1", "Preset 1", "DWIPS.Shutter.Preset", 4);
-			$this->EnableAction("Preset1");
-			$this->RegisterVariableInteger("Preset2", "Preset 2", "DWIPS.Shutter.Preset", 5);
-			$this->EnableAction("Preset2");
-			$this->RegisterVariableInteger("Preset3", "Preset 3", "DWIPS.Shutter.Preset", 6);
-			$this->EnableAction("Preset3");
-			$this->RegisterVariableInteger("Preset4", "Preset 4", "DWIPS.Shutter.Preset", 7);
-			$this->EnableAction("Preset4");
-			$this->RegisterVariableBoolean($this->Translate("DrivingTime"), $this->Translate("DrivingTime"), $this->Translate("DWIPS.Shutter.Trigger"), 8);
-			$this->EnableAction($this->Translate("DrivingTime"));
-
-			*/
-			$this->RegisterVariableString("Test", "Test", "", 0);
 		}
 
 		public function Destroy()

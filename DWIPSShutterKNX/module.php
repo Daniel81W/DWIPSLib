@@ -15,7 +15,13 @@
 		];
 		private $variables = [
 			0 => ["name" => "Action", "type" => "int", "pos" => 1],
-			1 => ["name" => "Position", "type" => "int", "pos" => 2]
+			1 => ["name" => "Position", "type" => "int", "pos" => 2],
+			2 => ["name" => "PositionSteps", "type" => "int", "pos" => 3],
+			3 => ["name" => "Preset 1", "type" => "int", "pos" => 4],
+			4 => ["name" => "Preset 2", "type" => "int", "pos" => 5],
+			5 => ["name" => "Preset 3", "type" => "int", "pos" => 6],
+			6 => ["name" => "Preset 4", "type" => "int", "pos" => 7],
+			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8]
 		];
 
 		
@@ -321,7 +327,7 @@
 		}*/
 
 		public function GetConfigurationForm() {
-		//public function TestForm() {
+		
 
 			$elements = '';
 			$actions = '';
@@ -992,94 +998,94 @@
 					]
 				]
 			],
-		234 => [
-			"name" => "DPT 234",
-			"descript" => "int",
-			"value" => 234,
-			"sub" => [ 
-				1 => [
-					"name" => "234.001", 
-					"descript" => "int" 
+			234 => [
+				"name" => "DPT 234",
+				"descript" => "int",
+				"value" => 234,
+				"sub" => [ 
+					1 => [
+						"name" => "234.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			235 => [
+				"name" => "DPT 235",
+				"descript" => "int",
+				"value" => 235,
+				"sub" => [ 
+					1 => [
+						"name" => "235.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			236 => [
+				"name" => "DPT 236",
+				"descript" => "int",
+				"value" => 236,
+				"sub" => [ 
+					1 => [
+						"name" => "236.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			237 => [
+				"name" => "DPT 237",
+				"descript" => "int",
+				"value" => 237,
+				"sub" => [ 
+					1 => [
+						"name" => "237.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			238 => [
+				"name" => "DPT 238",
+				"descript" => "int",
+				"value" => 238,
+				"sub" => [ 
+					1 => [
+						"name" => "238.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			239 => [
+				"name" => "DPT 239",
+				"descript" => "int",
+				"value" => 239,
+				"sub" => [ 
+					1 => [
+						"name" => "239.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			240 => [
+				"name" => "DPT 240",
+				"descript" => "int",
+				"value" => 240,
+				"sub" => [ 
+					1 => [
+						"name" => "240.001", 
+						"descript" => "int" 
+					]
+				]
+			],
+			241 => [
+				"name" => "DPT 241",
+				"descript" => "int",
+				"value" => 241,
+				"sub" => [ 
+					1 => [
+						"name" => "241.001", 
+						"descript" => "int" 
+					]
 				]
 			]
-		],
-		235 => [
-			"name" => "DPT 235",
-			"descript" => "int",
-			"value" => 235,
-			"sub" => [ 
-				1 => [
-					"name" => "235.001", 
-					"descript" => "int" 
-				]
-			]
-		],
-		236 => [
-			"name" => "DPT 236",
-			"descript" => "int",
-			"value" => 236,
-			"sub" => [ 
-				1 => [
-					"name" => "236.001", 
-					"descript" => "int" 
-				]
-			]
-		],
-		237 => [
-			"name" => "DPT 237",
-			"descript" => "int",
-			"value" => 237,
-			"sub" => [ 
-				1 => [
-					"name" => "237.001", 
-					"descript" => "int" 
-				]
-			]
-		],
-		238 => [
-			"name" => "DPT 238",
-			"descript" => "int",
-			"value" => 238,
-			"sub" => [ 
-				1 => [
-					"name" => "238.001", 
-					"descript" => "int" 
-				]
-			]
-		],
-		239 => [
-			"name" => "DPT 239",
-			"descript" => "int",
-			"value" => 239,
-			"sub" => [ 
-				1 => [
-					"name" => "239.001", 
-					"descript" => "int" 
-				]
-			]
-		],
-		240 => [
-			"name" => "DPT 240",
-			"descript" => "int",
-			"value" => 240,
-			"sub" => [ 
-				1 => [
-					"name" => "240.001", 
-					"descript" => "int" 
-				]
-			]
-		],
-		241 => [
-			"name" => "DPT 241",
-			"descript" => "int",
-			"value" => 241,
-			"sub" => [ 
-				1 => [
-					"name" => "241.001", 
-					"descript" => "int" 
-				]
-			]
-		]
 		];
 		
 	}

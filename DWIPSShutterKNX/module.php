@@ -22,7 +22,7 @@
 			4 => ["name" => "Preset2", "type" => "int", "pos" => 5, "profile" => "Preset"],
 			5 => ["name" => "Preset3", "type" => "int", "pos" => 6, "profile" => "Preset"],
 			6 => ["name" => "Preset4", "type" => "int", "pos" => 7, "profile" => "Preset"],
-			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "Trigger"]
+			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "TriggerPro"]
 		];
 
 		public function Create()

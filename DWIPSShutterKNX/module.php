@@ -123,7 +123,14 @@
 			$knxdata = json_decode($JSONString, true);
 			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"){
 				if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("UpDownMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("UpDownMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("UpDownSubGroup")){
-					$hexval = bin2hex($knxdata["Data"]);
+					$val = $this->DecodeDPT1($knxdata["Data"]);
+					if($val == 0){
+						SetValueInteger($this->GetIDForIdent($this->Translate("Action")), 0);
+					}elseif($val == 1){
+						SetValueInteger($this->GetIDForIdent($this->Translate("Action")), 2);
+					}
+					
+					/*$hexval = bin2hex($knxdata["Data"]);
 					$decval = hexdec( $hexval) - hexdec("c280");
 
 					$Val = unpack( 'H*', $knxdata["Data"], 0 );
@@ -133,9 +140,15 @@
 					$this->SendDebug("KNX", $decval, 0);
 					//$this->SendDebug("KNX", bin2hex(pack( "CC", 0x80, 200 )), 0);
 
-					SetValueInteger($this->GetIDForIdent($this->Translate("Position")), hexdec($hexval));
+					SetValueInteger($this->GetIDForIdent($this->Translate("Position")), hexdec($hexval));*/
 				}
 			}
+		}
+
+		public function DecodeDPT1($data){
+			$val = bin2hex($data);
+			$val = hexdec( $val) - hexdec("c280");
+			return $val;
 		}
 		/**
         * Die folgenden Funktionen stehen automatisch zur Verfügung, wenn das Modul über die "Module Control" eingefügt wurden.

@@ -344,7 +344,7 @@
 		 
 		}*/
 
-		public function GetConfigurationForm() {
+	/*	public function GetConfigurationForm() {
 			$DPTs = '{ "value": 1, "caption": "DPT 1"},
 			{ "value": 2, "caption": "DPT 2"},
 			{ "value": 3, "caption": "DPT 3"},
@@ -379,6 +379,6 @@
 			//foreach($this->)
 
 			return $ret;
-		}
+		}*/
 	}
 	?>

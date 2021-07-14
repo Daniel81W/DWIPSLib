@@ -119,7 +119,7 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-			$this->TestForm();
+			//$this->TestForm();
 
 		}
 
@@ -319,8 +319,8 @@
 		 
 		}*/
 
-		//public function GetConfigurationForm() {
-		public function TestForm() {
+		public function GetConfigurationForm() {
+		//public function TestForm() {
 
 			$elements = '';
 			$actions = '';
@@ -331,28 +331,28 @@
 				$elements = $elements . '{ "type": "RowLayout","items": [ ' .
 						'{"type": "Label","caption": "' . $prop["name"] . '","width": "100px"},'.
 						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'MainGroup","caption": "MainGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
-						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'MiddleGroup","caption": "MiddleGroup","minimum": 0,"maximum": 255,"width": "100px"},
-						{"type": "NumberSpinner","name": "' . $prop["name"] . 'SubGroup","caption": "SubGroup","minimum": 0,"maximum": 255,"width": "100px"},
-						{"type": "Select","name": "' . $prop["name"] . 'DataPointType","caption": "DataPointType",
-							"options": [
-								{ "value": 1, "caption": "DPT 1"},
-								{ "value": 2, "caption": "DPT 2"},
-								{ "value": 3, "caption": "DPT 3"},
-								{ "value": 4, "caption": "DPT 4"},
-								{ "value": 5, "caption": "DPT 5"},
-								{ "value": 6, "caption": "DPT 6"},
-								{ "value": 7, "caption": "DPT 7"},
-								{ "value": 8, "caption": "DPT 8"},
-								{ "value": 9, "caption": "DPT 9"},
-								{ "value": 10, "caption": "DPT 10"}
-							]
-						},
-						{"type": "Select","name": "' . $prop["name"] . 'DataPointSubType","caption": "DataPointSubType",
-							"options": [
-								{ "value": 1, "caption": "DPT 1"}
-							]
-						}
-					]}';
+						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'MiddleGroup","caption": "MiddleGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
+						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'SubGroup","caption": "SubGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
+						'{"type": "Select","name": "' . $prop["name"] . 'DataPointType","caption": "DataPointType",'.
+							'"options": ['.
+								'{ "value": 1, "caption": "DPT 1"},'.
+								'{ "value": 2, "caption": "DPT 2"},'.
+								'{ "value": 3, "caption": "DPT 3"},'.
+								'{ "value": 4, "caption": "DPT 4"},'.
+								'{ "value": 5, "caption": "DPT 5"},'.
+								'{ "value": 6, "caption": "DPT 6"},'.
+								'{ "value": 7, "caption": "DPT 7"},'.
+								'{ "value": 8, "caption": "DPT 8"},'.
+								'{ "value": 9, "caption": "DPT 9"},'.
+								'{ "value": 10, "caption": "DPT 10"}'.
+							']'.
+						'},'.
+						'{"type": "Select","name": "' . $prop["name"] . 'DataPointSubType","caption": "DataPointSubType",'.
+							'"options": ['.
+								'{ "value": 1, "caption": "DPT 1"}'.
+							']'.
+						'}'.
+					']}';
 			}
 			
 

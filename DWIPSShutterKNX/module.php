@@ -364,7 +364,7 @@
 						'{"type": "Select","name": "' . $prop["name"] . 'DataPointType","caption": "DataPointType",'.
 							'"options": [';
 				$first = true;
-				foreach($this->$dpts as $dpt){
+				foreach($this->dpts as $dpt){
 					if (!$first){ $elements = $elements . ',';}
 					$elements = $elements . '{ "value": '. $dpt["value"] . ', "caption": "'. $dpt["name"] . '"}';
 					$first = false;

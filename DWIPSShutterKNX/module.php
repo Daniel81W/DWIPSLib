@@ -124,7 +124,7 @@
 			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"){
 				if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("UpDownMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("UpDownMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("UpDownSubGroup")){
 					$hexval = bin2hex($knxdata["Data"]);
-					$hexval = $hexval - 0xc280;
+					$decval = hexdec( $hexval) - hexdec("c280");
 
 					$Val = unpack( 'H*', $knxdata["Data"], 0 );
           			$result = intval( round( $Val[ 1 ] / 255 * 100 ) );

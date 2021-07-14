@@ -7,12 +7,13 @@
 
 		private $properties = [
 			0 => ["name" => "UpDown"],
-			1 => ["name" => "Position"],
-			2 => ["name" => "Preset12Set"],
-			3 => ["name" => "Preset12Ex"],
-			4 => ["name" => "Preset34Set"],
-			5 => ["name" => "Preset34Ex"],
-			6 => ["name" => "DrivingTime"]
+			1 => ["name" => "Stop"],
+			2 => ["name" => "Position"],
+			3 => ["name" => "Preset12Set"],
+			4 => ["name" => "Preset12Ex"],
+			5 => ["name" => "Preset34Set"],
+			6 => ["name" => "Preset34Ex"],
+			7 => ["name" => "DrivingTime"]
 		];
 		private $variables = [
 			0 => ["name" => "Action", "type" => "int", "pos" => 1, "profile" => "UpDownStop"],
@@ -143,6 +144,9 @@
 					//$this->SendDebug("KNX", bin2hex(pack( "CC", 0x80, 200 )), 0);
 
 					SetValueInteger($this->GetIDForIdent($this->Translate("Position")), hexdec($hexval));*/
+				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("StopMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("StopMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("StopSubGroup")){
+					$val = $this->DecodeDPT1($knxdata["Data"]);
+					SetValueInteger($this->GetIDForIdent("Action"), $val * 1);
 				}
 			}
 		}

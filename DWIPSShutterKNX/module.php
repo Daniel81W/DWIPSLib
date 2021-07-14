@@ -44,7 +44,7 @@
 						"descript" => "int" 
 					]
 				]
-			],
+			]/*,
 			3 => [
 				"name" => "DPT 3",
 				"descript" => "int",
@@ -353,7 +353,7 @@
 						"descript" => "int" 
 					]
 				]
-			]
+			]*/
 		];
 
 		public function Create()

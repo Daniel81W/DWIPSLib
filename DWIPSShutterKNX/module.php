@@ -322,6 +322,9 @@
 			
 
 			$elements = '';
+			$actions = '';
+			$status = '';
+
 			foreach($this->properties as $prop){
 				if (strlen($elements) >0){ $elements = $elements . ',';}
 				$elements = $elements . '"{ type": "RowLayout",

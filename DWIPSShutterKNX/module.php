@@ -74,9 +74,9 @@
 				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Preset", 1, $this->Translate("Set"), "", -1);
 				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Preset", 2, $this->Translate("DriveTo"), "", 0x00FF00);
 			}
-			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.Trigger"))) {
-    			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.Trigger"), 0);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Trigger"), 1, $this->Translate("Trigger"), "", 0x00FF00);
+			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.TriggerPro"))) {
+    			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.TriggerPro"), 0);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.TriggerPro"), 1, $this->Translate("Trigger"), "", 0x00FF00);
 			}
 
 			//Variables to control shutter in Webfront

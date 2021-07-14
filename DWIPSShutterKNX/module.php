@@ -124,6 +124,8 @@
 			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"){
 				if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("UpDownMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("UpDownMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("UpDownSubGroup")){
 					$val = $this->DecodeDPT1($knxdata["Data"]);
+					
+					$this->SendDebug("KNX", $val, 0);
 					if($val == 0){
 						SetValueInteger($this->GetIDForIdent($this->Translate("Action")), 0);
 					}elseif($val == 1){

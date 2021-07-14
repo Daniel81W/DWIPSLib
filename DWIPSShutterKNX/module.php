@@ -18,11 +18,11 @@
 			$this->ConnectParent($this->parentID);
 		
 			foreach($this->fields as $field){
-				$this->RegisterPropertyInteger($this->field["name"]."MainGroup", 0);
-				$this->RegisterPropertyInteger($this->field["name"]."MiddleGroup", 0);
-				$this->RegisterPropertyInteger($this->field["name"]."SubGroup", 0);
-				$this->RegisterPropertyInteger($this->field["name"]."DataPointType", 1);
-				$this->RegisterPropertyInteger($this->field["name"]."DataPointSubType", 1);
+				$this->RegisterPropertyInteger($field["name"]."MainGroup", 0);
+				$this->RegisterPropertyInteger($field["name"]."MiddleGroup", 0);
+				$this->RegisterPropertyInteger($field["name"]."SubGroup", 0);
+				$this->RegisterPropertyInteger($field["name"]."DataPointType", 1);
+				$this->RegisterPropertyInteger($field["name"]."DataPointSubType", 1);
 			}
 			//Instances for control of the shutter (KNX, EIB)
 //			$this->RegisterPropertyInteger("UpDownMainGroup", 0);

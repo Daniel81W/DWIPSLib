@@ -4,9 +4,13 @@
 	class DWIPSShutterKNX extends IPSModule {
 
 		private $parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";
-		private $fields = [
-			0 => ["name" => "UpDown", "type" => "int"],
-			1 => ["name" => "Position", "type" => "int"]
+		private $properties = [
+			0 => ["name" => "UpDown"],
+			1 => ["name" => "Position"]
+		];
+		private $variables = [
+			0 => ["name" => "Action", "type" => "int", "pos" => 1],
+			1 => ["name" => "Position", "type" => "int", "pos" => 2]
 		];
 
 
@@ -15,31 +19,17 @@
 			//Never delete this line!
 			parent::Create();
 
+			//Connect to EIBGateway
 			$this->ConnectParent($this->parentID);
 		
-			foreach($this->fields as $field){
-				$this->RegisterPropertyInteger($field["name"]."MainGroup", 0);
-				$this->RegisterPropertyInteger($field["name"]."MiddleGroup", 0);
-				$this->RegisterPropertyInteger($field["name"]."SubGroup", 0);
-				$this->RegisterPropertyInteger($field["name"]."DataPointType", 1);
-				$this->RegisterPropertyInteger($field["name"]."DataPointSubType", 1);
+			//Register Properties for KNX group addresses
+			foreach($this->properties as $prop){
+				$this->RegisterPropertyInteger($prop["name"]."MainGroup", 0);
+				$this->RegisterPropertyInteger($prop["name"]."MiddleGroup", 0);
+				$this->RegisterPropertyInteger($prop["name"]."SubGroup", 0);
+				$this->RegisterPropertyInteger($prop["name"]."DataPointType", 1);
+				$this->RegisterPropertyInteger($prop["name"]."DataPointSubType", 1);
 			}
-			//Instances for control of the shutter (KNX, EIB)
-//			$this->RegisterPropertyInteger("UpDownMainGroup", 0);
-//			$this->RegisterPropertyInteger("UpDownMiddleGroup", 0);
-//			$this->RegisterPropertyInteger("UpDownSubGroup", 0);
-//			$this->RegisterPropertyInteger("UpDownDataPointType", 1);
-//			$this->RegisterPropertyInteger("UpDownDataPointSubType", 1);
-	//		$this->RegisterPropertyInteger("PositionMainGroup", 0);
-	//		$this->RegisterPropertyInteger("PositionMiddleGroup", 0);
-	//		$this->RegisterPropertyInteger("PositionSubGroup", 0);
-	//		$this->RegisterPropertyInteger("PositionDataPointType", 1);
-	//		$this->RegisterPropertyInteger("PositionDataPointSubType", 1);
-			/*$this->RegisterPropertyInteger("Preset12ExInstanceID", 0);
-			$this->RegisterPropertyInteger("Preset34ExInstanceID", 0);
-			$this->RegisterPropertyInteger("Preset12SetInstanceID", 0);
-			$this->RegisterPropertyInteger("Preset34SetInstanceID", 0);
-			$this->RegisterPropertyInteger("DrivingTimeInstanceID", 0);
 			
 			//Variable profiles. CHeck if existing. Else create.
 			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.UpDownStop"))) {
@@ -79,10 +69,26 @@
 			}
 
 			//Variables to control shutter in Webfront
-			$this->RegisterVariableInteger($this->Translate("Action"), $this->Translate("Action"), $this->Translate("DWIPS.Shutter.UpDownStop"), 1);
+			
+			foreach($this->variables as $var){
+				switch($var["type"]) {
+					case "bool":
+						break;
+					case "int":
+						$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),""/*$this->Translate($field["name"]*/), $var["pos"]);
+						break;
+					case "float":
+						break;
+					case "string":
+						break;
+					default:
+						throw new Exception("Invalid type");
+				}
+			}
+	/*		$this->RegisterVariableInteger($this->Translate("Action"), $this->Translate("Action"), $this->Translate("DWIPS.Shutter.UpDownStop"), 1);
 			$this->EnableAction($this->Translate("Action"));
-	*/		$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),$this->Translate("DWIPS.Shutter.Position"), 2);
-	/*		$this->EnableAction($this->Translate("Position"));
+			$this->RegisterVariableInteger($this->Translate("Position"), $this->Translate("Position"),$this->Translate("DWIPS.Shutter.Position"), 2);
+	*//*		$this->EnableAction($this->Translate("Position"));
 			$this->RegisterVariableInteger($this->Translate("PositionSteps"), $this->Translate("PositionSteps"),$this->Translate("DWIPS.Shutter.PositionSteps"), 3);
 			$this->EnableAction($this->Translate("PositionSteps"));
 			$this->RegisterVariableInteger("Preset1", "Preset 1", "DWIPS.Shutter.Preset", 4);

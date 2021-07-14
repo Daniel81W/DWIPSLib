@@ -42,7 +42,26 @@
                         { "value": 7, "caption": "DPT 7"},
                         { "value": 8, "caption": "DPT 8"},
                         { "value": 9, "caption": "DPT 9"},
-                        { "value": 10, "caption": "DPT 10"}
+                        { "value": 10, "caption": "DPT 10"},
+                        { "value": 10, "caption": "DPT 11"},
+                        { "value": 10, "caption": "DPT 12"},
+                        { "value": 10, "caption": "DPT 13"},
+                        { "value": 10, "caption": "DPT 14"},
+                        { "value": 10, "caption": "DPT 15"},
+                        { "value": 10, "caption": "DPT 17"},
+                        { "value": 10, "caption": "DPT 18"},
+                        { "value": 10, "caption": "DPT 19"},
+                        { "value": 10, "caption": "DPT 20"},
+                        { "value": 10, "caption": "DPT 21"},
+                        { "value": 10, "caption": "DPT 22"},
+                        { "value": 10, "caption": "DPT 23"},
+                        { "value": 10, "caption": "DPT 25"},
+                        { "value": 10, "caption": "DPT 26"},
+                        { "value": 10, "caption": "DPT 27"},
+                        { "value": 10, "caption": "DPT 29"},
+                        { "value": 10, "caption": "DPT 30"},
+                        { "value": 10, "caption": "DPT 31"},
+                        { "value": 10, "caption": "DPT 200"}
                     ]
                 },{
                     "type": "Select",

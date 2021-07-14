@@ -193,26 +193,25 @@
 							"Data" => hex2bin("c280")
 						];
 						$this->SendDataToParent(json_encode($json));
-					}
-
-						/*if(IPS_GetInstance($this->ReadPropertyInteger("UpDownInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
-							KNX_WriteDPT1($this->ReadPropertyInteger("UpDownInstanceID"), 0);
-						}elseif(IPS_GetInstance($this->ReadPropertyInteger("UpDownInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
-							EIB_Switch($this->ReadPropertyInteger("UpDownInstanceID"), false);
-						}
 					}elseif($Value == 1){
-						if(IPS_GetInstance($this->ReadPropertyInteger("StopInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
-							KNX_WriteDPT1($this->ReadPropertyInteger("StopInstanceID"), 1);
-						}elseif(IPS_GetInstance($this->ReadPropertyInteger("StopInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
-							EIB_Switch($this->ReadPropertyInteger("UpDownInsStopInstanceIDtanceID"), true);
-						}
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("StopMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("StopMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("StopSubGroup"),
+							"Data" => hex2bin("c281")
+						];
+						$this->SendDataToParent(json_encode($json));
 					}elseif($Value == 2){
-						if(IPS_GetInstance($this->ReadPropertyInteger("UpDownInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
-							KNX_WriteDPT1($this->ReadPropertyInteger("UpDownInstanceID"), 1);
-						}elseif(IPS_GetInstance($this->ReadPropertyInteger("UpDownInstanceID"))['ModuleInfo']['ModuleName'] == "EIB Group"){
-							EIB_Switch($this->ReadPropertyInteger("UpDownInstanceID"), true);
-						}
-					}*/
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
+							"Data" => hex2bin("c281")
+						];
+						$this->SendDataToParent(json_encode($json));
+					}
 					break;
 				default:
 					throw new Exception("Invalid Ident");

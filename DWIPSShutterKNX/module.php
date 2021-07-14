@@ -335,8 +335,11 @@
 						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'SubGroup","caption": "SubGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
 						'{"type": "Select","name": "' . $prop["name"] . 'DataPointType","caption": "DataPointType",'.
 							'"options": [';
+				$first = true;
 				foreach($dpts as $dpt){
-					$elements = $elements . '{ "value": '. $dpt["value"] . ', "caption": "'. $dpt["name"] . '"},'
+					if (!$first){ $elements = $elements . ',';}
+					$elements = $elements . '{ "value": '. $dpt["value"] . ', "caption": "'. $dpt["name"] . '"}';
+					$first = false;
 				}
 				$elements = $elements . ']'.
 						'},'.

@@ -329,35 +329,11 @@
 				if (strlen($elements) >0){ $elements = $elements . ',';}
 				$elements = $elements . '"{ type": "RowLayout",
 					"items": [
-						{
-							"type": "Label",
-							"caption": "Position",
-							"width": "100px"
-						},{
-							"type": "NumberSpinner",
-							"name": "PositionMainGroup",
-							"caption": "MainGroup",
-							"minimum": 0,
-							"maximum": 255,
-							"width": "100px"
-						},{
-							"type": "NumberSpinner",
-							"name": "PositionMiddleGroup",
-							"caption": "MiddleGroup",
-							"minimum": 0,
-							"maximum": 255,
-							"width": "100px"
-						},{
-							"type": "NumberSpinner",
-							"name": "PositionSubGroup",
-							"caption": "SubGroup",
-							"minimum": 0,
-							"maximum": 255,
-							"width": "100px"
-						},{
-							"type": "Select",
-							"name": "PositionDataPointType",
-							"caption": "DataPointType",
+						{"type": "Label","caption": "' . $prop["name"] . '","width": "100px"},
+						{"type": "NumberSpinner","name": "' . $prop["name"] . 'MainGroup","caption": "MainGroup","minimum": 0,"maximum": 255,"width": "100px"},
+						{"type": "NumberSpinner","name": "' . $prop["name"] . 'MiddleGroup","caption": "MiddleGroup","minimum": 0,"maximum": 255,"width": "100px"},
+						{"type": "NumberSpinner","name": "' . $prop["name"] . 'SubGroup","caption": "SubGroup","minimum": 0,"maximum": 255,"width": "100px"},
+						{"type": "Select","name": "' . $prop["name"] . 'DataPointType","caption": "DataPointType",
 							"options": [
 								{ "value": 1, "caption": "DPT 1"},
 								{ "value": 2, "caption": "DPT 2"},
@@ -370,15 +346,13 @@
 								{ "value": 9, "caption": "DPT 9"},
 								{ "value": 10, "caption": "DPT 10"}
 							]
-						},{
-							"type": "Select",
-							"name": "PositionDataPointSubType",
-							"caption": "DataPointSubType",
+						},
+						{"type": "Select","name": "' . $prop["name"] . 'DataPointSubType","caption": "DataPointSubType",
 							"options": [
 								{ "value": 1, "caption": "DPT 1"}
 							]
 						}
-					]';
+					]}';
 			}
 			
 

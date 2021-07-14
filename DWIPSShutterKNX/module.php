@@ -14,7 +14,7 @@
 			$this->RegisterPropertyInteger("UpDownMainGroup", 0);
 			$this->RegisterPropertyInteger("UpDownMiddleGroup", 0);
 			$this->RegisterPropertyInteger("UpDownSubGroup", 0);
-			$this->RegisterPropertyInteger("UpDownDataPointType", 1;
+			$this->RegisterPropertyInteger("UpDownDataPointType", 1);
 			$this->RegisterPropertyInteger("UpDownDataPointSubType", 1);
 			$this->RegisterPropertyInteger("PositionMainGroup", 0);
 			$this->RegisterPropertyInteger("PositionMiddleGroup", 0);

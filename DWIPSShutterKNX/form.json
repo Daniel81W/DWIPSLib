@@ -2,6 +2,10 @@
     "elements": [
     	
     ],
-    "actions": [],
+    "actions": [
+        {
+            "type": "TestCenter"
+        }
+    ],
     "status": []
 }

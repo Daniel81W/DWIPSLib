@@ -17,7 +17,7 @@
 
 			$this->ConnectParent($this->parentID);
 		
-			foreach($fields as $field){
+			foreach($this->fields as $field){
 				$this->RegisterPropertyInteger($this->field["name"]."MainGroup", 0);
 				$this->RegisterPropertyInteger($this->field["name"]."MiddleGroup", 0);
 				$this->RegisterPropertyInteger($this->field["name"]."SubGroup", 0);

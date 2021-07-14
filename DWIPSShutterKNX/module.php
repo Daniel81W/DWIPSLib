@@ -356,7 +356,7 @@
 			}
 			
 
-			$ret = '{"elements": [' . $elements . '[,"actions": [' . $actions . '],"status": [' . $status . ']}';
+			$ret = '{"elements": [' . $elements . '],"actions": [' . $actions . '],"status": [' . $status . ']}';
 			return $ret;
 		}
 

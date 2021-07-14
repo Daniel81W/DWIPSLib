@@ -17,6 +17,34 @@
 			0 => ["name" => "Action", "type" => "int", "pos" => 1],
 			1 => ["name" => "Position", "type" => "int", "pos" => 2]
 		];
+		private $dpts = [
+			1 => [
+				"name" => "DPT 1",
+				"descript" => "int",
+				"value" => 1, 
+				"sub" => [
+					1 => [ 
+						"name" => "1.001", 
+						"descript" => "int"
+					],
+					2 => [ 
+						"name" => "1.002", 
+						"descript" => "int" 
+					]
+				]
+			],
+			2 => [
+				"name" => "DPT 2",
+				"descript" => "int",
+				"value" => 2,
+				"sub" => [ 
+					1 => [
+						"name" => "2.001", 
+						"descript" => "int" 
+					]
+				]
+			]
+		];
 
 
 		public function Create()
@@ -358,14 +386,6 @@
 		}
 
 		
-		private $dpts = [
-			1 => ["name" => "DPT 1", "descript" => "int", "value" => 1, "sub" => 
-				[ "name" => "1.001", "descript" => "int" ],
-				[ "name" => "1.002", "descript" => "int" ]
-			],
-			2 => ["name" => "DPT 2", "descript" => "int", "value" => 2, "sub" => 
-				[ "name" => "2.001", "descript" => "int" ]
-			]
-		];
+		
 	}
 	?>

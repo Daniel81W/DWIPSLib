@@ -66,7 +66,7 @@
 						"descript" => "int" 
 					]
 				]
-			]/*,
+			],
 			5 => [
 				"name" => "DPT 5",
 				"descript" => "int",
@@ -133,7 +133,7 @@
 						"descript" => "int" 
 					]
 				]
-			],
+			]/*,
 			11 => [
 				"name" => "DPT 11",
 				"descript" => "int",

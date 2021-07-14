@@ -3,25 +3,38 @@
 	//include_once("/var/lib/symcon/modules/DWIPSLib/libs/astro.php");
 	class DWIPSShutterKNX extends IPSModule {
 
+		$parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";
+		$fields = [
+			0 => ["name" => "UpDown", "type" => "int"],
+			1 => ["name" => "Position", "type" => "int"]
+		];
+
+
 		public function Create()
 		{
 			//Never delete this line!
 			parent::Create();
 
-			//$this->ConnectParent("{42DFD4E4-5831-4A27-91B9-6FF1B2960260}");
-			$this->ConnectParent("{1C902193-B044-43B8-9433-419F09C641B8}");
-
+			$this->ConnectParent($parentID);
+		
+			foreach($fields as $field){
+				$this->RegisterPropertyInteger($field["name"]."MainGroup", 0);
+				$this->RegisterPropertyInteger($field["name"]."MiddleGroup", 0);
+				$this->RegisterPropertyInteger($field["name"]."SubGroup", 0);
+				$this->RegisterPropertyInteger($field["name"]."DataPointType", 1);
+				$this->RegisterPropertyInteger($field["name"]."DataPointSubType", 1);
+			}
 			//Instances for control of the shutter (KNX, EIB)
-			$this->RegisterPropertyInteger("UpDownMainGroup", 0);
-			$this->RegisterPropertyInteger("UpDownMiddleGroup", 0);
-			$this->RegisterPropertyInteger("UpDownSubGroup", 0);
-			$this->RegisterPropertyInteger("UpDownDataPointType", 1);
-			$this->RegisterPropertyInteger("UpDownDataPointSubType", 1);
-			$this->RegisterPropertyInteger("PositionMainGroup", 0);
-			$this->RegisterPropertyInteger("PositionMiddleGroup", 0);
-			$this->RegisterPropertyInteger("PositionSubGroup", 0);
-			$this->RegisterPropertyInteger("PositionDataPointType", 1);
-			$this->RegisterPropertyInteger("PositionDataPointSubType", 1);
+//			$this->RegisterPropertyInteger("UpDownMainGroup", 0);
+//			$this->RegisterPropertyInteger("UpDownMiddleGroup", 0);
+//			$this->RegisterPropertyInteger("UpDownSubGroup", 0);
+//			$this->RegisterPropertyInteger("UpDownDataPointType", 1);
+//			$this->RegisterPropertyInteger("UpDownDataPointSubType", 1);
+	//		$this->RegisterPropertyInteger("PositionMainGroup", 0);
+	//		$this->RegisterPropertyInteger("PositionMiddleGroup", 0);
+	//		$this->RegisterPropertyInteger("PositionSubGroup", 0);
+	//		$this->RegisterPropertyInteger("PositionDataPointType", 1);
+	//		$this->RegisterPropertyInteger("PositionDataPointSubType", 1);
 			/*$this->RegisterPropertyInteger("Preset12ExInstanceID", 0);
 			$this->RegisterPropertyInteger("Preset34ExInstanceID", 0);
 			$this->RegisterPropertyInteger("Preset12SetInstanceID", 0);
@@ -330,5 +343,42 @@
 			}
 		 
 		}*/
+
+		public function GetConfigurationForm() {
+			$DPTs = '{ "value": 1, "caption": "DPT 1"},
+			{ "value": 2, "caption": "DPT 2"},
+			{ "value": 3, "caption": "DPT 3"},
+			{ "value": 4, "caption": "DPT 4"},
+			{ "value": 5, "caption": "DPT 5"},
+			{ "value": 6, "caption": "DPT 6"},
+			{ "value": 7, "caption": "DPT 7"},
+			{ "value": 8, "caption": "DPT 8"},
+			{ "value": 9, "caption": "DPT 9"},
+			{ "value": 10, "caption": "DPT 10"},
+			{ "value": 10, "caption": "DPT 11"},
+			{ "value": 10, "caption": "DPT 12"},
+			{ "value": 10, "caption": "DPT 13"},
+			{ "value": 10, "caption": "DPT 14"},
+			{ "value": 10, "caption": "DPT 15"},
+			{ "value": 10, "caption": "DPT 17"},
+			{ "value": 10, "caption": "DPT 18"},
+			{ "value": 10, "caption": "DPT 19"},
+			{ "value": 10, "caption": "DPT 20"},
+			{ "value": 10, "caption": "DPT 21"},
+			{ "value": 10, "caption": "DPT 22"},
+			{ "value": 10, "caption": "DPT 23"},
+			{ "value": 10, "caption": "DPT 25"},
+			{ "value": 10, "caption": "DPT 26"},
+			{ "value": 10, "caption": "DPT 27"},
+			{ "value": 10, "caption": "DPT 29"},
+			{ "value": 10, "caption": "DPT 30"},
+			{ "value": 10, "caption": "DPT 31"},
+			{ "value": 10, "caption": "DPT 200"}"';
+
+			$ret = '{"elements": [';
+			foreach($this->)
+
+			return $ret;
+		}
 	}
 	?>

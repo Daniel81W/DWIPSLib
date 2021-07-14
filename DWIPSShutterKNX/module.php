@@ -3,8 +3,8 @@
 	//include_once("/var/lib/symcon/modules/DWIPSLib/libs/astro.php");
 	class DWIPSShutterKNX extends IPSModule {
 
-		$parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";
-		$fields = [
+		private $parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";
+		private $fields = [
 			0 => ["name" => "UpDown", "type" => "int"],
 			1 => ["name" => "Position", "type" => "int"]
 		];
@@ -15,7 +15,7 @@
 			//Never delete this line!
 			parent::Create();
 
-			$this->ConnectParent($parentID);
+			$this->ConnectParent($this->parentID);
 		
 			foreach($fields as $field){
 				$this->RegisterPropertyInteger($field["name"]."MainGroup", 0);

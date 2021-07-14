@@ -323,7 +323,7 @@
 
 			$elements = '';
 			foreach($this->properties as $prop){
-				if (sizeof($elements) >0){ $elements = $elements . ',';}
+				if (strlen($elements) >0){ $elements = $elements . ',';}
 				$elements = $elements . '"{ type": "RowLayout",
 					"items": [
 						{

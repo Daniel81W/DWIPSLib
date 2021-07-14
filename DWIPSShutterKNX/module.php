@@ -19,7 +19,7 @@
 			$this->RegisterPropertyInteger("PositionMainGroup", 0);
 			$this->RegisterPropertyInteger("PositionMiddleGroup", 0);
 			$this->RegisterPropertyInteger("PositionSubGroup", 0);
-			$this->RegisterPropertyInteger("PositionDataPointType", 1;
+			$this->RegisterPropertyInteger("PositionDataPointType", 1);
 			$this->RegisterPropertyInteger("PositionDataPointSubType", 1);
 			/*$this->RegisterPropertyInteger("Preset12ExInstanceID", 0);
 			$this->RegisterPropertyInteger("Preset34ExInstanceID", 0);

@@ -182,7 +182,7 @@
 		public function RequestAction($Ident, $Value) {
  
 			switch($Ident) {
-				case $this->Translate("Action"):
+				case "Action":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					if($Value == 0){
 						$json = [ 

@@ -193,7 +193,7 @@
 							"Data" => hex2bin("c280")
 						];
 						$this->SendDataToParent(json_encode($json));
-
+					}
 
 						/*if(IPS_GetInstance($this->ReadPropertyInteger("UpDownInstanceID"))['ModuleInfo']['ModuleName'] == "KNX DPT 1"){
 							KNX_WriteDPT1($this->ReadPropertyInteger("UpDownInstanceID"), 0);

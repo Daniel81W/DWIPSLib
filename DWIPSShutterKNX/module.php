@@ -84,19 +84,19 @@
 			foreach($this->variables as $var){
 				switch($var["type"]) {
 					case "bool":
-						$this->RegisterVariableBoolean($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($field["profile"]), $var["pos"]);
+						$this->RegisterVariableBoolean($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($var["profile"]), $var["pos"]);
 						$this->EnableAction($var["name"]);
 						break;
 					case "int":
-						$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($field["profile"]), $var["pos"]);
+						$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($var["profile"]), $var["pos"]);
 						$this->EnableAction($var["name"]);
 						break;
 					case "float":
-						$this->RegisterVariableFloat($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($field["profile"]), $var["pos"]);
+						$this->RegisterVariableFloat($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($var["profile"]), $var["pos"]);
 						$this->EnableAction($var["name"]);
 						break;
 					case "string":
-						$this->RegisterVariableString($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($field["profile"]), $var["pos"]);
+						$this->RegisterVariableString($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($var["profile"]), $var["pos"]);
 						$this->EnableAction($var["name"]);
 						break;
 					default:

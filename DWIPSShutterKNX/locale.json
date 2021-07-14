@@ -12,6 +12,7 @@
             "DWIPS.Shutter.UpDownStop": "DWIPS.Shutter.AufAbStop",
             "DWIPS.Shutter.Position": "DWIPS.Shutter.Position",
             "DWIPS.Shutter.PositionSteps": "DWIPS.Shutter.Positionsstufen",
+            "DWIPS.Shutter.Trigger": "DWIPS.Shutter.Auslösen",
             "DrivingTime": "Fahrtzeitermittlung",
             "Down": "Ab",
             "Up": "Auf",

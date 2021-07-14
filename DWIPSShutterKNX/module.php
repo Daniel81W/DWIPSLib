@@ -74,7 +74,7 @@
 				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Preset", 1, $this->Translate("Set"), "", -1);
 				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Preset", 2, $this->Translate("DriveTo"), "", 0x00FF00);
 			}
-			if (! IPS_VariableProfileExists("DWIPS.Shutter.Trigger")) {
+			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.Trigger"))) {
     			IPS_CreateVariableProfile("DWIPS.Shutter.Trigger", 0);
 				IPS_SetVariableProfileAssociation("DWIPS.Shutter.Trigger", 1, $this->Translate("Trigger"), "", 0x00FF00);
 			}

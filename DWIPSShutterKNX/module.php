@@ -75,7 +75,7 @@
 					case "bool":
 						break;
 					case "int":
-						$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),""/*$this->Translate($field["name"]*/), $var["pos"]);
+						$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),""/*$this->Translate($field["name"])*/, $var["pos"]);
 						break;
 					case "float":
 						break;

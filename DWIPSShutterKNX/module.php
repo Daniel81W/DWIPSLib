@@ -178,9 +178,10 @@
 			$val = hexdec( $val) - hexdec($killstr);
 			$this->SendDebug("KNX", "len: " . strlen(bin2hex($data)) . "   -   hex: " . bin2hex($data) . "   -   dec: " . $val, 0);
 			*/
+
 			$Val = unpack( 'C', $data, 1 );
 			$result = intval( round( $Val[ 1 ] / 255 * 100 ) );
-			return $result;
+			return ConvertFromDPT('KNX_DPST_5_1', $data);
 		}
 		public function EncodeDPT5($data){
 			
@@ -1125,5 +1126,156 @@
 			]
 		];
 		
+
+
+
+		private function ConvertFromDPT( $DPT, $Value ) {
+			$result = NULL;
+			try {
+			  // Bei gesetztem Bit 8 im ersten Byte wird ein Wert geschrieben
+			  // Bei gesetztem Bit 7 im ersten Byte wird ein Wert erneut übertragen
+			  // Sind die Bits nicht gesetzt handelt es sich um eine Leseanforderung
+			  if ( 0 == ( ord( $Value[ 0 ] ) & 0b11000000 ) ) {
+				return NULL;
+			  }
+			  switch ( $DPT ) {
+				case 'KNX_DPT_1':
+				  // 1 Bit
+				  $Val = unpack( 'C', $Value );
+				  $result = ( bool ) ( $Val[ 1 ] & 0b00000001 );
+				  break;
+				case 'KNX_DPT_2':
+				  // 2 Bit
+				  $Val = unpack( 'C', $Value );
+				  $result = $Val[ 1 ] & 0b00000011;
+				  break;
+				case 'KNX_DPT_3':
+				  // Dimmen
+				  $Val = unpack( 'C', $Value );
+				  $result = ( 0 == ( $Val[ 1 ] & 0b00001000 ) ) ? -1 : 1; // Increase/Down : Decrease/Up
+				  $Val = $Val[ 1 ] & 0b00000111;
+				  $result = ( 0 == $Val ) ? 0 : $result * ( 1 <<  ( $Val - 1 ) );
+				  break;
+				case 'KNX_DPT_4':
+				  // 1 Character
+				  $Val = unpack( 'a', $Value, 1 );
+				  $result = $Val[ 1 ];
+				  break;
+				case 'KNX_DPST_5_1':
+				  // Prozent
+				  $Val = unpack( 'C', $Value, 1 );
+				  $result = intval( round( $Val[ 1 ] / 255 * 100 ) );
+				  break;
+				case 'KNX_DPST_5_3':
+				  // Grad
+				  $Val = unpack( 'C', $Value, 1 );
+				  $result = intval( round( $Val[ 1 ] / 255 * 360 ) );
+				  break;
+				case 'KNX_DPT_5':
+				  // 0-255
+				  $Val = unpack( 'C', $Value, 1 );
+				  $result = $Val[ 1 ];
+				  break;
+				case 'KNX_DPT_6':
+				  // Zählimpulse -127 bis 127
+				  $Val = unpack( 'c', $Value, 1 );
+				  $result = $Val[ 1 ];
+				  break;
+				case 'KNX_DPT_7':
+				  // 2 Byte
+				  $Val = unpack( 'n', $Value, 1 );
+				  $result = $Val[ 1 ];
+				  break;
+				case 'KNX_DPT_8':
+				  // 2 Byte mit Vorzeichen
+				  $Val = unpack( 'n', $Value, 1 );
+				  $result = $Val[ 1 ];
+				  if ( 0x8000 & $result ) {
+					$result = - ( 0x010000 - $result );
+				  }
+				  break;
+				case 'KNX_DPT_9':
+				  // 2 Byte Gleitkomma
+				  $Val = unpack( 'n', $Value, 1 );
+				  $sign = ( 0 == $Val[ 1 ] >> 15 ) ? 1 : -1 ;
+				  $exp = ( ( $Val[ 1 ] >> 11 ) & 0xF);
+				  $frac = ( $Val[ 1 ] & 0x07FF );
+				  if ( -1 == $sign ) {
+					$frac = ( ~ ( $frac - 1 ) ) & 0x07FF;
+				  }
+				  $result = $sign * 0.01 * $frac * pow( 2, $exp );
+				  break;
+				case 'KNX_DPT_12':
+				  // 4 Byte
+				  $Val = unpack( 'N', $Value, 1 );
+				  $result = $Val[ 1 ];
+				  break;
+				case 'KNX_DPT_13':
+				  // 4 Byte mit Vorzeichen
+				  $Val = unpack( 'N', $Value, 1 );
+				  $result = $Val[ 1 ];
+				  if ( 0x80000000 & $result ) {
+					$result = - ( 0xFFFFFFFF - $result + 1 );
+				  }
+				  break;
+				case 'KNX_DPT_14':
+				  // 4 Byte Gleitkomma
+				  $Val = unpack( 'N', $Value, 1 );
+				  $sign = ( 0 == $Val[ 1 ] >> 31 ) ? 1 : -1 ;
+				  $x = ( $Val[ 1 ] & ( ( 1 << 23 ) - 1 ) ) + ( 1 << 23 );
+				  $exp = ( $Val[ 1 ] >> 23 & 0xFF) - 127;
+				  $result = $sign * $x * pow( 2, $exp - 23 );
+				  break;
+				case 'KNX_DPT_16':
+				  // 14 Byte String
+				  $Val = unpack( "Z14", $Value, 1 );
+				  $result = $Val[ 1 ];
+				  break;
+				case 'KNX_DPT_17':
+				  // Szene 1-64
+				  $result = ( ord( $Value[ 1 ] ) & 0b00111111 ) + 1;
+				  break;
+				case 'KNX_DPT_18':
+				  // Szene 1-64 mit Speichermöglichkeit
+				  $Val = ord( $Value[ 1 ] );
+				  $result = ( $Val & 0b00111111 ) + 1;
+				  if ( 0 != ( $Val & 0b10000000 ) ) {
+					// Speichern, Szenenwert ist negativ
+					$result = $result * -1;
+				  }
+				  break;
+				case 'KNX_DPT_20':
+				  // 1 Byte
+				  $result = ord( $Value[ 1 ] );
+				  break;
+				case 'KNX_DPT_21':
+				  // 8 Bit Feld
+				  $result = ord( $Value[ 1 ] );
+				  break;
+				case 'KNX_DPT_232':
+				  // RGB-Wert 3x(0..255)
+				  $Val = unpack( "C3", $Value, 1 );
+				  $result = sprintf( '#%02x%02x%02x', $Val[ 1 ], $Val[ 2 ], $Val[ 3 ] );
+				  break;
+				case 'KNX_DPT_249':
+				  // 6 Byte Helligkeit Farbtemperaturübergang
+				  $Val = unpack( "C6", $Value, 1 );
+				  $result = sprintf( '#%02x%02x%02x%02x%02x%02x', $Val[ 1 ], $Val[ 2 ], $Val[ 3 ], $Val[ 4 ], $Val[ 5 ], $Val[ 6 ] );
+				  break;
+				case 'KNX_DPT_251':
+				  // RGBW-Wert 4x(0..255)
+				  $Val = unpack( "C4", $Value, 1 );
+				  $result = sprintf( '#%02x%02x%02x%02x', $Val[ 1 ], $Val[ 2 ], $Val[ 3 ], $Val[ 4 ] );
+				  break;
+				default:
+				  $result = NULL;
+				  break;
+			  }
+			} catch ( Throwable $t ) {
+			  $this->Log( "KNX DPT Converter", "Failed converting from $DPT with data " . $this->str2hex( $Value ) );
+			  $result = NULL;
+			}
+			return $result;
+		  }
 	}
 	?>

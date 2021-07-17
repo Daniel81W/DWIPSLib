@@ -181,6 +181,7 @@
 
 			$Val = unpack( 'C', $data, 1 );
 			$result = intval( round( $Val[ 1 ] / 255 * 100 ) );
+			$this->SendDebug("KNX", ConvertFromDPT('KNX_DPST_5', $data), 0);
 			return ConvertFromDPT('KNX_DPST_5', $data);
 		}
 		public function EncodeDPT5($data){

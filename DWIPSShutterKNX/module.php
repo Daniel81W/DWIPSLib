@@ -213,21 +213,47 @@
 						$this->SendDataToParent(json_encode($json));
 					}
 					break;
-					case "DrivingTime":
-						SetValue($this->GetIDForIdent($Ident), $Value);
-						if($Value == 1){
-							$json = [ 
-								"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
-								"GroupAddress1" => $this->ReadPropertyInteger("DrivingTimeMainGroup"),
-								"GroupAddress2" => $this->ReadPropertyInteger("DrivingTimeMiddleGroup"),
-								"GroupAddress3" => $this->ReadPropertyInteger("DrivingTimeSubGroup"),
-								"Data" => hex2bin("c281")
-							];
-							$this->SendDataToParent(json_encode($json));
-							IPS_Sleep(2000);
-							SetValue($this->GetIDForIdent($Ident), 0);
-						}
-						break;
+				case "Preset1":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					if($Value == 1){
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("Preset12SetMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("Preset12SetMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("Preset12SetSubGroup"),
+							"Data" => hex2bin("c280")
+						];
+						$this->SendDataToParent(json_encode($json));
+						IPS_Sleep(2000);
+						SetValue($this->GetIDForIdent($Ident), 0);
+					}elseif($Value == 2){
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("Preset12ExMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("Preset12ExMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("Preset12ExSubGroup"),
+							"Data" => hex2bin("c280")
+						];
+						$this->SendDataToParent(json_encode($json));
+						IPS_Sleep(2000);
+						SetValue($this->GetIDForIdent($Ident), 0);
+					}
+					break;
+				case "DrivingTime":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					if($Value == 1){
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("DrivingTimeMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("DrivingTimeMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("DrivingTimeSubGroup"),
+							"Data" => hex2bin("c281")
+						];
+						$this->SendDataToParent(json_encode($json));
+						IPS_Sleep(2000);
+						SetValue($this->GetIDForIdent($Ident), 0);
+					}
+					break;
 				default:
 					throw new Exception("Invalid Ident");
 			}

@@ -146,8 +146,11 @@
 					SetValueInteger($this->GetIDForIdent($this->Translate("Position")), hexdec($hexval));*/
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("StopMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("StopMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("StopSubGroup")){
 					$val = $this->DecodeDPT1($knxdata["Data"]);
-					SetValueInteger($this->GetIDForIdent("Action"), $val * 1);
-				}
+					SetValueInteger($this->GetIDForIdent("Action"), $val);
+				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("DrivingTimeMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("DrivingTimeMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("DrivingTimeSubGroup")){
+					$val = $this->DecodeDPT1($knxdata["Data"]);
+					SetValueInteger($this->GetIDForIdent("Action"), $val);
+				}				
 			}
 		}
 
@@ -156,6 +159,21 @@
 			$val = hexdec( $val) - hexdec("c280");
 			return $val;
 		}
+		
+		public function EncodeDPT1($value){
+			
+			$val = dechex( $val + hexdec("c280"));
+			return $val;
+		}
+
+		public function DecodeDPT5($data){
+			$val = bin2hex($data);
+			$val = hexdec( $val) - hexdec("c280");
+			return $val;
+		}
+		public function EncodeDPT5($data){
+			
+		}
 		/**
         * Die folgenden Funktionen stehen automatisch zur Verfügung, wenn das Modul über die "Module Control" eingefügt wurden.
         * Die Funktionen werden, mit dem selbst eingerichteten Prefix, in PHP und JSON-RPC wiefolgt zur Verfügung gestellt:
@@ -163,22 +181,7 @@
         * DWIPSShutter_UpdatePositionValue($id);
         *
         */
-/*		public function UpdatePositionValue($Position){
-			SetValue($this->GetIDForIdent($this->Translate("Position")), $Position);
-		}
 
-		public function UpdateActionValue($Sender, $Value){
-			if($Sender == $this->ReadPropertyInteger("UpDownInstanceID")){
-				if($Value = 0){
-					SetValue($this->GetIDForIdent($this->Translate("Action")), 0);
-				}else{
-					SetValue($this->GetIDForIdent($this->Translate("Action")), 2);
-				}
-			}elseif ($Sender == $this->ReadPropertyInteger("StopInstanceID")) {
-				SetValue($this->GetIDForIdent($this->Translate("Action")), 1);
-			}
-		}
-*/
 		public function RequestAction($Ident, $Value) {
  
 			switch($Ident) {
@@ -190,7 +193,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
-							"Data" => hex2bin("c280")
+							"Data" => $this->EncodeDPT1(0);// hex2bin("c280")
 						];
 						$this->SendDataToParent(json_encode($json));
 					}elseif($Value == 1){
@@ -208,7 +211,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
-							"Data" => hex2bin("c281")
+							"Data" => $this->EncodeDPT1(1);//hex2bin("c281")
 						];
 						$this->SendDataToParent(json_encode($json));
 					}
@@ -233,6 +236,84 @@
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset12ExMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset12ExSubGroup"),
 							"Data" => hex2bin("c280")
+						];
+						$this->SendDataToParent(json_encode($json));
+						IPS_Sleep(2000);
+						SetValue($this->GetIDForIdent($Ident), 0);
+					}
+					break;
+				case "Preset2":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					if($Value == 1){
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("Preset12SetMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("Preset12SetMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("Preset12SetSubGroup"),
+							"Data" => hex2bin("c281")
+						];
+						$this->SendDataToParent(json_encode($json));
+						IPS_Sleep(2000);
+						SetValue($this->GetIDForIdent($Ident), 0);
+					}elseif($Value == 2){
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("Preset12ExMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("Preset12ExMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("Preset12ExSubGroup"),
+							"Data" => hex2bin("c281")
+						];
+						$this->SendDataToParent(json_encode($json));
+						IPS_Sleep(2000);
+						SetValue($this->GetIDForIdent($Ident), 0);
+					}
+					break;
+				case "Preset3":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					if($Value == 1){
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("Preset34SetMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("Preset34SetMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("Preset34SetSubGroup"),
+							"Data" => hex2bin("c280")
+						];
+						$this->SendDataToParent(json_encode($json));
+						IPS_Sleep(2000);
+						SetValue($this->GetIDForIdent($Ident), 0);
+					}elseif($Value == 2){
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("Preset34ExMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("Preset34ExMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("Preset34ExSubGroup"),
+							"Data" => hex2bin("c280")
+						];
+						$this->SendDataToParent(json_encode($json));
+						IPS_Sleep(2000);
+						SetValue($this->GetIDForIdent($Ident), 0);
+					}
+					break;
+				case "Preset4":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					if($Value == 1){
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("Preset34SetMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("Preset34SetMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("Preset34SetSubGroup"),
+							"Data" => hex2bin("c281")
+						];
+						$this->SendDataToParent(json_encode($json));
+						IPS_Sleep(2000);
+						SetValue($this->GetIDForIdent($Ident), 0);
+					}elseif($Value == 2){
+						$json = [ 
+							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+							"GroupAddress1" => $this->ReadPropertyInteger("Preset34ExMainGroup"),
+							"GroupAddress2" => $this->ReadPropertyInteger("Preset34ExMiddleGroup"),
+							"GroupAddress3" => $this->ReadPropertyInteger("Preset34ExSubGroup"),
+							"Data" => hex2bin("c281")
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);

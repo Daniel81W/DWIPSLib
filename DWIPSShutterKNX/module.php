@@ -193,7 +193,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
-							"Data" => $this->EncodeDPT1(0);// hex2bin("c280")
+							"Data" => $this->EncodeDPT1(0)// hex2bin("c280")
 						];
 						$this->SendDataToParent(json_encode($json));
 					}elseif($Value == 1){
@@ -211,7 +211,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
-							"Data" => $this->EncodeDPT1(1);//hex2bin("c281")
+							"Data" => $this->EncodeDPT1(1)//hex2bin("c281")
 						];
 						$this->SendDataToParent(json_encode($json));
 					}

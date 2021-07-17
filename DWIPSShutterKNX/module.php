@@ -147,9 +147,12 @@
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("StopMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("StopMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("StopSubGroup")){
 					$val = $this->DecodeDPT1($knxdata["Data"]);
 					SetValueInteger($this->GetIDForIdent("Action"), $val);
+				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("PositionMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("PositionMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("PositionSubGroup")){
+					$val = $this->DecodeDPT5($knxdata["Data"]);
+					SetValueInteger($this->GetIDForIdent("Position"), $val);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("DrivingTimeMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("DrivingTimeMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("DrivingTimeSubGroup")){
 					$val = $this->DecodeDPT1($knxdata["Data"]);
-					SetValueInteger($this->GetIDForIdent("Action"), $val);
+					SetValueInteger($this->GetIDForIdent("DrivingTime"), $val);
 				}				
 			}
 		}
@@ -193,7 +196,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
-							"Data" => $this->EncodeDPT1(0)// hex2bin("c280")
+							"Data" => $this->EncodeDPT1(0)
 						];
 						$this->SendDataToParent(json_encode($json));
 					}elseif($Value == 1){
@@ -202,7 +205,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("StopMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("StopMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("StopSubGroup"),
-							"Data" => hex2bin("c281")
+							"Data" => $this->EncodeDPT1(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 					}elseif($Value == 2){
@@ -211,10 +214,21 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
-							"Data" => $this->EncodeDPT1(1)//hex2bin("c281")
+							"Data" => $this->EncodeDPT1(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 					}
+					break;
+				case "Position":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					$json = [ 
+						"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
+						"GroupAddress1" => $this->ReadPropertyInteger("PositionMainGroup"),
+						"GroupAddress2" => $this->ReadPropertyInteger("PositionMiddleGroup"),
+						"GroupAddress3" => $this->ReadPropertyInteger("PositionSubGroup"),
+						"Data" => $this->EncodeDPT5($Value)
+					];
+					$this->SendDataToParent(json_encode($json));
 					break;
 				case "Preset1":
 					SetValue($this->GetIDForIdent($Ident), $Value);
@@ -224,7 +238,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset12SetMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset12SetMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset12SetSubGroup"),
-							"Data" => hex2bin("c280")
+							"Data" => $this->EncodeDPT1(0)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -235,7 +249,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset12ExMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset12ExMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset12ExSubGroup"),
-							"Data" => hex2bin("c280")
+							"Data" => $this->EncodeDPT1(0)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -250,7 +264,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset12SetMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset12SetMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset12SetSubGroup"),
-							"Data" => hex2bin("c281")
+							"Data" => $this->EncodeDPT1(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -261,7 +275,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset12ExMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset12ExMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset12ExSubGroup"),
-							"Data" => hex2bin("c281")
+							"Data" => $this->EncodeDPT1(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -276,7 +290,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset34SetMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset34SetMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset34SetSubGroup"),
-							"Data" => hex2bin("c280")
+							"Data" => $this->EncodeDPT1(0)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -287,7 +301,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset34ExMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset34ExMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset34ExSubGroup"),
-							"Data" => hex2bin("c280")
+							"Data" => $this->EncodeDPT1(0)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -302,7 +316,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset34SetMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset34SetMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset34SetSubGroup"),
-							"Data" => hex2bin("c281")
+							"Data" => $this->EncodeDPT1(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -313,7 +327,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset34ExMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset34ExMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset34ExSubGroup"),
-							"Data" => hex2bin("c281")
+							"Data" => $this->EncodeDPT1(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -328,7 +342,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("DrivingTimeMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("DrivingTimeMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("DrivingTimeSubGroup"),
-							"Data" => hex2bin("c281")
+							"Data" => $this->EncodeDPT1(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);

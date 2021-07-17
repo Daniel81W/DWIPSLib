@@ -172,6 +172,7 @@
 		public function DecodeDPT5($data){
 			$val = bin2hex($data);
 			$val = hexdec( $val) - hexdec("c280");
+			$this->SendDebug("KNX", "hex: " . bin2hex($data) . "   -   dec: " . $val);
 			return $val;
 		}
 		public function EncodeDPT5($data){

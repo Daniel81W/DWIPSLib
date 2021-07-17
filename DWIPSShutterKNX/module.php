@@ -170,14 +170,17 @@
 		}
 
 		public function DecodeDPT5($data){
-			$val = bin2hex($data);
+			/*$val = bin2hex($data);
 			$killstr = "c280";
 			for($i = 1; $i <= strlen($val) - 4; $i++ ){
 				$killstr = $killstr . "0";
 			}
 			$val = hexdec( $val) - hexdec($killstr);
 			$this->SendDebug("KNX", "len: " . strlen(bin2hex($data)) . "   -   hex: " . bin2hex($data) . "   -   dec: " . $val, 0);
-			return $val;
+			*/
+			$Val = unpack( 'C', $data, 1 );
+			$result = intval( round( $Val[ 1 ] / 255 * 100 ) );
+			return $result;
 		}
 		public function EncodeDPT5($data){
 			

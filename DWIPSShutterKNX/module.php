@@ -162,7 +162,7 @@
 		
 		public function EncodeDPT1($value){
 			
-			$val = dechex( $val + hexdec("c280"));
+			$val = dechex( $value + hexdec("c280"));
 			return $val;
 		}
 

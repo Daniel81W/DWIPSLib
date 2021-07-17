@@ -163,8 +163,7 @@
 		public function EncodeDPT1($value){
 			
 			$val = dechex( $value + hexdec("c280"));
-			$this->SendDebug("KNX", $val, 0);
-			return $val;
+			return hex2bin($val);
 		}
 
 		public function DecodeDPT5($data){

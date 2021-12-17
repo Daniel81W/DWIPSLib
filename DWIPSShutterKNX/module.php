@@ -171,25 +171,13 @@
 
 		public function DecodeDPT5($data){
 			$val = bin2hex($data);
-			/*$killstr = "c280";
-			for($i = 1; $i <= strlen($val) - 4; $i++ ){
-				$killstr = $killstr . "0";
-			}
-			$val = hexdec( $val) - hexdec($killstr);
-			$this->SendDebug("KNX", "len: " . strlen(bin2hex($data)) . "   -   hex: " . bin2hex($data) . "   -   dec: " . $val, 0);
-			*/
-
-			/*$Val = unpack( 'C', $data, 1 );
-			$result = intval( round( $Val[ 1 ] / 255 * 100 ) );
-			//$this->SendDebug("KNX", $this->ConvertFromDPT('KNX_DPST_5', $data), 0);
-			return $this->ConvertFromDPT('KNX_DPST_5', $data);
-			*/
-			$val = (hexdec( $val) - hexdec("c28000")) *100 / 255;
+			$val = (hexdec( $val) - hexdec("c28000")) * 100 / 255;
 			return $val;
 			
 		}
-		public function EncodeDPT5($data){
-			
+		public function EncodeDPT5($value){
+			$val = dechex( $value /100*255 + hexdec("c28000"));
+			return hex2bin($val);
 		}
 		/**
         * Die folgenden Funktionen stehen automatisch zur Verfügung, wenn das Modul über die "Module Control" eingefügt wurden.

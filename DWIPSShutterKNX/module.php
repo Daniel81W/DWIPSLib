@@ -184,7 +184,7 @@
 			//$this->SendDebug("KNX", $this->ConvertFromDPT('KNX_DPST_5', $data), 0);
 			return $this->ConvertFromDPT('KNX_DPST_5', $data);
 			*/
-			$val = hexdec( $val) - hexdec("c28000");
+			$val = (hexdec( $val) - hexdec("c28000")) *100 / 255;
 			return $val;
 			
 		}

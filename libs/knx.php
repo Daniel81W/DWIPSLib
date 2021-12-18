@@ -54,7 +54,7 @@
     }
 
     class DPT2 extends DPT{
-        public static function encode($value){
+        public static function encode(){
             
         }
 
@@ -64,7 +64,7 @@
     }
 
     class DPT3 extends DPT{
-        public static function encode($value){
+        public static function encode(){
             
         }
 
@@ -74,7 +74,7 @@
     }
 
     class DPT4 extends DPT{
-        public static function encode($value){
+        public static function encode(){
             
         }
 
@@ -84,8 +84,8 @@
     }
 
     class DPT5 extends DPT{
-        public static function encode($value){
-            $val = dechex( $value /100*255 + hexdec("c28000"));
+        public static function encode(){
+            $val = dechex( /*$value*/ 100 /100*255 + hexdec("c28000"));
 			return hex2bin($val);
         }
 
@@ -97,7 +97,7 @@
     }
 
     abstract class DPT{
-        abstract public function encode($value);
+        abstract public function encode();
         abstract public function decode($data);
     }
 

@@ -1,6 +1,7 @@
 <?php
 
-	//include_once("/var/lib/symcon/modules/DWIPSLib/libs/astro.php");
+	include_once("/var/lib/symcon/modules/DWIPSLib/libs/knx.php");
+	
 	class DWIPSShutterKNX extends IPSModule {
 
 		private $parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";
@@ -198,7 +199,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
-							"Data" => $this->EncodeDPT1(0)
+							"Data" => DPT1::encode(0)
 						];
 						$this->SendDataToParent(json_encode($json));
 					}elseif($Value == 1){
@@ -207,7 +208,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("StopMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("StopMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("StopSubGroup"),
-							"Data" => $this->EncodeDPT1(1)
+							"Data" => DPT1::encode(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 					}elseif($Value == 2){
@@ -216,7 +217,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
-							"Data" => $this->EncodeDPT1(1)
+							"Data" => DPT1::encode(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 					}
@@ -240,7 +241,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset12SetMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset12SetMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset12SetSubGroup"),
-							"Data" => $this->EncodeDPT1(0)
+							"Data" => DPT1::encode(0)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -251,7 +252,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset12ExMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset12ExMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset12ExSubGroup"),
-							"Data" => $this->EncodeDPT1(0)
+							"Data" => DPT1::encode(0)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -266,7 +267,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset12SetMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset12SetMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset12SetSubGroup"),
-							"Data" => $this->EncodeDPT1(1)
+							"Data" => DPT1::encode(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -277,7 +278,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset12ExMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset12ExMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset12ExSubGroup"),
-							"Data" => $this->EncodeDPT1(1)
+							"Data" => DPT1::encode(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);

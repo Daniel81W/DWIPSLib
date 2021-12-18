@@ -33,7 +33,7 @@
 			$this->value = boolval(hexdec( $val) - hexdec("c280"));
 		}
 
-        public function DPT1(int $maingroup, int $middlegroup, int $subgroup){
+        public function __construct(int $maingroup, int $middlegroup, int $subgroup){
             $this->dataID = "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}";
             $this->maingroup = $maingroup;
             $this->middlegroup = $middlegroup;
@@ -54,42 +54,42 @@
     }
 
     class DPT2 extends DPT{
-        public static function encode(){
+        public function encode(){
             
         }
 
-        public static function decode($data){
+        public function decode($data){
 			
 		}
     }
 
     class DPT3 extends DPT{
-        public static function encode(){
+        public function encode(){
             
         }
 
-        public static function decode($data){
+        public function decode($data){
 			
 		}
     }
 
     class DPT4 extends DPT{
-        public static function encode(){
+        public function encode(){
             
         }
 
-        public static function decode($data){
+        public function decode($data){
 			
 		}
     }
 
     class DPT5 extends DPT{
-        public static function encode(){
+        public function encode(){
             $val = dechex( /*$value*/ 100 /100*255 + hexdec("c28000"));
 			return hex2bin($val);
         }
 
-        public static function decode($data){
+        public function decode($data){
 			$val = bin2hex($data);
 			$val = (hexdec( $val) - hexdec("c28000")) * 100 / 255;
 			return $val;

@@ -122,10 +122,10 @@
 			//$this->TestForm();
 
 		}
-		public function __construct (string $InstanzID){
+	/*	public function __construct (string $InstanzID){
 			parent::__construct ($InstanzID);
 			$this->upDownDPT = new DPT1($this->ReadPropertyInteger("UpDownMainGroup"), $this->ReadPropertyInteger("UpDownMiddleGroup"), $this->ReadPropertyInteger("UpDownSubGroup"));
-		}
+		}*/
 		public function ReceiveData($JSONString) {
 			$knxdata = json_decode($JSONString, true);
 			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"){

@@ -26,6 +26,7 @@
 			6 => ["name" => "Preset4", "type" => "int", "pos" => 7, "profile" => "Preset"],
 			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "TriggerPro"]
 		];
+		private DPT1 $upDownDPT;
 
 		public function Create()
 		{
@@ -105,6 +106,8 @@
 						throw new Exception("Invalid type");
 				}
 			}
+
+			$this->upDownDPT = new DPT1($this->ReadPropertyInteger("UpDownMainGroup"), $this->ReadPropertyInteger("UpDownMiddleGroup"), $this->ReadPropertyInteger("UpDownSubGroup"))
 		}
 
 		public function Destroy()
@@ -157,19 +160,6 @@
 				}				
 			}
 		}
-/*
-		public function DecodeDPT1($data){
-			$val = bin2hex($data);
-			$val = hexdec( $val) - hexdec("c280");
-			return $val;
-		}
-		
-		public function EncodeDPT1($value){
-			
-			$val = dechex( $value + hexdec("c280"));
-			return hex2bin($val);
-		}
-*/
 		public function DecodeDPT5($data){
 			$val = bin2hex($data);
 			$val = (hexdec( $val) - hexdec("c28000")) * 100 / 255;
@@ -194,14 +184,8 @@
 				case "Action":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					if($Value == 0){
-						$json = [ 
-							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
-							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
-							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
-							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
-							"Data" => DPT1::encode(0)
-						];
-						$this->SendDataToParent(json_encode($json));
+						$this->upDownDPT->setValueFromInt(0);
+						$this->SendDataToParent($this->upDownDPT->getJSONString());
 					}elseif($Value == 1){
 						$json = [ 
 							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",

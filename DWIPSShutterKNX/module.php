@@ -157,7 +157,7 @@
 				}				
 			}
 		}
-
+/*
 		public function DecodeDPT1($data){
 			$val = bin2hex($data);
 			$val = hexdec( $val) - hexdec("c280");
@@ -169,7 +169,7 @@
 			$val = dechex( $value + hexdec("c280"));
 			return hex2bin($val);
 		}
-
+*/
 		public function DecodeDPT5($data){
 			$val = bin2hex($data);
 			$val = (hexdec( $val) - hexdec("c28000")) * 100 / 255;
@@ -229,7 +229,7 @@
 						"GroupAddress1" => $this->ReadPropertyInteger("PositionMainGroup"),
 						"GroupAddress2" => $this->ReadPropertyInteger("PositionMiddleGroup"),
 						"GroupAddress3" => $this->ReadPropertyInteger("PositionSubGroup"),
-						"Data" => $this->EncodeDPT5($Value)
+						"Data" => $this->DPT5::encode($Value)
 					];
 					$this->SendDataToParent(json_encode($json));
 					break;
@@ -293,7 +293,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset34SetMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset34SetMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset34SetSubGroup"),
-							"Data" => $this->EncodeDPT1(0)
+							"Data" => DPT1::encode(0)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -304,7 +304,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset34ExMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset34ExMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset34ExSubGroup"),
-							"Data" => $this->EncodeDPT1(0)
+							"Data" => DPT1::encode(0)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -319,7 +319,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset34SetMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset34SetMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset34SetSubGroup"),
-							"Data" => $this->EncodeDPT1(1)
+							"Data" => DPT1::encode(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -330,7 +330,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("Preset34ExMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("Preset34ExMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("Preset34ExSubGroup"),
-							"Data" => $this->EncodeDPT1(1)
+							"Data" => DPT1::encode(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);
@@ -345,7 +345,7 @@
 							"GroupAddress1" => $this->ReadPropertyInteger("DrivingTimeMainGroup"),
 							"GroupAddress2" => $this->ReadPropertyInteger("DrivingTimeMiddleGroup"),
 							"GroupAddress3" => $this->ReadPropertyInteger("DrivingTimeSubGroup"),
-							"Data" => $this->EncodeDPT1(1)
+							"Data" => DPT1::encode(1)
 						];
 						$this->SendDataToParent(json_encode($json));
 						IPS_Sleep(2000);

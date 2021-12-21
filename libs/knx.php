@@ -13,11 +13,11 @@
         }
 
         public function getValueAsInt(){
-            return $this->value;
+            return intval($this->value);
         }
 
         public function setValueFromInt($value){
-            $this->value = $value;
+            $this->value = boolval($value);
         }
 
         public function encode(){
@@ -93,11 +93,11 @@
         }
 
         public function getValueAsInt(){
-            return intval($this->value);
+            return $this->value;
         }
 
         public function setValueFromInt($value){
-            $this->value = boolval($value);
+            $this->value = $value;
         }
 
         public function encode(){

@@ -199,14 +199,9 @@
 						];
 						$this->SendDataToParent(json_encode($json));
 					}elseif($Value == 2){
-						$json = [ 
-							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
-							"GroupAddress1" => $this->ReadPropertyInteger("UpDownMainGroup"),
-							"GroupAddress2" => $this->ReadPropertyInteger("UpDownMiddleGroup"),
-							"GroupAddress3" => $this->ReadPropertyInteger("UpDownSubGroup"),
-							"Data" => DPT1::encode(1)
-						];
-						$this->SendDataToParent(json_encode($json));
+						$this->upDownDPT->setValueFromInt(1);
+						echo $this->upDownDPT->getJSONString();
+						$this->SendDataToParent($this->upDownDPT->getJSONString());
 					}
 					break;
 				case "Position":

@@ -182,6 +182,7 @@
 
 		public function RequestAction($Ident, $Value) {
  
+			$this->upDownDPT = new DPT1($this->ReadPropertyInteger("UpDownMainGroup"), $this->ReadPropertyInteger("UpDownMiddleGroup"), $this->ReadPropertyInteger("UpDownSubGroup"));
 			switch($Ident) {
 				case "Action":
 					SetValue($this->GetIDForIdent($Ident), $Value);

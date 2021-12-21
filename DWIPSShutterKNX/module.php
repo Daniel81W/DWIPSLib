@@ -27,6 +27,8 @@
 			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "TriggerPro"]
 		];
 		private DPT1 $upDownDPT;
+		private DPT1 $stopDPT;
+		private DPT5 $positionDPT;
 
 		public function Create()
 		{
@@ -162,16 +164,7 @@
 				}				
 			}
 		}
-		public function DecodeDPT5($data){
-			$val = bin2hex($data);
-			$val = (hexdec( $val) - hexdec("c28000")) * 100 / 255;
-			return $val;
-			
-		}
-		public function EncodeDPT5($value){
-			$val = dechex( $value /100*255 + hexdec("c28000"));
-			return hex2bin($val);
-		}
+
 		/**
         * Die folgenden Funktionen stehen automatisch zur Verfügung, wenn das Modul über die "Module Control" eingefügt wurden.
         * Die Funktionen werden, mit dem selbst eingerichteten Prefix, in PHP und JSON-RPC wiefolgt zur Verfügung gestellt:
@@ -183,6 +176,8 @@
 		public function RequestAction($Ident, $Value) {
  
 			$this->upDownDPT = new DPT1($this->ReadPropertyInteger("UpDownMainGroup"), $this->ReadPropertyInteger("UpDownMiddleGroup"), $this->ReadPropertyInteger("UpDownSubGroup"));
+			$this->stopDPT = new DPT1($this->ReadPropertyInteger("StopMainGroup"), $this->ReadPropertyInteger("StopMiddleGroup"), $this->ReadPropertyInteger("StopSubGroup"));
+			$this->positionDPT = new DPT1($this->ReadPropertyInteger("PositionMainGroup"), $this->ReadPropertyInteger("PositionMiddleGroup"), $this->ReadPropertyInteger("PositionSubGroup"));
 			switch($Ident) {
 				case "Action":
 					SetValue($this->GetIDForIdent($Ident), $Value);
@@ -190,30 +185,18 @@
 						$this->upDownDPT->setValueFromInt(0);
 						$this->SendDataToParent($this->upDownDPT->getJSONString());
 					}elseif($Value == 1){
-						$json = [ 
-							"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
-							"GroupAddress1" => $this->ReadPropertyInteger("StopMainGroup"),
-							"GroupAddress2" => $this->ReadPropertyInteger("StopMiddleGroup"),
-							"GroupAddress3" => $this->ReadPropertyInteger("StopSubGroup"),
-							"Data" => DPT1::encode(1)
-						];
-						$this->SendDataToParent(json_encode($json));
+						$this->stopDPT->setValueFromInt(1);
+						$this->SendDataToParent($this->stopDPT->getJSONString());
 					}elseif($Value == 2){
 						$this->upDownDPT->setValueFromInt(1);
-						echo $this->upDownDPT->getJSONString();
 						$this->SendDataToParent($this->upDownDPT->getJSONString());
 					}
 					break;
 				case "Position":
 					SetValue($this->GetIDForIdent($Ident), $Value);
-					$json = [ 
-						"DataID" => "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}",
-						"GroupAddress1" => $this->ReadPropertyInteger("PositionMainGroup"),
-						"GroupAddress2" => $this->ReadPropertyInteger("PositionMiddleGroup"),
-						"GroupAddress3" => $this->ReadPropertyInteger("PositionSubGroup"),
-						"Data" => $this->DPT5::encode($Value)
-					];
-					$this->SendDataToParent(json_encode($json));
+					
+					$this->positionDPT->setValueFromInt($Value);
+					$this->SendDataToParent($this->positionDPT->getJSONString());
 					break;
 				case "Preset1":
 					SetValue($this->GetIDForIdent($Ident), $Value);

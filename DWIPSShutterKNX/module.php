@@ -97,7 +97,7 @@
 						$this->EnableAction($var["name"]);
 						break;
 					case "int":
-						if(str_starts_with($var["profile"], "*")){
+						if(stripos($var["profile"], "*") == 0){
 							$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),substr($var["profile"], 1), $var["pos"]);
 						}else{
 							$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($var["profile"]), $var["pos"]);

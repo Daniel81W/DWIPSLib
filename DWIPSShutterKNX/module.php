@@ -27,8 +27,8 @@
 			5 => ["name" => "Preset3", "type" => "int", "pos" => 6, "profile" => "Preset"],
 			6 => ["name" => "Preset4", "type" => "int", "pos" => 7, "profile" => "Preset"],
 			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "TriggerPro"],
-			8 => ["name" => "EarliestUp", "type" => "int", "pos" => 9, "profile" => "*UnixTimestampTime"],
-			9 => ["name" => "LatestUp", "type" => "int", "pos" => 10, "profile" => "*UnixTimestampTime"]
+			8 => ["name" => "EarliestUp", "type" => "int", "pos" => 9, "profile" => "_~UnixTimestampTime"],
+			9 => ["name" => "LatestUp", "type" => "int", "pos" => 10, "profile" => "_~UnixTimestampTime"]
 		];
 		private DPT1 $upDownDPT;
 		private DPT1 $stopDPT;
@@ -97,7 +97,7 @@
 						$this->EnableAction($var["name"]);
 						break;
 					case "int":
-						if(stripos($var["profile"], "*") == 0){
+						if(stripos($var["profile"], "_") == 0){
 							$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),substr($var["profile"], 1), $var["pos"]);
 						}else{
 							$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($var["profile"]), $var["pos"]);

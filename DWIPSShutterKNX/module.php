@@ -14,7 +14,9 @@
 			4 => ["name" => "Preset12Ex"],
 			5 => ["name" => "Preset34Set"],
 			6 => ["name" => "Preset34Ex"],
-			7 => ["name" => "DrivingTime"]
+			7 => ["name" => "DrivingTime"],
+			8 => ["name" => "EarliestUp"],
+			9 => ["name" => "LatestUp"]
 		];
 		private $variables = [
 			0 => ["name" => "Action", "type" => "int", "pos" => 1, "profile" => "UpDownStop"],
@@ -24,7 +26,9 @@
 			4 => ["name" => "Preset2", "type" => "int", "pos" => 5, "profile" => "Preset"],
 			5 => ["name" => "Preset3", "type" => "int", "pos" => 6, "profile" => "Preset"],
 			6 => ["name" => "Preset4", "type" => "int", "pos" => 7, "profile" => "Preset"],
-			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "TriggerPro"]
+			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "TriggerPro"],
+			8 => ["name" => "EarliestUp", "type" => "int", "pos" => 9, "profile" => "*UnixTimestampTime"],
+			9 => ["name" => "LatestUp", "type" => "int", "pos" => 10, "profile" => "*UnixTimestampTime"]
 		];
 		private DPT1 $upDownDPT;
 		private DPT1 $stopDPT;
@@ -93,7 +97,11 @@
 						$this->EnableAction($var["name"]);
 						break;
 					case "int":
-						$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($var["profile"]), $var["pos"]);
+						if(str_starts_with($var["profile"], "*")){
+							$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),substr($var["profile"], 1), $var["pos"]);
+						}else{
+							$this->RegisterVariableInteger($var["name"], $this->Translate($var["name"]),"DWIPS.Shutter.".$this->Translate($var["profile"]), $var["pos"]);
+						}
 						$this->EnableAction($var["name"]);
 						break;
 					case "float":
@@ -124,34 +132,17 @@
 			//$this->TestForm();
 
 		}
-	/*	public function __construct (string $InstanzID){
-			parent::__construct ($InstanzID);
-			$this->upDownDPT = new DPT1($this->ReadPropertyInteger("UpDownMainGroup"), $this->ReadPropertyInteger("UpDownMiddleGroup"), $this->ReadPropertyInteger("UpDownSubGroup"));
-		}*/
+	
 		public function ReceiveData($JSONString) {
+			$this->upDownDPT = new DPT1($this->ReadPropertyInteger("UpDownMainGroup"), $this->ReadPropertyInteger("UpDownMiddleGroup"), $this->ReadPropertyInteger("UpDownSubGroup"));
+			$this->stopDPT = new DPT1($this->ReadPropertyInteger("StopMainGroup"), $this->ReadPropertyInteger("StopMiddleGroup"), $this->ReadPropertyInteger("StopSubGroup"));
+			$this->positionDPT = new DPT5($this->ReadPropertyInteger("PositionMainGroup"), $this->ReadPropertyInteger("PositionMiddleGroup"), $this->ReadPropertyInteger("PositionSubGroup"));
+			
 			$knxdata = json_decode($JSONString, true);
 			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"){
 				if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("UpDownMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("UpDownMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("UpDownSubGroup")){
-					$val = $this->DecodeDPT1($knxdata["Data"]);
-					SetValueInteger($this->GetIDForIdent("Action"), $val * 2);
-					/*if($val == 0){
-						SetValueInteger($this->GetIDForIdent("Action"), 0);
-					}elseif($val == 1){
-						SetValueInteger($this->GetIDForIdent("Action"), 2);
-						$this->SendDebug("KNX", $val, 0);
-					}*/
-					
-					/*$hexval = bin2hex($knxdata["Data"]);
-					$decval = hexdec( $hexval) - hexdec("c280");
-
-					$Val = unpack( 'H*', $knxdata["Data"], 0 );
-          			$result = intval( round( $Val[ 1 ] / 255 * 100 ) );
-					//$this->SendDebug("KNX", sizeof($Val), 0);
-					//$this->SendDebug("KNX", $Val[1], 0);
-					$this->SendDebug("KNX", $decval, 0);
-					//$this->SendDebug("KNX", bin2hex(pack( "CC", 0x80, 200 )), 0);
-
-					SetValueInteger($this->GetIDForIdent($this->Translate("Position")), hexdec($hexval));*/
+					$this->upDownDPT->setValueFromBin($knxdata["Data"]);
+					SetValueInteger($this->GetIDForIdent("Action"), $this->upDownDPT->getValueAsInt * 2);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("StopMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("StopMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("StopSubGroup")){
 					$val = $this->DecodeDPT1($knxdata["Data"]);
 					SetValueInteger($this->GetIDForIdent("Action"), $val);

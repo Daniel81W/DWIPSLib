@@ -25,7 +25,9 @@
             "Trigger": "Auslösen",
             "MainGroup": "Hauptgruppe",
             "MiddleGroup": "Mittelgruppe",
-            "SubGroup": "Untergruppe"
+            "SubGroup": "Untergruppe",
+            "EarliestUp": "Frühestes Hochfahren",
+            "LatestUp": "Spätestes Hochfahren"
         }
     }
 }

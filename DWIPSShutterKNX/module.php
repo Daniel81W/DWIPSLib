@@ -308,6 +308,12 @@
 						SetValue($this->GetIDForIdent($Ident), 0);
 					}
 					break;
+				case "EarliestUp":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
+				case "LatestUp":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
 				default:
 					throw new Exception("Invalid Ident");
 			}

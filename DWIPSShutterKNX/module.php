@@ -18,7 +18,9 @@
 			8 => ["name" => "EarliestUp"],
 			9 => ["name" => "LatestUp"],
 			10 => ["name" => "EarliestDown"],
-			11 => ["name" => "LatestDown"]
+			11 => ["name" => "LatestDown"],
+			12 => ["name" => "AutomationMorningOnOff"],
+			13 => ["name" => "AutomationEveningOnOff"]
 		];
 		private $variables = [
 			0 => ["name" => "Action", "type" => "int", "pos" => 1, "profile" => "UpDownStop"],
@@ -31,8 +33,10 @@
 			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "TriggerPro"],
 			8 => ["name" => "EarliestUp", "type" => "int", "pos" => 9, "profile" => "_~UnixTimestampTime"],
 			9 => ["name" => "LatestUp", "type" => "int", "pos" => 10, "profile" => "_~UnixTimestampTime"],
-			8 => ["name" => "EarliestDown", "type" => "int", "pos" =>11, "profile" => "_~UnixTimestampTime"],
-			9 => ["name" => "LatestDown", "type" => "int", "pos" => 12, "profile" => "_~UnixTimestampTime"]
+			10 => ["name" => "EarliestDown", "type" => "int", "pos" =>11, "profile" => "_~UnixTimestampTime"],
+			11 => ["name" => "LatestDown", "type" => "int", "pos" => 12, "profile" => "_~UnixTimestampTime"],
+			12 => ["name" => "AutomationMorningOnOff", "type" => "bool", "pos" => 13, "profile" => "TriggerPro"],
+			13 => ["name" => "AutomationEveningOnOff", "type" => "bool", "pos" => 14, "profile" => "TriggerPro"]
 		];
 		private DPT1 $upDownDPT;
 		private DPT1 $stopDPT;
@@ -90,6 +94,14 @@
 			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.TriggerPro"))) {
     			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.TriggerPro"), 0);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.TriggerPro"), 1, $this->Translate("Trigger"), "", 0x00FF00);
+			}
+			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.SwitchActive"))) {
+    			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.SwitchActive"), 0);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.SwitchActive"), 1, $this->Translate("Active"), "", 0x00FF00);
+			}			
+			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.SwitchNotActive"))) {
+    			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.SwitchNotActive"), 0);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.SwitchNotActive"), 1, $this->Translate("NotActive"), "", 0xFF0000);
 			}
 
 			//Variables to control shutter in Webfront

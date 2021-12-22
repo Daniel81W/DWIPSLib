@@ -13,6 +13,8 @@
             "DWIPS.Shutter.Position": "DWIPS.Shutter.Position",
             "DWIPS.Shutter.PositionSteps": "DWIPS.Shutter.Positionsstufen",
             "DWIPS.Shutter.Trigger": "DWIPS.Shutter.Trigger",
+            "DWIPS.Shutter.SwitchActive": "DWIPS.Shutter.SchalterAktiviert",
+            "DWIPS.Shutter.SwitchNotActive": "DWIPS.Shutter.SchalterDeaktiviert",
             "DrivingTime": "Fahrtzeitermittlung",
             "Down": "Ab",
             "Up": "Auf",
@@ -29,7 +31,9 @@
             "EarliestUp": "Frühestes Hochfahren",
             "LatestUp": "Spätestes Hochfahren",
             "EarliestDown": "Frühestes Herunterfahren",
-            "LatestDown": "Spätestes Herunterfahren"
+            "LatestDown": "Spätestes Herunterfahren",
+            "Active": "Aktiviert",
+            "NotActive": "Deaktiviert"
         }
     }
 }

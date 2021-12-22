@@ -16,7 +16,9 @@
 			6 => ["name" => "Preset34Ex"],
 			7 => ["name" => "DrivingTime"],
 			8 => ["name" => "EarliestUp"],
-			9 => ["name" => "LatestUp"]
+			9 => ["name" => "LatestUp"],
+			10 => ["name" => "EarliestDown"],
+			11 => ["name" => "LatestDown"]
 		];
 		private $variables = [
 			0 => ["name" => "Action", "type" => "int", "pos" => 1, "profile" => "UpDownStop"],
@@ -28,7 +30,9 @@
 			6 => ["name" => "Preset4", "type" => "int", "pos" => 7, "profile" => "Preset"],
 			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "TriggerPro"],
 			8 => ["name" => "EarliestUp", "type" => "int", "pos" => 9, "profile" => "_~UnixTimestampTime"],
-			9 => ["name" => "LatestUp", "type" => "int", "pos" => 10, "profile" => "_~UnixTimestampTime"]
+			9 => ["name" => "LatestUp", "type" => "int", "pos" => 10, "profile" => "_~UnixTimestampTime"],
+			8 => ["name" => "EarliestDown", "type" => "int", "pos" =>11, "profile" => "_~UnixTimestampTime"],
+			9 => ["name" => "LatestDown", "type" => "int", "pos" => 12, "profile" => "_~UnixTimestampTime"]
 		];
 		private DPT1 $upDownDPT;
 		private DPT1 $stopDPT;
@@ -312,6 +316,12 @@
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					break;
 				case "LatestUp":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
+				case "EarliestDown":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
+				case "LatestDown":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					break;
 				default:

@@ -27,7 +27,9 @@
             "MiddleGroup": "Mittelgruppe",
             "SubGroup": "Untergruppe",
             "EarliestUp": "Frühestes Hochfahren",
-            "LatestUp": "Spätestes Hochfahren"
+            "LatestUp": "Spätestes Hochfahren",
+            "EarliestDown": "Frühestes Herunterfahren",
+            "LatestDown": "Spätestes Herunterfahren"
         }
     }
 }

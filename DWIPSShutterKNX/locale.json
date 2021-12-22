@@ -33,7 +33,9 @@
             "EarliestDown": "Frühestes Herunterfahren",
             "LatestDown": "Spätestes Herunterfahren",
             "Active": "Aktiviert",
-            "NotActive": "Deaktiviert"
+            "NotActive": "Deaktiviert",
+            "AutomationMorningOnOff": "Automatik morgens",
+            "AutomationEveningOnOff": "Automatik abends"
         }
     }
 }

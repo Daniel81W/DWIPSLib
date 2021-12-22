@@ -22,6 +22,8 @@
             "Action": "Aktion",
             "Position": "Position",
             "PositionSteps": "Positionsstufen",
+            "SwitchActive": "SchalterAktiviert",
+            "SwitchNotActive": "SchalterDeaktiviert",
             "DriveTo": "Anfahren",
             "Set": "Setzen",
             "Trigger": "Auslösen",

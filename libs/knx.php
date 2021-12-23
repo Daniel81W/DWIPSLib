@@ -102,7 +102,7 @@
 
         public function encode(){
             $val = dechex( $this->value /100*255 + hexdec("c28000"));
-            WFC_SendPopup (47530, "DEBUG", $val);
+            WFC_SendPopup (47530, "DEBUG", hex2bin($val));
 			return hex2bin($val);
         }
 

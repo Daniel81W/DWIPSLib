@@ -209,7 +209,7 @@
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					switch($Value){
 						case 0: //100%
-							$this->positionDPT->setValueFromInt(100);
+							$this->positionDPT->setValueFromInt(99);
 							$this->SendDataToParent($this->positionDPT->getJSONString());
 							break;
 						case 4: // 90%

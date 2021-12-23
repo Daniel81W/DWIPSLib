@@ -210,6 +210,7 @@
 					switch($Value){
 						case 0: //100%
 							$this->positionDPT->setValueFromInt(99);
+							$this->SendDebug("KNX", $this->positionDPT->getJSONString(), 0);
 							$this->SendDataToParent($this->positionDPT->getJSONString());
 							break;
 						case 4: // 90%

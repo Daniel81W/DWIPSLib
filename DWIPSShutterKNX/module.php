@@ -230,7 +230,7 @@
 							$this->SendDataToParent($this->positionDPT->getJSONString());
 							break;
 						case 8: //  0%
-							$this->positionDPT->setValueFromInt(100);
+							$this->positionDPT->setValueFromInt(0);
 							$this->SendDataToParent($this->positionDPT->getJSONString());
 							break;
 						case 11: //  down

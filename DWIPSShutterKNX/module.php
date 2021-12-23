@@ -151,7 +151,6 @@
 						throw new Exception("Invalid type");
 				}
 			}
-			echo $this->GetConfigurationForm();
 
 		}
 
@@ -422,7 +421,7 @@
 			
 				}elseif($prop["type"] == "int"){
 					$elements = $elements . '{ "type": "RowLayout","items": [ ' .
-						'{"type": "Label","caption": "' . $prop["name"] . '","width": "100px"},'.
+						'{"type": "Label","caption": "' . $prop["name"] . '","width": "100px"}'.
 						']}';
 				}
 			}

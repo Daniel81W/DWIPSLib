@@ -14,7 +14,11 @@
 			4 => ["name" => "Preset12Ex"],
 			5 => ["name" => "Preset34Set"],
 			6 => ["name" => "Preset34Ex"],
-			7 => ["name" => "DrivingTime"]
+			7 => ["name" => "DrivingTime"],
+			7 => ["name" => "Value90"],
+			7 => ["name" => "Value75"],
+			7 => ["name" => "Value50"],
+			7 => ["name" => "Value25"]
 		];
 		private $variables = [
 			0 => ["name" => "Control", "type" => "int", "pos" => 1, "profile" => "Control"],
@@ -196,6 +200,26 @@
 			$this->positionDPT = new DPT5($this->ReadPropertyInteger("PositionMainGroup"), $this->ReadPropertyInteger("PositionMiddleGroup"), $this->ReadPropertyInteger("PositionSubGroup"));
 			switch($Ident) {
 				case "Control":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					switch($Value){
+						case 0: //100%
+							$this->positionDPT->setValueFromInt(0);
+							$this->SendDataToParent($this->positionDPT->getJSONString());
+							break;
+						case 4: // 90%
+							$this->positionDPT->setValueFromInt($this->ReadPropertyInteger("Value90"));
+							break;
+						case 5: // 75%
+							break;
+						case 6: // 50%
+							break;
+						case 7: // 25%
+							break;
+						case 8: //  0%
+							break;
+						default:
+							break;
+					}
 					break;
 				case "Action":
 					SetValue($this->GetIDForIdent($Ident), $Value);

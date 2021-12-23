@@ -14,29 +14,24 @@
 			4 => ["name" => "Preset12Ex"],
 			5 => ["name" => "Preset34Set"],
 			6 => ["name" => "Preset34Ex"],
-			7 => ["name" => "DrivingTime"],
-			8 => ["name" => "EarliestUp"],
-			9 => ["name" => "LatestUp"],
-			10 => ["name" => "EarliestDown"],
-			11 => ["name" => "LatestDown"],
-			12 => ["name" => "AutomationMorningOnOff"],
-			13 => ["name" => "AutomationEveningOnOff"]
+			7 => ["name" => "DrivingTime"]
 		];
 		private $variables = [
-			0 => ["name" => "Action", "type" => "int", "pos" => 1, "profile" => "UpDownStop"],
-			1 => ["name" => "Position", "type" => "int", "pos" => 2, "profile" => "Position"],
-			2 => ["name" => "PositionSteps", "type" => "int", "pos" => 3, "profile" => "PositionSteps"],
-			3 => ["name" => "Preset1", "type" => "int", "pos" => 4, "profile" => "Preset"],
-			4 => ["name" => "Preset2", "type" => "int", "pos" => 5, "profile" => "Preset"],
-			5 => ["name" => "Preset3", "type" => "int", "pos" => 6, "profile" => "Preset"],
-			6 => ["name" => "Preset4", "type" => "int", "pos" => 7, "profile" => "Preset"],
-			7 => ["name" => "DrivingTime", "type" => "bool", "pos" => 8, "profile" => "TriggerPro"],
-			8 => ["name" => "EarliestUp", "type" => "int", "pos" => 9, "profile" => "_~UnixTimestampTime"],
-			9 => ["name" => "LatestUp", "type" => "int", "pos" => 10, "profile" => "_~UnixTimestampTime"],
-			10 => ["name" => "EarliestDown", "type" => "int", "pos" =>11, "profile" => "_~UnixTimestampTime"],
-			11 => ["name" => "LatestDown", "type" => "int", "pos" => 12, "profile" => "_~UnixTimestampTime"],
-			12 => ["name" => "AutomationMorningOnOff", "type" => "bool", "pos" => 13, "profile" => "SwitchActive"],
-			13 => ["name" => "AutomationEveningOnOff", "type" => "bool", "pos" => 14, "profile" => "SwitchNotActive"]
+			0 => ["name" => "Control", "type" => "int", "pos" => 1, "profile" => "Control"],
+			1 => ["name" => "Action", "type" => "int", "pos" => 2, "profile" => "UpDownStop"],
+			2 => ["name" => "Position", "type" => "int", "pos" => 3, "profile" => "Position"],
+			3 => ["name" => "PositionSteps", "type" => "int", "pos" => 4, "profile" => "PositionSteps"],
+			4 => ["name" => "Preset1", "type" => "int", "pos" => 5, "profile" => "Preset"],
+			5 => ["name" => "Preset2", "type" => "int", "pos" => 6, "profile" => "Preset"],
+			6 => ["name" => "Preset3", "type" => "int", "pos" => 7, "profile" => "Preset"],
+			7 => ["name" => "Preset4", "type" => "int", "pos" => 8, "profile" => "Preset"],
+			8 => ["name" => "DrivingTime", "type" => "bool", "pos" => 9, "profile" => "TriggerPro"],
+			9 => ["name" => "EarliestUp", "type" => "int", "pos" => 10, "profile" => "_~UnixTimestampTime"],
+			10 => ["name" => "LatestUp", "type" => "int", "pos" => 11, "profile" => "_~UnixTimestampTime"],
+			11 => ["name" => "EarliestDown", "type" => "int", "pos" =>12, "profile" => "_~UnixTimestampTime"],
+			12 => ["name" => "LatestDown", "type" => "int", "pos" => 13, "profile" => "_~UnixTimestampTime"],
+			13 => ["name" => "AutomationMorningOnOff", "type" => "bool", "pos" => 14, "profile" => "SwitchActive"],
+			14 => ["name" => "AutomationEveningOnOff", "type" => "bool", "pos" => 15, "profile" => "SwitchNotActive"]
 		];
 		private DPT1 $upDownDPT;
 		private DPT1 $stopDPT;
@@ -60,6 +55,20 @@
 			}
 			
 			//Variable profiles. CHeck if existing. Else create.
+			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.Control"))) {
+    			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.Control"), 1);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 0, $this->Translate("Closed"), "", 0xAAAAAA);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 4, "90%%", "", 0xAAAAAA);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 5, "75%%", "", 0xAAAAAA);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 6, "50%%", "", 0xAAAAAA);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 7, "25%%", "", 0xAAAAAA);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 8, $this->Translate("Opened"), "", 0xAAAAAA);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 10, "", "", 0x000000);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 11, $this->Translate("Up"), "", 0x00FF00);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 13, $this->Translate("Stop"), "", 0xFF0000);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 14, $this->Translate("Down"), "", 0x00FF00);
+				IPS_SetVariableProfileIcon($this->Translate("DWIPS.Shutter.Control"),  "Shutter");
+			}
 			if (! IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.UpDownStop"))) {
     			IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.UpDownStop"), 1);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.UpDownStop"), 0, $this->Translate("Up"), "", 0x00FF00);
@@ -186,6 +195,8 @@
 			$this->stopDPT = new DPT1($this->ReadPropertyInteger("StopMainGroup"), $this->ReadPropertyInteger("StopMiddleGroup"), $this->ReadPropertyInteger("StopSubGroup"));
 			$this->positionDPT = new DPT5($this->ReadPropertyInteger("PositionMainGroup"), $this->ReadPropertyInteger("PositionMiddleGroup"), $this->ReadPropertyInteger("PositionSubGroup"));
 			switch($Ident) {
+				case "Control":
+					break;
 				case "Action":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					if($Value == 0){
@@ -325,14 +336,8 @@
 					}
 					break;
 				case "EarliestUp":
-					SetValue($this->GetIDForIdent($Ident), $Value);
-					break;
 				case "LatestUp":
-					SetValue($this->GetIDForIdent($Ident), $Value);
-					break;
 				case "EarliestDown":
-					SetValue($this->GetIDForIdent($Ident), $Value);
-					break;
 				case "LatestDown":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					break;

@@ -63,7 +63,7 @@
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 6, "50%%", "", 0xAAAAAA);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 7, "25%%", "", 0xAAAAAA);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 8, $this->Translate("Opened"), "", 0xAAAAAA);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 10, "", "", 0x000000);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 10, "  ", "", 0x000000);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 11, $this->Translate("Up"), "", 0x00FF00);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 13, $this->Translate("Stop"), "", 0xFF0000);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Control"), 14, $this->Translate("Down"), "", 0x00FF00);

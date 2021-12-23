@@ -337,6 +337,7 @@
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					break;
 				case "AutomationMorningOnOff":
+				case "AutomationEveningOnOff":
 					if($Value == false){
 						SetValue($this->GetIDForIdent($Ident), true);
 						IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter.".$this->Translate("SwitchActive"));
@@ -344,9 +345,6 @@
 						SetValue($this->GetIDForIdent($Ident), false);
 						IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter.".$this->Translate("SwitchNotActive"));
 					}
-					break;
-				case "AutomationEveningOnOff":
-					SetValue($this->GetIDForIdent($Ident), $Value);
 					break;
 				default:
 					throw new Exception("Invalid Ident");

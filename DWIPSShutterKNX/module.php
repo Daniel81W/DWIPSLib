@@ -60,7 +60,7 @@
 				}elseif($prop["type"] == "int"){
 					$this->RegisterPropertyInteger($prop["name"], 0);
 				}else{
-					
+
 				}
 			}
 			
@@ -396,20 +396,22 @@
 
 			foreach($this->properties as $prop){
 				if (strlen($elements) >0){ $elements = $elements . ',';}
-				$elements = $elements . '{ "type": "RowLayout","items": [ ' .
+				if($prop["type"] == "DPT"){
+					$elements = $elements . '{ "type": "RowLayout","items": [ ' .
 						'{"type": "Label","caption": "' . $prop["name"] . '","width": "100px"},'.
 						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'MainGroup","caption": "MainGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
 						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'MiddleGroup","caption": "MiddleGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
 						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'SubGroup","caption": "SubGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
 						'{"type": "Select","name": "' . $prop["name"] . 'DataPointType","caption": "DataPointType",'.
 							'"options": [';
-				$first = true;
-				foreach($this->dpts as $dpt){
-					if (!$first){ $elements = $elements . ',';}
-					$elements = $elements . '{ "value": '. $dpt["value"] . ', "caption": "'. $dpt["name"] . '"}';
-					$first = false;
-				}
-				$elements = $elements . ']'.
+				
+					$first = true;
+					foreach($this->dpts as $dpt){
+						if (!$first){ $elements = $elements . ',';}
+						$elements = $elements . '{ "value": '. $dpt["value"] . ', "caption": "'. $dpt["name"] . '"}';
+						$first = false;
+					}
+					$elements = $elements . ']'.
 						'},'.
 						'{"type": "Select","name": "' . $prop["name"] . 'DataPointSubType","caption": "DataPointSubType",'.
 							'"options": ['.
@@ -417,6 +419,11 @@
 							']'.
 						'}'.
 					']}';
+				}elseif($prop["type"] == "int"){
+					$elements = $elements . '{ "type": "RowLayout","items": [ ' .
+						'{"type": "Label","caption": "' . $prop["name"] . '","width": "100px"},'.
+						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'MainGroup","caption": "MainGroup","minimum": 0,"maximum": 255,"width": "100px"},';
+				}					
 			}
 			
 

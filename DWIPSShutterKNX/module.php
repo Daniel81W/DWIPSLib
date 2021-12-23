@@ -7,18 +7,18 @@
 		private $parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";
 
 		private $properties = [
-			0 => ["name" => "UpDown"],
-			1 => ["name" => "Stop"],
-			2 => ["name" => "Position"],
-			3 => ["name" => "Preset12Set"],
-			4 => ["name" => "Preset12Ex"],
-			5 => ["name" => "Preset34Set"],
-			6 => ["name" => "Preset34Ex"],
-			7 => ["name" => "DrivingTime"],
-			7 => ["name" => "Value90"],
-			7 => ["name" => "Value75"],
-			7 => ["name" => "Value50"],
-			7 => ["name" => "Value25"]
+			0 => ["name" => "UpDown", "type" => "DPT"],
+			1 => ["name" => "Stop", "type" => "DPT"],
+			2 => ["name" => "Position", "type" => "DPT"],
+			3 => ["name" => "Preset12Set", "type" => "DPT"],
+			4 => ["name" => "Preset12Ex", "type" => "DPT"],
+			5 => ["name" => "Preset34Set", "type" => "DPT"],
+			6 => ["name" => "Preset34Ex", "type" => "DPT"],
+			7 => ["name" => "DrivingTime", "type" => "DPT"],
+			8 => ["name" => "Value90", "type" => "int"],
+			9 => ["name" => "Value75", "type" => "int"],
+			10 => ["name" => "Value50", "type" => "int"],
+			11 => ["name" => "Value25", "type" => "int"]
 		];
 		private $variables = [
 			0 => ["name" => "Control", "type" => "int", "pos" => 1, "profile" => "Control"],
@@ -51,11 +51,17 @@
 		
 			//Register Properties for KNX group addresses
 			foreach($this->properties as $prop){
-				$this->RegisterPropertyInteger($prop["name"]."MainGroup", 0);
-				$this->RegisterPropertyInteger($prop["name"]."MiddleGroup", 0);
-				$this->RegisterPropertyInteger($prop["name"]."SubGroup", 0);
-				$this->RegisterPropertyInteger($prop["name"]."DataPointType", 1);
-				$this->RegisterPropertyInteger($prop["name"]."DataPointSubType", 1);
+				if($prop["type"] == "DPT"){
+					$this->RegisterPropertyInteger($prop["name"]."MainGroup", 0);
+					$this->RegisterPropertyInteger($prop["name"]."MiddleGroup", 0);
+					$this->RegisterPropertyInteger($prop["name"]."SubGroup", 0);
+					$this->RegisterPropertyInteger($prop["name"]."DataPointType", 1);
+					$this->RegisterPropertyInteger($prop["name"]."DataPointSubType", 1);
+				}elseif($prop["type"] == "int"){
+					$this->RegisterPropertyInteger($prop["name"], 0);
+				}else{
+					
+				}
 			}
 			
 			//Variable profiles. CHeck if existing. Else create.

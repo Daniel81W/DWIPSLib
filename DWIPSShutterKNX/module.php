@@ -398,7 +398,7 @@
 				if (strlen($elements) >0){ $elements = $elements . ',';}
 				if($prop["type"] == "DPT"){
 					$elements = $elements . '{ "type": "RowLayout","items": [ ' .
-							'{"type": "Label","caption": "' . $prop["name"] . '","width": "100px"},'.
+							'{"type": "Label","caption": "' . $prop["name"] . '","width": "150px"},'.
 							'{"type": "NumberSpinner","name": "' . $prop["name"] . 'MainGroup","caption": "MainGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
 							'{"type": "NumberSpinner","name": "' . $prop["name"] . 'MiddleGroup","caption": "MiddleGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
 							'{"type": "NumberSpinner","name": "' . $prop["name"] . 'SubGroup","caption": "SubGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
@@ -421,7 +421,8 @@
 			
 				}elseif($prop["type"] == "int"){
 					$elements = $elements . '{ "type": "RowLayout","items": [ ' .
-						'{"type": "Label","caption": "' . $prop["name"] . '","width": "100px"}'.
+						'{"type": "Label","caption": "' . $prop["name"] . '","width": "150px"},'.
+						'{"type": "NumberSpinner","name": "' . $prop["name"] . '","caption": "","minimum": 0,"maximum": 100,"width": "100px"}'.
 						']}';
 				}
 			}

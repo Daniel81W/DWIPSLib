@@ -127,6 +127,7 @@
                 "GroupAddress3" => $this->subgroup,
                 "Data" => $this->encode()
             ];
+            echo $json;
             return json_encode($json);
         }
     }

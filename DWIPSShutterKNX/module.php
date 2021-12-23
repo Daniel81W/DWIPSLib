@@ -339,9 +339,9 @@
 				case "AutomationMorningOnOff":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					if($Value == true){
-						IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter.SwitchActive");
+						IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter.".$this->Translate("SwitchActive"));
 					}else{
-						IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter.SwitchNotActive");
+						IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter.".$this->Translate("SwitchNotActive"));
 					}
 					break;
 				case "AutomationEveningOnOff":

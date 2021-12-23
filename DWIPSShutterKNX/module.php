@@ -226,6 +226,7 @@
 							break;
 						case 7: // 25%
 							$this->positionDPT->setValueFromInt($this->ReadPropertyInteger("Value25"));
+							echo $this->positionDPT->getJSONString();
 							$this->SendDataToParent($this->positionDPT->getJSONString());
 							break;
 						case 8: //  0%

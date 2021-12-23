@@ -422,7 +422,8 @@
 				}elseif($prop["type"] == "int"){
 					$elements = $elements . '{ "type": "RowLayout","items": [ ' .
 						'{"type": "Label","caption": "' . $prop["name"] . '","width": "100px"},'.
-						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'MainGroup","caption": "MainGroup","minimum": 0,"maximum": 255,"width": "100px"},';
+						'{"type": "NumberSpinner","name": "' . $prop["name"] . 'MainGroup","caption": "MainGroup","minimum": 0,"maximum": 255,"width": "100px"},'.
+						']}';
 				}					
 			}
 			

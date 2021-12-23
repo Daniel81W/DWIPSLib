@@ -151,6 +151,7 @@
 						throw new Exception("Invalid type");
 				}
 			}
+			echo $this->GetConfigurationForm();
 
 		}
 

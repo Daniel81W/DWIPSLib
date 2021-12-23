@@ -210,7 +210,6 @@
 					switch($Value){
 						case 0: //100%
 							$this->positionDPT->setValueFromInt(100);
-							WFC_SendPopup (47530, "DEBUG", $this->positionDPT->getValueAsInt());
 							$this->SendDataToParent($this->positionDPT->getJSONString());
 							break;
 						case 4: // 90%

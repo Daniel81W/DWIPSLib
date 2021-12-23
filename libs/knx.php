@@ -127,6 +127,7 @@
                 "GroupAddress3" => $this->subgroup,
                 "Data" => $this->encode()
             ];
+            WFC_SendPopup (47530, "DEBUG", $json);
             return json_encode($json);
         }
     }

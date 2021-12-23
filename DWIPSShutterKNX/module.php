@@ -336,6 +336,17 @@
 				case "LatestDown":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					break;
+				case "AutomationMorningOnOff":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					if($Value == true){
+						IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter.SwitchActive");
+					}else{
+						IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter.SwitchNotActive");
+					}
+					break;
+				case "AutomationEveningOnOff":
+					SetValue($this->GetIDForIdent($Ident), $Value);
+					break;
 				default:
 					throw new Exception("Invalid Ident");
 			}

@@ -102,7 +102,6 @@
 
         public function encode(){
             $val = dechex( $this->value /100*255 + hexdec("c28000"));
-            WFC_SendPopup (47530, "DEBUG", hex2bin($val));
 			return hex2bin($val);
         }
 
@@ -128,6 +127,9 @@
                 "GroupAddress3" => $this->subgroup,
                 "Data" => $this->encode()
             ];
+            if(json_encode($json) = false){                
+                WFC_SendPopup (47530, "DEBUG", json_last_error());
+            }
             return json_encode($json);
         }
     }

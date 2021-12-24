@@ -102,7 +102,7 @@
 
         public function encode(){
             $val = dechex( $this->value /100*255 + hexdec("c28000"));
-			return hex2bin($val);
+			return pack("c*", $val);//hex2bin($val);
         }
 
         public function decode($data){
@@ -125,7 +125,7 @@
                 "GroupAddress1" => $this->maingroup,
                 "GroupAddress2" => $this->middlegroup,
                 "GroupAddress3" => $this->subgroup,
-                "Data" => mb_convert_encoding($this->encode(), 'UTF-8', 'ASCII')
+                "Data" => $this->encode
             ];
             if(json_encode($json) == false){                
                 WFC_SendPopup (47530, "DEBUG", json_last_error());

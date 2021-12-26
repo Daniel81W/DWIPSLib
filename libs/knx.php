@@ -102,7 +102,7 @@
 
         public function encode(){
             $val = dechex( $this->value /100*255 + hexdec("c28000"));
-			return utf8_encode(hex2bin($val));
+			return hex2bin($val);//utf8_encode(hex2bin($val));
         }
 
         public function decode($data){

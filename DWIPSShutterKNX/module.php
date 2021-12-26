@@ -215,8 +215,7 @@
 							break;
 						case 4: // 90%
 							$this->positionDPT->setValueFromInt($this->ReadPropertyInteger("Value90"));
-							//$this->SendDataToParent($this->positionDPT->getJSONString());
-							$json = $this->positionDPT->getJSONString();
+							$this->SendDataToParent($this->positionDPT->getJSONString());
 							break;
 						case 5: // 75%
 							$this->positionDPT->setValueFromInt($this->ReadPropertyInteger("Value75"));
@@ -235,8 +234,7 @@
 							break;
 						case 8: //  0%
 							$this->positionDPT->setValueFromInt(0);
-							//$this->SendDataToParent($this->positionDPT->getJSONString());
-							$json = $this->positionDPT->getJSONString();
+							$this->SendDataToParent($this->positionDPT->getJSONString());
 							break;
 						case 11: //  down
 							break;

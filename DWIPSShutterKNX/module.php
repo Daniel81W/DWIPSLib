@@ -210,27 +210,33 @@
 					switch($Value){
 						case 0: //100%
 							$this->positionDPT->setValueFromInt(100);
-							$this->SendDataToParent($this->positionDPT->getJSONString());
+							//$this->SendDataToParent($this->positionDPT->getJSONString());
+							$json = $this->positionDPT->getJSONString();
 							break;
 						case 4: // 90%
 							$this->positionDPT->setValueFromInt($this->ReadPropertyInteger("Value90"));
-							$this->SendDataToParent($this->positionDPT->getJSONString());
+							//$this->SendDataToParent($this->positionDPT->getJSONString());
+							$json = $this->positionDPT->getJSONString();
 							break;
 						case 5: // 75%
 							$this->positionDPT->setValueFromInt($this->ReadPropertyInteger("Value75"));
-							$this->SendDataToParent($this->positionDPT->getJSONString());
+							//$this->SendDataToParent($this->positionDPT->getJSONString());
+							$json = $this->positionDPT->getJSONString();
 							break;
 						case 6: // 50%
 							$this->positionDPT->setValueFromInt($this->ReadPropertyInteger("Value50"));
-							$this->SendDataToParent($this->positionDPT->getJSONString());
+							//$this->SendDataToParent($this->positionDPT->getJSONString());
+							$json = $this->positionDPT->getJSONString();
 							break;
 						case 7: // 25%
 							$this->positionDPT->setValueFromInt($this->ReadPropertyInteger("Value25"));
-							$this->SendDataToParent($this->positionDPT->getJSONString());
+							//$this->SendDataToParent($this->positionDPT->getJSONString());
+							$json = $this->positionDPT->getJSONString();
 							break;
 						case 8: //  0%
 							$this->positionDPT->setValueFromInt(0);
-							$this->SendDataToParent($this->positionDPT->getJSONString());
+							//$this->SendDataToParent($this->positionDPT->getJSONString());
+							$json = $this->positionDPT->getJSONString();
 							break;
 						case 11: //  down
 							break;

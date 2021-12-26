@@ -126,11 +126,11 @@
                 "GroupAddress2" => $this->middlegroup,
                 "GroupAddress3" => $this->subgroup,
                 "Data" => $this->encode()
-            ];/*
+            ];
             if(json_encode($json) == false){                
                 WFC_SendPopup (47530, "DEBUG", json_last_error());
             }
-            WFC_SendPopup (47530, "DEBUG", json_encode($json));*/
+            WFC_SendPopup (47530, "DEBUG", json_encode($json));
             return json_encode($json);
         }
     }

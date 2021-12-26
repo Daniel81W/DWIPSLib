@@ -125,7 +125,7 @@
                 "GroupAddress1" => $this->maingroup,
                 "GroupAddress2" => $this->middlegroup,
                 "GroupAddress3" => $this->subgroup,
-                "Data" => $this->encode
+                "Data" => $this->encode()
             ];
             if(json_encode($json) == false){                
                 WFC_SendPopup (47530, "DEBUG", json_last_error());

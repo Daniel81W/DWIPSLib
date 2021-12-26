@@ -130,7 +130,7 @@
             if(json_encode($json) == false){                
                 WFC_SendPopup (47530, "DEBUG", json_last_error());
             }
-            WFC_SendPopup (47530, "DEBUG", json_encode($json) . "    -    " . dechex(PHP_INT_MAX * 2 + 1));
+            WFC_SendPopup (47530, "DEBUG", json_encode($json) . "    -    " . $this->encode());
             return json_encode($json);
         }
     }

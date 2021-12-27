@@ -32,7 +32,7 @@
 	
 		public function ReceiveData($JSONString) {
 			$data = json_decode($JSONString, true);
-			$this->LogMessage(unpack("H*",$data["Buffer"]), KL_WARNING);
+			$this->SendDebug("SerialPort", unpack("H*",$data["Buffer"]), 0);
 		}
 
 		/**

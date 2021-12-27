@@ -32,7 +32,7 @@
 	
 		public function ReceiveData($JSONString) {
 			$data = json_decode($JSONString, true);
-			$this->LogMessage($data["Buffer"], KL_WARNING);
+			$this->LogMessage(unpack("C*",$data["Buffer"]), KL_WARNING);
 		}
 
 		/**

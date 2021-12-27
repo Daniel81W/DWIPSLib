@@ -31,7 +31,8 @@
 		}
 	
 		public function ReceiveData($JSONString) {
-			$this->LogMessage(var_dump(json_decode($JSONString)["Buffer"]), KL_WARNING);
+			$data = json_decode($JSONString);
+			$this->LogMessage($data["Buffer"], KL_WARNING);
 		}
 
 		/**

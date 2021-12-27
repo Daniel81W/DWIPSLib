@@ -31,6 +31,7 @@
 		}
 	
 		public function ReceiveData($JSONString) {
+			$this->LogMessage($JSONString, KL_WARNING);
 		}
 
 		/**

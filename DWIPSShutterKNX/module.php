@@ -182,8 +182,8 @@
 					$val = $this->DecodeDPT1($knxdata["Data"]);
 					SetValueInteger($this->GetIDForIdent("Action"), $val);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("PositionMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("PositionMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("PositionSubGroup")){
-					$val = $this->DecodeDPT5($knxdata["Data"]);
-					SetValueInteger($this->GetIDForIdent("Position"), $val);
+					$this->positionDPT->setValueFromBin($knxdata["Data"]);
+					SetValueInteger($this->GetIDForIdent("Position"), $this->positionDPT->getValueAsInt);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("DrivingTimeMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("DrivingTimeMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("DrivingTimeSubGroup")){
 					$val = $this->DecodeDPT1($knxdata["Data"]);
 					SetValueInteger($this->GetIDForIdent("DrivingTime"), $val);

@@ -92,7 +92,7 @@
             $this->decode($data);
         }
 
-        public function getValueAsInt(){
+        public function getValueAsInt() : int{
             return $this->value;
         }
 

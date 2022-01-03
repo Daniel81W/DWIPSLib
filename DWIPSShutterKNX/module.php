@@ -177,12 +177,14 @@
 			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"){
 				if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("UpDownMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("UpDownMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("UpDownSubGroup")){
 					$this->upDownDPT->setValueFromBin($knxdata["Data"]);
+					$this->SendDebug("KNX", "UpDown",0);
 					SetValueInteger($this->GetIDForIdent("Action"), $this->upDownDPT->getValueAsInt * 2);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("StopMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("StopMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("StopSubGroup")){
 					$val = $this->DecodeDPT1($knxdata["Data"]);
 					SetValueInteger($this->GetIDForIdent("Action"), $val);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("PositionMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("PositionMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("PositionSubGroup")){
 					$this->positionDPT->setValueFromBin($knxdata["Data"]);
+					$this->SendDebug("KNX", "Position",0);
 					SetValueInteger($this->GetIDForIdent("Position"), $this->positionDPT->getValueAsInt);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("DrivingTimeMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("DrivingTimeMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("DrivingTimeSubGroup")){
 					$val = $this->DecodeDPT1($knxdata["Data"]);

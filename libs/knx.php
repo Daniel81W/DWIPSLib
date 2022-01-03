@@ -107,7 +107,7 @@
 
         public function decode($data){
 			$val = bin2hex($data);
-			$val = (hexdec( $val) - hexdec("c28000")) * 100 / 255;
+			$val = (hexdec( $val) - hexdec("c28000"));// * 100 / 255;
 			$this->value = $val;
 		}
 

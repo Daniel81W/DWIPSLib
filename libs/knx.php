@@ -119,7 +119,7 @@
             $this->mod = $module;
         }
 
-        public function __construct(int $maingroup, int $middlegroup, int $subgroup,){
+        public function __construct(int $maingroup, int $middlegroup, int $subgroup){
             $this->dataID = "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}";
             $this->maingroup = $maingroup;
             $this->middlegroup = $middlegroup;

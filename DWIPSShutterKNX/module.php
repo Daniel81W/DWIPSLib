@@ -183,6 +183,7 @@
 					$val = $this->DecodeDPT1($knxdata["Data"]);
 					SetValueInteger($this->GetIDForIdent("Action"), $val);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("PositionMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("PositionMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("PositionSubGroup")){
+					$this->positionDPT->setModule($this);
 					$this->positionDPT->setValueFromBin($knxdata["Data"]);
 					$this->SendDebug("KNX", "Position - " . $this->positionDPT->getValueAsInt,0);
 					SetValueInteger($this->GetIDForIdent("Position"), $this->positionDPT->getValueAsInt);

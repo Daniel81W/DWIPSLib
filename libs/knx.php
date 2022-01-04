@@ -83,6 +83,7 @@
     class DPT5 extends DPT{
         private string $dataID;
         private int $value;
+        private IPSModule $mod;
 
         public function getValueAsBin(){
             return $this->encode();
@@ -107,11 +108,18 @@
 
         public function decode($data){
 			$val = bin2hex($data);
+            if(!is_null($this->mod)){
+                $this->mod->SendDebug("KNX DPT5", $val, 0);
+            }
 			$val = (hexdec( $val) - hexdec("c28000"));// * 100 / 255;
 			$this->value = $val;
 		}
 
-        public function __construct(int $maingroup, int $middlegroup, int $subgroup){
+        public function setModule(IPSModule $module){
+            $this->mod = $module;
+        }
+
+        public function __construct(int $maingroup, int $middlegroup, int $subgroup,){
             $this->dataID = "{42DFD4E4-5831-4A27-91B9-6FF1B2960260}";
             $this->maingroup = $maingroup;
             $this->middlegroup = $middlegroup;

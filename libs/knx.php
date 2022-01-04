@@ -107,6 +107,7 @@
         }
 
         public function decode($data){
+            echo "test";
 			$val = bin2hex($data);
             if(! is_null($this->mod)){
                 $this->mod->SendDebug("KNX DPT5", $val, 0);

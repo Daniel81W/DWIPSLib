@@ -98,7 +98,7 @@
         }
 
         public function setValueFromInt($value){
-            $this->value = $value;
+            $this->value = $value / 100 * 255;
         }
 
         public function encode(){

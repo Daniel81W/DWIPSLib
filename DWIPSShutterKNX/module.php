@@ -10,15 +10,16 @@
 			0 => ["name" => "UpDown", "type" => "DPT"],
 			1 => ["name" => "Stop", "type" => "DPT"],
 			2 => ["name" => "Position", "type" => "DPT"],
-			3 => ["name" => "Preset12Set", "type" => "DPT"],
-			4 => ["name" => "Preset12Ex", "type" => "DPT"],
-			5 => ["name" => "Preset34Set", "type" => "DPT"],
-			6 => ["name" => "Preset34Ex", "type" => "DPT"],
-			7 => ["name" => "DrivingTime", "type" => "DPT"],
-			8 => ["name" => "Value90", "type" => "int"],
-			9 => ["name" => "Value75", "type" => "int"],
-			10 => ["name" => "Value50", "type" => "int"],
-			11 => ["name" => "Value25", "type" => "int"]
+			3 => ["name" => "PositionRM", "type" => "DPT"],
+			4 => ["name" => "Preset12Set", "type" => "DPT"],
+			5 => ["name" => "Preset12Ex", "type" => "DPT"],
+			6 => ["name" => "Preset34Set", "type" => "DPT"],
+			7 => ["name" => "Preset34Ex", "type" => "DPT"],
+			8 => ["name" => "DrivingTime", "type" => "DPT"],
+			9 => ["name" => "Value90", "type" => "int"],
+			10 => ["name" => "Value75", "type" => "int"],
+			11 => ["name" => "Value50", "type" => "int"],
+			12 => ["name" => "Value25", "type" => "int"]
 		];
 		private $variables = [
 			0 => ["name" => "Control", "type" => "int", "pos" => 1, "profile" => "Control"],
@@ -49,7 +50,6 @@
 			//Connect to EIBGateway
 			$this->ConnectParent($this->parentID);
 		
-			//Register Properties for KNX group addresses
 			foreach($this->properties as $prop){
 				if($prop["type"] == "DPT"){
 					$this->RegisterPropertyInteger($prop["name"]."MainGroup", 0);
@@ -183,6 +183,11 @@
 					$val = $this->DecodeDPT1($knxdata["Data"]);
 					SetValueInteger($this->GetIDForIdent("Action"), $val);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("PositionMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("PositionMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("PositionSubGroup")){
+					$this->positionDPT->setModule($this);
+					$this->positionDPT->setValueFromBin($knxdata["Data"]);
+					$this->SendDebug("KNX", "Position - " . $this->positionDPT->getValueAsInt,0);
+					SetValueInteger($this->GetIDForIdent("Position"), $this->positionDPT->getValueAsInt);
+				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("PositionRMMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("PositionRMMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("PositionRMSubGroup")){
 					$this->positionDPT->setModule($this);
 					$this->positionDPT->setValueFromBin($knxdata["Data"]);
 					$this->SendDebug("KNX", "Position - " . $this->positionDPT->getValueAsInt,0);

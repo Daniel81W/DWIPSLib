@@ -180,17 +180,17 @@
 					$this->SendDebug("KNX", "UpDown",0);
 					SetValueInteger($this->GetIDForIdent("Action"), $this->upDownDPT->getValueAsInt * 2);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("StopMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("StopMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("StopSubGroup")){
-					$val = $this->DecodeDPT1($knxdata["Data"]);
-					SetValueInteger($this->GetIDForIdent("Action"), $val);
+					$this->stopDPT->setValueFromBin($knxdata["Data"]);
+					SetValueInteger($this->GetIDForIdent("Action"), $this->stopDPT->getValueAsInt);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("PositionMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("PositionMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("PositionSubGroup")){
 					$this->positionDPT->setModule($this);
 					$this->positionDPT->setValueFromBin($knxdata["Data"]);
 					$this->SendDebug("KNX", "Position - " . $this->positionDPT->getValueAsInt,0);
 					SetValueInteger($this->GetIDForIdent("Position"), $this->positionDPT->getValueAsInt);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("PositionRMMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("PositionRMMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("PositionRMSubGroup")){
-					$this->positionDPT->setModule($this);
+					//$this->positionDPT->setModule($this);
 					$this->positionDPT->setValueFromBin($knxdata["Data"]);
-					$this->SendDebug("KNX", "Position - " . $this->positionDPT->getValueAsInt,0);
+					$this->SendDebug("KNX", "PositionRM - " . $this->positionDPT->getValueAsInt,0);
 					SetValueInteger($this->GetIDForIdent("Position"), $this->positionDPT->getValueAsInt);
 				}elseif($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("DrivingTimeMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("DrivingTimeMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("DrivingTimeSubGroup")){
 					$val = $this->DecodeDPT1($knxdata["Data"]);

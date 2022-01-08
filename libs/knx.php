@@ -113,6 +113,8 @@
         public function decode($data){
 			$val = bin2hex($data);
             if(! is_null($this->mod)){
+                
+            WFC_SendPopup(47530, "KNX", "test");
                 $this->mod->SendDebug("KNX DPT5", $val, 0);
             }
 			$val = hexdec( substr($val,4));// * 100 / 255;

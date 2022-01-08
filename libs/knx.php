@@ -115,7 +115,7 @@
             if(! is_null($this->mod)){
                 $this->mod->SendDebug("KNX DPT5", $val, 0);
             }
-			$val = (hexdec( $val) - hexdec("c28000"));// * 100 / 255;
+			$val = hexdec( substr($val,4));// * 100 / 255;
 			$this->value = $val * 100 / 255;
 		}
 

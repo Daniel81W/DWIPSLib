@@ -112,7 +112,6 @@
 
         public function decode($data){
 			$val = bin2hex($data);
-            WFC_SendPopup(47530, "Test", $val);
             if(! is_null($this->mod)){
                 $this->mod->SendDebug("KNX DPT5", $val, 0);
             }

@@ -108,7 +108,7 @@
 
         public function decode($data){
 			$val = bin2hex($data);
-            //WFC_SendPopup(47530, "Test", $val);
+            WFC_SendPopup(47530, "Test", $val);
             if(! is_null($this->mod)){
                 $this->mod->SendDebug("KNX DPT5", $val, 0);
             }
@@ -136,10 +136,6 @@
                 "GroupAddress3" => $this->subgroup,
                 "Data" => $this->encode()
             ];
-            /*if(json_encode($json) == false){                
-                WFC_SendPopup (47530, "DEBUG", json_last_error());
-            }
-            WFC_SendPopup (47530, "DEBUG", json_encode($json));*/
             return json_encode($json);
         }
     }
@@ -160,6 +156,8 @@
                 }elseif($val <= hexdec("FF")){
                     $val = $value - hexdec("C0") + hexdec("c380");
                 }
+            }else{
+
             }
             return dechex($val);
         }

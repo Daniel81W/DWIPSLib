@@ -102,7 +102,11 @@
         }
 
         public function encode(){
-            $val = "c280" . $this->getft12value($this->value/100*255);
+            $evnull = "";
+            if($this->value<16){
+                $evnull = "0";
+            }
+            $val = "c280" . $evnull . $this->getft12value($this->value);
 			return hex2bin($val);
         }
 
@@ -113,7 +117,7 @@
                 $this->mod->SendDebug("KNX DPT5", $val, 0);
             }
 			$val = (hexdec( $val) - hexdec("c28000"));// * 100 / 255;
-			$this->value = $val;
+			$this->value = $val * 100 / 255;
 		}
 
         public function setModule(IPSModule $module){
@@ -156,8 +160,6 @@
                 }elseif($val <= hexdec("FF")){
                     $val = $value - hexdec("C0") + hexdec("c380");
                 }
-            }else{
-
             }
             return dechex($val);
         }

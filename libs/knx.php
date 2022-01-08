@@ -102,8 +102,8 @@
         }
 
         public function encode(){
-            $val = dechex( $this->value /100*255 + hexdec("c28000"));
-			return pack("H*", $val);//hex2bin($val);//utf8_encode(hex2bin($val));
+            $val = "c280" . $this->getft12value($this->value/100*255);
+			return hex2bin($val);
         }
 
         public function decode($data){
@@ -136,10 +136,10 @@
                 "GroupAddress3" => $this->subgroup,
                 "Data" => $this->encode()
             ];
-            if(json_encode($json) == false){                
+            /*if(json_encode($json) == false){                
                 WFC_SendPopup (47530, "DEBUG", json_last_error());
             }
-            WFC_SendPopup (47530, "DEBUG", json_encode($json));
+            WFC_SendPopup (47530, "DEBUG", json_encode($json));*/
             return json_encode($json);
         }
     }
@@ -151,6 +151,20 @@
 
         abstract public function encode();
         abstract public function decode($data);
+
+        public function getft12value(int $value){
+            $val = 0;
+            if($value >= hexdec("80")){
+                if($value <= hexdec("BF")){
+                    $val = $value - hexdec("80") + hexdec("c280");
+                }elseif($val <= hexdec("FF")){
+                    $val = $value - hexdec("C0") + hexdec("c380");
+                }
+            }
+            return dechex($val);
+        }
     }
+
+
 
 ?>

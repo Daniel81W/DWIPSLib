@@ -153,7 +153,7 @@
         abstract public function decode($data);
 
         public function getft12value(int $value){
-            $val = 0;
+            $val = $value;
             if($value >= hexdec("80")){
                 if($value <= hexdec("BF")){
                     $val = $value - hexdec("80") + hexdec("c280");

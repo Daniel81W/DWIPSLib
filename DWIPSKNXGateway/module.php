@@ -34,7 +34,7 @@
 			$data = json_decode($JSONString, true);
 			$this->SetBuffer("KNXData", $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]));
 
-			$this->SendDebug("SerialPort", $JSONString . "  -  " . $this->GetBuffer("KNXData"), 0);
+			$this->SendDebug("SerialPort",$this->GetBuffer("KNXData"), 0);
 			if(strlen($this->GetBuffer("KNXData"))>100){
 				$this->SetBuffer("KNXData","");
 			}

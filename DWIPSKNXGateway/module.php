@@ -32,7 +32,12 @@
 	
 		public function ReceiveData($JSONString) {
 			$data = json_decode($JSONString, true);
-			$this->SendDebug("SerialPort", $JSONString . "  -  " . bin2hex($data["Buffer"]). "  -  " . utf8_decode(bin2hex($data->Buffer)), 0);
+			$this->SetBuffer("KNXData", $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]));
+
+			$this->SendDebug("SerialPort", $JSONString . "  -  " . $this->GetBuffer("KNXData"), 0);
+			if(strlen($this->GetBuffer("KNXData"))>100){
+				$this->SetBuffer("KNXData","");
+			}
 		}
 
 		/**

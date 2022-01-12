@@ -32,7 +32,7 @@
 	
 		public function ReceiveData($JSONString) {
 			$data = json_decode($JSONString, true);
-			$this->SendDebug("SerialPort", $JSONString . "  -  " . bin2hex($data["Buffer"]). "  -  " . utf8_decode($data->Buffer), 0);
+			$this->SendDebug("SerialPort", $JSONString . "  -  " . bin2hex($data["Buffer"]). "  -  " . utf8_decode(bin2hex($data->Buffer)), 0);
 		}
 
 		/**

@@ -40,19 +40,17 @@
 			$currentdata = $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]);
 
 			$this->SendDebug("SerialPort","New Frame", 0);
-			$this->SendDebug("SerialPort",strpos($currentdata, "C2"), 0);
+			$this->SendDebug("SerialPort",strpos($currentdata, "c2"), 0);
 			
-		//	$this->SendDebug("SerialPort",str_contains($currentdata, "C2"), 0);
-/*
-			while(str_contains($currentdata, "C2")){
-				$this->SendDebug("SerialPort","C2", 0);
-				$next = strpos($this->GetBuffer("KNXData"), "C2");
+			$next = strpos($currentdata, "c2");
+			while($next !== false){
 				$this->SendDebug("SerialPort",$next, 0);
-				$torep = substr($this->GetBuffer("KNXData"), $next, 4);
+				$torep = substr($currentdata, $next, 4);
 				$this->SendDebug("SerialPort",$torep, 0);
-				$this->SetBuffer("KNXData", str_replace($torep, dechex(hexdec($torep) - hexdec("C200")), $this->GetBuffer("KNXData")));
+				$currentdata = str_replace($torep, dechex(hexdec($torep) - hexdec("C200")), $currentdata);
 
-			}*/
+				$next = strpos($currentdata, "c2");
+			}
 
 			$this->SendDebug("SerialPort",$currentdata, 0);
 

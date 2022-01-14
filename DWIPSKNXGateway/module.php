@@ -57,6 +57,7 @@
 			$this->SendDebug("SerialPort","2. - " . $currentdata, 0);
 			$i = 8;
 			while($i>0){
+				$this->SendDebug("SerialPort","A - " . $currentdata, 0);
 			//Buffer beginnt mit E5 -> ACK
 			if(strpos($currentdata, "e5") == 0){
 				$currentdata = substr($currentdata,2);

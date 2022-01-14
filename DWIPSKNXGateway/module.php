@@ -38,7 +38,7 @@
 			$data = json_decode($JSONString, true);
 			$this->SetBuffer("KNXData", $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]));
 			$this->SendDebug("SerialPort","New Frame", 0);
-
+/*
 			while(str_contains($this->GetBuffer("KNXData"), "C2")){
 				$this->SendDebug("SerialPort","C2", 0);
 				$next = strpos($this->GetBuffer("KNXData"), "C2");
@@ -47,7 +47,7 @@
 				$this->SendDebug("SerialPort",$torep, 0);
 				$this->SetBuffer("KNXData", str_replace($torep, dechex(hexdec($torep) - hexdec("C200")), $this->GetBuffer("KNXData")));
 
-			}
+			}*/
 
 			$this->SendDebug("SerialPort",$this->GetBuffer("KNXData"), 0);
 

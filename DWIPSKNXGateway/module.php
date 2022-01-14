@@ -40,6 +40,9 @@
 			$currentdata = $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]);
 
 			$this->SendDebug("SerialPort","New Frame", 0);
+			if(str_contains($currentdata, "C2")){
+				$this->SendDebug("SerialPort","True", 0);
+			}
 		//	$this->SendDebug("SerialPort",str_contains($currentdata, "C2"), 0);
 /*
 			while(str_contains($currentdata, "C2")){

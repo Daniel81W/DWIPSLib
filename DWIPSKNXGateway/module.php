@@ -72,8 +72,12 @@
 			}
 			$this->SendDebug("SerialPort","C", 0);
 			//Buffer beginnt mit 68****68
-			if(strpos($currentdata, "68") == 0 && strcmp(substr($currentdata, 6, 2), "68") == 0 && substr($currentdata, 2, 2) == substr($currentdata, 4, 2)){	
+			if(strpos($currentdata, "68") == 0){
 				$this->SendDebug("SerialPort","D", 0);
+				if(strcmp(substr($currentdata, 6, 2), "68") == 0){
+					$this->SendDebug("SerialPort","E", 0);
+					if(substr($currentdata, 2, 2) == substr($currentdata, 4, 2)){	
+				$this->SendDebug("SerialPort","F", 0);
 				$framelen = hexdec(substr($currentdata, 2, 2)) * 2 + 12;
 				$this->SendDebug("SerialPort","3. Framelen: " . $framelen, 0);
 				if(strlen($currentdata) >= $framelen){
@@ -85,7 +89,7 @@
 					$currentdata = substr($currentdata, $framelen);
 				}
 			
-			}
+			}}}
 			// Buffer beginnt nicht mit 68, bedeutet es ist nicht der Anfang eines FT1.2 Frames. Es muss zuerst er nächste Anfang gefunden werden und dann alles davor gelöscht.
 			else{ 
 				//Wenn nicht der Anfang des Frames dann muss es 1668 als Übergang zwischen den Frames geben. Position davon finden.

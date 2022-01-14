@@ -112,7 +112,7 @@
 
         public function decode($data){
 			$val = bin2hex($data);
-            WFC_SendPopup(47530, "KNX", $this->mod);
+            WFC_SendPopup(47530, "KNX", $this->mod->);
             if(! is_null($this->mod)){
                 WFC_SendPopup(47530, "KNX", "test");
                 

@@ -40,7 +40,7 @@
 			$currentdata = $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]);
 
 			$this->SendDebug("SerialPort","New Frame", 0);
-			//$this->SendDebug("SerialPort",str_contains($currentdata, "C2"), 0);
+			$this->SendDebug("SerialPort",str_contains($currentdata, "C2"), 0);
 /*
 			while(str_contains($currentdata, "C2")){
 				$this->SendDebug("SerialPort","C2", 0);
@@ -69,13 +69,13 @@
 					// ob die Stellen 7 + 8 auch 68 sind (Muss im FT1.2 Frame)
 					if(strcmp(substr($currentdata, $begin + 6, 2), "68") == 0 ){
 						// String ab der ersten 68 als neuer Buffer
-						$this->SetBuffer("KNXData", substr($currentdata, $begin));
+						$currentdata = substr($currentdata, $begin);
 					}
 				}
 			}
 			
 			if(strlen($currentdata)>100){
-				$this->SetBuffer("KNXData","");
+				$currentdata = "";
 			}
 
 			

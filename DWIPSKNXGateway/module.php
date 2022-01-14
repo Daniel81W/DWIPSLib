@@ -39,7 +39,7 @@
 
 			$currentdata = $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]);
 
-			$this->SendDebug("SerialPort","New Frame", 0);
+			$this->SendDebug("SerialPort","1. New Frame", 0);
 			
 			$next = strpos($currentdata, "c2");
 			while($next !== false){
@@ -54,7 +54,7 @@
 				$next = strpos($currentdata, "c3");
 			}
 
-			$this->SendDebug("SerialPort",$currentdata, 0);
+			$this->SendDebug("SerialPort","2. - " . $currentdata, 0);
 
 			//Buffer beginnt mit 68****68
 			if(strpos($currentdata, "68") == 0 && strcmp(substr($currentdata, 6, 2), "68") == 0 && substr($currentdata, 2, 2) == substr($currentdata, 4, 2)){
@@ -63,7 +63,7 @@
 					$frame = substr($currentdata, 0, $framelen);
 					if($this->proofChecksum($frame)){
 						$framedata = substr($frame, 10, $framelen - 14);
-						$this->SendDebug("SerialPort","Ganz: " . $framedata, 0);
+						$this->SendDebug("SerialPort","3. Ganz: " . $framedata, 0);
 					}
 				}
 				$currentdata = substr($currentdata, $framelen);

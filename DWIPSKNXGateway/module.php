@@ -56,22 +56,22 @@
 
 			$this->SendDebug("SerialPort","2. - " . $currentdata, 0);
 			$i = 8;
-			while($i>0){}
+			while($i>0){
 			//Buffer beginnt mit E5 -> ACK
 			if(strpos($currentdata, "e5") == 0){
 				$currentdata = substr($currentdata,2);
 			}
-			$this->SendDebug("SerialPort","A", 0);
+			//$this->SendDebug("SerialPort","A", 0);
 			//Reset Req
 			elseif(strpos($currentdata, "10404016") == 0){
 				$currentdata = substr($currentdata,8);
 			}
-			$this->SendDebug("SerialPort","B", 0);
+			//$this->SendDebug("SerialPort","B", 0);
 			// Reset Ind
 			elseif(strpos($currentdata, "10C0C016") == 0){
 				$currentdata = substr($currentdata,8);
 			}
-			$this->SendDebug("SerialPort","C", 0);
+			//$this->SendDebug("SerialPort","C", 0);
 			//Buffer beginnt mit 68****68
 			elseif(strpos($currentdata, "68") == 0){
 				$this->SendDebug("SerialPort","D", 0);

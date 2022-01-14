@@ -39,7 +39,7 @@
 
 			$currentdata = $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]);
 
-			$this->SendDebug("SerialPort","1. New Frame", 0);
+			$this->SendDebug("SerialPort","1. New Data", 0);
 			
 			$next = strpos($currentdata, "c2");
 			while($next !== false){
@@ -55,24 +55,25 @@
 			}
 
 			$this->SendDebug("SerialPort","2. - " . $currentdata, 0);
-
+			$i = 8;
+			while($i>0){}
 			//Buffer beginnt mit E5 -> ACK
 			if(strpos($currentdata, "e5") == 0){
 				$currentdata = substr($currentdata,2);
 			}
 			$this->SendDebug("SerialPort","A", 0);
 			//Reset Req
-			if(strpos($currentdata, "10404016") == 0){
+			elseif(strpos($currentdata, "10404016") == 0){
 				$currentdata = substr($currentdata,8);
 			}
 			$this->SendDebug("SerialPort","B", 0);
 			// Reset Ind
-			if(strpos($currentdata, "10C0C016") == 0){
+			elseif(strpos($currentdata, "10C0C016") == 0){
 				$currentdata = substr($currentdata,8);
 			}
 			$this->SendDebug("SerialPort","C", 0);
 			//Buffer beginnt mit 68****68
-			if(strpos($currentdata, "68") == 0){
+			elseif(strpos($currentdata, "68") == 0){
 				$this->SendDebug("SerialPort","D", 0);
 				if(strpos(substr($currentdata, 6, 2), "68") == 0){
 					$this->SendDebug("SerialPort","E", 0);
@@ -106,6 +107,8 @@
 					}
 				}
 			}
+			$i--;
+		}
 			
 			if(strlen($currentdata)>100){
 				$currentdata = "";

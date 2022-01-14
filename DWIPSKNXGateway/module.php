@@ -74,7 +74,7 @@
 			//Buffer beginnt mit 68****68
 			if(strpos($currentdata, "68") == 0){
 				$this->SendDebug("SerialPort","D", 0);
-				if(strcmp(substr($currentdata, 6, 2), "68") == 0){
+				if(strpos(substr($currentdata, 6, 2), "68") == 0){
 					$this->SendDebug("SerialPort","E", 0);
 					if(substr($currentdata, 2, 2) == substr($currentdata, 4, 2)){	
 				$this->SendDebug("SerialPort","F", 0);

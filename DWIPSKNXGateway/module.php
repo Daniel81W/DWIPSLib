@@ -66,7 +66,6 @@
 				$currentdata = substr($currentdata,8);
 			}
 			$this->SendDebug("SerialPort","B", 0);
-						$this->SendDebug("SerialPort","4. Ganz: " . $framedata, 0);
 			// Reset Ind
 			if(strpos($currentdata, "10C0C016") == 0){
 				$currentdata = substr($currentdata,8);

@@ -60,14 +60,18 @@
 			if(strpos($currentdata, "e5") == 0){
 				$currentdata = substr($currentdata,2);
 			}
+			$this->SendDebug("SerialPort","A", 0);
 			//Reset Req
 			if(strpos($currentdata, "10404016") == 0){
-				$currentdata = substr($currentdata,2);
+				$currentdata = substr($currentdata,8);
 			}
+			$this->SendDebug("SerialPort","B", 0);
+						$this->SendDebug("SerialPort","4. Ganz: " . $framedata, 0);
 			// Reset Ind
 			if(strpos($currentdata, "10C0C016") == 0){
-				$currentdata = substr($currentdata,2);
+				$currentdata = substr($currentdata,8);
 			}
+			$this->SendDebug("SerialPort","C", 0);
 			//Buffer beginnt mit 68****68
 			if(strpos($currentdata, "68") == 0 && strcmp(substr($currentdata, 6, 2), "68") == 0 && substr($currentdata, 2, 2) == substr($currentdata, 4, 2)){
 				$framelen = hexdec(substr($currentdata, 2, 2)) * 2 + 12;

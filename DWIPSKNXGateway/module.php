@@ -87,6 +87,7 @@
 						$this->SendDebug("SerialPort","4. Ganz: " . $framedata, 0);
 					}
 					$currentdata = substr($currentdata, $framelen);
+					$this->SendDebug("SerialPort","5. Ganz: " . $currentdata, 0);
 				}
 			
 			}}}

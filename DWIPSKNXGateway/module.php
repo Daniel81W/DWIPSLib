@@ -59,11 +59,12 @@
 			//Buffer beginnt mit 68****68
 			if(strpos($currentdata, "68") == 0 && strcmp(substr($currentdata, 6, 2), "68") == 0 && substr($currentdata, 2, 2) == substr($currentdata, 4, 2)){
 				$framelen = hexdec(substr($currentdata, 2, 2)) * 2 + 12;
+				$this->SendDebug("SerialPort","3. Framelen: " . $framelen, 0);
 				if(strlen($currentdata) >= $framelen){
 					$frame = substr($currentdata, 0, $framelen);
 					if($this->proofChecksum($frame)){
 						$framedata = substr($frame, 10, $framelen - 14);
-						$this->SendDebug("SerialPort","3. Ganz: " . $framedata, 0);
+						$this->SendDebug("SerialPort","4. Ganz: " . $framedata, 0);
 					}
 				}
 				$currentdata = substr($currentdata, $framelen);

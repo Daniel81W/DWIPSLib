@@ -48,7 +48,6 @@
 				$next = strpos($currentdata, "c2");
 			}
 			$next = strpos($currentdata, "c3");
-			$this->SendDebug("SerialPort",$next, 0);
 			while($next !== false){
 				$torep = substr($currentdata, $next, 4);
 				$currentdata = str_replace($torep, dechex(hexdec($torep) - hexdec("C2C0")), $currentdata);
@@ -58,8 +57,10 @@
 			$this->SendDebug("SerialPort",$currentdata, 0);
 
 			//Buffer beginnt mit 68****68
-			if(str_starts_with($currentdata, "68") && strcmp(substr($currentdata, 6, 2), "68") == 0){
-				
+			if(str_starts_with($currentdata, "68") && strcmp(substr($currentdata, 6, 2), "68") == 0 && substr($currentdata, 2, 2) == substr($currentdata, 4, 2)){
+				if(strlen($currentdata) >= hexdec(substr($currentdata, 2, 2))){
+					$this->SendDebug("SerialPort","Ganz: " . $currentdata, 0);
+				}
 
 			// Buffer beginnt nicht mit 68, bedeutet es ist nicht der Anfang eines FT1.2 Frames. Es muss zuerst er nächste Anfang gefunden werden und dann alles davor gelöscht.
 			}else{ 

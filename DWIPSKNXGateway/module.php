@@ -60,6 +60,14 @@
 			if(strpos($currentdata, "e5") == 0){
 				$currentdata = substr($currentdata,2);
 			}
+			//Reset Req
+			if(strpos($currentdata, "10404016") == 0){
+				$currentdata = substr($currentdata,2);
+			}
+			// Reset Ind
+			if(strpos($currentdata, "10C0C016") == 0){
+				$currentdata = substr($currentdata,2);
+			}
 			//Buffer beginnt mit 68****68
 			if(strpos($currentdata, "68") == 0 && strcmp(substr($currentdata, 6, 2), "68") == 0 && substr($currentdata, 2, 2) == substr($currentdata, 4, 2)){
 				$framelen = hexdec(substr($currentdata, 2, 2)) * 2 + 12;

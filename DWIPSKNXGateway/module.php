@@ -37,7 +37,8 @@
 		public function ReceiveDataFT12($JSONString) {
 			$data = json_decode($JSONString, true);
 			$this->SetBuffer("KNXData", $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]));
-
+			$this->SendDebug("SerialPort","New Frame", 0);
+			
 			while(str_contains($this->GetBuffer("KNXData"), "C2")){
 				$next = strpos($this->GetBuffer("KNXData"), "C2");
 				$torep = substr($this->GetBuffer("KNXData"), $next, 4);

@@ -78,8 +78,8 @@
 						$framedata = substr($frame, 10, $framelen - 14);
 						$this->SendDebug("SerialPort","4. Ganz: " . $framedata, 0);
 					}
+					$currentdata = substr($currentdata, $framelen);
 				}
-				$currentdata = substr($currentdata, $framelen);
 			
 			}
 			// Buffer beginnt nicht mit 68, bedeutet es ist nicht der Anfang eines FT1.2 Frames. Es muss zuerst er nächste Anfang gefunden werden und dann alles davor gelöscht.

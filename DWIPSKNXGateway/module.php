@@ -72,7 +72,8 @@
 			}
 			$this->SendDebug("SerialPort","C", 0);
 			//Buffer beginnt mit 68****68
-			if(strpos($currentdata, "68") == 0 && strcmp(substr($currentdata, 6, 2), "68") == 0 && substr($currentdata, 2, 2) == substr($currentdata, 4, 2)){
+			if(strpos($currentdata, "68") == 0 && strcmp(substr($currentdata, 6, 2), "68") == 0 && substr($currentdata, 2, 2) == substr($currentdata, 4, 2)){	
+				$this->SendDebug("SerialPort","D", 0);
 				$framelen = hexdec(substr($currentdata, 2, 2)) * 2 + 12;
 				$this->SendDebug("SerialPort","3. Framelen: " . $framelen, 0);
 				if(strlen($currentdata) >= $framelen){

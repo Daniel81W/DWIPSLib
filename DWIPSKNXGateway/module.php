@@ -69,14 +69,15 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 				//Buffer beginnt mit 68****68 und die Bytes 2 und 3 sind gleich
 				if(strpos($currentdata, "68") === 0 && strpos(substr($currentdata, 6, 2), "68") === 0 && strcmp(substr($currentdata, 2, 2), substr($currentdata, 4, 2)) == 0)
 				{
-					$framelen = hexdec(substr($currentdata,2,2)) * 2 + 12;
-$this->SendDebug("SerialPort","3. Framelen: " . $framelen, 0);
-					
-					if(strlen($currentdata) >= $framelen)
+					$framelen = hexdec(substr($currentdata,2,2)) * 2 + 12;					
+					if(strlen($currentdata) >= $framelen && strcmp(substr($currentdata, $framelen, 2),"16") == 0 )
 					{
-$this->SendDebug("SerialPort","4a. Framelen ist da: " . $currentdata, 0);
-$this->SendDebug("SerialPort","4b. Framelen ist da: " . substr($currentdata,0,$framelen), 0);
 						$frame = substr($currentdata,0,$framelen);
+						if($this->proofChecksum($frame))
+						{
+							$framedata = substr($frame, 10, $framelen - 14);
+$this->SendDebug("SerialPort","FrameData: " . $framedata, 0);
+						}
 						$currentdata = substr($currentdata, $framelen);
 					}
 				}

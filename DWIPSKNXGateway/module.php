@@ -126,7 +126,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 									$nexthex = substr($framedata,16,2);
 									if($len == 1)
 									{
-										$knxdata = dechex($nexthex - intdiv($nexthex, 64) * 64);
+										$knxdata = dechex(hexdec($nexthex) - intdiv(hexdec($nexthex), 64) * 64);
 									}
 									elseif($len > 1)
 									{

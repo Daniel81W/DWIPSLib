@@ -76,9 +76,28 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 						if($this->proofChecksum($frame))
 						{
 							$framedata = substr($frame, 10, $framelen - 14);
-$this->SendDebug("SerialPort","FrameData: " . $framedata, 0);
 						}
 						$currentdata = substr($currentdata, $framelen);
+					}
+				}
+				// Buffer beginnt nicht mit 68, bedeutet es ist nicht der Anfang eines FT1.2 Frames. Es muss zuerst er nächste Anfang gefunden werden und dann alles davor gelöscht.
+				if(strpos($currentdata, "1668") !== 0 || strpos($currentdata, "e568") !== 0)
+				{ 
+					//Wenn nicht der Anfang des Frames dann muss es 1668 als Übergang zwischen den Frames geben. Position davon finden.
+					$begin = strpos($currentdata,"1668");
+					if($begin === false)
+					{
+						$begin = strpos($currentdata,"e568");
+					}
+					// Falls 1668 oder e568 gefunden wurde
+					if($begin !== false){
+						// Index plus 2, also auf 68
+						$begin += 2;
+						// ob die Stellen 7 + 8 auch 68 sind (Muss im FT1.2 Frame)
+						if(strcmp(substr($currentdata, $begin + 6, 2), "68") == 0 ){
+							// String ab der ersten 68 als neuer Buffer
+							$currentdata = substr($currentdata, $begin);
+						}
 					}
 				}
 			}
@@ -92,60 +111,7 @@ $this->SendDebug("SerialPort","FrameData: " . $framedata, 0);
 
 			$this->SetBuffer("KNXData", $currentdata);
 		}
-			/*
-$this->SendDebug("SerialPort","2. - " . $currentdata, 0);
-			$i = 8;
-			while($i>0){
-
-				//Buffer beginnt mit 68****68
-				elseif(strpos($currentdata, "68") == 0){
-					$this->SendDebug("SerialPort","D", 0);
-					if(strpos(substr($currentdata, 6, 2), "68") == 0){
-$this->SendDebug("SerialPort","E", 0);
-						if(strcmp(substr($currentdata, 2, 2), substr($currentdata, 4, 2)) == 0){	
-$this->SendDebug("SerialPort","F", 0);
-							$framelen = hexdec(substr($currentdata, 2, 2)) * 2 + 12;
-
-$this->SendDebug("SerialPort","3. Framelen: " . $framelen, 0);
-							if(strlen($currentdata) >= $framelen){
-								$frame = substr($currentdata, 0, $framelen);
-								if($this->proofChecksum($frame)){
-									$framedata = substr($frame, 10, $framelen - 14);
-$this->SendDebug("SerialPort","4. Ganz: " . $framedata, 0);
-								}
-								$currentdata = substr($currentdata, $framelen);
-$this->SendDebug("SerialPort","5. Ganz: " . $currentdata, 0);
-							}
-						}
-					}
-				}
-				// Buffer beginnt nicht mit 68, bedeutet es ist nicht der Anfang eines FT1.2 Frames. Es muss zuerst er nächste Anfang gefunden werden und dann alles davor gelöscht.
-				else{ 
-					//Wenn nicht der Anfang des Frames dann muss es 1668 als Übergang zwischen den Frames geben. Position davon finden.
-					$begin = strpos($currentdata,"1668");
-					// Falls 1668 gefunden wurde
-					if($begin !== false){
-						// Index plus 2, also auf 68
-						$begin += 2;
-						// ob die Stellen 7 + 8 auch 68 sind (Muss im FT1.2 Frame)
-						if(strcmp(substr($currentdata, $begin + 6, 2), "68") == 0 ){
-							// String ab der ersten 68 als neuer Buffer
-							$currentdata = substr($currentdata, $begin);
-						}
-					}
-				}
-				$i--;
-			}
 			
-			if(strlen($currentdata)>100){
-				$currentdata = "";
-			}
-
-			
-			$this->SetBuffer("KNXData", $currentdata);
-		}
-		*/
-
 		private function proofChecksum(string $frame) : bool
 		{
 			return true;

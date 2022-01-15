@@ -64,7 +64,7 @@ $this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 2), 0);
 $this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 8), 0);
 				}
 				//Reset Ind
-				if(strpos($currentdata, "10C0C016") === 0)
+				if(strpos($currentdata, "10c0c016") === 0)
 				{
 					$currentdata = substr($currentdata, 8);
 $this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 8), 0);

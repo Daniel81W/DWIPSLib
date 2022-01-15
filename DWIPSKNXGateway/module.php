@@ -41,7 +41,7 @@
 			$data = json_decode($JSONString, true);
 			//Noch vorhandene Daten aus dem Buffer laden und neue anfügen
 			//$currentdata = $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]);
-			$currentdata = $this->GetBuffer("KNXData") . "e5" . bin2hex($data["Buffer"]);
+			$currentdata = $this->GetBuffer("KNXData") . "e5e510404016e510c0c016" . bin2hex($data["Buffer"]);
 
 $this->SendDebug("SerialPort","1. New Data", 0);
 			// von UTF-8 hex auf Unicode Code point umwandeln (z.B. C3BF = FF)
@@ -49,9 +49,22 @@ $this->SendDebug("SerialPort","1. New Data", 0);
 
 $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 			
-			for($i = 8; $i > 0; $i--)
+			for($i = 20; $i > 0; $i--)
 			{
+				//Buffer beginnt mit E5 -> ACK
 				if(strpos($currentdata, "e5") === 0)
+				{
+					$currentdata = substr($currentdata, 2);
+$this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 2), 0);
+				}
+				//Reset Req
+				if(strpos($currentdata, "10404016") === 0)
+				{
+					$currentdata = substr($currentdata, 2);
+$this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 2), 0);
+				}
+				//Reset Ind
+				if(strpos($currentdata, "10C0C016") === 0)
 				{
 					$currentdata = substr($currentdata, 2);
 $this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 2), 0);

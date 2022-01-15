@@ -51,7 +51,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 			
 			for($i = 8; $i > 0; $i--)
 			{
-				if(strpos($currentdata, "e5") == 0)
+				if(strpos($currentdata, "e5") === 0)
 				{
 					$currentdata = substr($currentdata, 2);
 $this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 2), 0);

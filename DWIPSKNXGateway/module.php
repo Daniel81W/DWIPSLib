@@ -49,7 +49,7 @@ $this->SendDebug("SerialPort","1. New Data", 0);
 
 $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 			
-			for($i = 20; $i > 0; $i--)
+			for($i = 10; $i > 0; $i--)
 			{
 				//Buffer beginnt mit E5 -> ACK
 				if(strpos($currentdata, "e5") === 0)
@@ -76,6 +76,8 @@ $this->SendDebug("SerialPort","3. Framelen: " . $framelen, 0);
 					{
 $this->SendDebug("SerialPort","4a. Framelen ist da: " . $currentdata, 0);
 $this->SendDebug("SerialPort","4b. Framelen ist da: " . substr($currentdata,0,$framelen), 0);
+						$frame = substr($currentdata,0,$framelen);
+						$currentdata = substr($currentdata, $framelen);
 					}
 				}
 			}

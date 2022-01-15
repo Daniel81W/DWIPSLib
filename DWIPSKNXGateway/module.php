@@ -54,6 +54,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 				if(strpos($currentdata, "e5"))
 				{
 					$currentdata = substr($currentdata, 2);
+$this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 2), 0);
 				}
 			}
 

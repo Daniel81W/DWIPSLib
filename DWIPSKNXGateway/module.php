@@ -69,7 +69,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 				//Buffer beginnt mit 68****68 und die Bytes 2 und 3 sind gleich
 				if(strpos($currentdata, "68") === 0 && strpos(substr($currentdata, 6, 2), "68") === 0 && strcmp(substr($currentdata, 2, 2), substr($currentdata, 4, 2)) == 0)
 				{
-					$repeated = null;
+					$repeated = false;
 					$prio = 4;
 					$sourceaddr = "";
 					$targetaddrtype = 0;
@@ -95,6 +95,8 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 									}
 									$nexthex = substr($framedata,1,1);
     								$prio = hexdec($nexthex) >> 2;
+									$sourceaddr = hexdec(substr($framedata,4,1)).".".hexdec(substr($framedata,5,1)).".".hexdec(substr($framedata,6,2));
+									$nexthex = substr($framedata,4,4);
 								}
 								//Data Request
 								elseif(strpos($framedata, "3") === 0 || (strpos($framedata, "1") === 0))

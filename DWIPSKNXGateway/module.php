@@ -125,11 +125,11 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 									//Data
 									if($len == 1)
 									{
-										$data = dechex($i - intdiv($i, 64) * 64);
+										$knxdata = dechex($i - intdiv($i, 64) * 64);
 									}
 									elseif($len > 1)
 									{
-										$data = substr($framedata, 18);
+										$knxdata = substr($framedata, 18);
 									}
 
 								}

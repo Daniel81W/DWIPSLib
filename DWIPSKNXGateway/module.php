@@ -118,7 +118,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 			$framedata = substr($frame, 8, $framelen * 2);
 			$checksum = substr($frame, 8 + $framelen * 2, 2);
 			$computedChecksum = 0;
-			for($i = 0; $i < $framelen * 2; $i = $i + 2)
+			for($i = 0; $i < $framelen; $i++)
 			{
 				$computedChecksum += hexdec(substr($framedata, $i * 2, 2));
 				if($computedChecksum > 255)

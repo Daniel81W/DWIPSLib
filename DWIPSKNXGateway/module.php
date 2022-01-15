@@ -49,6 +49,15 @@ $this->SendDebug("SerialPort","1. New Data", 0);
 
 $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 			
+			for($i = 8; $i > 0; $i--)
+			{
+				if(strpos($currentdata, "e5"))
+				{
+					$currentdata = substr($currentdata, 2);
+				}
+			}
+
+
 
 			if(strlen($currentdata)>=150)
 			{

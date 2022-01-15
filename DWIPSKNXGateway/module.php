@@ -40,7 +40,8 @@
 			//JSONString dekodieren
 			$data = json_decode($JSONString, true);
 			//Noch vorhandene Daten aus dem Buffer laden und neue anfügen
-			$currentdata = $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]);
+			//$currentdata = $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]);
+			$currentdata = $this->GetBuffer("KNXData") . "e5" . bin2hex($data["Buffer"]);
 
 $this->SendDebug("SerialPort","1. New Data", 0);
 			// von UTF-8 hex auf Unicode Code point umwandeln (z.B. C3BF = FF)

@@ -74,6 +74,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 					$sourceaddr = "";
 					$targetaddrtype = 0;
 					$targetaddr = "";
+					$len = 0;
 					$apci = "";
 					$knxdata = "";
 					$framelen = hexdec(substr($currentdata,2,2)) * 2 + 12;					
@@ -112,11 +113,24 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 										$targetaddrtype = 1;
 										$targetaddr = hexdec(substr($framedata,8,1)).".".hexdec(substr($framedata,9,1)).".".hexdec(substr($framedata,10,2));
 									}
+									//Length
+									$len = hexdec(substr($framedata,13,1));
+									//APCI
 									$nexthex = substr($framedata,15,1);
 									$i1 = (hexdec($nexthex) - (intdiv(hexdec($nexthex), 4) * 4)) * 4;
 									$nexthex = substr($framedata,16,1);
 									$i2 = intdiv(hexdec($nexthex), 4);
 									$apci = $i1 + $i2;
+
+									//Data
+									if($len == 1)
+									{
+										$data = dechex($i - intdiv($i, 64) * 64);
+									}
+									elseif($len > 1)
+									{
+										$data = substr($framedata, 18);
+									}
 
 								}
 								//Data Request
@@ -139,6 +153,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 							"Source" => $sourceaddr,
 							"TargetType" => $targetaddrtype,
 							"Target" => $targetaddr,
+							"Length" => $len,
 							"APCI" => $apci,
 							"Data" => $knxdata
 						];

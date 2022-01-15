@@ -116,7 +116,6 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 		{
 			$framelen = hexdec(substr($frame, 2, 2));
 			$framedata = substr($frame, 8, $framelen * 2);
-			$this->SendDebug("SerialPort","Checksum-Frame: " . $framedata, 0);
 			$checksum = substr($frame, 8 + $framelen * 2, 2);
 			$computedChecksum = 0;
 			for($i = 0; $i < $framelen / 2; $i++)
@@ -126,6 +125,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 				{
 					$computedChecksum -= 256;
 				}
+				$this->SendDebug("SerialPort","ChecksumComp: " . $i . " - " . $computedChecksum, 0);
 			}
 			$this->SendDebug("SerialPort","Checksum: " . $computedChecksum . " - " . $checksum, 0);
 			return true;

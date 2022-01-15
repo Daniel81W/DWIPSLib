@@ -96,6 +96,23 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 									$nexthex = substr($framedata,1,1);
     								$prio = hexdec($nexthex) >> 2;
 									$sourceaddr = hexdec(substr($framedata,4,1)).".".hexdec(substr($framedata,5,1)).".".hexdec(substr($framedata,6,2));
+									if(hexdec(substr($framedata,12,2)) < 128)
+									{	
+										$targetaddrtype = 0;
+										$hex = substr($framedata,8,2);
+										$i = hexdec($hex);
+										if($i>127)
+										{
+											$i-= 128;
+										}
+										echo intdiv($i, 8) . "." . $i - intdiv($i, 8) * 8 . ".";
+										$targetaddr = intdiv($i, 8) . "." . $i - intdiv($i, 8) * 8 . ".".hexdec(substr($framedata,10,2));
+									}
+									else
+									{	
+										$targetaddrtype = 1;
+										$targetaddr = hexdec(substr($framedata,8,1)).".".hexdec(substr($framedata,9,1)).".".hexdec(substr($framedata,10,2));
+									}
 									$nexthex = substr($framedata,4,4);
 								}
 								//Data Request

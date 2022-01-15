@@ -112,7 +112,12 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 										$targetaddrtype = 1;
 										$targetaddr = hexdec(substr($framedata,8,1)).".".hexdec(substr($framedata,9,1)).".".hexdec(substr($framedata,10,2));
 									}
-									$nexthex = substr($framedata,4,4);
+									$nexthex = substr($framedata,15,1);
+									$i1 = (hexdec($nexthex) - (intdiv(hexdec($nexthex), 4) * 4)) * 4;
+									$nexthex = substr($framedata,16,1);
+									$i2 = intdiv(hexdec($nexthex), 4);
+									$apci = $i1 + $i2;
+
 								}
 								//Data Request
 								elseif(strpos($framedata, "3") === 0 || (strpos($framedata, "1") === 0))

@@ -125,10 +125,9 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 				{
 					$computedChecksum -= 256;
 				}
-				$this->SendDebug("SerialPort","ChecksumComp: " . $i . " - " . $computedChecksum, 0);
 			}
-			$this->SendDebug("SerialPort","Checksum: " . $computedChecksum . " - " . $checksum, 0);
-			return true;
+			$this->SendDebug("SerialPort","Checksum: " . dechex($computedChecksum) . " - " . $checksum, 0);
+			return ($computedChecksum == hexdec($checksum));
 		}
 
 		private function correctDataForUTFCodes(string $frame) : string

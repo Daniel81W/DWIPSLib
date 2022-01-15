@@ -105,8 +105,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 										{
 											$i-= 128;
 										}
-										echo intdiv($i, 8) . "." . $i - intdiv($i, 8) * 8 . ".";
-										$targetaddr = intdiv($i, 8) . "." . $i - intdiv($i, 8) * 8 . ".".hexdec(substr($framedata,10,2));
+										$targetaddr = intdiv($i, 8) . "." . ($i - intdiv($i, 8) * 8) . ".".hexdec(substr($framedata,10,2));
 									}
 									else
 									{	

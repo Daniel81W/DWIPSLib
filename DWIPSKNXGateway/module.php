@@ -46,6 +46,9 @@ $this->SendDebug("SerialPort","1. New Data", 0);
 			// von UTF-8 hex auf Unicode Code point umwandeln (z.B. C3BF = FF)
 			$currentdata = $this->correctDataForUTFCodes($currentdata);
 
+$this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
+			
+
 			if(strlen($currentdata)>=150)
 			{
 				$currentdata = "";

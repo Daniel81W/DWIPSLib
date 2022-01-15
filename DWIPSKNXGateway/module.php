@@ -60,14 +60,21 @@ $this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 2), 0);
 				//Reset Req
 				if(strpos($currentdata, "10404016") === 0)
 				{
-					$currentdata = substr($currentdata, 2);
-$this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 2), 0);
+					$currentdata = substr($currentdata, 8);
+$this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 8), 0);
 				}
 				//Reset Ind
 				if(strpos($currentdata, "10C0C016") === 0)
 				{
-					$currentdata = substr($currentdata, 2);
-$this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 2), 0);
+					$currentdata = substr($currentdata, 8);
+$this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 8), 0);
+				}
+				//Buffer beginnt mit 68****68 und die Bytes 2 und 3 sind gleich
+				if(strpos($currentdata, "68") === 0 && strpos(substr($currentdata, 6, 2), "68") === 0 && strcmp(substr($currentdata, 2, 2), substr($currentdata, 4, 2)) == 0)
+				{
+					$framelen = hexdec(substr($currentdata,2,2));
+$this->SendDebug("SerialPort","3. Framelen: " . $framelen, 0);
+					
 				}
 			}
 
@@ -84,23 +91,7 @@ $this->SendDebug("SerialPort","3. Data: " . substr($currentdata, 2), 0);
 $this->SendDebug("SerialPort","2. - " . $currentdata, 0);
 			$i = 8;
 			while($i>0){
-$this->SendDebug("SerialPort","i = " . $i, 0);
-$this->SendDebug("SerialPort","A - " . $currentdata, 0);
-				//Buffer beginnt mit E5 -> ACK
-				if(strpos($currentdata, "e5") == 0){
-					$currentdata = substr($currentdata,2);
-				}
-//$this->SendDebug("SerialPort","A", 0);
-				//Reset Req
-				elseif(strpos($currentdata, "10404016") == 0){
-					$currentdata = substr($currentdata,8);
-				}
-//$this->SendDebug("SerialPort","B", 0);
-				// Reset Ind
-				elseif(strpos($currentdata, "10C0C016") == 0){
-					$currentdata = substr($currentdata,8);
-				}
-//$this->SendDebug("SerialPort","C", 0);
+
 				//Buffer beginnt mit 68****68
 				elseif(strpos($currentdata, "68") == 0){
 					$this->SendDebug("SerialPort","D", 0);

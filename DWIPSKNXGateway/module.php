@@ -70,7 +70,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 				if(strpos($currentdata, "68") === 0 && strpos(substr($currentdata, 6, 2), "68") === 0 && strcmp(substr($currentdata, 2, 2), substr($currentdata, 4, 2)) == 0)
 				{
 					$framelen = hexdec(substr($currentdata,2,2)) * 2 + 12;					
-					if(strlen($currentdata) >= $framelen && strcmp(substr($currentdata, $framelen, 2),"16") == 0 )
+					if(strlen($currentdata) >= $framelen && strcmp(substr($currentdata, $framelen - 2, 2),"16") == 0 )
 					{
 						$frame = substr($currentdata,0,$framelen);
 						if($this->proofChecksum($frame))

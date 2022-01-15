@@ -114,6 +114,20 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 			
 		private function proofChecksum(string $frame) : bool
 		{
+			
+			$framelen = hexdec(substr($frame, 2, 2));
+			$framedata = substr($frame, 8, $framelen);
+			$checksum = substr($frame, 8 + $framelen, 2);
+			$computedChecksum = 0;
+			for($i = 0; $i < $framelen / 2; $i++)
+			{
+				$computedChecksum += hexdec(substr($framedata, $i * 2, 2));
+				if($computedChecksum > 255)
+				{
+					$computedChecksum -= 256;
+				}
+			}
+			$this->SendDebug("SerialPort","Checksum: " . $computedChecksum . " - " . $checksum, 0);
 			return true;
 		}
 

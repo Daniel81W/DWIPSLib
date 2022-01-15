@@ -4,7 +4,7 @@
 	
 	class DWIPSShutterKNX extends IPSModule {
 
-		private $parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";
+		private $parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";//"{A3D31EA8-903D-B767-61AB-E547BE6716B5}"
 
 		private $properties = [
 			0 => ["name" => "UpDown", "type" => "DPT"],
@@ -175,7 +175,8 @@
 			
 			$knxdata = json_decode($JSONString, true);
 			$this->SendDebug("KNX", $knxdata, 0);
-			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}"){
+			if($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}")
+			{
 				if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("UpDownMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("UpDownMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("UpDownSubGroup")){
 					$this->upDownDPT->setValueFromBin($knxdata["Data"]);
 					$this->SendDebug("KNX", "UpDown",0);
@@ -197,6 +198,10 @@
 					$val = $this->DecodeDPT1($knxdata["Data"]);
 					SetValueInteger($this->GetIDForIdent("DrivingTime"), $val);
 				}				
+			}
+			elseif($knxdata["DataID"] == "{FF74DE4D-C871-3D0E-6D6A-1DA9E09B9A8F}")
+			{
+
 			}
 		}
 

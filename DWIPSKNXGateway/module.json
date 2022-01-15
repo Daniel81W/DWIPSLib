@@ -5,8 +5,8 @@
     "vendor": "DWIPS",
     "aliases": [],
     "parentRequirements": ["{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}"],
-    "childRequirements": [],
-    "implemented": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}"],
+    "childRequirements": ["{FF74DE4D-C871-3D0E-6D6A-1DA9E09B9A8F}"],
+    "implemented": ["{018EF6B5-AB94-40C6-AA53-46943E824ACF}", "{2FB6B109-16B3-EA51-A2AF-6357BE575256}"],
     "prefix": "DWIPSKNXGateway",
     "url": "https://github.com/Daniel81W/DWIPSLib"
 }

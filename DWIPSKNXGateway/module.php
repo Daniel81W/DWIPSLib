@@ -69,6 +69,13 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 				//Buffer beginnt mit 68****68 und die Bytes 2 und 3 sind gleich
 				if(strpos($currentdata, "68") === 0 && strpos(substr($currentdata, 6, 2), "68") === 0 && strcmp(substr($currentdata, 2, 2), substr($currentdata, 4, 2)) == 0)
 				{
+					$repeated = null;
+					$prio = 4;
+					$sourceaddr = "";
+					$targetaddrtype = 0;
+					$targetaddr = "";
+					$apci = "";
+					$knxdata = "";
 					$framelen = hexdec(substr($currentdata,2,2)) * 2 + 12;					
 					if(strlen($currentdata) >= $framelen && strcmp(substr($currentdata, $framelen - 2, 2),"16") == 0 )
 					{
@@ -76,7 +83,45 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 						if($this->proofChecksum($frame))
 						{
 							$framedata = substr($frame, 10, $framelen - 14);
+							if(strpos($framedata, "2900") === 0 || strpos($framedata, "2e00") === 0)
+							{	
+								$framedata = substr($framedata,4);
+								//Extended Data Request (Normalfall)
+								if(strpos($framedata, "b") === 0 || (strpos($framedata, "9") === 0))
+								{
+									if(strpos($framedata, "9") === 0)
+									{
+										$repeated = true;
+									}
+									$nexthex = substr($framedata,1,1);
+    								$prio = hexdec($nexthex) >> 2;
+								}
+								//Data Request
+								elseif(strpos($framedata, "3") === 0 || (strpos($framedata, "1") === 0))
+								{
+									if(strpos($framedata, "1") === 0)
+									{
+										$repeated = true;
+									}
+									$nexthex = substr($framedata,1,1);
+    								$prio = hexdec($nexthex) >> 2;
+								}
+							}
 						}
+						
+						$json = [ 
+							"DataID" => "{FF74DE4D-C871-3D0E-6D6A-1DA9E09B9A8F}",
+							"Repeated" => $repeated,
+							"Prio" => $prio,
+							"Source" => $sourceaddr,
+							"TargetType" => $targetaddrtype,
+							"Target" => $targetaddr,
+							"APCI" => $apci,
+							"Data" => $knxdata
+						];
+						$this->SendDebug("JSONSend", json_encode($json), 0);
+						$this->SendDataToChildren(json_encode($json));
+
 						$currentdata = substr($currentdata, $framelen);
 					}
 				}
@@ -126,7 +171,6 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 					$computedChecksum -= 256;
 				}
 			}
-			$this->SendDebug("SerialPort","Checksum: " . dechex($computedChecksum) . " - " . $checksum, 0);
 			return ($computedChecksum == hexdec($checksum));
 		}
 

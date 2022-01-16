@@ -111,8 +111,8 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 										$hg = intdiv($i, 8);
 										$mg = ($i - intdiv($i, 8) * 8);
 										$ug = hexdec(substr($framedata,10,2));
-										$ga3 = $hg . "\/" . $mg . "\/" . $ug;
-										$ga2 = $hg . "\/" . ($mg * 256 + $ug);
+										$ga3 = $hg . "/" . $mg . "/" . $ug;
+										$ga2 = $hg . "/" . ($mg * 256 + $ug);
 									}
 									else
 									{	
@@ -166,7 +166,9 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 							"APCI" => $apci,
 							"Data" => $knxdata
 						];
-						$this->SendDebug("JSONSend", json_encode($json), 0);
+						$json_enc = json_encode($json);
+						$this->SendDebug("JSONSend", $json_enc, 0);
+						$this->SendDebug("JSONSend", json_decode($json_enc)["GA-3"], 0);
 						$this->SendDataToChildren(json_encode($json));
 
 						$currentdata = substr($currentdata, $framelen);

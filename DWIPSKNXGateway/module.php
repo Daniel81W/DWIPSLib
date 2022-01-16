@@ -110,7 +110,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 										$mg = ($i - intdiv($i, 8) * 8);
 										$ug = hexdec(substr($framedata,10,2));
 										$ga3 = $hg . "/" . $mg . "/" . $ug;
-										$ga2 = $hg . "/" . $mg * 256 + $ug;
+										$ga2 = $hg . "/" . ($mg * 256 + $ug);
 									}
 									else
 									{	

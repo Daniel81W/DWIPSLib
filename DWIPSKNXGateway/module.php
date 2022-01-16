@@ -72,6 +72,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 					$repeated = false;
 					$prio = 4;
 					$sourceaddr = "";
+					$targettype = 0;
 					$targetaddr = "";
 					$ga3 = "";
 					$ga2 = "";
@@ -100,6 +101,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 									$sourceaddr = hexdec(substr($framedata,4,1)).".".hexdec(substr($framedata,5,1)).".".hexdec(substr($framedata,6,2));
 									if(hexdec(substr($framedata,12,2)) < 128)
 									{	
+										$targettype = 0;
 										$hex = substr($framedata,8,2);
 										$i = hexdec($hex);
 										if($i>127)
@@ -109,11 +111,12 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 										$hg = intdiv($i, 8);
 										$mg = ($i - intdiv($i, 8) * 8);
 										$ug = hexdec(substr($framedata,10,2));
-										$ga3 = $hg . "/" . $mg . "/" . $ug;
-										$ga2 = $hg . "/" . ($mg * 256 + $ug);
+										$ga3 = $hg . "\/" . $mg . "\/" . $ug;
+										$ga2 = $hg . "\/" . ($mg * 256 + $ug);
 									}
 									else
 									{	
+										$targettype = 1;
 										$targetaddr = hexdec(substr($framedata,8,1)).".".hexdec(substr($framedata,9,1)).".".hexdec(substr($framedata,10,2));
 									}
 									//Length
@@ -155,6 +158,7 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 							"Repeated" => $repeated,
 							"Prio" => $prio,
 							"Source" => $sourceaddr,
+							"TargetType" => $targettype,
 							"Target" => $targetaddr,
 							"GA-3" => $ga3,
 							"GA-2" => $ga2,

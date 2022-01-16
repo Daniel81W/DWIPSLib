@@ -167,8 +167,9 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 							"Data" => $knxdata
 						];
 						$json_enc = json_encode($json);
+						$json_dec = json_decode($json_enc);
 						$this->SendDebug("JSONSend", $json_enc, 0);
-						$this->SendDebug("JSONSend", json_decode($json_enc)["GA-3"], 0);
+						$this->SendDebug("JSONSend", $json_dec["GA-3"], 0);
 						$this->SendDataToChildren(json_encode($json));
 
 						$currentdata = substr($currentdata, $framelen);

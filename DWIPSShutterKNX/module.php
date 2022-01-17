@@ -4,7 +4,7 @@
 	
 	class DWIPSShutterKNX extends IPSModule {
 
-		private $parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";//"{A3D31EA8-903D-B767-61AB-E547BE6716B5}"
+		private $parentID = "{A3D31EA8-903D-B767-61AB-E547BE6716B5}";
 
 		private $properties = [
 			0 => ["name" => "UpDown", "type" => "DPT"],
@@ -167,7 +167,14 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			//$this->TestForm();
-
+			if($this->ReadPropertyInteger("GatewayType") == 1)
+			{
+				$this->ConnectParent("{A3D31EA8-903D-B767-61AB-E547BE6716B5}");
+			}
+			elseif($this->ReadPropertyInteger("GatewayType") == 2)
+			{
+				$this->ConnectParent("{1C902193-B044-43B8-9433-419F09C641B8}");
+			}
 		}
 	
 		public function ReceiveData($JSONString) {

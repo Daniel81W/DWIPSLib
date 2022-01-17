@@ -187,11 +187,9 @@
 
 			if($knxdata["DataID"] == "{FF74DE4D-C871-3D0E-6D6A-1DA9E09B9A8F}")
 			{
-				$this->SendDebug("KNX", $knxdata["GA3"], 0);
-				$this->SendDebug("KNX", $this->ReadPropertyInteger("UpDownMainGroup")."/".$this->ReadPropertyInteger("UpDownMiddleGroup")."/".$this->ReadPropertyInteger("UpDownSubGroup"), 0);
 				if($knxdata["GA3"] == $this->ReadPropertyInteger("UpDownMainGroup")."/".$this->ReadPropertyInteger("UpDownMiddleGroup")."/".$this->ReadPropertyInteger("UpDownSubGroup"))
 				{
-					$this->SendDebug("KNX", $knxdata["Data"], 0);
+					SetValueInteger($this->GetIDForIdent("Action"), $knxdata["Data"] * 2);
 				}
 			}
 /*

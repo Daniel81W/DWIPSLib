@@ -185,6 +185,7 @@
 			
 			$this->SendDebug("KNX", $JSONString, 0);
 			$knxdata = json_decode($JSONString, true);
+			$this->SendDebug("KNX", json_last_error(), 0);
 			$this->SendDebug("KNX", $knxdata, 0);
 
 			if($knxdata["DataID"] == "{FF74DE4D-C871-3D0E-6D6A-1DA9E09B9A8F}")

@@ -197,11 +197,11 @@
 				}
 				elseif($knxdata["GA3"] == $this->ReadPropertyInteger("PositionMainGroup")."/".$this->ReadPropertyInteger("PositionMiddleGroup")."/".$this->ReadPropertyInteger("PositionSubGroup"))
 				{
-					SetValueInteger($this->GetIDForIdent("Position"), hexdec($knxdata["Data"]));
+					SetValueInteger($this->GetIDForIdent("Position"), hexdec($knxdata["Data"])*100/255);
 				}
 				elseif($knxdata["GA3"] == $this->ReadPropertyInteger("PositionRMMainGroup")."/".$this->ReadPropertyInteger("PositionRMMiddleGroup")."/".$this->ReadPropertyInteger("PositionRMSubGroup"))
 				{
-					SetValueInteger($this->GetIDForIdent("Position"), hexdec($knxdata["Data"]));
+					SetValueInteger($this->GetIDForIdent("Position"), hexdec($knxdata["Data"])*100/255);
 				}
 			}
 /*

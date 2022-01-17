@@ -35,7 +35,7 @@
 			$this->ReceiveDataFT12($JSONString);
 		}
 
-		public function ReceiveDataFT12($JSONString)
+		private function ReceiveDataFT12($JSONString)
 		{
 			//JSONString dekodieren
 			$data = json_decode($JSONString, true);
@@ -43,11 +43,8 @@
 			$currentdata = $this->GetBuffer("KNXData") . bin2hex($data["Buffer"]);
 			//$currentdata = $this->GetBuffer("KNXData") . "e5e510404016e510c0c016" . bin2hex($data["Buffer"]);
 
-$this->SendDebug("SerialPort","1. New Data", 0);
 			// von UTF-8 hex auf Unicode Code point umwandeln (z.B. C3BF = FF)
 			$currentdata = $this->correctDataForUTFCodes($currentdata);
-
-$this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 			
 			for($i = 10; $i > 0; $i--)
 			{
@@ -160,17 +157,14 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 							"Source" => $sourceaddr,
 							"TargetType" => $targettype,
 							"Target" => $targetaddr,
-							"GA-3" => $ga3,
-							"GA-2" => $ga2,
+							"GA3" => $ga3,
+							"GA2" => $ga2,
 							"Length" => $len,
 							"APCI" => $apci,
 							"Data" => $knxdata
 						];
 						$json_enc = json_encode($json);
-						$json_dec = json_decode($json_enc);
-						$this->SendDebug("JSONSend", $json_enc, 0);
-						$this->SendDebug("JSONSend", $json_dec["GA-3"], 0);
-						$this->SendDataToChildren(json_encode($json));
+						$this->SendDataToChildren(json_encode($json_enc));
 
 						$currentdata = substr($currentdata, $framelen);
 					}
@@ -205,6 +199,15 @@ $this->SendDebug("SerialPort","2. Data: " . $currentdata, 0);
 			}
 
 			$this->SetBuffer("KNXData", $currentdata);
+		}
+
+		public function ForwardData($JSONString)
+		{
+			
+		}
+
+		private function SendDataToParentFT12($data){
+
 		}
 			
 		private function proofChecksum(string $frame) : bool

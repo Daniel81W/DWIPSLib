@@ -198,7 +198,7 @@
 				elseif($knxdata["GA3"] == $this->ReadPropertyInteger("PositionRMMainGroup")."/".$this->ReadPropertyInteger("PositionRMMiddleGroup")."/".$this->ReadPropertyInteger("PositionRMSubGroup"))
 				{
 					//SetValueInteger($this->GetIDForIdent("Action"), $knxdata["Data"]);
-					$this->SendDebug("KNX", $knxdata["Data"], 0);
+					$this->SendDebug("KNX", hexdec($knxdata["Data"]), 0);
 				}
 			}
 /*

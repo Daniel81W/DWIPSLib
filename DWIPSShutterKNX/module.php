@@ -247,7 +247,7 @@
 			$upDownGA3 = $this->ReadPropertyInteger("UpDownMainGroup")."/".$this->ReadPropertyInteger("UpDownMiddleGroup")."/".$this->ReadPropertyInteger("UpDownSubGroup");
 			$upDownGA2 = $this->ReadPropertyInteger("UpDownMainGroup")."/".($this->ReadPropertyInteger("UpDownMiddleGroup")*256)."/".$this->ReadPropertyInteger("UpDownSubGroup");
 			$stopGA3 = $this->ReadPropertyInteger("StopMainGroup")."/".$this->ReadPropertyInteger("StopMiddleGroup")."/".$this->ReadPropertyInteger("StopSubGroup");
-			$stopGA3 = $this->ReadPropertyInteger("StopMainGroup")."/".($this->ReadPropertyInteger("StopMiddleGroup")*256)."/".$this->ReadPropertyInteger("StopSubGroup");
+			$stopGA2 = $this->ReadPropertyInteger("StopMainGroup")."/".($this->ReadPropertyInteger("StopMiddleGroup")*256)."/".$this->ReadPropertyInteger("StopSubGroup");
 			$positionGA3 = $this->ReadPropertyInteger("PositionMainGroup")."/".$this->ReadPropertyInteger("PositionMiddleGroup")."/".$this->ReadPropertyInteger("PositionSubGroup");
 			switch($Ident) {
 				case "Control":

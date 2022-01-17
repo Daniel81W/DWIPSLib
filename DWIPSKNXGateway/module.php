@@ -205,7 +205,7 @@
 
 		public function ForwardData($JSONString)
 		{
-
+			$this->SendDebug("KNX", $JSONString, 0);
 		}
 
 		private function SendDataToParentFT12($data){

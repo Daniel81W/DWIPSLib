@@ -249,6 +249,7 @@
 			$stopGA3 = $this->ReadPropertyInteger("StopMainGroup")."/".$this->ReadPropertyInteger("StopMiddleGroup")."/".$this->ReadPropertyInteger("StopSubGroup");
 			$stopGA2 = $this->ReadPropertyInteger("StopMainGroup")."/".($this->ReadPropertyInteger("StopMiddleGroup")*256)."/".$this->ReadPropertyInteger("StopSubGroup");
 			$positionGA3 = $this->ReadPropertyInteger("PositionMainGroup")."/".$this->ReadPropertyInteger("PositionMiddleGroup")."/".$this->ReadPropertyInteger("PositionSubGroup");
+			$positionGA2 = $this->ReadPropertyInteger("PositionMainGroup")."/".($this->ReadPropertyInteger("PositionMiddleGroup")*256)."/".$this->ReadPropertyInteger("PositionSubGroup");
 			switch($Ident) {
 				case "Control":
 					SetValue($this->GetIDForIdent($Ident), $Value);
@@ -324,8 +325,16 @@
 				case "Position":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					
-					$this->positionDPT->setValueFromInt($Value);
-					$this->SendDataToParent($this->positionDPT->getJSONString());
+					//$this->positionDPT->setValueFromInt($Value);
+					//$this->SendDataToParent($this->positionDPT->getJSONString());
+
+					$json = [ 
+						"DataID" => "{2FB6B109-16B3-EA51-A2AF-6357BE575256}",
+						"GA3" => $positionGA3,
+						"GA2" => $positionGA2,
+						"Data" => dechex(1)
+					];
+					$this->SendDataToParent(json_encode($json));
 					break;
 				case "Preset1":
 					SetValue($this->GetIDForIdent($Ident), $Value);

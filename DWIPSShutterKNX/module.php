@@ -167,13 +167,14 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 			//$this->TestForm();
-			if($this->ReadPropertyInteger("GatewayType") == 1)
+			switch($this->ReadPropertyInteger("GatewayType"))
 			{
-				$this->ConnectParent("{A3D31EA8-903D-B767-61AB-E547BE6716B5}");
-			}
-			elseif($this->ReadPropertyInteger("GatewayType") == 2)
-			{
-				$this->ConnectParent("{1C902193-B044-43B8-9433-419F09C641B8}");
+				case 1:
+					$this->ForceParent("{A3D31EA8-903D-B767-61AB-E547BE6716B5}");
+					break;
+				case 2:
+					$this->ForceParent("{1C902193-B044-43B8-9433-419F09C641B8}");
+					break;
 			}
 		}
 	

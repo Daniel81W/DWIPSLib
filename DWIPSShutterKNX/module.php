@@ -195,6 +195,11 @@
 				{
 					SetValueInteger($this->GetIDForIdent("Action"), $knxdata["Data"]);
 				}
+				elseif($knxdata["GA3"] == $this->ReadPropertyInteger("PositionMainGroup")."/".$this->ReadPropertyInteger("PositionMiddleGroup")."/".$this->ReadPropertyInteger("PositionSubGroup"))
+				{
+					//SetValueInteger($this->GetIDForIdent("Action"), $knxdata["Data"]);
+					$this->SendDebug("KNX", $knxdata["Data"], 0);
+				}
 			}
 /*
 			elseif($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}")

@@ -164,7 +164,7 @@
 							"Data" => $knxdata
 						];
 						$json_enc = json_encode($json);
-						$this->SendDataToChildren(json_encode($json_enc));
+						$this->SendDebug("KNX", $this->SendDataToChildren(json_encode($json_enc)),0);
 
 						$currentdata = substr($currentdata, $framelen);
 					}
@@ -203,7 +203,7 @@
 
 		public function ForwardData($JSONString)
 		{
-			
+
 		}
 
 		private function SendDataToParentFT12($data){

@@ -164,8 +164,10 @@
 							"Data" => $knxdata
 						];
 						$json_enc = json_encode($json);
-						$this->SendDebug("KNX", $this->SendDataToChildren(json_encode($json_enc)),0);
-
+						$resultate = $this->SendDataToChildren(json_encode($json_enc));
+						foreach($resultate as $resultat) {
+							$this->SendDebug("KNX", $resultat,0);
+						}
 						$currentdata = substr($currentdata, $framelen);
 					}
 				}

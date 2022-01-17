@@ -244,6 +244,11 @@
 			$this->upDownDPT = new DPT1($this->ReadPropertyInteger("UpDownMainGroup"), $this->ReadPropertyInteger("UpDownMiddleGroup"), $this->ReadPropertyInteger("UpDownSubGroup"));
 			$this->stopDPT = new DPT1($this->ReadPropertyInteger("StopMainGroup"), $this->ReadPropertyInteger("StopMiddleGroup"), $this->ReadPropertyInteger("StopSubGroup"));
 			$this->positionDPT = new DPT5($this->ReadPropertyInteger("PositionMainGroup"), $this->ReadPropertyInteger("PositionMiddleGroup"), $this->ReadPropertyInteger("PositionSubGroup"));
+			$upDownGA3 = $this->ReadPropertyInteger("UpDownMainGroup")."/".$this->ReadPropertyInteger("UpDownMiddleGroup")."/".$this->ReadPropertyInteger("UpDownSubGroup");
+			$upDownGA2 = $this->ReadPropertyInteger("UpDownMainGroup")."/".($this->ReadPropertyInteger("UpDownMiddleGroup")*256)."/".$this->ReadPropertyInteger("UpDownSubGroup");
+			$stopGA3 = $this->ReadPropertyInteger("StopMainGroup")."/".$this->ReadPropertyInteger("StopMiddleGroup")."/".$this->ReadPropertyInteger("StopSubGroup");
+			$stopGA3 = $this->ReadPropertyInteger("StopMainGroup")."/".($this->ReadPropertyInteger("StopMiddleGroup")*256)."/".$this->ReadPropertyInteger("StopSubGroup");
+			$positionGA3 = $this->ReadPropertyInteger("PositionMainGroup")."/".$this->ReadPropertyInteger("PositionMiddleGroup")."/".$this->ReadPropertyInteger("PositionSubGroup");
 			switch($Ident) {
 				case "Control":
 					SetValue($this->GetIDForIdent($Ident), $Value);
@@ -285,14 +290,35 @@
 				case "Action":
 					SetValue($this->GetIDForIdent($Ident), $Value);
 					if($Value == 0){
-						$this->upDownDPT->setValueFromInt(0);
-						$this->SendDataToParent($this->upDownDPT->getJSONString());
+						//$this->upDownDPT->setValueFromInt(0);
+						//$this->SendDataToParent($this->upDownDPT->getJSONString());
+						$json = [ 
+							"DataID" => "{2FB6B109-16B3-EA51-A2AF-6357BE575256}",
+							"GA3" => $upDownGA3,
+							"GA2" => $upDownGA2,
+							"Data" => dechex(0)
+						];
+						$this->SendDataToParent(json_encode($json));
 					}elseif($Value == 1){
-						$this->stopDPT->setValueFromInt(1);
-						$this->SendDataToParent($this->stopDPT->getJSONString());
+						//$this->stopDPT->setValueFromInt(1);
+						//$this->SendDataToParent($this->stopDPT->getJSONString());
+						$json = [ 
+							"DataID" => "{2FB6B109-16B3-EA51-A2AF-6357BE575256}",
+							"GA3" => $stopGA3,
+							"GA2" => $stopGA2,
+							"Data" => dechex(1)
+						];
+						$this->SendDataToParent(json_encode($json));
 					}elseif($Value == 2){
-						$this->upDownDPT->setValueFromInt(1);
-						$this->SendDataToParent($this->upDownDPT->getJSONString());
+						//$this->upDownDPT->setValueFromInt(1);
+						//$this->SendDataToParent($this->upDownDPT->getJSONString());
+						$json = [ 
+							"DataID" => "{2FB6B109-16B3-EA51-A2AF-6357BE575256}",
+							"GA3" => $upDownGA3,
+							"GA2" => $upDownGA2,
+							"Data" => dechex(1)
+						];
+						$this->SendDataToParent(json_encode($json));
 					}
 					break;
 				case "Position":

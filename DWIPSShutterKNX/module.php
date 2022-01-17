@@ -183,13 +183,14 @@
 			//$this->stopDPT = new DPT1($this->ReadPropertyInteger("StopMainGroup"), $this->ReadPropertyInteger("StopMiddleGroup"), $this->ReadPropertyInteger("StopSubGroup"));
 			//$this->positionDPT = new DPT5($this->ReadPropertyInteger("PositionMainGroup"), $this->ReadPropertyInteger("PositionMiddleGroup"), $this->ReadPropertyInteger("PositionSubGroup"));
 			
-			$this->SendDebug("KNX", $JSONString, 0);
 			$knxdata = json_decode($JSONString, true);
-			$this->SendDebug("KNX", $knxdata["GA3"], 0);
 
 			if($knxdata["DataID"] == "{FF74DE4D-C871-3D0E-6D6A-1DA9E09B9A8F}")
 			{
-
+				if($knxdata["GA3"] == $this->ReadPropertyInteger("UpDownMainGroup")."/".$this->ReadPropertyInteger("UpDownMiddleGroup")."/".$this->ReadPropertyInteger("UpDownSubGroup"))
+				{
+					$this->SendDebug("KNX", $knxdata["Data"], 0);
+				}
 			}
 /*
 			elseif($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}")

@@ -50,6 +50,8 @@
 			//Connect to EIBGateway
 			$this->ConnectParent($this->parentID);
 		
+			$this->RegisterPropertyInteger("GatewayType", 1);
+
 			foreach($this->properties as $prop){
 				if($prop["type"] == "DPT"){
 					$this->RegisterPropertyInteger($prop["name"]."MainGroup", 0);
@@ -423,6 +425,7 @@
 			$actions = '';
 			$status = '';
 
+			$elements = '{"type": "Select","name": "GatewayType", "caption": "Gateway", "options": [{"value": "1", "caption": "DWIPS KNX Gateway"},{"value": "2", "caption": "Symcon KNX Gateway"}]}';
 			foreach($this->properties as $prop){
 				if (strlen($elements) >0){ $elements = $elements . ',';}
 				if($prop["type"] == "DPT"){

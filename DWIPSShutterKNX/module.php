@@ -332,7 +332,7 @@
 						"DataID" => "{2FB6B109-16B3-EA51-A2AF-6357BE575256}",
 						"GA3" => $positionGA3,
 						"GA2" => $positionGA2,
-						"Data" => dechex(1)
+						"Data" => dechex($Value)
 					];
 					$this->SendDataToParent(json_encode($json));
 					break;

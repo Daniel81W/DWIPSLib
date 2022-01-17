@@ -189,16 +189,19 @@
 			{
 				if($knxdata["GA3"] == $this->ReadPropertyInteger("UpDownMainGroup")."/".$this->ReadPropertyInteger("UpDownMiddleGroup")."/".$this->ReadPropertyInteger("UpDownSubGroup"))
 				{
-					SetValueInteger($this->GetIDForIdent("Action"), $knxdata["Data"] * 2);
+					SetValueInteger($this->GetIDForIdent("Action"), hexdec($knxdata["Data"]) * 2);
 				}
 				elseif($knxdata["GA3"] == $this->ReadPropertyInteger("StopMainGroup")."/".$this->ReadPropertyInteger("StopMiddleGroup")."/".$this->ReadPropertyInteger("StopSubGroup"))
 				{
-					SetValueInteger($this->GetIDForIdent("Action"), $knxdata["Data"]);
+					SetValueInteger($this->GetIDForIdent("Action"), hexdec($knxdata["Data"]));
+				}
+				elseif($knxdata["GA3"] == $this->ReadPropertyInteger("PositionMainGroup")."/".$this->ReadPropertyInteger("PositionMiddleGroup")."/".$this->ReadPropertyInteger("PositionSubGroup"))
+				{
+					SetValueInteger($this->GetIDForIdent("Position"), hexdec($knxdata["Data"]));
 				}
 				elseif($knxdata["GA3"] == $this->ReadPropertyInteger("PositionRMMainGroup")."/".$this->ReadPropertyInteger("PositionRMMiddleGroup")."/".$this->ReadPropertyInteger("PositionRMSubGroup"))
 				{
-					//SetValueInteger($this->GetIDForIdent("Action"), $knxdata["Data"]);
-					$this->SendDebug("KNX", hexdec($knxdata["Data"]), 0);
+					SetValueInteger($this->GetIDForIdent("Position"), hexdec($knxdata["Data"]));
 				}
 			}
 /*

@@ -313,7 +313,7 @@
 		{
 			$this->framestring = "2900";
 
-			$this->framestring = 
+			$this->framestring = "";
 		}
 
 		public function updateWithFrameString(string $frame) : void

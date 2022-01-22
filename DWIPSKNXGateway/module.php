@@ -13,8 +13,7 @@
 
 			//Connect to EIBGateway
 			$this->ConnectParent($this->parentID);
-		
-
+			$this->RegisterVariableString("KNXAddress", "Physikalische Adresse");
 		}
 
 		public function Destroy()
@@ -206,10 +205,40 @@
 		public function ForwardData($JSONString)
 		{
 			$this->SendDebug("KNX", $JSONString, 0);
+			$data = json_decode($JSONString, true);
+			$this->SendDataToParent($data);
 		}
 
-		private function SendDataToParentFT12($data){
+		private function SendDataToParent($data){
+			$this->SendDataToParentFT12($data);
+		}
 
+		private function SendDataToParentFT12($data)
+		{
+			$knxdata = "2900BC";
+			$ft12data = "68";
+
+			$json = [
+				"DataID" => "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}",
+				"Buffer" => $ft12data
+			];
+			parent::SendDataToParent(json_encode($json));
+
+		}
+
+		private function checksum(string $data) : string
+		{
+			$computedChecksum = 0;
+			$datalen = strlen($data) / 2;
+			for($i = 0; $i < $datalen; $i++)
+			{
+				$computedChecksum += hexdec(substr($data, $i * 2, 2));
+				if($computedChecksum > 255)
+				{
+					$computedChecksum -= 256;
+				}
+			}
+			return $computedChecksum;
 		}
 			
 		private function proofChecksum(string $frame) : bool
@@ -217,15 +246,7 @@
 			$framelen = hexdec(substr($frame, 2, 2));
 			$framedata = substr($frame, 8, $framelen * 2);
 			$checksum = substr($frame, 8 + $framelen * 2, 2);
-			$computedChecksum = 0;
-			for($i = 0; $i < $framelen; $i++)
-			{
-				$computedChecksum += hexdec(substr($framedata, $i * 2, 2));
-				if($computedChecksum > 255)
-				{
-					$computedChecksum -= 256;
-				}
-			}
+			$computedChecksum = $this->checksum($framedata);
 			return ($computedChecksum == hexdec($checksum));
 		}
 
@@ -261,4 +282,62 @@
 		}
 	}
 
+	class KNXFrame
+	{
+		private string $source_addr = "";
+		private string $target_addr = "";
+
+		private string $framestring = "";
+
+		public function __construct(){
+            
+        }
+
+		public function getSourceAddress() : string
+		{
+			return $this->source_addr;
+		}
+
+		public function setSourceAddress(string $address)
+		{
+			$this->source_addr = $address;
+			$this->updateFrameString();
+		}
+
+		public function getFrameAsString() : string
+		{
+			return $this->framestring;
+		}
+
+		private function updateFrameString() : void
+		{
+			$this->framestring = "2900";
+
+			$this->framestring = 
+		}
+
+		public function updateWithFrameString(string $frame) : void
+		{
+
+		}
+	}
+
+	class FT12Frame
+	{	
+		public static function getFT12HardwareAddressString()
+		{
+			return "6807076873f001001400017916";
+		}
+
+		public static function getFT12FirmwareString()
+		{
+			return "6807076873F001000300016816";
+
+		}
+
+		public function getFT12String()
+		{
+
+		}
+	}
 ?>

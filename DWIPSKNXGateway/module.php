@@ -209,7 +209,7 @@
 			$this->SendDataToParent($data);
 		}
 
-		private function SendDataToParent($data){
+		protected function SendDataToParent($data){
 			$this->SendDataToParentFT12($data);
 		}
 

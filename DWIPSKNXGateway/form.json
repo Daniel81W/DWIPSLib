@@ -6,7 +6,7 @@
         {
             "type": "Button",
             "caption": "Hardwareinformationen abrufen",
-            "onClick": "DWIPSKNXGateway_RenewHardwareInformation();"
+            "onClick": "DWIPSKNXGateway_RenewHardwareInformation($id);"
         }
       ],
     "status": []

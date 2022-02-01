@@ -38,6 +38,10 @@
 		{
 			$this->SendDataToParent(json_encode([
 				'DataID' => "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}",
+				'Buffer' => utf8_encode("10404016"),
+			]));
+			$this->SendDataToParent(json_encode([
+				'DataID' => "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}",
 				'Buffer' => utf8_encode(FT12Frame::getFT12HardwareAddressString()),
 			]));
 		}
@@ -345,7 +349,7 @@
 
 		public static function getFT12FirmwareString()
 		{
-			return "6807076873F001000300016816";
+			return "6807076873f001000300016816";
 
 		}
 

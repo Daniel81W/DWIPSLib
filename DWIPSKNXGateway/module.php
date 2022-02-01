@@ -40,7 +40,6 @@
 				'DataID' => "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}",
 				'Buffer' => utf8_encode(FT12Frame::getFT12HardwareAddressString()),
 			]));
-			$this->SendDebug("KNX", json_last_error(), 0);
 		}
 
 		public function ReceiveData($JSONString)
@@ -79,7 +78,7 @@
 				//Buffer beginnt mit 68****68 und die Bytes 2 und 3 sind gleich
 				if(strpos($currentdata, "68") === 0 && strpos(substr($currentdata, 6, 2), "68") === 0 && strcmp(substr($currentdata, 2, 2), substr($currentdata, 4, 2)) == 0)
 				{
-					//$this->SendDebug("KNX", $currentdata, 0);
+					$this->SendDebug("KNX", $currentdata, 0);
 					if(strpos($currentdata, "f0") === 10)
 					{
 						$this->SendDebug("KNX", $currentdata, 0);

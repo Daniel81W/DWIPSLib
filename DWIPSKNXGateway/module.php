@@ -27,6 +27,12 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 
+			$this->SendDataToParent(json_encode([
+				'DataID' => "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}",
+				'Buffer' => utf8_encode(FT12Frame::getFT12HardwareAddressString()),
+			]));
+
+
 		}
 	
 		public function ReceiveData($JSONString)
@@ -65,6 +71,12 @@
 				//Buffer beginnt mit 68****68 und die Bytes 2 und 3 sind gleich
 				if(strpos($currentdata, "68") === 0 && strpos(substr($currentdata, 6, 2), "68") === 0 && strcmp(substr($currentdata, 2, 2), substr($currentdata, 4, 2)) == 0)
 				{
+					if(strpos($currentdata, "f0") === 8)
+					{
+						$this->SendDebug("KNX", $currentdata, 0);
+					}
+					else
+					{
 					$repeated = false;
 					$prio = 4;
 					$sourceaddr = "";
@@ -169,6 +181,7 @@
 						}
 						$currentdata = substr($currentdata, $framelen);
 					}
+					}
 				}
 				// Buffer beginnt nicht mit 68, bedeutet es ist nicht der Anfang eines FT1.2 Frames. Es muss zuerst er nächste Anfang gefunden werden und dann alles davor gelöscht.
 				if(strpos($currentdata, "1668") !== 0 || strpos($currentdata, "e568") !== 0)
@@ -190,13 +203,6 @@
 						}
 					}
 				}
-			}
-
-
-
-			if(strlen($currentdata)>=150)
-			{
-				$currentdata = "";
 			}
 
 			$this->SetBuffer("KNXData", $currentdata);

@@ -31,7 +31,7 @@
 				'DataID' => "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}",
 				'Buffer' => utf8_encode(FT12Frame::getFT12HardwareAddressString()),
 			]));
-
+			$this->SendDebug("KNX", json_last_error(), 0);
 
 		}
 	

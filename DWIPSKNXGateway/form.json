@@ -1,5 +1,13 @@
 {
-    "elements": [    ],
-    "actions": [    ],
+    "elements": [ 
+        
+       ],
+    "actions": [  
+        {
+            "type": "Button",
+            "caption": "Hardwareinformationen abrufen",
+            "onClick": "DWIPSKNXGateway_RenewHardwareInformation();"
+        }
+      ],
     "status": []
 }

@@ -71,6 +71,7 @@
 				//Buffer beginnt mit 68****68 und die Bytes 2 und 3 sind gleich
 				if(strpos($currentdata, "68") === 0 && strpos(substr($currentdata, 6, 2), "68") === 0 && strcmp(substr($currentdata, 2, 2), substr($currentdata, 4, 2)) == 0)
 				{
+					$this->SendDebug("KNX", strpos($currentdata, "f0"), 0);
 					if(strpos($currentdata, "f0") === 8)
 					{
 						$this->SendDebug("KNX", $currentdata, 0);

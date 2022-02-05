@@ -27,7 +27,7 @@
 
         public function decode($data){
 			$val = bin2hex($data);
-			$this->value = boolval(hexdec( $val) - hexdec("c280"));
+			$this->value = boolval(hexdec( $this->correctDataForUTFCodes($val)));
 		}
 
         public function __construct(int $maingroup, int $middlegroup, int $subgroup){
@@ -112,12 +112,7 @@
 
         public function decode($data){
 			$val = bin2hex($data);
-           // WFC_SendPopup(47530, "KNX", $this->mod->);
-            if(! is_null($this->mod)){
-                WFC_SendPopup(47530, "KNX", "test");
-                
-                $this->mod->SendDebug("KNX DPT5", $val, 0);
-            }
+            WFC_SendPopup(47530, "KNX", $val);
 			$val = hexdec( substr($val,4));// * 100 / 255;
 			$this->value = $val * 100 / 255;
 		}
@@ -165,6 +160,24 @@
             }
             return dechex($val);
         }
+
+        protected function correctDataForUTFCodes(string $frame) : string
+		{
+			$data = $frame;
+			$next = strpos($data, "c2");
+			while($next !== false){
+				$torep = substr($data, $next, 4);
+				$data = str_replace($torep, dechex(hexdec($torep) - hexdec("C200")), $data);
+				$next = strpos($data, "c2");
+			}
+			$next = strpos($data, "c3");
+			while($next !== false){
+				$torep = substr($data, $next, 4);
+				$data = str_replace($torep, dechex(hexdec($torep) - hexdec("C2C0")), $data);
+				$next = strpos($data, "c3");
+			}
+			return $data;
+		}
     }
 
 

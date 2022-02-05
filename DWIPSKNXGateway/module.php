@@ -328,10 +328,16 @@
 		}
 
 		private function updateFrameString() : void
-		{
+		{	
+			//Anfang
 			$this->framestring = "2900";
-
-			$this->framestring = "";
+			//Kontrollbyte(s)
+			$this->framestring = $this->framestring . "";
+			//Quelladresse
+			$this->framestring = $this->framestring . "";
+			//Zieladresse
+			$this->framestring = $this->framestring . "";
+			//
 		}
 
 		public function updateWithFrameString(string $frame) : void

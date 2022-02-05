@@ -27,8 +27,8 @@
 
         public function decode($data){
 			$val = $this->correctDataForUTFCodes(bin2hex($data));
-			//$this->value = boolval(hexdec( $val - 0x80));
-            WFC_SendPopup(47530, "KNX", "Wert:" . $val . " - " . $this->$value);
+			$this->value = boolval(hexdec($val)-128);
+            WFC_SendPopup(47530, "KNX", "Wert:" . $val . " - " . $this->value);
 		}
 
         public function __construct(int $maingroup, int $middlegroup, int $subgroup){

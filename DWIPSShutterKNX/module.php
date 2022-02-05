@@ -204,9 +204,9 @@
 					SetValueInteger($this->GetIDForIdent("Position"), hexdec($knxdata["Data"])*100/255);
 				}
 			}
-/*
 			elseif($knxdata["DataID"] == "{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}")
 			{
+				$this->SendDebug("KNX", "jetzt", 0);
 				if($knxdata["GroupAddress1"] == $this->ReadPropertyInteger("UpDownMainGroup") and $knxdata["GroupAddress2"] == $this->ReadPropertyInteger("UpDownMiddleGroup") and $knxdata["GroupAddress3"] == $this->ReadPropertyInteger("UpDownSubGroup")){
 					$this->upDownDPT->setValueFromBin($knxdata["Data"]);
 					$this->SendDebug("KNX", "UpDown",0);
@@ -228,7 +228,7 @@
 					$val = $this->DecodeDPT1($knxdata["Data"]);
 					SetValueInteger($this->GetIDForIdent("DrivingTime"), $val);
 				}				
-			}*/
+			}
 		}
 
 		/**

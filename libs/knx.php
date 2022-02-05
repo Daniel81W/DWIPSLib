@@ -27,7 +27,7 @@
 
         public function decode($data){
 			$val = $this->correctDataForUTFCodes(bin2hex($data));
-			$this->value = boolval(hexdec( $val - 0x80));
+			//$this->value = boolval(hexdec( $val - 0x80));
             WFC_SendPopup(47530, "KNX", "Wert:" . $val . " - " . $this->$value);
 		}
 
@@ -113,7 +113,7 @@
 
         public function decode($data){
 			$val = $this->correctDataForUTFCodes(bin2hex($data));
-			$hexval = hexdec( substr($val,4));
+			$hexval = hexdec( substr($val,2));
 			$this->value = $hexval * 100 / 255;
             WFC_SendPopup(47530, "KNX", "Werte:" . $val . " - "  );
 		}

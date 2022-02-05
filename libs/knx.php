@@ -27,7 +27,9 @@
 
         public function decode($data){
 			$val = bin2hex($data);
+            WFC_SendPopup(47530, "KNX", $val);
 			$this->value = boolval(hexdec( $this->correctDataForUTFCodes($val)));
+            WFC_SendPopup(47530, "KNX", $this->$value);
 		}
 
         public function __construct(int $maingroup, int $middlegroup, int $subgroup){
@@ -114,6 +116,7 @@
 			$val = bin2hex($data);
             WFC_SendPopup(47530, "KNX", $val);
 			$val = hexdec( substr($val,4));// * 100 / 255;
+            WFC_SendPopup(47530, "KNX", $val);
 			$this->value = $val * 100 / 255;
 		}
 

@@ -27,7 +27,7 @@
 
         public function decode($data){
 			$val = bin2hex($data);
-			$this->value = boolval(hexdec( $this->correctDataForUTFCodes($val)));
+			$this->value = boolval(hexdec( $this->correctDataForUTFCodes($val)) - 80);
             WFC_SendPopup(47530, "KNX", "Wert:" . $val . " - " . $this->$value);
 		}
 
@@ -115,7 +115,7 @@
 			$val = bin2hex($data);
 			$hexval = hexdec( substr($val,4));
 			$this->value = $hexval * 100 / 255;
-            WFC_SendPopup(47530, "KNX", "Werte:" . $val . " - " . $hexval . " - " . $this->value);
+            WFC_SendPopup(47530, "KNX", "Werte:" . $val . " - " . $this->correctDataForUTFCodes($val));
 		}
 
         public function setModule(IPSModule $module){

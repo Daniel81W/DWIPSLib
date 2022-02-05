@@ -4,7 +4,7 @@
 	
 	class DWIPSShutterKNX extends IPSModule {
 
-		private $parentID = "{A3D31EA8-903D-B767-61AB-E547BE6716B5}";
+		private $parentID = "{1C902193-B044-43B8-9433-419F09C641B8}";//"{A3D31EA8-903D-B767-61AB-E547BE6716B5}";
 
 		private $properties = [
 			0 => ["name" => "UpDown", "type" => "DPT"],

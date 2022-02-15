@@ -50,7 +50,7 @@
 			$endseq = "1b1b1b1b1a";
 			$startseq = "1b1b1b1b01010101";
 			$currentdata = $this->GetBuffer("serdata") . bin2hex($data['Buffer']);
-			$this->SendDebug("Serial", $data['Buffer'], 0);
+			$this->SendDebug("Serial", bin2hex($data['Buffer']), 0);
 			$fstendpos = strpos($currentdata, $endseq);
 			if($fstendpos > 0){
 				$fststartpos = strpos($currentdata, $startseq);

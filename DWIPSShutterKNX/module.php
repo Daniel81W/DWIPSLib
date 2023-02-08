@@ -170,9 +170,27 @@ declare(strict_types=1);
 		{
 			case "Action":
 				$this->SetValue($Ident, $Value);
+				$this->ProcessAction($Ident, $Value);
 				break;
 			default:
 				throw new Exception("Invalid Ident");
+		}
+	}
+
+	private function ProcessAction($Ident, $Value){
+		switch ($Value)
+		{
+			case 0:
+				KNX_WriteDPT1($this->ReadPropertyInteger("UpDownID"), 0);
+				break;
+			case 1:
+				KNX_WriteDPT1($this->ReadPropertyInteger("StopID"), 0);
+				break;
+			case 2:
+				KNX_WriteDPT1($this->ReadPropertyInteger("UpDownID"), 1);
+				break;
+			default:
+			throw new Exception("Invalid Value for Variable " . GetIDForIdent($Ident));
 		}
 	}
 }

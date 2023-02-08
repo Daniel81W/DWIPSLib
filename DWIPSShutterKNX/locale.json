@@ -10,6 +10,7 @@
             "Preset34SetInstanceID_caption": "Instanz zum Setzen von Preset 3 oder 4",
             "DrivingTimeInstanceID_caption": "Instanz zum Auslösen der Fahrtzeitermittlung",
             "DWIPS.Shutter.UpDownStop": "DWIPS.Shutter.AufAbStop",
+            "DWIPS.Shutter.Stop": "DWIPS.Shutter.Stop",
             "DWIPS.Shutter.Position": "DWIPS.Shutter.Position",
             "DWIPS.Shutter.PositionSteps": "DWIPS.Shutter.Positionsstufen",
             "DWIPS.Shutter.Trigger": "DWIPS.Shutter.Trigger",

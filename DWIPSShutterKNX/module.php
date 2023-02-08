@@ -181,6 +181,10 @@ declare(strict_types=1);
 				break;
 			case "Stop":
 				$this->SetValue($Ident, $Value);
+				if ($Value == 1)
+				{
+					$this->SetValue("Action", $Value);
+				}
 				$this->ProcessStop($Ident, $Value);
 				break;
 			default:

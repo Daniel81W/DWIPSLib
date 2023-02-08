@@ -163,4 +163,14 @@ declare(strict_types=1);
 			//Never delete this line!
 			parent::ApplyChanges();
 		}
+
+	public function RequestAction($Ident, $Value)
+	{
+		switch ($Ident)
+		{
+			case "Action":
+				$this->SetValue($this->GetIDForIdent($Ident), $Value);
+				break;
+		}
+	}
 	}

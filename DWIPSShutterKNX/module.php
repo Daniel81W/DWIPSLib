@@ -169,7 +169,7 @@ declare(strict_types=1);
 		switch ($Ident)
 		{
 			case "Action":
-				$this->SetValue($this->GetIDForIdent($Ident), $Value);
+				$this->SetValue($Ident, $Value);
 				break;
 			default:
 				throw new Exception("Invalid Ident");

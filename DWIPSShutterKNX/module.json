@@ -1,12 +1,12 @@
 {
-    "id": "{E6DE6B04-921A-CFB2-1419-126D2F938C53}",
+    "id": "{CA6D5D71-A341-813C-71DE-EA696A351646}",
     "name": "DWIPSShutterKNX",
     "type": 3,
     "vendor": "DWIPS",
     "aliases": [],
-    "parentRequirements": ["{42DFD4E4-5831-4A27-91B9-6FF1B2960260}", "{2FB6B109-16B3-EA51-A2AF-6357BE575256}"],
+    "parentRequirements": [],
     "childRequirements": [],
-    "implemented": ["{8A4D3B17-F8D7-4905-877F-9E69CEC3D579}", "{FF74DE4D-C871-3D0E-6D6A-1DA9E09B9A8F}"],
-    "prefix": "DWIPSShutterKNX",
+    "implemented": [],
+    "prefix": "DWIPSSK",
     "url": "https://github.com/Daniel81W/DWIPSLib"
 }

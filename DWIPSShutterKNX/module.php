@@ -24,19 +24,20 @@ declare(strict_types=1);
 		private $variables = [
 			0 => ["name" => "Control", "type" => "int", "pos" => 1, "profile" => "Control"],
 			1 => ["name" => "Action", "type" => "int", "pos" => 2, "profile" => "UpDownStop"],
-			2 => ["name" => "Position", "type" => "int", "pos" => 3, "profile" => "Position"],
-			3 => ["name" => "PositionSteps", "type" => "int", "pos" => 4, "profile" => "PositionSteps"],
-			4 => ["name" => "Preset1", "type" => "int", "pos" => 5, "profile" => "Preset"],
-			5 => ["name" => "Preset2", "type" => "int", "pos" => 6, "profile" => "Preset"],
-			6 => ["name" => "Preset3", "type" => "int", "pos" => 7, "profile" => "Preset"],
-			7 => ["name" => "Preset4", "type" => "int", "pos" => 8, "profile" => "Preset"],
-			8 => ["name" => "DrivingTime", "type" => "bool", "pos" => 9, "profile" => "TriggerPro"],
-			9 => ["name" => "EarliestUp", "type" => "int", "pos" => 10, "profile" => "_~UnixTimestampTime"],
-			10 => ["name" => "LatestUp", "type" => "int", "pos" => 11, "profile" => "_~UnixTimestampTime"],
-			11 => ["name" => "EarliestDown", "type" => "int", "pos" =>12, "profile" => "_~UnixTimestampTime"],
-			12 => ["name" => "LatestDown", "type" => "int", "pos" => 13, "profile" => "_~UnixTimestampTime"],
-			13 => ["name" => "AutomationMorningOnOff", "type" => "bool", "pos" => 14, "profile" => "SwitchActive"],
-			14 => ["name" => "AutomationEveningOnOff", "type" => "bool", "pos" => 15, "profile" => "SwitchNotActive"]
+			2 => ["name" => "Stop", "type" => "bool", "pos" => 3, "profile" => "Stop"],
+			3 => ["name" => "Position", "type" => "int", "pos" => 4, "profile" => "Position"],
+			4 => ["name" => "PositionSteps", "type" => "int", "pos" => 5, "profile" => "PositionSteps"],
+			5 => ["name" => "Preset1", "type" => "int", "pos" => 6, "profile" => "Preset"],
+			6 => ["name" => "Preset2", "type" => "int", "pos" => 7, "profile" => "Preset"],
+			7 => ["name" => "Preset3", "type" => "int", "pos" => 8, "profile" => "Preset"],
+			8 => ["name" => "Preset4", "type" => "int", "pos" => 9, "profile" => "Preset"],
+			9 => ["name" => "DrivingTime", "type" => "bool", "pos" => 10, "profile" => "TriggerPro"],
+			10 => ["name" => "EarliestUp", "type" => "int", "pos" => 11, "profile" => "_~UnixTimestampTime"],
+			11 => ["name" => "LatestUp", "type" => "int", "pos" => 12, "profile" => "_~UnixTimestampTime"],
+			12 => ["name" => "EarliestDown", "type" => "int", "pos" =>13, "profile" => "_~UnixTimestampTime"],
+			13 => ["name" => "LatestDown", "type" => "int", "pos" => 14, "profile" => "_~UnixTimestampTime"],
+			14 => ["name" => "AutomationMorningOnOff", "type" => "bool", "pos" => 15, "profile" => "SwitchActive"],
+			15 => ["name" => "AutomationEveningOnOff", "type" => "bool", "pos" => 16, "profile" => "SwitchNotActive"]
 		];
 		public function Create()
 		{
@@ -78,6 +79,12 @@ declare(strict_types=1);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.UpDownStop"), 1, $this->Translate("Stop"), "", 0xFF0000);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.UpDownStop"), 2, $this->Translate("Down"), "", 0x00FF00);
 				IPS_SetVariableProfileIcon($this->Translate("DWIPS.Shutter.UpDownStop"), "Shutter");
+			}
+			if (!IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.Stop")))
+			{
+				IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.Stop"), 0);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.Stop"), 1, $this->Translate("Stop"), "", 0xFF0000);
+				IPS_SetVariableProfileIcon($this->Translate("DWIPS.Shutter.Stop"), "Shutter");
 			}
 			if (!IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.Position")))
 			{

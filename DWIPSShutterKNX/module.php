@@ -179,6 +179,10 @@ declare(strict_types=1);
 				$this->SetValue($Ident, $Value);
 				$this->ProcessAction($Ident, $Value);
 				break;
+			case "Stop":
+				$this->SetValue($Ident, $Value);
+				$this->ProcessStop($Ident, $Value);
+				break;
 			default:
 				throw new Exception("Invalid Ident");
 		}
@@ -195,6 +199,17 @@ declare(strict_types=1);
 				break;
 			case 2:
 				KNX_WriteDPT1($this->ReadPropertyInteger("UpDownID"), 1);
+				break;
+			default:
+			throw new Exception("Invalid Value for Variable " . GetIDForIdent($Ident));
+		}
+	}
+
+	private function ProcessStop($Ident, $Value){
+		switch ($Value)
+		{
+			case 1:
+				KNX_WriteDPT1($this->ReadPropertyInteger("StopID"), 0);
 				break;
 			default:
 			throw new Exception("Invalid Value for Variable " . GetIDForIdent($Ident));

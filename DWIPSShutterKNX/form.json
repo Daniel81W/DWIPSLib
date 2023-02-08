@@ -1,6 +1,7 @@
 {
     "elements": [
-        { "type": "SelectInstance", "name": "UpDownID", "caption": "Auf-Ab-KNX-Instanz" ,"validModules": "{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}", "width": "500px"}
+        { "type": "SelectInstance", "name": "UpDownID", "caption": "Auf-Ab-KNX-Instanz" ,"validModules": "{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}", "width": "500px"},
+        { "type": "SelectInstance", "name": "StopID", "caption": "Stop-KNX-Instanz" ,"validModules": "{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}", "width": "500px"}
 
     ],
     "actions": [],

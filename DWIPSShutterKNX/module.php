@@ -31,13 +31,17 @@ declare(strict_types=1);
 			6 => ["name" => "Preset2", "type" => "int", "pos" => 7, "profile" => "Preset"],
 			7 => ["name" => "Preset3", "type" => "int", "pos" => 8, "profile" => "Preset"],
 			8 => ["name" => "Preset4", "type" => "int", "pos" => 9, "profile" => "Preset"],
-			9 => ["name" => "DrivingTime", "type" => "bool", "pos" => 10, "profile" => "TriggerPro"],
-			10 => ["name" => "EarliestUp", "type" => "int", "pos" => 11, "profile" => "_~UnixTimestampTime"],
-			11 => ["name" => "LatestUp", "type" => "int", "pos" => 12, "profile" => "_~UnixTimestampTime"],
-			12 => ["name" => "EarliestDown", "type" => "int", "pos" =>13, "profile" => "_~UnixTimestampTime"],
-			13 => ["name" => "LatestDown", "type" => "int", "pos" => 14, "profile" => "_~UnixTimestampTime"],
-			14 => ["name" => "AutomationMorningOnOff", "type" => "bool", "pos" => 15, "profile" => "SwitchActive"],
-			15 => ["name" => "AutomationEveningOnOff", "type" => "bool", "pos" => 16, "profile" => "SwitchNotActive"]
+			9 => ["name" => "Preset1 Value", "type" => "int", "pos" => 10, "profile" => "Position"],
+			10 => ["name" => "Preset2 Value", "type" => "int", "pos" => 11, "profile" => "Position"],
+			11 => ["name" => "Preset3 Value", "type" => "int", "pos" => 12, "profile" => "Position"],
+			12 => ["name" => "Preset4 Value", "type" => "int", "pos" => 13, "profile" => "Position"],
+			13 => ["name" => "DrivingTime", "type" => "bool", "pos" => 14, "profile" => "TriggerPro"],
+			14 => ["name" => "EarliestUp", "type" => "int", "pos" => 15, "profile" => "_~UnixTimestampTime"],
+			15 => ["name" => "LatestUp", "type" => "int", "pos" => 16, "profile" => "_~UnixTimestampTime"],
+			16 => ["name" => "EarliestDown", "type" => "int", "pos" =>17, "profile" => "_~UnixTimestampTime"],
+			17 => ["name" => "LatestDown", "type" => "int", "pos" => 18, "profile" => "_~UnixTimestampTime"],
+			18 => ["name" => "AutomationMorningOnOff", "type" => "bool", "pos" => 19, "profile" => "SwitchActive"],
+			19 => ["name" => "AutomationEveningOnOff", "type" => "bool", "pos" => 20, "profile" => "SwitchNotActive"]
 		];
 		public function Create()
 		{
@@ -176,15 +180,9 @@ declare(strict_types=1);
 		switch ($Ident)
 		{
 			case "Action":
-				$this->SetValue($Ident, $Value);
 				$this->ProcessAction($Ident, $Value);
 				break;
 			case "Stop":
-				$this->SetValue($Ident, $Value);
-				if ($Value == 1)
-				{
-					$this->SetValue("Action", $Value);
-				}
 				$this->ProcessStop($Ident, $Value);
 				break;
 			default:
@@ -193,15 +191,20 @@ declare(strict_types=1);
 	}
 
 	private function ProcessAction($Ident, $Value){
+		$this->SetValue($Ident, $Value);
 		switch ($Value)
 		{
 			case 0:
+				$this->SetValue("Control", 11);
 				KNX_WriteDPT1($this->ReadPropertyInteger("UpDownID"), 0);
 				break;
 			case 1:
+				$this->SetValue("Control", 13);
+				$this->SetValue("Stop", 1);
 				KNX_WriteDPT1($this->ReadPropertyInteger("StopID"), 0);
 				break;
 			case 2:
+				$this->SetValue("Control", 14);
 				KNX_WriteDPT1($this->ReadPropertyInteger("UpDownID"), 1);
 				break;
 			default:
@@ -210,10 +213,18 @@ declare(strict_types=1);
 	}
 
 	private function ProcessStop($Ident, $Value){
+		$this->SetValue($Ident, 1);
 		switch ($Value)
 		{
 			case 1:
-				KNX_WriteDPT1($this->ReadPropertyInteger("StopID"), 0);
+				$this->SetValue("Control", 13);
+				$this->SetValue("Action", 1);
+				KNX_WriteDPT1($this->ReadPropertyInteger("StopID"), 1);
+				break;
+			case 1:
+				$this->SetValue("Control", 13);
+				$this->SetValue("Action", 1);
+				KNX_WriteDPT1($this->ReadPropertyInteger("StopID"), 1);
 				break;
 			default:
 			throw new Exception("Invalid Value for Variable " . GetIDForIdent($Ident));

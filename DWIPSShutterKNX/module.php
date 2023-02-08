@@ -171,6 +171,8 @@ declare(strict_types=1);
 			case "Action":
 				$this->SetValue($this->GetIDForIdent($Ident), $Value);
 				break;
+			default:
+				throw new Exception("Invalid Ident");
 		}
 	}
-	}
+}

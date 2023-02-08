@@ -102,7 +102,7 @@ declare(strict_types=1);
 			if (!IPS_VariableProfileExists($this->Translate("DWIPS.Shutter.PositionSteps")))
 			{
 				IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.PositionSteps"), 1);
-				IPS_SetVariableProfileText($this->Translate("DWIPS.Shutter.PositionSteps"), "", "%");
+				IPS_SetVariableProfileText($this->Translate("DWIPS.Shutter.PositionSteps"), "", "");
 				IPS_SetVariableProfileValues($this->Translate("DWIPS.Shutter.PositionSteps"), 0, 100, 2);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 0, "", "", 0x0000ffff);
 				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 20, "", "", 0x0000ffff);

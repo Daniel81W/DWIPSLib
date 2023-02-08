@@ -42,7 +42,11 @@
             "Active": "Aktiviert",
             "NotActive": "Deaktiviert",
             "AutomationMorningOnOff": "Automatik morgens",
-            "AutomationEveningOnOff": "Automatik abends"
+            "AutomationEveningOnOff": "Automatik abends",
+            "Preset1Value": "Preset 1 aktueller Wert",
+            "Preset2Value": "Preset 2 aktueller Wert",
+            "Preset3Value": "Preset 3 aktueller Wert",
+            "Preset4Value": "Preset 4 aktueller Wert"
         }
     }
 }

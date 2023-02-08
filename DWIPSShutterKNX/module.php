@@ -104,12 +104,12 @@ declare(strict_types=1);
 				IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.PositionSteps"), 1);
 				IPS_SetVariableProfileText($this->Translate("DWIPS.Shutter.PositionSteps"), "", "");
 				IPS_SetVariableProfileValues($this->Translate("DWIPS.Shutter.PositionSteps"), 0, 100, 2);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 0, "", "", 0x0000ffff);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 20, "", "", 0x0000ffff);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 40, "", "", 0x0000ffff);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 60, "", "", 0x0000ffff);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 80, "", "", 0x0000ffff);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 100, "", "", 0x0000ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 0, "", "", 0x00ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 20, "", "", 0x00ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 40, "", "", 0x00ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 60, "", "", 0x00ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 80, "", "", 0x00ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 100, "", "", 0x00ffff);
 			}
 			if (!IPS_VariableProfileExists("DWIPS.Shutter.Preset"))
 			{

@@ -185,6 +185,9 @@ declare(strict_types=1);
 			case "Stop":
 				$this->ProcessStop($Ident, $Value);
 				break;
+			case "Position":
+				$this->ProcessPosition($Ident, $Value);
+				break;
 			default:
 				throw new Exception("Invalid Ident");
 		}
@@ -229,5 +232,10 @@ declare(strict_types=1);
 			default:
 			throw new Exception("Invalid Value for Variable " . GetIDForIdent($Ident));
 		}
+	}
+
+	private function ProcessPosition($Ident, $Value){
+		$this->SetValue($Ident, $Value);
+		KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), $Value);
 	}
 }

@@ -387,5 +387,6 @@ declare(strict_types=1);
 
 	public function UpdatePosition(){
 		$this->SetValue("Position", GetValue(IPS_GetVariableIDByName("Wert",$this->ReadPropertyInteger("PositionRMID"))));
+		$this->SetValue("PositionSteps", GetValue(IPS_GetVariableIDByName("Wert",$this->ReadPropertyInteger("PositionRMID"))));
 	}
 }

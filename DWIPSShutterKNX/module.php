@@ -194,6 +194,15 @@ declare(strict_types=1);
 			case "Preset1":
 				$this->ProcessPreset($Ident, $Value, 1);
 				break;
+			case "Preset2":
+				$this->ProcessPreset($Ident, $Value, 1);
+				break;
+			case "Preset3":
+				$this->ProcessPreset($Ident, $Value, 1);
+				break;
+			case "Preset4":
+				$this->ProcessPreset($Ident, $Value, 1);
+				break;
 			case "DrivingTime":
 				$this->ProcessDrivingTime($Ident, $Value);
 				break;

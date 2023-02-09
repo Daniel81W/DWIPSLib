@@ -195,16 +195,22 @@ declare(strict_types=1);
 				$this->ProcessPreset($Ident, $Value, 1);
 				break;
 			case "Preset2":
-				$this->ProcessPreset($Ident, $Value, 1);
+				$this->ProcessPreset($Ident, $Value, 2);
 				break;
 			case "Preset3":
-				$this->ProcessPreset($Ident, $Value, 1);
+				$this->ProcessPreset($Ident, $Value, 3);
 				break;
 			case "Preset4":
-				$this->ProcessPreset($Ident, $Value, 1);
+				$this->ProcessPreset($Ident, $Value, 4);
 				break;
 			case "DrivingTime":
 				$this->ProcessDrivingTime($Ident, $Value);
+				break;
+			case "AutomationMorningOnOff":
+				$this->ProcessAutomationOnOff($Ident, $Value);
+				break;
+			case "AutomationEveningOnOff":
+				$this->ProcessAutomationOnOff($Ident, $Value);
 				break;
 			default:
 				throw new Exception("Invalid Ident");
@@ -360,5 +366,15 @@ declare(strict_types=1);
 		IPS_Sleep(500);
 		$this->SetValue($Ident, 0);
 
+	}
+
+	private function ProcessAutomationOnOff($Ident, $Value){
+		$this->SetValue($Ident, !($Value));
+		if ($Value)
+		{
+			IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter." . $this->Translate("SwitchActive"));
+		}else{
+			IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter." . $this->Translate("SwitchNotActive"));
+		}
 	}
 }

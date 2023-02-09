@@ -372,9 +372,9 @@ declare(strict_types=1);
 		$this->SetValue($Ident, !($Value));
 		if ($Value)
 		{
-			IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter." . $this->Translate("SwitchActive"));
-		}else{
 			IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter." . $this->Translate("SwitchNotActive"));
+		}else{
+			IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter." . $this->Translate("SwitchActive"));
 		}
 	}
 }

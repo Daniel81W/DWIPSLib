@@ -307,19 +307,19 @@ declare(strict_types=1);
 			{
 				case 1:
 					KNX_WriteDPT1($this->ReadPropertyInteger("Preset12SetID"), 0);
-					$this->SetValue("Preset1Value", KNX_RequestStatus($this->ReadPropertyInteger("PositionRMID")));
+					$this->SetValue("Preset1Value", GetValue(IPS_GetVariableIDByName("Wert",$this->ReadPropertyInteger("PositionRMID"))));
 					break;
 				case 2:
 					KNX_WriteDPT1($this->ReadPropertyInteger("Preset12SetID"), 1);
-					$this->SetValue("Preset2Value", KNX_RequestStatus($this->ReadPropertyInteger("PositionRMID")));
+					$this->SetValue("Preset2Value", GetValue(IPS_GetVariableIDByName("Wert",$this->ReadPropertyInteger("PositionRMID"))));
 					break;
 				case 3:
 					KNX_WriteDPT1($this->ReadPropertyInteger("Preset34SetID"), 0);
-					$this->SetValue("Preset3Value", KNX_RequestStatus($this->ReadPropertyInteger("PositionRMID")));
+					$this->SetValue("Preset3Value", GetValue(IPS_GetVariableIDByName("Wert",$this->ReadPropertyInteger("PositionRMID"))));
 					break;
 				case 4:
 					KNX_WriteDPT1($this->ReadPropertyInteger("Preset34SetID"), 1);
-					$this->SetValue("Preset4Value", KNX_RequestStatus($this->ReadPropertyInteger("PositionRMID")));
+					$this->SetValue("Preset4Value", GetValue(IPS_GetVariableIDByName("Wert",$this->ReadPropertyInteger("PositionRMID"))));
 					break;
 			}
 		}elseif($Value == 2){

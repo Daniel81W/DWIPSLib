@@ -3,7 +3,11 @@
         { "type": "SelectInstance", "name": "UpDownID", "caption": "Auf-Ab-KNX-Instanz" ,"validModules": "{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}", "width": "600px"},
         { "type": "SelectInstance", "name": "StopID", "caption": "Stop-KNX-Instanz" ,"validModules": "{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}", "width": "600px"},
         { "type": "SelectInstance", "name": "PositionID", "caption": "Position-KNX-Instanz" ,"validModules": "{EBD0EE8D-DFA5-449F-BBE4-49CFC5F0EEB4}", "width": "600px"},
-        { "type": "SelectInstance", "name": "PositionRMID", "caption": "Position-RM-KNX-Instanz" ,"validModules": "{EBD0EE8D-DFA5-449F-BBE4-49CFC5F0EEB4}", "width": "600px"}
+        { "type": "SelectInstance", "name": "PositionRMID", "caption": "Position-RM-KNX-Instanz" ,"validModules": "{EBD0EE8D-DFA5-449F-BBE4-49CFC5F0EEB4}", "width": "600px"},
+        { "type": "NumberSpinner", "name": "Value90", "caption": "Wert für 90% Absenkung" , "width": "600px"},
+        { "type": "NumberSpinner", "name": "Value75", "caption": "Wert für 75% Absenkung" , "width": "600px"},
+        { "type": "NumberSpinner", "name": "Value50", "caption": "Wert für 50% Absenkung" , "width": "600px"},
+        { "type": "NumberSpinner", "name": "Value25", "caption": "Wert für 25% Absenkung" , "width": "600px"}
 
     ],
     "actions": [],

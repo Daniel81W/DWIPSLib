@@ -191,6 +191,8 @@ declare(strict_types=1);
 			case "Position":
 				$this->ProcessPosition($Ident, $Value);
 				break;
+			case "DrivingTime":
+				$this->ProcessDrivingTime($Ident, $Value);
 			default:
 				throw new Exception("Invalid Ident");
 		}
@@ -205,19 +207,19 @@ declare(strict_types=1);
 				break;
 			case 4:
 				$this->SetValue($Ident, $Value);
-				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), 90);
+				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), $this->ReadPropertyInteger("Value90"));
 				break;
 			case 5:
 				$this->SetValue($Ident, $Value);
-				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), 75);
+				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), $this->ReadPropertyInteger("Value75"));
 				break;
 			case 6:
 				$this->SetValue($Ident, $Value);
-				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), 50);
+				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), $this->ReadPropertyInteger("Value50"));
 				break;
 			case 7:
 				$this->SetValue($Ident, $Value);
-				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), 25);
+				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), $this->ReadPropertyInteger("Value25"));
 				break;
 			case 8:
 				$this->SetValue($Ident, $Value);
@@ -291,5 +293,13 @@ declare(strict_types=1);
 	private function ProcessPosition($Ident, $Value){
 		$this->SetValue($Ident, $Value);
 		KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), $Value);
+	}
+
+	private function ProcessDrivingTime($Ident, $Value){
+		$this->SetValue($Ident, $Value);
+		KNX_WriteDPT1($this->ReadPropertyInteger("DrivingTimeID"), $Value);
+		IPS_Sleep(500);
+		$this->SetValue($Ident, 0);
+
 	}
 }

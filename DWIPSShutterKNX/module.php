@@ -191,8 +191,12 @@ declare(strict_types=1);
 			case "Position":
 				$this->ProcessPosition($Ident, $Value);
 				break;
+			case "Preset1":
+				$this->ProcessPreset($Ident, $Value, 1);
+				break;
 			case "DrivingTime":
 				$this->ProcessDrivingTime($Ident, $Value);
+				break;
 			default:
 				throw new Exception("Invalid Ident");
 		}
@@ -293,6 +297,52 @@ declare(strict_types=1);
 	private function ProcessPosition($Ident, $Value){
 		$this->SetValue($Ident, $Value);
 		KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), $Value);
+	}
+
+	private function ProcessPreset($Ident, $Value, $Preset){
+		$this->SetValue($Ident, $Value);
+		if ($Value == 1)
+		{
+			switch ($Preset)
+			{
+				case 1:
+					KNX_WriteDPT1($this->ReadPropertyInteger("Preset12SetID"), 0);
+					$this->SetValue("Preset1Value", KNX_RequestStatus($this->ReadPropertyInteger("PositionRMID")));
+					break;
+				case 2:
+					KNX_WriteDPT1($this->ReadPropertyInteger("Preset12SetID"), 1);
+					$this->SetValue("Preset2Value", KNX_RequestStatus($this->ReadPropertyInteger("PositionRMID")));
+					break;
+				case 3:
+					KNX_WriteDPT1($this->ReadPropertyInteger("Preset34SetID"), 0);
+					$this->SetValue("Preset3Value", KNX_RequestStatus($this->ReadPropertyInteger("PositionRMID")));
+					break;
+				case 4:
+					KNX_WriteDPT1($this->ReadPropertyInteger("Preset34SetID"), 1);
+					$this->SetValue("Preset4Value", KNX_RequestStatus($this->ReadPropertyInteger("PositionRMID")));
+					break;
+			}
+		}elseif($Value == 2){
+			switch ($Preset)
+			{
+				case 1:
+					KNX_WriteDPT1($this->ReadPropertyInteger("Preset12ExID"), 0);
+					break;
+				case 2:
+					KNX_WriteDPT1($this->ReadPropertyInteger("Preset12ExID"), 1);
+					break;
+				case 3:
+					KNX_WriteDPT1($this->ReadPropertyInteger("Preset34ExID"), 0);
+					break;
+				case 4:
+					KNX_WriteDPT1($this->ReadPropertyInteger("Preset34ExID"), 1);
+					break;
+			}
+
+		}
+		IPS_Sleep(500);
+		$this->SetValue($Ident, 0);
+
 	}
 
 	private function ProcessDrivingTime($Ident, $Value){

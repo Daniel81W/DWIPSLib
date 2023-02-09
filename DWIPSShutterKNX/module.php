@@ -161,6 +161,13 @@ declare(strict_types=1);
 						throw new Exception("Invalid type");
 				}
 			}
+
+		$this->RegisterTimer(
+			"UpdatePosition",
+			1000,
+			"DWIPSSK_UpdatePosition(".$this->InstanceID.");"
+			//"IPS_GetInstance(".");"
+		);
 		}
 
 		public function Destroy()
@@ -376,5 +383,9 @@ declare(strict_types=1);
 		}else{
 			IPS_SetVariableCustomProfile($this->GetIDForIdent($Ident), "DWIPS.Shutter." . $this->Translate("SwitchActive"));
 		}
+	}
+
+	public function UpdatePosition(){
+		$this->SetValue("Position", GetValue(IPS_GetVariableIDByName("Wert",$this->ReadPropertyInteger("PositionRMID"))));
 	}
 }

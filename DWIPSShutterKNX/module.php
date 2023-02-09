@@ -103,13 +103,13 @@ declare(strict_types=1);
 			{
 				IPS_CreateVariableProfile($this->Translate("DWIPS.Shutter.PositionSteps"), 1);
 				IPS_SetVariableProfileText($this->Translate("DWIPS.Shutter.PositionSteps"), "", "");
-				IPS_SetVariableProfileValues($this->Translate("DWIPS.Shutter.PositionSteps"), 0, 100, 2);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 0, "", "", 0x00ffff);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 20, "", "", 0x00ffff);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 40, "", "", 0x00ffff);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 60, "", "", 0x00ffff);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 80, "", "", 0x00ffff);
-				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 100, "", "", 0x00ffff);
+				IPS_SetVariableProfileValues($this->Translate("DWIPS.Shutter.PositionSteps"), 0, 100, 0);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 0, "0 %%", "", 0x00ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 20, "20 %%", "", 0x00ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 40, "40 %%", "", 0x00ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 60, "60 %%", "", 0x00ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 80, "80 %%", "", 0x00ffff);
+				IPS_SetVariableProfileAssociation($this->Translate("DWIPS.Shutter.PositionSteps"), 100, "100 %%", "", 0x00ffff);
 			}
 			if (!IPS_VariableProfileExists("DWIPS.Shutter.Preset"))
 			{
@@ -179,6 +179,9 @@ declare(strict_types=1);
 	{
 		switch ($Ident)
 		{
+			case "Control":
+				$this->ProcessControl($Ident, $Value);
+				break;
 			case "Action":
 				$this->ProcessAction($Ident, $Value);
 				break;
@@ -190,6 +193,57 @@ declare(strict_types=1);
 				break;
 			default:
 				throw new Exception("Invalid Ident");
+		}
+	}
+
+	private function ProcessControl($Ident, $Value)
+	{
+		switch ($Value){
+			case 0:
+				$this->SetValue($Ident, $Value);
+				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), 100);
+				break;
+			case 4:
+				$this->SetValue($Ident, $Value);
+				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), 90);
+				break;
+			case 5:
+				$this->SetValue($Ident, $Value);
+				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), 75);
+				break;
+			case 6:
+				$this->SetValue($Ident, $Value);
+				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), 50);
+				break;
+			case 7:
+				$this->SetValue($Ident, $Value);
+				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), 25);
+				break;
+			case 8:
+				$this->SetValue($Ident, $Value);
+				KNX_WriteDPT5($this->ReadPropertyInteger("PositionID"), 0);
+				break;
+			case 10:
+				break;
+			case 11:
+				$this->SetValue($Ident, $Value);
+				$this->SetValue("Action", 0);
+				KNX_WriteDPT1($this->ReadPropertyInteger("UpDownID"), 0);
+				break;
+			case 13:
+				$this->SetValue($Ident, $Value);
+				$this->SetValue("Action", 1);
+				$this->SetValue("Stop", 1);
+				KNX_WriteDPT1($this->ReadPropertyInteger("StopID"), 1);
+				break;
+			case 14:
+				$this->SetValue($Ident, $Value);
+				$this->SetValue("Action", 2);
+				KNX_WriteDPT1($this->ReadPropertyInteger("UpDownID"), 1);
+				break;
+				break;
+			default:
+
 		}
 	}
 

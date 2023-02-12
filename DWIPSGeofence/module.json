@@ -7,6 +7,6 @@
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
-    "prefix": "DWIPSShutterControl",
+    "prefix": "DWIPSGeofence",
     "url": "https://github.com/Daniel81W/DWIPSLib"
 }

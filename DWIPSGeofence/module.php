@@ -1,8 +1,6 @@
 <?php
 
-include_once __DIR__ . '/../libs/WebHookModule.php';
-
-class DWIPSGeofence extends WebHookModule {
+class DWIPSGeofence extends IPSModule {
 
 	public function Create()
 	{

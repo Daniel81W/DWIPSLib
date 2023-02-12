@@ -1,12 +1,12 @@
 {
-    "id": "{0B8709EA-127A-29C7-61DA-916BA9B2ED02}",
-    "name": "DWIPSShutter",
-    "type": 3,
+    "id": "{1D75B1F6-0A22-E5BB-7A3E-7109F7DD1939}",
+    "name": "DWIPSGeofence",
+    "type": 0,
     "vendor": "DWIPS",
     "aliases": [],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
-    "prefix": "DWIPSShutter",
+    "prefix": "DWIPSShutterControl",
     "url": "https://github.com/Daniel81W/DWIPSLib"
 }

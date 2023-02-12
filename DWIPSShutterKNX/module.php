@@ -164,9 +164,8 @@ declare(strict_types=1);
 
 		$this->RegisterTimer(
 			"UpdatePosition",
-			1000,
+			2000,
 			"DWIPSSK_UpdatePosition(".$this->InstanceID.");"
-			//"IPS_GetInstance(".");"
 		);
 		}
 

@@ -1,7 +1,7 @@
 {
     "id": "{1D75B1F6-0A22-E5BB-7A3E-7109F7DD1939}",
     "name": "DWIPSGeofence",
-    "type": 0,
+    "type": 2,
     "vendor": "DWIPS",
     "aliases": [],
     "parentRequirements": [],

@@ -35,6 +35,7 @@ class DWIPSGeofence extends IPSModule {
 		$hook = $_SERVER['HOOK'];
 		if(! @$this->GetIDForIdent($hook)){
 			$id = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+			IPS_SetIdent($id, $hook);
 			IPS_SetParent($id , $this->InstanceID);
 			IPS_SetName($id, $hook);
 		}

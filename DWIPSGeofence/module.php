@@ -58,7 +58,7 @@ class DWIPSGeofence extends IPSModule {
 		}
 
 		if($_POST['trigger'] == 'enter'){
-			IPS_GetObject($deviceid)->SetValue("presence", true);
+			//IPS_GetObject($deviceid)->SetValue("presence", true);
 		}else if($_POST['trigger'] == 'exit'){
 			$this->SetValue($hookident.$deviceident . "presence", false);
 		}

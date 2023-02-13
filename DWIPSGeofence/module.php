@@ -31,13 +31,16 @@ class DWIPSGeofence extends IPSModule {
 	*/
 	protected function ProcessHookData()
 	{
-		IPS_LogMessage("GeofenceOut Post", print_r($_SERVER['HOOK'], true));
+		IPS_LogMessage("GeofenceOut Post", print_r($_POST, true));
 		$hook = $_SERVER['HOOK'];
-		if(! @$this->GetIDForIdent(str_replace('/', '0', $hook))){
+		$hookid = @$this->GetIDForIdent(str_replace('/', '0', $hook));
+		if(! hookid){
 			$id = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
 			IPS_SetIdent($id, str_replace('/', '0', $hook));
 			IPS_SetParent($id , $this->InstanceID);
 			IPS_SetName($id, $hook);
+		}else{
+			
 		}
 	}
 

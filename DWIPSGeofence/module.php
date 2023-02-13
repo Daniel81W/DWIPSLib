@@ -51,7 +51,7 @@ class DWIPSGeofence extends IPSModule {
 			IPS_SetParent($deviceid , $hookid);
 			IPS_SetName($deviceid, $device);
 			$this->RegisterVariableBoolean($deviceident."presence", $this->Translate("Presence"));
-			IPS_SetParent($deviceid , $hookid);
+			IPS_SetParent($this->GetIDForIdent($deviceident."presence") , $deviceid);
 		}
 
 		if($_POST['trigger'] == 'enter'){

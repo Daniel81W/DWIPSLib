@@ -48,10 +48,11 @@ class DWIPSGeofence extends IPSModule {
 			IPS_SetIdent($presenceid, $deviceident."presence");
 		}
 
+		$presenceid = IPS_GetObjectIDByIdent($deviceident."presence", $deviceid);
 		if($_POST['trigger'] == 'enter'){
-			$this->SetValue($deviceident."presence", true);
+			SetValue($presenceid, true);
 		}else if($_POST['trigger'] == 'exit'){
-			$this->SetValue($deviceident . "presence", false);
+			SetValue($presenceid, false);
 		}
 		
 	}

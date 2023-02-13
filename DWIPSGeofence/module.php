@@ -46,6 +46,11 @@ class DWIPSGeofence extends IPSModule {
 			IPS_SetName($presenceid, $this->Translate("Presence"));
 			IPS_SetParent($presenceid , $deviceid);
 			IPS_SetIdent($presenceid, $deviceident."presence");
+			$timeid = IPS_CreateVariable(1);
+			IPS_SetName($timeid, $this->Translate("TimeStamp"));
+			IPS_SetParent($timeid , $deviceid);
+			IPS_SetIdent($timeid, $deviceident."timestamp");
+
 		}
 
 		$presenceid = IPS_GetObjectIDByIdent($deviceident."presence", $deviceid);
@@ -54,6 +59,9 @@ class DWIPSGeofence extends IPSModule {
 		}else if($_POST['trigger'] == 'exit'){
 			SetValue($presenceid, false);
 		}
+		$timeid = IPS_GetObjectIDByIdent($deviceident."timestamp", $deviceid);
+		SetValue($timeid, time());
+		
 		
 	}
 

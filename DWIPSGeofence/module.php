@@ -31,7 +31,7 @@ class DWIPSGeofence extends IPSModule {
 	*/
 	protected function ProcessHookData()
 	{
-		//IPS_LogMessage("GeofenceOut Post", print_r($_POST, true));
+		IPS_LogMessage("GeofenceOut Post", print_r($_POST, true));
 		
 		$device = $_POST['device'];
 		$deviceident = str_replace('-', '_', $device);

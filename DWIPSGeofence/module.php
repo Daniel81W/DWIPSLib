@@ -49,9 +49,9 @@ class DWIPSGeofence extends IPSModule {
 		if (!$deviceid)
 		{
 			$deviceid = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
-			IPS_SetIdent($deviceid, $deviceident);
 			IPS_SetParent($deviceid , $this->InstanceID);
 			IPS_SetName($deviceid, $device);
+			IPS_SetIdent($deviceid, $deviceident);
 			$presenceid = IPS_CreateVariable(0);
 			IPS_SetName($presenceid, $this->Translate("Presence"));
 			IPS_SetParent($presenceid , $deviceid);

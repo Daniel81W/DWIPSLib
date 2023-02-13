@@ -31,36 +31,35 @@ class DWIPSGeofence extends IPSModule {
 	*/
 	protected function ProcessHookData()
 	{
-		IPS_LogMessage("GeofenceOut Post", print_r($_POST, true));
+		//IPS_LogMessage("GeofenceOut Post", print_r($_POST, true));
 		$hook = $_SERVER['HOOK'];
 		$hookid = @$this->GetIDForIdent(str_replace('/', '0', $hook));
 		if(! $hookid){
-			$id = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
-			IPS_SetIdent($id, str_replace('/', '0', $hook));
-			IPS_SetParent($id , $this->InstanceID);
-			IPS_SetName($id, $hook);
-		}else{
-			IPS_LogMessage("GeofenceOut Post", print_r($_POST['device'], true));
-			$device = $_POST['device'];
-			$deviceident = str_replace('-', '', $device);
-			$deviceid = @$this->GetIDForIdent($deviceident);
-			if (!$deviceid)
-			{
-				$id = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
-				IPS_SetIdent($id, $deviceident);
-				IPS_SetParent($id , $hookid);
-				IPS_SetName($id, $device);
-				$this->RegisterVariableBoolean($deviceident."presence", $this->Translate("Presence"));
-				IPS_SetParent($id , $deviceid);
-			}
-
-
-			if($_POST['trigger'] == 'enter'){
-				$this->SetValue($deviceident . "presence", true);
-			}else if($_POST['trigger'] == 'exit'){
-				$this->SetValue($deviceident . "presence", false);
-			}
+			$hookid = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+			IPS_SetIdent($hookid, str_replace('/', '0', $hook));
+			IPS_SetParent($hookid , $this->InstanceID);
+			IPS_SetName($hookid, $hook);
 		}
+		//IPS_LogMessage("GeofenceOut Post", print_r($_POST['device'], true));
+		$device = $_POST['device'];
+		$deviceident = str_replace('-', '', $device);
+		$deviceid = @$this->GetIDForIdent($deviceident);
+		if (!$deviceid)
+		{
+			$deviceid = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+			IPS_SetIdent($deviceid, $deviceident);
+			IPS_SetParent($deviceid , $hookid);
+			IPS_SetName($deviceid, $device);
+			$this->RegisterVariableBoolean($deviceident."presence", $this->Translate("Presence"));
+			IPS_SetParent($deviceid , $hookid);
+		}
+
+		if($_POST['trigger'] == 'enter'){
+			$this->SetValue($deviceident . "presence", true);
+		}else if($_POST['trigger'] == 'exit'){
+			$this->SetValue($deviceident . "presence", false);
+		}
+		
 	}
 
 	private function RegisterHook($WebHook) 

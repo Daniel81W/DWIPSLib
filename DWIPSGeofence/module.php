@@ -34,13 +34,13 @@ class DWIPSGeofence extends IPSModule {
 		IPS_LogMessage("GeofenceOut Post", print_r($_POST, true));
 		$hook = $_SERVER['HOOK'];
 		$hookid = @$this->GetIDForIdent(str_replace('/', '0', $hook));
-		if(! hookid){
+		if(! $hookid){
 			$id = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
 			IPS_SetIdent($id, str_replace('/', '0', $hook));
 			IPS_SetParent($id , $this->InstanceID);
 			IPS_SetName($id, $hook);
 		}else{
-			
+			IPS_LogMessage("GeofenceOut Post", print_r($_POST['device'], true));
 		}
 	}
 

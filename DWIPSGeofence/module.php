@@ -32,15 +32,16 @@ class DWIPSGeofence extends IPSModule {
 	protected function ProcessHookData()
 	{
 		//IPS_LogMessage("GeofenceOut Post", print_r($_POST, true));
-		$hook = $_SERVER['HOOK'];
-		$hookident = str_replace('/', '_', $hook);
-		$hookid = @$this->GetIDForIdent($hookident);
-		if(! $hookid){
-			$hookid = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
-			IPS_SetIdent($hookid, $hookident);
-			IPS_SetParent($hookid , $this->InstanceID);
-			IPS_SetName($hookid, $hook);
-		}
+		
+		//$hook = $_SERVER['HOOK'];
+		//$hookident = str_replace('/', '_', $hook);
+		//$hookid = @$this->GetIDForIdent($hookident);
+		//if(! $hookid){
+		//	$hookid = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
+		//	IPS_SetIdent($hookid, $hookident);
+		//	IPS_SetParent($hookid , $this->InstanceID);
+		//	IPS_SetName($hookid, $hook);
+		//}
 		//IPS_LogMessage("GeofenceOut Post", print_r($_POST['device'], true));
 		$device = $_POST['device'];
 		$deviceident = str_replace('-', '_', $device);
@@ -49,7 +50,7 @@ class DWIPSGeofence extends IPSModule {
 		{
 			$deviceid = IPS_CreateInstance("{485D0419-BE97-4548-AA9C-C083EB82E61E}");
 			IPS_SetIdent($deviceid, $deviceident);
-			IPS_SetParent($deviceid , $hookid);
+			IPS_SetParent($deviceid , $this->InstanceID);
 			IPS_SetName($deviceid, $device);
 			$presenceid = IPS_CreateVariable(0);
 			IPS_SetName($presenceid, $this->Translate("Presence"));
@@ -60,7 +61,7 @@ class DWIPSGeofence extends IPSModule {
 		if($_POST['trigger'] == 'enter'){
 			//IPS_GetObject($deviceid)->SetValue("presence", true);
 		}else if($_POST['trigger'] == 'exit'){
-			$this->SetValue($hookident.$deviceident . "presence", false);
+			//$this->SetValue($hookident.$deviceident . "presence", false);
 		}
 		
 	}

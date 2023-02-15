@@ -22,9 +22,9 @@ declare(strict_types=1);
 		];
 		//Zu erstellende Variablen in der Instanz
 		private $variables = [
-			0 => ["name" => "Control", "type" => "int", "pos" => 1, "profile" => "Control"],
-			1 => ["name" => "Action", "type" => "int", "pos" => 2, "profile" => "UpDownStop"],
-			2 => ["name" => "Stop", "type" => "bool", "pos" => 3, "profile" => "Stop"],
+			0 => ["name" => "Control", "type" => "int", "pos" => 1, "profile" => "Control", "initialValue" => 13],
+			1 => ["name" => "Action", "type" => "int", "pos" => 2, "profile" => "UpDownStop", "initialValue" => 1],
+			2 => ["name" => "Stop", "type" => "bool", "pos" => 3, "profile" => "Stop", "initialValue" => 1],
 			3 => ["name" => "Position", "type" => "int", "pos" => 4, "profile" => "Position"],
 			4 => ["name" => "PositionSteps", "type" => "int", "pos" => 5, "profile" => "PositionSteps"],
 			5 => ["name" => "Preset1", "type" => "int", "pos" => 6, "profile" => "Preset"],
@@ -159,6 +159,10 @@ declare(strict_types=1);
 						break;
 					default:
 						throw new Exception("Invalid type");
+				}
+				if(isset($var["initialValue"]))
+				{
+					$this->SetValue($var["name"], $var["initialValue"]);
 				}
 			}
 

@@ -82,11 +82,14 @@
 
 			$jd = ASTROGEN::JulianDay();
 			$jc = ASTROGEN::JulianCentury($jd);
-			$jdtomorrow = 0;
+			$jdtomorrow = $jd + 1;
 			$jctomorrow = ASTROGEN::JulianCentury($jdtomorrow);
 
 			$solarZenith = ASTROSUN::SolarZenith($jc, $localTime, $latitude, $longitude, $timezone);
-			$sunrise = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, true)*24*60*60);
+			$sunrise = mktime(0, 0, ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, true) * 24 * 60 * 60);
+			if($sunrise <  time()){
+				$sunrise = mktime(0, 0, ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jctomorrow, true) * 24 * 60 * 60);
+			}
 			$sunset = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
 			$solarAzimut = ASTROSUN::SolarAzimut($jc, $localTime, $latitude, $longitude, $timezone);
 			$beginCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, true)*24*60*60);
@@ -110,7 +113,7 @@
 			$this->SetValue("sunlightduration", ($sunset - $sunrise)/60/60);
 			$this->SetValue("season", $this->Translate(ASTROSUN::Season($jc, $latitude)));
 
-			
+
 				$this->SetValue("sunrise", $sunrise);
 				$this->SetValue("sunset", $sunset);
 				$this->SetValue("startciviltwilight", $beginCivilTwilight);

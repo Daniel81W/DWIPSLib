@@ -81,13 +81,16 @@
 			$longitude = $this->ReadPropertyFloat("Longitude");
 
 			$jd = ASTROGEN::JulianDay();
+			IPS_LogMessage("Astro JD", $jd);
 			$jc = ASTROGEN::JulianCentury($jd);
+			IPS_LogMessage("Astro JC", $jc);
 			$jdtomorrow = $jd + 1;
+			IPS_LogMessage("Astro JD", $jdtomorrow);
 			$jctomorrow = ASTROGEN::JulianCentury($jdtomorrow);
+			IPS_LogMessage("Astro JC", $jctomorrow);
 
 			$solarZenith = ASTROSUN::SolarZenith($jc, $localTime, $latitude, $longitude, $timezone);
 			$sunrise = mktime(0, 0, ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, true) * 24 * 60 * 60);
-			IPS_LogMessage("Astro", $sunrise . " : " . time());
 			if($sunrise <  time()){
 				$sunrise = mktime(0, 0, ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jctomorrow, true) * 24 * 60 * 60);
 			}

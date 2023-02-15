@@ -40,8 +40,8 @@ declare(strict_types=1);
 			15 => ["name" => "LatestUp", "type" => "int", "pos" => 16, "profile" => "_~UnixTimestampTime"],
 			16 => ["name" => "EarliestDown", "type" => "int", "pos" =>17, "profile" => "_~UnixTimestampTime"],
 			17 => ["name" => "LatestDown", "type" => "int", "pos" => 18, "profile" => "_~UnixTimestampTime"],
-			18 => ["name" => "AutomationMorningOnOff", "type" => "bool", "pos" => 19, "profile" => "SwitchActive"],
-			19 => ["name" => "AutomationEveningOnOff", "type" => "bool", "pos" => 20, "profile" => "SwitchNotActive"]
+			18 => ["name" => "AutomationMorningOnOff", "type" => "bool", "pos" => 19, "profile" => "SwitchActive", "initialValue" => 0],
+			19 => ["name" => "AutomationEveningOnOff", "type" => "bool", "pos" => 20, "profile" => "SwitchNotActive", "initialValue" => 0]
 		];
 		public function Create()
 		{

@@ -32,10 +32,10 @@
 			$this->RegisterVariableBoolean("day", $this->Translate("day"),"", 23);
 			$this->RegisterVariableBoolean("insideCivilTwilight", $this->Translate("insideCivilTwilight"), "", 24);
 			$this->RegisterVariableFloat("shadowLength", $this->Translate("shadowlength"), "", 25);
-			$this->RegisterVariableFloat("solarirradiancespace", $this->Translate("solarirradiancespace"), "Astronomie.Radiant_Power", 26);
-			$this->RegisterVariableFloat("solarirradiancerectangular", $this->Translate("solarirradiancerectangular"), "Astronomie.Radiant_Power", 27);
-			$this->RegisterVariableFloat("solarirradianceground", $this->Translate("solarirradianceground"), "Astronomie.Radiant_Power", 28);
-			$this->RegisterVariableFloat("solarirradiancepvcollector", $this->Translate("solarirradiancepvcollector"), "Astronomie.Radiant_Power", 40);
+			//$this->RegisterVariableFloat("solarirradiancespace", $this->Translate("solarirradiancespace"), "Astronomie.Radiant_Power", 26);
+			//$this->RegisterVariableFloat("solarirradiancerectangular", $this->Translate("solarirradiancerectangular"), "Astronomie.Radiant_Power", 27);
+			//$this->RegisterVariableFloat("solarirradianceground", $this->Translate("solarirradianceground"), "Astronomie.Radiant_Power", 28);
+			//$this->RegisterVariableFloat("solarirradiancepvcollector", $this->Translate("solarirradiancepvcollector"), "Astronomie.Radiant_Power", 40);
 			
 			
 			$this->RegisterVariableString("moonphase", $this->Translate("moonphase"), "", 30);
@@ -82,6 +82,7 @@
 
 			$jd = ASTROGEN::JulianDay();
 			$jc = ASTROGEN::JulianCentury($jd);
+			
 
 			$solarZenith = ASTROSUN::SolarZenith($jc, $localTime, $latitude, $longitude, $timezone);
 			$sunrise = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, true)*24*60*60);

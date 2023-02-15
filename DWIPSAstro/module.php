@@ -87,8 +87,8 @@
 
 			$solarZenith = ASTROSUN::SolarZenith($jc, $localTime, $latitude, $longitude, $timezone);
 			$sunrise = mktime(0, 0, ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, true) * 24 * 60 * 60);
+			IPS_LogMessage("Astro", $sunrise . " : " . time());
 			if($sunrise <  time()){
-				IPS_LogMessage("Astro", $sunrise . " : " . time());
 				$sunrise = mktime(0, 0, ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jctomorrow, true) * 24 * 60 * 60);
 			}
 			$sunset = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, false)*24*60*60);

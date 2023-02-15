@@ -17,6 +17,8 @@
             "DWIPS.Shutter.SwitchActive": "DWIPS.Shutter.SchalterAktiviert",
             "DWIPS.Shutter.SwitchNotActive": "DWIPS.Shutter.SchalterDeaktiviert",
             "DWIPS.Shutter.Control": "DWIPS.Shutter.Steuerung",
+            "UpDownStop": "AufAbStop",
+
             "Control": "Steuerung",
             "DrivingTime": "Fahrtzeitermittlung",
             "Closed": "Geschlossen",

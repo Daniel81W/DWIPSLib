@@ -92,14 +92,17 @@
 			}
 			$sunset = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
 			if($sunset <  time()){
-				$sunset = mktime(0, 0, ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jctomorrow, false) * 24 * 60 * 60);
+				$sunset = mktime(0, 0, (1 + ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jctomorrow, false)) * 24 * 60 * 60);
 			}
 			$solarAzimut = ASTROSUN::SolarAzimut($jc, $localTime, $latitude, $longitude, $timezone);
 			$beginCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, true)*24*60*60);
 			if($beginCivilTwilight < time()){
-				$beginCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jctomorrow, true)*24*60*60);
+				$beginCivilTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jctomorrow, true))*24*60*60);
 			}
 			$endCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
+			if($endCivilTwilight < time()){
+				$endCivilTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jctomorrow, true))*24*60*60);
+			}
 			$sunelevation = ASTROSUN::SolarElevation($jc, $localTime, $latitude, $longitude, $timezone);
 			$sundistance = ASTROSUN::SunRadVector($jc) * 149597870.7;
 			$solarirradiancespace = 3.845 * pow(10, 26) / (4 * pi() * pow($sundistance * 1000 , 2));
@@ -125,16 +128,32 @@
 				$this->SetValue("startciviltwilight", $beginCivilTwilight);
 				$this->SetValue("stopciviltwilight", $endCivilTwilight);
 			try{
-				$this->SetValue("startnauticaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
+				$beginNauticalTwilight = mktime(0, 0, ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, true) * 24 * 60 * 60);
+				$this->SetValue("startnauticaltwilight", $beginNauticalTwilight);
+				if($beginNauticalTwilight < time()){
+					$beginNauticalTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jctomorrow, true))*24*60*60);
+				}
 			}catch (Exception $e){}
 			try{
-				$this->SetValue("stopnauticaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
+				$endNauticalTwilight = mktime(0, 0, ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, false) * 24 * 60 * 60);
+				$this->SetValue("stopnauticaltwilight", $endNauticalTwilight);
+				if($endNauticalTwilight < time()){
+					$endNauticalTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jctomorrow, false))*24*60*60);
+				}
 			}catch (Exception $e){}
 			try{
-				$this->SetValue("startastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true)*24*60*60));
+				$beginAstronomicalTwilight = mktime(0, 0, ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true) * 24 * 60 * 60);
+				$this->SetValue("startastronomicaltwilight", $beginAstronomicalTwilight);
+				if($beginAstronomicalTwilight < time()){
+					$beginAstronomicalTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jctomorrow, true))*24*60*60);
+				}
 			}catch (Exception $e){}
 			try{
-				$this->SetValue("stopastronomicaltwilight", mktime(0,0,ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false)*24*60*60));
+			$endAstronomicalTwilight = mktime(0, 0, ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false) * 24 * 60 * 60);
+				$this->SetValue("stopastronomicaltwilight", $endAstronomicalTwilight);
+				if($endAstronomicalTwilight < time()){
+					$endAstronomicalTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jctomorrow, false))*24*60*60);
+				}
 			}catch (Exception $e){}
 			$this->SetValue("shadowLength", 1 / tan(deg2rad($sunelevation)));
 			$this->SetValue("solarirradiancespace", $solarirradiancespace);

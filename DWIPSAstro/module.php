@@ -87,19 +87,23 @@
 
 			$solarZenith = ASTROSUN::SolarZenith($jc, $localTime, $latitude, $longitude, $timezone);
 			$sunrise = mktime(0, 0, ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, true) * 24 * 60 * 60);
+			$sunrisetoday = $sunrise;
 			if($sunrise <  time()){
 				$sunrise = mktime(0, 0, (1 + ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jctomorrow, true)) * 24 * 60 * 60);
 			}
 			$sunset = mktime(0,0,ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
+			$sunsettoday = $sunset;
 			if($sunset <  time()){
 				$sunset = mktime(0, 0, (1 + ASTROSUN::TimeForElevation(-0.833, $latitude, $longitude, $timezone, $jctomorrow, false)) * 24 * 60 * 60);
 			}
 			$solarAzimut = ASTROSUN::SolarAzimut($jc, $localTime, $latitude, $longitude, $timezone);
 			$beginCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, true)*24*60*60);
+		$beginCivilTwilighttoday = $beginCivilTwilight;
 			if($beginCivilTwilight < time()){
 				$beginCivilTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jctomorrow, true))*24*60*60);
 			}
 			$endCivilTwilight = mktime(0,0,ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jc, false)*24*60*60);
+			$endCivilTwilightToday = $endCivilTwilight;
 			if($endCivilTwilight < time()){
 				$endCivilTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-6, $latitude, $longitude, $timezone, $jctomorrow, true))*24*60*60);
 			}
@@ -110,7 +114,11 @@
 			$this->SetValue("juliandate", $jd);
 			$this->SetValue("juliancentury", $jc);
 
-			$this->SetValue("solarnoon", mktime(0,0,ASTROSUN::SolarNoon($timezone, $longitude, $jc)*24*60*60));
+			$solarnoon = mktime(0, 0, ASTROSUN::SolarNoon($timezone, $longitude, $jc) * 24 * 60 * 60);
+			if($solarnoon < time()){
+				$solarnoon = mktime(0, 0, (1 + ASTROSUN::SolarNoon($timezone, $longitude, $jctomorrow)) * 24 * 60 * 60);
+			}
+			$this->SetValue("solarnoon", $solarnoon);
 			$this->SetValue("sunazimut", $solarAzimut);
 			$this->SetValue("sundeclination", ASTROSUN::Declination($jc));
 			$this->SetValue("sunelevation", $sunelevation);
@@ -129,31 +137,31 @@
 				$this->SetValue("stopciviltwilight", $endCivilTwilight);
 			try{
 				$beginNauticalTwilight = mktime(0, 0, ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, true) * 24 * 60 * 60);
-				$this->SetValue("startnauticaltwilight", $beginNauticalTwilight);
 				if($beginNauticalTwilight < time()){
 					$beginNauticalTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jctomorrow, true))*24*60*60);
 				}
+				$this->SetValue("startnauticaltwilight", $beginNauticalTwilight);
 			}catch (Exception $e){}
 			try{
 				$endNauticalTwilight = mktime(0, 0, ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jc, false) * 24 * 60 * 60);
-				$this->SetValue("stopnauticaltwilight", $endNauticalTwilight);
 				if($endNauticalTwilight < time()){
 					$endNauticalTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-12, $latitude, $longitude, $timezone, $jctomorrow, false))*24*60*60);
 				}
+				$this->SetValue("stopnauticaltwilight", $endNauticalTwilight);
 			}catch (Exception $e){}
 			try{
 				$beginAstronomicalTwilight = mktime(0, 0, ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, true) * 24 * 60 * 60);
-				$this->SetValue("startastronomicaltwilight", $beginAstronomicalTwilight);
 				if($beginAstronomicalTwilight < time()){
 					$beginAstronomicalTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jctomorrow, true))*24*60*60);
 				}
+				$this->SetValue("startastronomicaltwilight", $beginAstronomicalTwilight);
 			}catch (Exception $e){}
 			try{
-			$endAstronomicalTwilight = mktime(0, 0, ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false) * 24 * 60 * 60);
-				$this->SetValue("stopastronomicaltwilight", $endAstronomicalTwilight);
+				$endAstronomicalTwilight = mktime(0, 0, ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jc, false) * 24 * 60 * 60);
 				if($endAstronomicalTwilight < time()){
 					$endAstronomicalTwilight = mktime(0,0,(1 + ASTROSUN::TimeForElevation(-18, $latitude, $longitude, $timezone, $jctomorrow, false))*24*60*60);
 				}
+				$this->SetValue("stopastronomicaltwilight", $endAstronomicalTwilight);
 			}catch (Exception $e){}
 			$this->SetValue("shadowLength", 1 / tan(deg2rad($sunelevation)));
 			$this->SetValue("solarirradiancespace", $solarirradiancespace);
@@ -163,12 +171,12 @@
 			$this->SetValue("durationOfSunrise", ASTROSUN::DurationOfSunrise($latitude, $longitude, $jc));
 			
 			$ts = time();
-			if($sunrise <= $ts and $ts <= $sunset){
+			if($sunrisetoday <= $ts and $ts <= $sunsettoday){
 				$this->SetValue("day", true);
 			}else{
 				$this->SetValue("day", false);
 			}
-			if($beginCivilTwilight <= $ts and $ts <= $endCivilTwilight){
+			if($beginCivilTwilighttoday <= $ts and $ts <= $endCivilTwilightToday){
 				$this->SetValue("insideCivilTwilight", true);
 			}else{
 				$this->SetValue("insideCivilTwilight", false);

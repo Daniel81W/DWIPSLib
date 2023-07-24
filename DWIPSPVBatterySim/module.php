@@ -10,6 +10,7 @@
 			$this->RegisterPropertyFloat("BatteryCapacity", 0);
 			$this->RegisterPropertyFloat("GeneratorMaxPower", 0);
 			$this->RegisterPropertyInteger("BatteryUsefulCap", 0);
+			$this->RegisterPropertyInteger("MainPowerID", 0);
 			
 			$this->RegisterVariableFloat("BatteryLoad", "BateryLoad");
 			$this->RegisterVariableFloat("BatteryLoadPerc", "BatteryLoadPerc");

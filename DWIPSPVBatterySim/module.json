@@ -1,0 +1,12 @@
+{
+    "id": "{BC06C283-08E2-CB9E-ABC1-7FB42E3FD7B0}",
+    "name": "DWIPSPVBatterySim",
+    "type": 3,
+    "vendor": "DWIPS",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "DWIPSPVBAT",
+    "url": "https://github.com/Daniel81W/DWIPSLib"
+}

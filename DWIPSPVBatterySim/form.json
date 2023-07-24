@@ -1,0 +1,33 @@
+{
+    "elements": [
+        {
+            "type": "ExpansionPanel",
+            "caption": "PV-Module",
+            "items": [
+                {
+                    "type": "NumberSpinner",
+                    "name": "BatteryCapacity",
+                    "caption": "Speicherkapazität",
+                    "minimum": 0,
+                    "suffix": "kWh"
+                },
+                {
+                    "type": "NumberSpinner",
+                    "name": "GeneratorMaxPower",
+                    "caption": "Nennleistung Wechselrichter",
+                    "minimum": 0,
+                    "suffix": "kW"
+                },
+                {
+                    "type": "NumberSpinner",
+                    "name": "BatteryUsefulCap",
+                    "caption": "Nutzbare Speicherkapazität",
+                    "minimum": 0,
+                    "suffix": "%"
+                }
+            ]
+        }
+    ],
+    "actions": [],
+    "status": []
+}

@@ -9,21 +9,24 @@
                     "name": "BatteryCapacity",
                     "caption": "Speicherkapazität",
                     "minimum": 0,
-                    "suffix": "kWh"
+                    "suffix": "kWh",
+                    "digits": 1
                 },
                 {
                     "type": "NumberSpinner",
                     "name": "GeneratorMaxPower",
                     "caption": "Nennleistung Wechselrichter",
                     "minimum": 0,
-                    "suffix": "kW"
+                    "suffix": "kW",
+                    "digits": 1
                 },
                 {
                     "type": "NumberSpinner",
                     "name": "BatteryUsefulCap",
                     "caption": "Nutzbare Speicherkapazität",
                     "minimum": 0,
-                    "suffix": "%"
+                    "suffix": "%",
+                    "digits": 1
                 }
             ]
         }

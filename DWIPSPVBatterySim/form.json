@@ -2,7 +2,7 @@
     "elements": [
         {
             "type": "ExpansionPanel",
-            "caption": "PV-Module",
+            "caption": "Speicherdaten",
             "items": [
                 {
                     "type": "NumberSpinner",
@@ -27,6 +27,18 @@
                     "minimum": 0,
                     "suffix": "%",
                     "digits": 1
+                }
+            ]
+        },
+        {
+            "type": "ExpansionPanel",
+            "caption": "Datenanbindung",
+            "items": [
+                {
+                    "type": "SelectVariable",
+                    "name": "MainPowerID",
+                    "caption": "HZ Leistung",
+                    "validVariableTypes": [1, 2]
                 }
             ]
         }

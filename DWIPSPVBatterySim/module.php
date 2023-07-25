@@ -79,6 +79,13 @@
 			}
 
 			$free = $this->ReadPropertyFloat("BatteryCapacity") - $this->GetValue("BatteryLoad");
+			if($lastTimePeriod > 0){
+				if($lastTimePeriod < $free){
+					$this->SetValue("BatteryLoad", $this->GetValue("BatteryLoad") + $lastTimePeriod);
+				}else{
+					$this->SetValue("BatteryLoad", $this->ReadPropertyFloat("BatteryCapacity"));
+				}
+			}
 
 
 			

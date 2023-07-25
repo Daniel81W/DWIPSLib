@@ -63,9 +63,13 @@
 
 			if($Power > 0 && $this->GetValue("BatteryLoad") >= $this->ReadPropertyFloat("BatteryCapacity")){
 				$Power = 0;
+			}elseif($Power < 0 && $this->GetValue("BatteryLoad") <= (100 - $this->ReadPropertyFloat("BatteryUsefulCap"))/100 * $this->ReadPropertyFloat("BatteryCapacity")){
+				$Power = 0;
 			}
 			
 			$this->SendDebug("Ergebnis", $Power, 0);
+			$this->SendDebug("Ergebnis", (100 - $this->ReadPropertyFloat("BatteryUsefulCap"))/100 * $this->ReadPropertyFloat("BatteryCapacity"), 0);
+			
 		}
 		
 	}

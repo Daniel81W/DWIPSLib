@@ -68,7 +68,7 @@
 			}
 			
 			$this->SendDebug("Ergebnis", $Power, 0);
-			$this->SendDebug("Ergebnis", (100 - $this->ReadPropertyFloat("BatteryUsefulCap"))/100 * $this->ReadPropertyFloat("BatteryCapacity"), 0);
+			$this->SendDebug("Ergebnis", ((100.0 - $this->ReadPropertyFloat("BatteryUsefulCap"))/100) * $this->ReadPropertyFloat("BatteryCapacity"), 0);
 			
 		}
 		

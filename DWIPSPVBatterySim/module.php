@@ -55,9 +55,12 @@
 			//IPS_LogMessage("MessageSink", "Message from SenderID ".$SenderID." with Message ".$Message."\r\n Data: ".print_r($Data, true));
 			$Power = 0.0;
 			$Power = $Data[0] / 1000;
-			if($Power > $this->ReadPropertyFloat("GeneratorMaxPower")){
-
+			if(abs($Power) > $this->ReadPropertyFloat("GeneratorMaxPower")){
+				$Power = -1 * $Power / abs($Power) * $this->ReadPropertyFloat("GeneratorMaxPower");
+			}else{
+				$Power = -1 * $Power;
 			}
+			
 			$this->SendDebug("Ergebnis", $Power, 0);
 		}
 		

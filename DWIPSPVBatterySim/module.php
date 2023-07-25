@@ -12,7 +12,7 @@
 			$this->RegisterPropertyFloat("BatteryUsefulCap", 0);
 			$this->RegisterPropertyInteger("MainPowerID", 0);
 			
-			$this->RegisterVariableFloat("BatteryLoad", "BateryLoad");
+			$this->RegisterVariableFloat("BatteryLoad", "BatteryLoad");
 			$this->RegisterVariableFloat("BatteryLoadPerc", "BatteryLoadPerc");
 
 			$this->RegisterVariableFloat("DeliveredEnergy", "DeliveredEnergy");
@@ -79,13 +79,16 @@
 			}
 
 			$free = $this->ReadPropertyFloat("BatteryCapacity") - $this->GetValue("BatteryLoad");
-			if($lastTimePeriod > 0){
+			$abovemin = $this->ReadPropertyFloat("BatteryCapacity") - $this->GetValue("BatteryLoad");
+			if($lastTimePeriod <> 0){
 				if($lastTimePeriod < $free){
 					$this->SetValue("BatteryLoad", $this->GetValue("BatteryLoad") + $lastTimePeriod);
 				}else{
-					$this->SetValue("BatteryLoad", $this->ReadPropertyFloat("BatteryCapacity"));
+					$this->SetValue("BatteryLoad", $this->GetValue("BatteryLoad") + $free);
 				}
 			}
+			$this->SetValue("BatteryLoadPerc", $this->GetValue("BatteryLoad") / $this->ReadPropertyFloat("BatteryCapacity") * 100);
+			$this->SetValue("TheoraticalMainPower", $Data[0] / 1000 + $Power);
 
 
 			

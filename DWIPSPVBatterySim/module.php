@@ -12,14 +12,14 @@
 			$this->RegisterPropertyFloat("BatteryUsefulCap", 0);
 			$this->RegisterPropertyInteger("MainPowerID", 0);
 			
-			$loadID = $this->RegisterVariableFloat("BatteryLoad", "BatteryLoad");
-			$loadPercID = $this->RegisterVariableFloat("BatteryLoadPerc", "BatteryLoadPerc");
+			$loadID = $this->RegisterVariableFloat("BatteryLoad", $this->Translate("BatteryLoad"));
+			$loadPercID = $this->RegisterVariableFloat("BatteryLoadPerc", $this->Translate("BatteryLoadPerc"));
 
-			$delID = $this->RegisterVariableFloat("DeliveredEnergy", "DeliveredEnergy");
-			$genPowID = $this->RegisterVariableFloat("GeneratorPower", "GeneratorPower");
+			$delID = $this->RegisterVariableFloat("DeliveredEnergy", $this->Translate("DeliveredEnergy"));
+			$genPowID = $this->RegisterVariableFloat("GeneratorPower", $this->Translate("GeneratorPower"));
 
 			
-			$theoPowID = $this->RegisterVariableFloat("TheoraticalMainPower", "TheoraticalMainPower");
+			$theoPowID = $this->RegisterVariableFloat("TheoraticalMainPower", $this->Translate("TheoraticalMainPower"));
 
 			$this->RegisterMessage($this->ReadPropertyInteger("MainPowerID"),10603);
 

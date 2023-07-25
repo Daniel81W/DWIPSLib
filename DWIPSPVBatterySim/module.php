@@ -52,7 +52,13 @@
 
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
 	
-			IPS_LogMessage("MessageSink", "Message from SenderID ".$SenderID." with Message ".$Message."\r\n Data: ".print_r($Data, true));
+			//IPS_LogMessage("MessageSink", "Message from SenderID ".$SenderID." with Message ".$Message."\r\n Data: ".print_r($Data, true));
+			$Power = 0.0;
+			$Power = $Data[0] / 1000;
+			if($Power > $this->ReadPropertyFloat("GeneratorMaxPower")){
+
+			}
+			$this->SendDebug("Ergebnis", $Power, 0);
 		}
 		
 	}

@@ -69,10 +69,20 @@
 			$this->SetValue("GeneratorPower", $Power);
 
 			$lastTimePeriod = 0.0;
-			$lastTimePeriod = $Power * ($Data[1] - $Data[1]) / 3600;
+			$lastTimePeriod = $Power * ($Data[3] - $Data[4]) / 3600;
+
+			if($lastTimePeriod > 0){
+				$lastTimePeriod *= 0.95;
+			}elseif($lastTimePeriod < 0){
+				$this->SetValue("DeliveredEnergy", $this->GetValue("DeliveredEnergy") - $lastTimePeriod);
+				$lastTimePeriod *= 1.05;
+			}
+
+			$free = $this->ReadPropertyFloat("BatteryCapacity") - $this->GetValue("BatteryLoad");
+
 
 			
-			$this->SendDebug("Ergebnis", print_r($Data, true), 0);
+			$this->SendDebug("Ergebnis", $free, 0);
 			
 		}
 		

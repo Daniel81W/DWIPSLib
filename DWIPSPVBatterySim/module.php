@@ -21,6 +21,8 @@
 			
 			$this->RegisterVariableFloat("TheoraticalMainPower", "TheoraticalMainPower");
 
+			$this->RegisterMessage($this->ReadPropertyInteger("MainPowerID"),10603);
+
 		}
 
 		public function Destroy()
@@ -33,6 +35,7 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+			$this->RegisterMessage($this->ReadPropertyInteger("MainPowerID"),10603);
 		}
 
 		/**
@@ -42,11 +45,14 @@
         * DWIPSShutter_UpdateSunrise($id);
         *
         */
-        public function Update() {
-           }
 
 		public function ReceiveData($JSONString) {
 			
+		}
+
+		public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
+	
+			IPS_LogMessage("MessageSink", "Message from SenderID ".$SenderID." with Message ".$Message."\r\n Data: ".print_r($Data, true));
 		}
 		
 	}

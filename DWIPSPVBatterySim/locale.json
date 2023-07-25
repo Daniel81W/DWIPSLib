@@ -1,7 +1,7 @@
 {
     "translations": {
         "de": {
-            "Batteryload": "Speicherladung",
+            "BatteryLoad": "Speicherladung",
             "BatteryLoadPerc": "Speicherladung %",
             "DeliveredEnergy": "abgegebene Energie",
             "GeneratorPower": "Leistung",

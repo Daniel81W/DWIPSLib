@@ -60,6 +60,10 @@
 			}else{
 				$Power = -1 * $Power;
 			}
+
+			if($Power > 0 && $this->GetValue("BatteryLoad") >= $this->ReadPropertyFloat("BatteryCapacity")){
+				$Power = 0;
+			}
 			
 			$this->SendDebug("Ergebnis", $Power, 0);
 		}

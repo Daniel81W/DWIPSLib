@@ -66,10 +66,12 @@
 			}elseif($Power < 0 && $this->GetValue("BatteryLoad") <= (100 - $this->ReadPropertyFloat("BatteryUsefulCap"))/100 * $this->ReadPropertyFloat("BatteryCapacity")){
 				$Power = 0;
 			}
+			$this->SetValue("GeneratorPower", $Power);
+
+			$lastTimePeriod = 0.0;
+
 			
-			$this->SendDebug("Ergebnis", $Power, 0);
-			$this->SendDebug("Ergebnis", $this->ReadPropertyFloat("BatteryUsefulCap"), 0);
-			$this->SendDebug("Ergebnis", (100 - $this->ReadPropertyFloat("BatteryUsefulCap"))/100 * $this->ReadPropertyFloat("BatteryCapacity"), 0);
+			$this->SendDebug("Ergebnis", $Data, 0);
 			
 		}
 		

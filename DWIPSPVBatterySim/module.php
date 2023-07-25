@@ -69,9 +69,10 @@
 			$this->SetValue("GeneratorPower", $Power);
 
 			$lastTimePeriod = 0.0;
+			$lastTimePeriod = $Power * ($Data[1] - $Data[1]) / 3600;
 
 			
-			$this->SendDebug("Ergebnis", $Data, 0);
+			$this->SendDebug("Ergebnis", print_r($Data, true), 0);
 			
 		}
 		

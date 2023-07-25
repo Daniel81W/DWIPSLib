@@ -12,17 +12,23 @@
 			$this->RegisterPropertyFloat("BatteryUsefulCap", 0);
 			$this->RegisterPropertyInteger("MainPowerID", 0);
 			
-			$this->RegisterVariableFloat("BatteryLoad", "BatteryLoad");
-			$this->RegisterVariableFloat("BatteryLoadPerc", "BatteryLoadPerc");
+			$loadID = $this->RegisterVariableFloat("BatteryLoad", "BatteryLoad");
+			$loadPercID = $this->RegisterVariableFloat("BatteryLoadPerc", "BatteryLoadPerc");
 
-			$this->RegisterVariableFloat("DeliveredEnergy", "DeliveredEnergy");
-			$this->RegisterVariableFloat("GeneratorPower", "GeneratorPower");
+			$delID = $this->RegisterVariableFloat("DeliveredEnergy", "DeliveredEnergy");
+			$genPowID = $this->RegisterVariableFloat("GeneratorPower", "GeneratorPower");
 
 			
-			$this->RegisterVariableFloat("TheoraticalMainPower", "TheoraticalMainPower");
+			$theoPowID = $this->RegisterVariableFloat("TheoraticalMainPower", "TheoraticalMainPower");
 
 			$this->RegisterMessage($this->ReadPropertyInteger("MainPowerID"),10603);
 
+			IPS_SetVariableCustomProfile($loadID, "Electricity.kWh");
+			IPS_SetVariableCustomProfile($loadPercID, "Prozent");
+			IPS_SetVariableCustomProfile($delID, "Electricity.kWh");
+			IPS_SetVariableCustomProfile($genPowID, "Power.kW");
+			IPS_SetVariableCustomProfile($theoPowID, "Power.kW");
+			
 		}
 
 		public function Destroy()

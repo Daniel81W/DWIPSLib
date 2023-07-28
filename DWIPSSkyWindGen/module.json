@@ -1,0 +1,12 @@
+{
+    "id": "{C4C672CB-4134-1756-9C28-F2267EF2B113}",
+    "name": "DWIPSSkyWindGen",
+    "type": 3,
+    "vendor": "DWIPS",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "DWIPSSKYWIND",
+    "url": "https://github.com/Daniel81W/DWIPSLib"
+}

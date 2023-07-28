@@ -92,7 +92,7 @@
 
 
 			
-			$this->SendDebug("Ergebnis", $free, 0);
+			//$this->SendDebug("Ergebnis", $free, 0);
 			
 		}
 		

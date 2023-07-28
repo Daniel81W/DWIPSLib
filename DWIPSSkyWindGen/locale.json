@@ -1,0 +1,8 @@
+{
+    "translations": {
+        "de": {
+            "DeliveredEnergy": "abgegebene Energie",
+            "GeneratorPower": "Leistung"
+        }
+    }
+}

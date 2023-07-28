@@ -54,9 +54,8 @@
 			if($Wind < 4){
 				$Power = 0.0;
 			}elseif($Wind < 17){
-				
-				$this->SendDebug("Wind", $Wind, 0);	
 				$Power = pow(-10 * ($Wind - 3),1.15*($Wind - 4));
+				$this->SendDebug("Wind", $Power, 0);	
 			}elseif($Wind < 20){
 				$Power = 0;
 			}else{

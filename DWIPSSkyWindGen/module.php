@@ -50,7 +50,6 @@
 			$Power = 0.0;
 			$Wind = 0.0;
 			$Wind = $Data[0];
-			$this->SendDebug("Wind", $Wind, 0);
 			if($Wind < 4){
 				$Power = 0.0;
 			}elseif($Wind < 17){
@@ -61,6 +60,7 @@
 				$Power = 0;
 			}
 			
+			$this->SendDebug("Wind", $Power, 0);
 			$Power = $Power/1000;
 			$this->SendDebug("Wind", $Power, 0);
 			$this->SetValue("GeneratorPower", $Power);

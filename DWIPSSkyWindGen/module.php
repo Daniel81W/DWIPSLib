@@ -68,7 +68,7 @@
 			$this->SendDebug("En", $lastTimePeriod, 0);
 
 			if($lastTimePeriod < 0){
-				//$this->SetValue("DeliveredEnergy", $this->GetValue("DeliveredEnergy") - $lastTimePeriod);
+				$this->SetValue("DeliveredEnergy", $this->GetValue("DeliveredEnergy") - $lastTimePeriod);
 			}
 
 		

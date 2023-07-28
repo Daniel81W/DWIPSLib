@@ -50,6 +50,7 @@
 			$Power = 0.0;
 			$Wind = 0.0;
 			$Wind = $Data[0];
+			$this->SendDebug("Wind", $Wind, 0);
 			if($Wind < 4){
 				$Power = 0.0;
 			}elseif($Wind < 17){

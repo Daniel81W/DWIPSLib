@@ -54,23 +54,18 @@
 				$Power = 0.0;
 			}elseif($Wind < 17){
 				$Power = -10 * ($Wind - 3) * pow(1.15,($Wind - 4));
-				$this->SendDebug("Wind", $Power, 0);
 			}elseif($Wind < 20){
 				$Power = 0;
 			}else{
 				$Power = 0;
 			}
 			
-			$this->SendDebug("Wind", $Power, 0);
 			$Power = $Power/1000;
-			$this->SendDebug("Wind", $Power, 0);
 			$this->SetValue("GeneratorPower", $Power);
 
-
-
-			
 			$lastTimePeriod = 0.0;
 			$lastTimePeriod = $Power * ($Data[3] - $Data[4]) / 3600;
+			$this->SendDebug("En", $lastTimePeriod, 0);
 
 			if($lastTimePeriod < 0){
 				//$this->SetValue("DeliveredEnergy", $this->GetValue("DeliveredEnergy") - $lastTimePeriod);

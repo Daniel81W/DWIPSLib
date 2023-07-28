@@ -60,7 +60,8 @@
 				$Power = 0;
 			}
 			
-			$Power = $Power/1000;
+			$Power = $Power*$this->ReadPropertyFloat("MaxGeneratorPower")/1000 / 1000;
+			$Power = $Power*$this->ReadPropertyInteger("GenCount");
 			$this->SetValue("GeneratorPower", $Power);
 
 			$lastTimePeriod = 0.0;

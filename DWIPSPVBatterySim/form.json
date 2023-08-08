@@ -40,6 +40,12 @@
                     "caption": "HZ Leistung",
                     "validVariableTypes": [1, 2]
                 }
+                {
+                    "type": "SelectVariable",
+                    "name": "AddPowerID",
+                    "caption": "Leistung zusätzliche Energiequelle",
+                    "validVariableTypes": [1, 2]
+                }
             ]
         }
     ],

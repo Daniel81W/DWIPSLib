@@ -11,6 +11,7 @@
 			$this->RegisterPropertyFloat("GeneratorMaxPower", 0);
 			$this->RegisterPropertyFloat("BatteryUsefulCap", 0);
 			$this->RegisterPropertyInteger("MainPowerID", 0);
+			$this->RegisterPropertyInteger("AddPowerID", 0);
 			
 			$loadID = $this->RegisterVariableFloat("BatteryLoad", $this->Translate("BatteryLoad"),"Electricity.kWh", 1);
 			$loadPercID = $this->RegisterVariableFloat("BatteryLoadPerc", $this->Translate("BatteryLoadPerc"), "Prozent", 2);
@@ -54,7 +55,8 @@
 	
 			//IPS_LogMessage("MessageSink", "Message from SenderID ".$SenderID." with Message ".$Message."\r\n Data: ".print_r($Data, true));
 			$Power = 0.0;
-			$Power = $Data[0] / 1000;
+			$AddPower = $this->GetValueFloat($this->ReadPropertyInteger("AddPowerID"));
+			$Power = ($Data[0] + $AddPower)/ 1000;
 			if(abs($Power) > $this->ReadPropertyFloat("GeneratorMaxPower")){
 				$Power = -1 * $Power / abs($Power) * $this->ReadPropertyFloat("GeneratorMaxPower");
 			}else{

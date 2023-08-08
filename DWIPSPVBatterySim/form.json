@@ -39,7 +39,7 @@
                     "name": "MainPowerID",
                     "caption": "HZ Leistung",
                     "validVariableTypes": [1, 2]
-                }
+                },
                 {
                     "type": "SelectVariable",
                     "name": "AddPowerID",

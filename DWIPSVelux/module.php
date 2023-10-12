@@ -18,7 +18,7 @@
 			$this->RegisterMessage($this->ReadPropertyInteger("WindSpID"),10603);
 			*/
 
-			$this->SendDataToParent(json_encode(Array("DataID" => "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}", "Buffer" => 0x000C)));
+			$this->SendDataToParent(json_encode(Array("DataID" => "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}", "Buffer" => "0x000c")));
 		}
 
 		public function Destroy()

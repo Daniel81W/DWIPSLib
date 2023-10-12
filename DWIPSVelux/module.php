@@ -14,10 +14,10 @@
 			$genPowID = $this->RegisterVariableFloat("GeneratorPower", $this->Translate("GeneratorPower"), "Power.kW", 1);
 			$delID = $this->RegisterVariableFloat("DeliveredEnergy", $this->Translate("DeliveredEnergy"), "Electricity.kWh", 2);
 			
-			
 			$this->RegisterMessage($this->ReadPropertyInteger("WindSpID"),10603);
 			*/
 
+			$this->ConnectParent("{3CFF0FD9-E306-41DB-9B5A-9D06D38576C3}");
 			$this->SendDataToParent(json_encode(Array("DataID" => "{79827379-F36E-4ADA-8A95-5F8D1DC92FA9}", "Buffer" => "0x000c")));
 		}
 

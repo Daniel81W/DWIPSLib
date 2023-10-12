@@ -1,0 +1,40 @@
+{
+    "elements": [
+        {
+            "type": "ExpansionPanel",
+            "caption": "Speicherdaten",
+            "items": [
+                {
+                    "type": "NumberSpinner",
+                    "name": "GenCount",
+                    "caption": "Anzahl Generatoren",
+                    "minimum": 1,
+                    "suffix": "",
+                    "digits": 0
+                },
+                {
+                    "type": "NumberSpinner",
+                    "name": "MaxGeneratorPower",
+                    "caption": "Nennleistung pro Generator",
+                    "minimum": 0,
+                    "suffix": "kW",
+                    "digits": 1
+                }
+            ]
+        },
+        {
+            "type": "ExpansionPanel",
+            "caption": "Datenanbindung",
+            "items": [
+                {
+                    "type": "SelectVariable",
+                    "name": "WindSpID",
+                    "caption": "Windgeschwindigkeit",
+                    "validVariableTypes": [1, 2]
+                }
+            ]
+        }
+    ],
+    "actions": [],
+    "status": []
+}
